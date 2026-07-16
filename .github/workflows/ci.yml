@@ -1,0 +1,48 @@
+name: CI
+
+# Runs lint + test + build on every push/PR to main.
+# Deployment is handled by Vercel's native Git integration — NOT here.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same ref.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    name: Lint, Test, Build
+    runs-on: ubuntu-latest
+    env:
+      # Throwaway SQLite file so Prisma can compile/query during CI only.
+      # Production data lives in the hosted DB set in Vercel's env vars.
+      DATABASE_URL: "file:./prisma/dev.db"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      # `npm ci` triggers the postinstall script, which runs `prisma generate`.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create + migrate CI database
+        run: npx prisma migrate deploy
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
