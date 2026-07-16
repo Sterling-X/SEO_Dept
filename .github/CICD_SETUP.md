@@ -21,26 +21,46 @@ Two independent pieces:
 Steps: `npm ci` (runs `postinstall` → `prisma generate`) → `prisma migrate deploy`
 (creates a throwaway SQLite DB) → `npm run lint` → `npm test` → `npm run build`.
 
-## Vercel deployment — required project settings
+## Database: Turso (libSQL)
 
-The Vercel project `seo-dept` (scope `lostphoenix33's-projects`) is already linked to
-`Sterling-X/SEO_Dept`. For its builds to succeed you must configure, in
-**Vercel → Project → Settings → Environment Variables** (Production):
+The app uses the **`@prisma/adapter-libsql`** adapter ([src/lib/prisma.ts](../src/lib/prisma.ts)),
+which speaks both local SQLite files (`file:…`, used for dev + CI) and **remote Turso**
+(`libsql://…`, used in production). Two env vars control it:
 
-- `DATABASE_URL` — **must point at a hosted database, not SQLite** (see below).
-- Any other runtime vars the app needs (API keys, etc.).
+| Var | Local dev | Production (Vercel) |
+| --- | --- | --- |
+| `DATABASE_URL` | `file:./prisma/dev.db` | `libsql://seo-dept-<org>.turso.io` |
+| `DATABASE_AUTH_TOKEN` | *(unset)* | Turso db token |
+
+### One-time Turso setup
+
+```bash
+# 1. Install + log in
+brew install tursodatabase/tap/turso   # or: curl -sSfL https://get.tur.so/install.sh | bash
+turso auth login
+
+# 2. Create the database
+turso db create seo-dept
+
+# 3. Grab the two values you'll paste into Vercel
+turso db show seo-dept --url          # -> DATABASE_URL
+turso db tokens create seo-dept       # -> DATABASE_AUTH_TOKEN
+
+# 4. Apply the schema (Prisma's migrate engine can't talk to Turso remote,
+#    so pipe the migration SQL through the Turso shell)
+turso db shell seo-dept < prisma/migrations/20260312160707_init_mvp/migration.sql
+turso db shell seo-dept < prisma/migrations/20260312185345_phase2_real_exports/migration.sql
+```
+
+### Then, in Vercel → `seo-dept` → Settings → Environment Variables (Production)
+
+- `DATABASE_URL` = the `libsql://…` URL from step 3
+- `DATABASE_AUTH_TOKEN` = the token from step 3
+- plus any other runtime vars the app needs (API keys, etc.)
 
 `prisma generate` runs automatically on Vercel via the `postinstall` script.
 
-### ⚠️ SQLite will not work on Vercel
-
-The app currently uses **Prisma + SQLite** (`better-sqlite3`, `prisma/dev.db`). Vercel's
-serverless filesystem is ephemeral/read-only at runtime — writes fail or vanish between
-requests. Migrate before relying on the deploy:
-
-1. **Turso / libSQL** — closest to SQLite, minimal schema changes.
-2. **Postgres** (Neon / Vercel Postgres / Supabase) — set
-   `datasource db { provider = "postgresql" }` in `prisma/schema.prisma`, re-run migrations.
+Redeploy (push a commit or hit **Redeploy** in Vercel) and the deployment goes green.
 
 ## Optional: make Vercel wait for CI to pass
 
