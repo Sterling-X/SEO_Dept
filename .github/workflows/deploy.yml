@@ -34,8 +34,13 @@ jobs:
       - name: Set up gcloud
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Build & push image (Cloud Build)
-        run: gcloud builds submit --tag "$IMAGE" --project "$PROJECT_ID"
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+
+      - name: Build & push image
+        run: |
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
 
       - name: Set up Node
         uses: actions/setup-node@v4
