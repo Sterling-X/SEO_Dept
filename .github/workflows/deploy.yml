@@ -1,0 +1,76 @@
+name: Deploy to Cloud Run
+
+# On every push to main: build the image (Cloud Build), run DB migrations,
+# then deploy to Cloud Run. Runs after code lands; CI (ci.yml) gates PRs.
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+env:
+  PROJECT_ID: sterlingx-insights
+  REGION: us-central1
+  SERVICE: seo-dept
+  IMAGE: us-central1-docker.pkg.dev/sterlingx-insights/seo-dept/app:${{ github.sha }}
+  INSTANCE_CONNECTION: sterlingx-insights:us-central1:seo-dept-db
+  RUNTIME_SA: seo-dept-run@sterlingx-insights.iam.gserviceaccount.com
+
+jobs:
+  deploy:
+    name: Build, migrate, deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build & push image (Cloud Build)
+        run: gcloud builds submit --tag "$IMAGE" --project "$PROJECT_ID"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install deps (for Prisma migrate)
+        run: npm ci
+
+      - name: Run database migrations (via Cloud SQL Auth Proxy)
+        run: |
+          curl -sSL -o cloud-sql-proxy \
+            https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy/v2.14.1/cloud-sql-proxy.linux.amd64
+          chmod +x cloud-sql-proxy
+          ./cloud-sql-proxy --port 5432 "$INSTANCE_CONNECTION" > proxy.log 2>&1 &
+          for i in $(seq 1 30); do grep -q "ready for new connections" proxy.log && break; sleep 1; done
+          APP_PW=$(gcloud secrets versions access latest --secret=seo-dept-db-app-password --project "$PROJECT_ID")
+          export DATABASE_URL="postgresql://seo_app:${APP_PW}@127.0.0.1:5432/seo_dept"
+          npx prisma migrate deploy
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy "$SERVICE" \
+            --image "$IMAGE" \
+            --region "$REGION" \
+            --project "$PROJECT_ID" \
+            --service-account "$RUNTIME_SA" \
+            --add-cloudsql-instances "$INSTANCE_CONNECTION" \
+            --set-secrets "DATABASE_URL=seo-dept-database-url:latest" \
+            --allow-unauthenticated \
+            --port 8080 \
+            --quiet
+
+      - name: Output service URL
+        run: |
+          gcloud run services describe "$SERVICE" --region "$REGION" \
+            --project "$PROJECT_ID" --format="value(status.url)"

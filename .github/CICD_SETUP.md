@@ -1,79 +1,77 @@
 # CI/CD Setup
 
-Two independent pieces:
+The app runs on **Google Cloud Run** with a **Cloud SQL for PostgreSQL** database, all
+in the GCP project **`sterlingx-insights`** (region **`us-central1`**).
 
-1. **CI** — GitHub Actions ([`.github/workflows/ci.yml`](workflows/ci.yml)) runs
-   lint + test + build on every push/PR to `main`.
-2. **CD** — **Vercel's native Git integration** builds and deploys automatically on
-   every push to `main`. There is no deploy job in GitHub Actions.
+## Pipelines
 
-> No GitHub Actions secrets are required for this setup. `VERCEL_TOKEN` /
-> `VERCEL_ORG_ID` / `VERCEL_PROJECT_ID` are only needed if you deploy *from* Actions,
-> which we are not doing.
-
-## CI job
-
-| Trigger | Runs? |
-| --- | --- |
-| Pull request → `main` | ✅ |
-| Push → `main` | ✅ |
-
-Steps: `npm ci` (runs `postinstall` → `prisma generate`) → `prisma migrate deploy`
-(creates a throwaway SQLite DB) → `npm run lint` → `npm test` → `npm run build`.
-
-## Database: Turso (libSQL)
-
-The app uses the **`@prisma/adapter-libsql`** adapter ([src/lib/prisma.ts](../src/lib/prisma.ts)),
-which speaks both local SQLite files (`file:…`, used for dev + CI) and **remote Turso**
-(`libsql://…`, used in production). Two env vars control it:
-
-| Var | Local dev | Production (Vercel) |
+| Workflow | Trigger | What it does |
 | --- | --- | --- |
-| `DATABASE_URL` | `file:./prisma/dev.db` | `libsql://seo-dept-<org>.turso.io` |
-| `DATABASE_AUTH_TOKEN` | *(unset)* | Turso db token |
+| [`ci.yml`](workflows/ci.yml) | push + PR to `main` | Spins up a throwaway Postgres, runs `prisma migrate deploy`, then **lint → test → build**. |
+| [`deploy.yml`](workflows/deploy.yml) | push to `main` | Builds the image (Cloud Build), applies migrations to Cloud SQL (via Cloud SQL Auth Proxy), then **deploys to Cloud Run**. |
 
-### One-time Turso setup
+**Live URL:** https://seo-dept-315627031.us-central1.run.app
 
+## GCP resources
+
+| Resource | Name |
+| --- | --- |
+| Cloud Run service | `seo-dept` |
+| Cloud SQL instance | `seo-dept-db` (POSTGRES_16, db-f1-micro) |
+| Database / user | `seo_dept` / `seo_app` |
+| Connection name | `sterlingx-insights:us-central1:seo-dept-db` |
+| Artifact Registry | `us-central1-docker.pkg.dev/sterlingx-insights/seo-dept` |
+| Runtime service account | `seo-dept-run@sterlingx-insights.iam.gserviceaccount.com` |
+| Deploy service account | `github-deployer@sterlingx-insights.iam.gserviceaccount.com` |
+
+## Secrets
+
+**GitHub → Settings → Secrets → Actions**
+- `GCP_SA_KEY` — JSON key for the `github-deployer` service account (used by `deploy.yml`).
+
+**Secret Manager (GCP)**
+- `seo-dept-database-url` — full `DATABASE_URL` (Cloud SQL socket form); mounted into Cloud Run at runtime.
+- `seo-dept-db-app-password` — password for `seo_app` (used by the migration step).
+- `seo-dept-db-root-password` — Postgres root password.
+
+## Database connection
+
+The app uses Prisma with the **`@prisma/adapter-pg`** driver adapter
+([src/lib/prisma.ts](../src/lib/prisma.ts)) and reads `DATABASE_URL`:
+
+- **Cloud Run:** `...@localhost/seo_dept?host=/cloudsql/<connection-name>` (Unix socket, injected from Secret Manager).
+- **CI / local:** standard TCP `postgresql://user:pass@host:5432/db`.
+
+## Deploying
+
+Just **push to `main`** — `deploy.yml` builds, migrates, and rolls out a new Cloud Run
+revision automatically.
+
+Manual deploy of the current code:
 ```bash
-# 1. Install + log in
-brew install tursodatabase/tap/turso   # or: curl -sSfL https://get.tur.so/install.sh | bash
-turso auth login
-
-# 2. Create the database
-turso db create seo-dept
-
-# 3. Grab the two values you'll paste into Vercel
-turso db show seo-dept --url          # -> DATABASE_URL
-turso db tokens create seo-dept       # -> DATABASE_AUTH_TOKEN
-
-# 4. Apply the schema (Prisma's migrate engine can't talk to Turso remote,
-#    so pipe the migration SQL through the Turso shell)
-turso db shell seo-dept < prisma/migrations/20260312160707_init_mvp/migration.sql
-turso db shell seo-dept < prisma/migrations/20260312185345_phase2_real_exports/migration.sql
+gcloud builds submit --tag us-central1-docker.pkg.dev/sterlingx-insights/seo-dept/app:manual --project sterlingx-insights
+gcloud run deploy seo-dept --image us-central1-docker.pkg.dev/sterlingx-insights/seo-dept/app:manual \
+  --region us-central1 --service-account seo-dept-run@sterlingx-insights.iam.gserviceaccount.com \
+  --add-cloudsql-instances sterlingx-insights:us-central1:seo-dept-db \
+  --set-secrets DATABASE_URL=seo-dept-database-url:latest --allow-unauthenticated
 ```
 
-### Then, in Vercel → `seo-dept` → Settings → Environment Variables (Production)
-
-- `DATABASE_URL` = the `libsql://…` URL from step 3
-- `DATABASE_AUTH_TOKEN` = the token from step 3
-- plus any other runtime vars the app needs (API keys, etc.)
-
-`prisma generate` runs automatically on Vercel via the `postinstall` script.
-
-Redeploy (push a commit or hit **Redeploy** in Vercel) and the deployment goes green.
-
-## Optional: make Vercel wait for CI to pass
-
-Vercel deploys on push **regardless** of whether GitHub Actions CI passed. To only ship
-green commits, use Vercel's **Ignored Build Step** (Project → Settings → Git) or require
-the CI check on the branch. Ask if you want this wired up.
-
-## Local checks (mirror CI before pushing)
+## Local development
 
 ```bash
+docker run --name seo-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=seo_dept -p 5432:5432 -d postgres:16
+cp .env.example .env.local            # DATABASE_URL points at localhost:5432
 npm ci
-npx prisma migrate deploy   # creates prisma/dev.db
-npm run lint
-npm test
-npm run build
+npx prisma migrate deploy
+npm run dev
+```
+
+## ⚠️ Access control
+
+The Cloud Run service is deployed with **`--allow-unauthenticated`** (publicly reachable).
+To restrict it, remove public access and put it behind Identity-Aware Proxy or require
+authentication:
+```bash
+gcloud run services remove-iam-policy-binding seo-dept --region us-central1 \
+  --member=allUsers --role=roles/run.invoker
 ```

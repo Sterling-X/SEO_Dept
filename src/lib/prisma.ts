@@ -1,14 +1,10 @@
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
-// libSQL adapter works for both local SQLite files (file:./…) and remote
-// Turso databases (libsql://…). authToken is only needed for Turso.
-const adapter = new PrismaLibSql({
-  url: process.env.DATABASE_URL ?? "file:./prisma/dev.db",
-  authToken: process.env.DATABASE_AUTH_TOKEN,
-});
+// Postgres driver adapter — reads DATABASE_URL (Cloud SQL in prod, local/CI Postgres in dev).
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 
 export const prisma =
   globalForPrisma.prisma ??
