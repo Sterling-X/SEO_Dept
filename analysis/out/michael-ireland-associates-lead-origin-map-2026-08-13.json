@@ -1,0 +1,395 @@
+{
+ "meta": {
+  "client": "Michael Ireland & Associates",
+  "client_id": "a9b10ec7-4dfe-4058-bdb5-a53e66176eed",
+  "state_ab": "TX",
+  "state": "Texas",
+  "period": "June 15 to August 13, 2026",
+  "window_days": 60,
+  "date_from": "2026-06-15",
+  "date_to": "2026-08-13",
+  "snapshot": "August 13, 2026",
+  "in_window": 250,
+  "plotted": 198,
+  "conversions": 56,
+  "origin_points": 42,
+  "cities": 42,
+  "dropped_oos": 48,
+  "dropped_nophone": 3,
+  "dropped_unresolved": 1,
+  "metric_status": "Consults Scheduled",
+  "metric_label": "Consults booked",
+  "hired_tracked": false,
+  "zip_source": null,
+  "last_event": "2026-08-10",
+  "stages": {
+   "Consults Scheduled": 122,
+   "New Leads": 604,
+   "Qualified Potential Clients": 3
+  }
+ },
+ "points": [
+  {
+   "n": "San Antonio",
+   "k": false,
+   "lat": 29.42697,
+   "lon": -98.484285,
+   "t": 107,
+   "c": 26
+  },
+  {
+   "n": "Victoria",
+   "k": false,
+   "lat": 28.80815,
+   "lon": -97.000039,
+   "t": 19,
+   "c": 6
+  },
+  {
+   "n": "Houston",
+   "k": false,
+   "lat": 29.750008,
+   "lon": -95.363662,
+   "t": 11,
+   "c": 2
+  },
+  {
+   "n": "New Braunfels",
+   "k": false,
+   "lat": 29.699401,
+   "lon": -98.117214,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "Austin",
+   "k": false,
+   "lat": 30.272761,
+   "lon": -97.742366,
+   "t": 5,
+   "c": 1
+  },
+  {
+   "n": "Corpus Christi",
+   "k": false,
+   "lat": 27.802308,
+   "lon": -97.40043,
+   "t": 5,
+   "c": 4
+  },
+  {
+   "n": "Boerne",
+   "k": false,
+   "lat": 29.791394,
+   "lon": -98.723842,
+   "t": 3,
+   "c": 2
+  },
+  {
+   "n": "Brownsville",
+   "k": false,
+   "lat": 25.91078,
+   "lon": -97.500505,
+   "t": 3,
+   "c": 1
+  },
+  {
+   "n": "El Paso",
+   "k": false,
+   "lat": 31.756416,
+   "lon": -106.48355,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Pearsall",
+   "k": false,
+   "lat": 28.891902,
+   "lon": -99.08955,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "San Marcos",
+   "k": false,
+   "lat": 29.882448,
+   "lon": -97.939992,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Seguin",
+   "k": false,
+   "lat": 29.568042,
+   "lon": -97.967244,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Yoakum",
+   "k": false,
+   "lat": 29.30072,
+   "lon": -97.147481,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Abilene",
+   "k": false,
+   "lat": 32.449199,
+   "lon": -99.731009,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Alice",
+   "k": false,
+   "lat": 27.748862,
+   "lon": -98.064822,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Bammel",
+   "k": false,
+   "lat": 29.973263,
+   "lon": -95.490724,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Bryan-College Station",
+   "k": false,
+   "lat": 30.673434,
+   "lon": -96.365751,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Canadian",
+   "k": false,
+   "lat": 35.91494,
+   "lon": -100.382508,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Center",
+   "k": false,
+   "lat": 31.801238,
+   "lon": -94.173782,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Crosby",
+   "k": false,
+   "lat": 29.920318,
+   "lon": -95.06479,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Cypress",
+   "k": false,
+   "lat": 29.976106,
+   "lon": -95.689144,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Del Rio",
+   "k": false,
+   "lat": 29.358855,
+   "lon": -100.900045,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Eagle Pass",
+   "k": false,
+   "lat": 28.70879,
+   "lon": -100.501199,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Edna",
+   "k": false,
+   "lat": 28.974936,
+   "lon": -96.643503,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Falfurrias",
+   "k": false,
+   "lat": 27.217733,
+   "lon": -98.14088,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Flat",
+   "k": false,
+   "lat": 31.306984,
+   "lon": -97.632648,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Frisco",
+   "k": false,
+   "lat": 33.151543,
+   "lon": -96.822376,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Gillett",
+   "k": false,
+   "lat": 29.124105,
+   "lon": -97.79394,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Hallettsville",
+   "k": false,
+   "lat": 29.442554,
+   "lon": -96.942061,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Harlingen",
+   "k": false,
+   "lat": 26.184779,
+   "lon": -97.691524,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Hondo",
+   "k": false,
+   "lat": 29.351543,
+   "lon": -99.143682,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Jacksonville",
+   "k": false,
+   "lat": 31.965996,
+   "lon": -95.285915,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Killeen",
+   "k": false,
+   "lat": 31.120627,
+   "lon": -97.729118,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Laredo",
+   "k": false,
+   "lat": 27.510265,
+   "lon": -99.506902,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Poth",
+   "k": false,
+   "lat": 29.076498,
+   "lon": -98.072531,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Schulenburg",
+   "k": false,
+   "lat": 29.675778,
+   "lon": -96.908808,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Taylor",
+   "k": false,
+   "lat": 30.566685,
+   "lon": -97.410012,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Tyler",
+   "k": false,
+   "lat": 32.349216,
+   "lon": -95.301711,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Uvalde",
+   "k": false,
+   "lat": 29.20874,
+   "lon": -99.789651,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Waco",
+   "k": false,
+   "lat": 31.549842,
+   "lon": -97.13488,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Weslaco",
+   "k": false,
+   "lat": 26.157919,
+   "lon": -97.991093,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Westbrook",
+   "k": false,
+   "lat": 32.356124,
+   "lon": -101.007667,
+   "t": 1,
+   "c": 0
+  }
+ ],
+ "offices": [
+  {
+   "name": "San Antonio",
+   "addr": "9901 I-10 W, Ste 215, San Antonio TX 78230",
+   "zip": "78230",
+   "county": "Bexar",
+   "lat": 29.5338207,
+   "lon": -98.56191
+  },
+  {
+   "name": "New Braunfels",
+   "addr": "170 E San Antonio St, New Braunfels TX 78130",
+   "zip": "78130",
+   "county": "Comal",
+   "lat": 29.7036445,
+   "lon": -98.1236057
+  },
+  {
+   "name": "Victoria",
+   "addr": "101 W Goodwin Ave, Ste 1025, Victoria TX 77901",
+   "zip": "77901",
+   "county": "Victoria",
+   "lat": 28.8006686,
+   "lon": -97.0059772
+  }
+ ]
+}

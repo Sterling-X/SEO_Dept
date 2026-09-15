@@ -1,0 +1,263 @@
+{
+ "meta": {
+  "client": "Johnson Law Group",
+  "client_id": "0c4e2f26-cf3d-41e3-978f-8cd31726062f",
+  "state_ab": "CO",
+  "state": "Colorado",
+  "period": "June 15 to August 13, 2026",
+  "window_days": 60,
+  "date_from": "2026-06-15",
+  "date_to": "2026-08-13",
+  "snapshot": "August 13, 2026",
+  "in_window": 890,
+  "plotted": 548,
+  "conversions": 65,
+  "origin_points": 28,
+  "cities": 28,
+  "dropped_oos": 330,
+  "dropped_nophone": 11,
+  "dropped_unresolved": 1,
+  "metric_status": "Funded Agreement",
+  "metric_label": "Hired",
+  "hired_tracked": true,
+  "zip_source": {
+   "dataset": "johnson_law_group",
+   "column": "zip_code"
+  },
+  "last_event": "2026-08-11",
+  "stages": {
+   "New Leads": 43130,
+   "Qualified Potential Clients": 203,
+   "Consults Complete": 785,
+   "Funded Agreement": 1061,
+   "Consults Scheduled": 920
+  }
+ },
+ "points": [
+  {
+   "n": "Denver",
+   "k": false,
+   "lat": 39.745902,
+   "lon": -105.051526,
+   "t": 319,
+   "c": 36
+  },
+  {
+   "n": "Colorado Springs",
+   "k": false,
+   "lat": 38.840471,
+   "lon": -104.817061,
+   "t": 76,
+   "c": 9
+  },
+  {
+   "n": "Fort Collins",
+   "k": false,
+   "lat": 40.582566,
+   "lon": -105.080894,
+   "t": 29,
+   "c": 5
+  },
+  {
+   "n": "Greeley",
+   "k": false,
+   "lat": 40.427066,
+   "lon": -104.701934,
+   "t": 29,
+   "c": 4
+  },
+  {
+   "n": "Pueblo",
+   "k": false,
+   "lat": 38.267236,
+   "lon": -104.605968,
+   "t": 22,
+   "c": 2
+  },
+  {
+   "n": "Longmont",
+   "k": false,
+   "lat": 40.164036,
+   "lon": -105.10673,
+   "t": 13,
+   "c": 1
+  },
+  {
+   "n": "Loveland",
+   "k": false,
+   "lat": 40.39852,
+   "lon": -105.077659,
+   "t": 12,
+   "c": 2
+  },
+  {
+   "n": "Peyton",
+   "k": false,
+   "lat": 39.031041,
+   "lon": -104.483613,
+   "t": 7,
+   "c": 0
+  },
+  {
+   "n": "Fort Lupton",
+   "k": false,
+   "lat": 40.084441,
+   "lon": -104.806429,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "Grand Junction",
+   "k": false,
+   "lat": 39.067327,
+   "lon": -108.558926,
+   "t": 5,
+   "c": 0
+  },
+  {
+   "n": "Vail",
+   "k": false,
+   "lat": 39.518059,
+   "lon": -106.377104,
+   "t": 4,
+   "c": 1
+  },
+  {
+   "n": "Canon City",
+   "k": false,
+   "lat": 38.442329,
+   "lon": -105.23402,
+   "t": 3,
+   "c": 1
+  },
+  {
+   "n": "Alamosa",
+   "k": false,
+   "lat": 37.46794,
+   "lon": -105.86634,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Aspen",
+   "k": false,
+   "lat": 39.189184,
+   "lon": -106.823098,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Fort Morgan",
+   "k": false,
+   "lat": 40.257475,
+   "lon": -103.789196,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Johnstown-Milliken",
+   "k": false,
+   "lat": 40.335101,
+   "lon": -104.908002,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Monte Vista",
+   "k": false,
+   "lat": 37.574979,
+   "lon": -106.139661,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Montrose",
+   "k": false,
+   "lat": 38.476521,
+   "lon": -107.87201,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Trinidad",
+   "k": false,
+   "lat": 37.173959,
+   "lon": -104.510609,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Burlington",
+   "k": false,
+   "lat": 39.307857,
+   "lon": -102.265461,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Deckers",
+   "k": false,
+   "lat": 39.249459,
+   "lon": -105.219081,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Deer Trail",
+   "k": false,
+   "lat": 39.606655,
+   "lon": -104.04246,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Fraser",
+   "k": false,
+   "lat": 39.940704,
+   "lon": -105.816485,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Hudson",
+   "k": false,
+   "lat": 40.074595,
+   "lon": -104.641396,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Lamar",
+   "k": false,
+   "lat": 38.085207,
+   "lon": -102.606581,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Limon",
+   "k": false,
+   "lat": 39.266133,
+   "lon": -103.683595,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Telluride",
+   "k": false,
+   "lat": 37.941786,
+   "lon": -107.807731,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Walsenburg",
+   "k": false,
+   "lat": 37.619088,
+   "lon": -104.784637,
+   "t": 1,
+   "c": 0
+  }
+ ],
+ "offices": []
+}

@@ -1,0 +1,6010 @@
+{
+"201213": {
+"city": "Morristown",
+"lat": 40.797004,
+"lon": -74.477598,
+"state": "NJ"
+},
+"201410": {
+"city": "Fair Lawn",
+"lat": 40.92149,
+"lon": -74.111645,
+"state": "NJ"
+},
+"202664": {
+"city": "Washington Zone 1",
+"lat": 38.899904,
+"lon": -77.031636,
+"state": "DC"
+},
+"206388": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
+},
+"206428": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
+},
+"206508": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
+},
+"206747": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
+},
+"206799": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
+},
+"208421": {
+"city": "Twin Falls",
+"lat": 42.652681,
+"lon": -114.52368,
+"state": "ID"
+},
+"208613": {
+"city": "Filer",
+"lat": 42.575248,
+"lon": -114.605924,
+"state": "ID"
+},
+"209640": {
+"city": "Tracy",
+"lat": 37.733267,
+"lon": -121.431308,
+"state": "CA"
+},
+"209678": {
+"city": "Turlock",
+"lat": 37.498105,
+"lon": -120.851357,
+"state": "CA"
+},
+"209988": {
+"city": "Modesto",
+"lat": 37.639927,
+"lon": -120.997609,
+"state": "CA"
+},
+"210123": null,
+"210202": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210237": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210244": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210264": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210267": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210274": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210279": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210289": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210290": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210294": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210307": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210315": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210319": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210320": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210330": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210332": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210340": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210359": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210367": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210369": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210372": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210378": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210380": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210381": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210382": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210385": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210387": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210388": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210393": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210409": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210410": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210412": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210413": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210414": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210415": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210421": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210425": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210427": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210428": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210429": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210440": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210462": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210464": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210478": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210480": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210488": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210492": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210508": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210510": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210518": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210519": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210540": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210548": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210549": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210551": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210552": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210577": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210581": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210594": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210605": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210633": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210643": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210667": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210682": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210683": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210685": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210701": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210708": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210709": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210712": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210723": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210753": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210762": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210765": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210771": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210772": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210776": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210782": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210787": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210789": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210792": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210807": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210819": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210827": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210830": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210833": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210836": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210837": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210842": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210843": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210846": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210847": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210848": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210849": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210859": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210862": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210863": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210875": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210904": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210919": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210930": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210943": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210962": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210965": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210975": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210987": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210993": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210995": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210999": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"214771": {
+"city": "Rockwall",
+"lat": 32.926164,
+"lon": -96.459761,
+"state": "TX"
+},
+"215228": {
+"city": "Philadelphia Zone 1",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
+"215666": {
+"city": "Morrisville",
+"lat": 40.209574,
+"lon": -74.775959,
+"state": "PA"
+},
+"224805": {
+"city": "Arlington Heights",
+"lat": 42.089588,
+"lon": -87.983307,
+"state": "IL"
+},
+"239896": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
+},
+"240784": {
+"city": "Myersville",
+"lat": 39.507487,
+"lon": -77.567077,
+"state": "MD"
+},
+"251231": {
+"city": "Jackson",
+"lat": 31.509105,
+"lon": -87.890538,
+"state": "AL"
+},
+"253279": {
+"city": "Tacoma",
+"lat": 47.256514,
+"lon": -122.436871,
+"state": "WA"
+},
+"254226": {
+"city": "Killeen",
+"lat": 31.120627,
+"lon": -97.729118,
+"state": "TX"
+},
+"254292": {
+"city": "Waco",
+"lat": 31.549842,
+"lon": -97.13488,
+"state": "TX"
+},
+"254345": {
+"city": "Copperas Cove",
+"lat": 31.123911,
+"lon": -97.89945,
+"state": "TX"
+},
+"254524": {
+"city": "Flat",
+"lat": 31.306984,
+"lon": -97.632648,
+"state": "TX"
+},
+"254541": {
+"city": "Temple",
+"lat": 31.091841,
+"lon": -97.340977,
+"state": "TX"
+},
+"254556": {
+"city": "Mart",
+"lat": 31.539905,
+"lon": -96.83344,
+"state": "TX"
+},
+"262307": {
+"city": "Milwaukee Zone 2",
+"lat": 43.042456,
+"lon": -87.947166,
+"state": "WI"
+},
+"262345": {
+"city": "Menomonee Falls",
+"lat": 43.181266,
+"lon": -88.116201,
+"state": "WI"
+},
+"262413": {
+"city": "Hartland",
+"lat": 43.099894,
+"lon": -88.351759,
+"state": "WI"
+},
+"262437": {
+"city": "Menomonee Falls",
+"lat": 43.181266,
+"lon": -88.116201,
+"state": "WI"
+},
+"262445": {
+"city": "Kenosha",
+"lat": 42.592656,
+"lon": -87.826922,
+"state": "WI"
+},
+"262497": {
+"city": "Racine",
+"lat": 42.726225,
+"lon": -87.794033,
+"state": "WI"
+},
+"262753": {
+"city": "Whitewater",
+"lat": 42.831613,
+"lon": -88.725571,
+"state": "WI"
+},
+"267333": {
+"city": "Philadelphia Zone 3",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
+"267498": {
+"city": "Lansdale",
+"lat": 40.243113,
+"lon": -75.293899,
+"state": "PA"
+},
+"267992": {
+"city": "Philadelphia Suburban Zone 33",
+"lat": 40.150921,
+"lon": -75.219042,
+"state": "PA"
+},
+"270312": {
+"city": "Elizabethtown",
+"lat": 37.701946,
+"lon": -85.858695,
+"state": "KY"
+},
+"276298": {
+"city": "Norton",
+"lat": 36.932695,
+"lon": -82.630908,
+"state": "VA"
+},
+"276920": {
+"city": "Wytheville",
+"lat": 36.950738,
+"lon": -81.085948,
+"state": "VA"
+},
+"281462": {
+"city": "Crosby",
+"lat": 29.920318,
+"lon": -95.06479,
+"state": "TX"
+},
+"281674": {
+"city": "Houston Suburban",
+"lat": 29.751809,
+"lon": -95.368499,
+"state": "TX"
+},
+"281705": {
+"city": "Langham Creek",
+"lat": 29.876975,
+"lon": -95.679259,
+"state": "TX"
+},
+"301276": {
+"city": "Washington Zone 4",
+"lat": 38.950717,
+"lon": -76.950382,
+"state": "MD"
+},
+"301535": {
+"city": "Waldorf",
+"lat": 38.625456,
+"lon": -76.904365,
+"state": "MD"
+},
+"301997": {
+"city": "Leonardtown",
+"lat": 38.292741,
+"lon": -76.630212,
+"state": "MD"
+},
+"303210": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303250": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303261": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303263": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303265": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303304": {
+"city": "Fort Lupton",
+"lat": 40.084441,
+"lon": -104.806429,
+"state": "CO"
+},
+"303305": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303317": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303324": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303330": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303358": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303408": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303419": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303434": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303475": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303476": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303477": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303495": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303505": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303506": {
+"city": "Fort Lupton",
+"lat": 40.084441,
+"lon": -104.806429,
+"state": "CO"
+},
+"303518": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303519": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303525": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303548": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303552": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303563": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303570": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303588": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303589": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303590": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303619": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303638": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303641": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303646": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303653": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303659": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303667": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303668": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303669": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303709": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"303725": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303803": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303807": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303829": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303842": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303845": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"303847": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303853": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303859": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303862": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303882": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303883": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303884": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303895": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303901": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303905": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303906": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303921": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303946": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303956": {
+"city": "Fort Lupton",
+"lat": 40.084441,
+"lon": -104.806429,
+"state": "CO"
+},
+"303960": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303981": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303990": {
+"city": "Fort Lupton",
+"lat": 40.084441,
+"lon": -104.806429,
+"state": "CO"
+},
+"303995": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"305335": {
+"city": "North Dade",
+"lat": 25.92243,
+"lon": -80.158141,
+"state": "FL"
+},
+"305504": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305606": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"307214": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307216": {
+"city": "Lusk",
+"lat": 42.758081,
+"lon": -104.441888,
+"state": "WY"
+},
+"307221": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307231": {
+"city": "Pinedale",
+"lat": 42.860448,
+"lon": -109.857002,
+"state": "WY"
+},
+"307241": {
+"city": "Wheatland",
+"lat": 42.048035,
+"lon": -104.951228,
+"state": "WY"
+},
+"307247": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307248": {
+"city": "Afton",
+"lat": 42.723922,
+"lon": -110.931035,
+"state": "WY"
+},
+"307251": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307256": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307258": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307259": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307262": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307263": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307275": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307277": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307286": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307287": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307289": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307292": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307314": {
+"city": "Laramie",
+"lat": 41.310254,
+"lon": -105.593792,
+"state": "WY"
+},
+"307315": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307321": {
+"city": "Rawlins",
+"lat": 41.789513,
+"lon": -107.232543,
+"state": "WY"
+},
+"307331": {
+"city": "Wheatland",
+"lat": 42.048035,
+"lon": -104.951228,
+"state": "WY"
+},
+"307337": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307346": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307349": {
+"city": "Lander",
+"lat": 42.83192,
+"lon": -108.734809,
+"state": "WY"
+},
+"307351": {
+"city": "Douglas",
+"lat": 42.75677,
+"lon": -105.366795,
+"state": "WY"
+},
+"307359": {
+"city": "Douglas",
+"lat": 42.75677,
+"lon": -105.366795,
+"state": "WY"
+},
+"307365": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307369": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307375": {
+"city": "Worland",
+"lat": 44.016984,
+"lon": -107.956246,
+"state": "WY"
+},
+"307414": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307421": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307439": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307441": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307462": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307485": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307532": {
+"city": "Torrington",
+"lat": 42.065549,
+"lon": -104.183341,
+"state": "WY"
+},
+"307534": {
+"city": "Torrington",
+"lat": 42.065549,
+"lon": -104.183341,
+"state": "WY"
+},
+"307554": {
+"city": "Glenrock",
+"lat": 42.858386,
+"lon": -105.859746,
+"state": "WY"
+},
+"307575": {
+"city": "Torrington",
+"lat": 42.065549,
+"lon": -104.183341,
+"state": "WY"
+},
+"307630": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307631": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307690": {
+"city": "Jackson",
+"lat": 43.473152,
+"lon": -110.759067,
+"state": "WY"
+},
+"307702": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307710": {
+"city": "Rawlins",
+"lat": 41.789513,
+"lon": -107.232543,
+"state": "WY"
+},
+"307757": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307760": {
+"city": "Laramie",
+"lat": 41.310254,
+"lon": -105.593792,
+"state": "WY"
+},
+"307797": {
+"city": "Casper",
+"lat": 42.84196,
+"lon": -106.327097,
+"state": "WY"
+},
+"307840": {
+"city": "Riverton",
+"lat": 43.027285,
+"lon": -108.383651,
+"state": "WY"
+},
+"307851": {
+"city": "Riverton",
+"lat": 43.027285,
+"lon": -108.383651,
+"state": "WY"
+},
+"307871": {
+"city": "Green River",
+"lat": 41.533454,
+"lon": -109.460607,
+"state": "WY"
+},
+"307899": {
+"city": "Cody",
+"lat": 44.531166,
+"lon": -109.049063,
+"state": "WY"
+},
+"307920": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"307939": {
+"city": "Wright",
+"lat": 43.758583,
+"lon": -105.48481,
+"state": "WY"
+},
+"307996": {
+"city": "Cheyenne",
+"lat": 41.139234,
+"lon": -104.816176,
+"state": "WY"
+},
+"308225": {
+"city": "Scottsbluff",
+"lat": 41.87671,
+"lon": -103.668581,
+"state": "NE"
+},
+"308249": {
+"city": "Sidney",
+"lat": 41.142856,
+"lon": -102.985499,
+"state": "NE"
+},
+"308258": {
+"city": "Grand Island",
+"lat": 40.925965,
+"lon": -98.351867,
+"state": "NE"
+},
+"308362": {
+"city": "Maywood",
+"lat": 40.656222,
+"lon": -100.624096,
+"state": "NE"
+},
+"308672": {
+"city": "Scottsbluff",
+"lat": 41.87671,
+"lon": -103.668581,
+"state": "NE"
+},
+"308760": {
+"city": "Alliance",
+"lat": 42.100815,
+"lon": -102.867163,
+"state": "NE"
+},
+"310343": {
+"city": "El Segundo",
+"lat": 33.918345,
+"lon": -118.416444,
+"state": "CA"
+},
+"310658": {
+"city": "El Segundo",
+"lat": 33.918345,
+"lon": -118.416444,
+"state": "CA"
+},
+"312965": {
+"city": "Chicago Zone 01-Wabash",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"312998": {
+"city": "Chicago Zone 01-Calumet",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"313516": {
+"city": "Detroit Zone 5",
+"lat": 42.331653,
+"lon": -83.05027,
+"state": "MI"
+},
+"314315": {
+"city": "Kirkwood",
+"lat": 38.583234,
+"lon": -90.413957,
+"state": "MO"
+},
+"315243": {
+"city": "Syracuse",
+"lat": 43.046491,
+"lon": -76.150846,
+"state": "NY"
+},
+"315278": {
+"city": "Syracuse",
+"lat": 43.046491,
+"lon": -76.150846,
+"state": "NY"
+},
+"317505": {
+"city": "Fortville",
+"lat": 39.934491,
+"lon": -85.848875,
+"state": "IN"
+},
+"318272": {
+"city": "Shreveport",
+"lat": 32.507738,
+"lon": -93.752651,
+"state": "LA"
+},
+"318332": {
+"city": "Natchitoches",
+"lat": 31.767504,
+"lon": -93.091899,
+"state": "LA"
+},
+"318489": {
+"city": "Blanchard",
+"lat": 32.585049,
+"lon": -93.890444,
+"state": "LA"
+},
+"321437": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"323570": {
+"city": "Los Angeles: DA 09",
+"lat": 34.050281,
+"lon": -118.250995,
+"state": "CA"
+},
+"325212": {
+"city": "San Angelo",
+"lat": 31.457782,
+"lon": -100.441656,
+"state": "TX"
+},
+"325229": {
+"city": "Westbrook",
+"lat": 32.356124,
+"lon": -101.007667,
+"state": "TX"
+},
+"325248": {
+"city": "Llano",
+"lat": 30.757907,
+"lon": -98.673361,
+"state": "TX"
+},
+"325260": {
+"city": "Abilene",
+"lat": 32.449199,
+"lon": -99.731009,
+"state": "TX"
+},
+"325899": {
+"city": "Abilene",
+"lat": 32.449199,
+"lon": -99.731009,
+"state": "TX"
+},
+"325933": {
+"city": "Sweetwater",
+"lat": 32.468334,
+"lon": -100.408683,
+"state": "TX"
+},
+"330691": {
+"city": "New Philadelphia",
+"lat": 40.508428,
+"lon": -81.464097,
+"state": "OH"
+},
+"330931": {
+"city": "Kent",
+"lat": 41.147934,
+"lon": -81.348312,
+"state": "OH"
+},
+"337428": {
+"city": "Jeanerette",
+"lat": 29.918694,
+"lon": -91.666042,
+"state": "LA"
+},
+"339345": {
+"city": "Marblehead",
+"lat": 42.49457,
+"lon": -70.865562,
+"state": "MA"
+},
+"346228": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"346261": {
+"city": "Porter",
+"lat": 30.090239,
+"lon": -95.222986,
+"state": "TX"
+},
+"346280": {
+"city": "Cypress",
+"lat": 29.976106,
+"lon": -95.689144,
+"state": "TX"
+},
+"360286": {
+"city": "Silverdale",
+"lat": 47.64247,
+"lon": -122.696999,
+"state": "WA"
+},
+"360463": {
+"city": "Shelton",
+"lat": 47.207814,
+"lon": -123.096674,
+"state": "WA"
+},
+"361208": {
+"city": "Yoakum",
+"lat": 29.30072,
+"lon": -97.147481,
+"state": "TX"
+},
+"361218": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361219": {
+"city": "Falfurrias",
+"lat": 27.217733,
+"lon": -98.14088,
+"state": "TX"
+},
+"361220": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361232": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"361235": {
+"city": "Edna",
+"lat": 28.974936,
+"lon": -96.643503,
+"state": "TX"
+},
+"361237": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361412": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361461": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"361484": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361524": {
+"city": "Cuero",
+"lat": 29.092297,
+"lon": -97.292259,
+"state": "TX"
+},
+"361537": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"361541": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361550": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361571": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361579": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361648": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361652": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361655": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361661": {
+"city": "Alice",
+"lat": 27.748862,
+"lon": -98.064822,
+"state": "TX"
+},
+"361676": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361688": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"361741": {
+"city": "Yoakum EACS",
+"lat": 29.30072,
+"lon": -97.147481,
+"state": "TX"
+},
+"361746": {
+"city": "Port Lavaca",
+"lat": 28.608075,
+"lon": -96.626145,
+"state": "TX"
+},
+"361772": {
+"city": "Hallettsville",
+"lat": 29.442554,
+"lon": -96.942061,
+"state": "TX"
+},
+"361816": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"361894": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361935": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361947": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"386695": {
+"city": "Palatka",
+"lat": 29.644401,
+"lon": -81.64227,
+"state": "FL"
+},
+"401359": {
+"city": "Pawtucket",
+"lat": 41.878541,
+"lon": -71.382955,
+"state": "RI"
+},
+"402214": {
+"city": "Omaha",
+"lat": 41.259376,
+"lon": -95.944152,
+"state": "NE"
+},
+"402378": {
+"city": "Omaha",
+"lat": 41.259376,
+"lon": -95.944152,
+"state": "NE"
+},
+"402853": {
+"city": "Lincoln",
+"lat": 40.816213,
+"lon": -96.702808,
+"state": "NE"
+},
+"402972": {
+"city": "Omaha",
+"lat": 41.259376,
+"lon": -95.944152,
+"state": "NE"
+},
+"404663": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"406661": {
+"city": "Billings",
+"lat": 45.777426,
+"lon": -108.508919,
+"state": "MT"
+},
+"406939": {
+"city": "West Glendive",
+"lat": 47.105151,
+"lon": -104.769343,
+"state": "MT"
+},
+"407744": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407923": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407952": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"417349": {
+"city": "Mountain Grove",
+"lat": 37.133869,
+"lon": -92.265998,
+"state": "MO"
+},
+"431354": {
+"city": "Thompson",
+"lat": 55.749726,
+"lon": -97.866957,
+"state": "MB"
+},
+"432216": {
+"city": "Marathon",
+"lat": 30.205673,
+"lon": -103.24759,
+"state": "TX"
+},
+"435406": {
+"city": "Delta",
+"lat": 39.349062,
+"lon": -112.577278,
+"state": "UT"
+},
+"435531": {
+"city": "Cedar City",
+"lat": 37.682396,
+"lon": -113.069692,
+"state": "UT"
+},
+"435724": {
+"city": "Roosevelt",
+"lat": 40.299984,
+"lon": -109.992873,
+"state": "UT"
+},
+"435790": {
+"city": "Vernal",
+"lat": 40.450764,
+"lon": -109.530353,
+"state": "UT"
+},
+"435851": {
+"city": "Manti",
+"lat": 39.265198,
+"lon": -111.632075,
+"state": "UT"
+},
+"443845": {
+"city": "Baltimore",
+"lat": 39.298857,
+"lon": -76.614736,
+"state": "MD"
+},
+"448207": {
+"city": "Bonifay",
+"lat": 30.790323,
+"lon": -85.682187,
+"state": "FL"
+},
+"469294": {
+"city": "Frisco",
+"lat": 33.151543,
+"lon": -96.822376,
+"state": "TX"
+},
+"469468": {
+"city": "Frisco",
+"lat": 33.151543,
+"lon": -96.822376,
+"state": "TX"
+},
+"469859": {
+"city": "Grand Prairie",
+"lat": 32.742388,
+"lon": -96.999539,
+"state": "TX"
+},
+"469925": {
+"city": "Plano",
+"lat": 33.018602,
+"lon": -96.697691,
+"state": "TX"
+},
+"470717": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"479276": {
+"city": "Alma",
+"lat": 35.475964,
+"lon": -94.225435,
+"state": "AR"
+},
+"479747": {
+"city": "Russellville",
+"lat": 35.282945,
+"lon": -93.131859,
+"state": "AR"
+},
+"480979": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
+},
+"480993": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
+},
+"484475": {
+"city": "Philadelphia Suburban Zone 13",
+"lat": 39.903089,
+"lon": -75.351987,
+"state": "PA"
+},
+"484612": {
+"city": "Philadelphia Suburban Zone 30",
+"lat": 40.123056,
+"lon": -75.342027,
+"state": "PA"
+},
+"501655": {
+"city": "Hot Springs",
+"lat": 34.500401,
+"lon": -93.050509,
+"state": "AR"
+},
+"502225": {
+"city": "La Grange",
+"lat": 38.409636,
+"lon": -85.380622,
+"state": "KY"
+},
+"502541": {
+"city": "Louisville",
+"lat": 38.243429,
+"lon": -85.759036,
+"state": "KY"
+},
+"504275": {
+"city": "Kenner",
+"lat": 29.973169,
+"lon": -90.243206,
+"state": "LA"
+},
+"504335": {
+"city": "New Orleans",
+"lat": 29.947792,
+"lon": -90.075694,
+"state": "LA"
+},
+"505377": {
+"city": "Albuquerque",
+"lat": 35.081432,
+"lon": -106.648367,
+"state": "NM"
+},
+"505401": {
+"city": "Albuquerque",
+"lat": 35.081432,
+"lon": -106.648367,
+"state": "NM"
+},
+"505895": {
+"city": "Albuquerque",
+"lat": 35.081432,
+"lon": -106.648367,
+"state": "NM"
+},
+"507828": {
+"city": "Marshall",
+"lat": 44.447083,
+"lon": -95.790182,
+"state": "MN"
+},
+"512297": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512507": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512539": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512573": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512679": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512680": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512721": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512731": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512738": {
+"city": "San Marcos",
+"lat": 29.882448,
+"lon": -97.939992,
+"state": "TX"
+},
+"512810": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512825": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512924": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512938": {
+"city": "San Marcos",
+"lat": 29.882448,
+"lon": -97.939992,
+"state": "TX"
+},
+"512955": {
+"city": "Taylor",
+"lat": 30.566685,
+"lon": -97.410012,
+"state": "TX"
+},
+"513289": {
+"city": "Cincinnati",
+"lat": 39.100166,
+"lon": -84.514815,
+"state": "OH"
+},
+"513509": {
+"city": "Cincinnati",
+"lat": 39.100166,
+"lon": -84.514815,
+"state": "OH"
+},
+"515450": {
+"city": "Ames",
+"lat": 42.023645,
+"lon": -93.616309,
+"state": "IA"
+},
+"515494": {
+"city": "Des Moines",
+"lat": 41.590759,
+"lon": -93.626025,
+"state": "IA"
+},
+"516356": {
+"city": "Brentwood",
+"lat": 40.777234,
+"lon": -73.246435,
+"state": "NY"
+},
+"516549": {
+"city": "Nassau Zone 2",
+"lat": 40.717831,
+"lon": -73.702067,
+"state": "NY"
+},
+"516808": {
+"city": "Nassau Zone 5",
+"lat": 40.73024,
+"lon": -73.613665,
+"state": "NY"
+},
+"517420": {
+"city": "Lansing",
+"lat": 42.732656,
+"lon": -84.553588,
+"state": "MI"
+},
+"520275": {
+"city": "Tucson",
+"lat": 32.228036,
+"lon": -110.966026,
+"state": "AZ"
+},
+"520450": {
+"city": "Casa Grande",
+"lat": 32.934139,
+"lon": -111.654226,
+"state": "AZ"
+},
+"520764": {
+"city": "Casa Grande",
+"lat": 32.934139,
+"lon": -111.654226,
+"state": "AZ"
+},
+"530219": {
+"city": "Davis",
+"lat": 38.54191,
+"lon": -121.740232,
+"state": "CA"
+},
+"530304": {
+"city": "Davis",
+"lat": 38.54191,
+"lon": -121.740232,
+"state": "CA"
+},
+"540497": {
+"city": "Culpeper",
+"lat": 38.468883,
+"lon": -78.000304,
+"state": "VA"
+},
+"540687": {
+"city": "Middleburg",
+"lat": 38.96718,
+"lon": -77.729695,
+"state": "VA"
+},
+"541218": {
+"city": "Grants Pass",
+"lat": 42.439949,
+"lon": -123.313983,
+"state": "OR"
+},
+"541513": {
+"city": "Eugene",
+"lat": 44.050074,
+"lon": -123.082068,
+"state": "OR"
+},
+"557380": null,
+"559210": {
+"city": "San Joaquin",
+"lat": 36.606545,
+"lon": -120.183278,
+"state": "CA"
+},
+"559909": {
+"city": "Visalia",
+"lat": 36.332534,
+"lon": -119.290709,
+"state": "CA"
+},
+"562380": {
+"city": "Long Beach",
+"lat": 33.786472,
+"lon": -118.181236,
+"state": "CA"
+},
+"563278": {
+"city": "Clinton",
+"lat": 41.859517,
+"lon": -90.188383,
+"state": "IA"
+},
+"570490": {
+"city": "Northumberland",
+"lat": 40.901548,
+"lon": -76.791064,
+"state": "PA"
+},
+"573507": {
+"city": "Columbia",
+"lat": 38.949276,
+"lon": -92.332434,
+"state": "MO"
+},
+"573823": {
+"city": "Columbia",
+"lat": 38.949276,
+"lon": -92.332434,
+"state": "MO"
+},
+"575621": {
+"city": "Las Cruces",
+"lat": 32.307377,
+"lon": -106.781699,
+"state": "NM"
+},
+"580574": {
+"city": "Lawton",
+"lat": 34.607329,
+"lon": -98.41594,
+"state": "OK"
+},
+"603770": {
+"city": "Exeter",
+"lat": 42.980572,
+"lon": -70.952387,
+"state": "NH"
+},
+"603847": {
+"city": "Sullivan",
+"lat": 42.993135,
+"lon": -72.193159,
+"state": "NH"
+},
+"605981": {
+"city": "Rapid City",
+"lat": 44.08438,
+"lon": -103.221628,
+"state": "SD"
+},
+"608436": {
+"city": "Janesville",
+"lat": 42.683339,
+"lon": -89.018768,
+"state": "WI"
+},
+"612240": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"612840": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"614632": {
+"city": "Columbus",
+"lat": 39.966856,
+"lon": -83.002499,
+"state": "OH"
+},
+"616485": {
+"city": "Grand Rapids",
+"lat": 42.96707,
+"lon": -85.664843,
+"state": "MI"
+},
+"618645": {
+"city": "Metropolis",
+"lat": 37.156918,
+"lon": -88.730299,
+"state": "IL"
+},
+"620260": {
+"city": "Garden City",
+"lat": 37.974367,
+"lon": -100.872434,
+"state": "KS"
+},
+"620371": {
+"city": "Dodge City",
+"lat": 37.758376,
+"lon": -100.014898,
+"state": "KS"
+},
+"620452": {
+"city": "Albert",
+"lat": 38.460096,
+"lon": -99.009983,
+"state": "KS"
+},
+"620617": {
+"city": "Great Bend",
+"lat": 38.36751,
+"lon": -98.766966,
+"state": "KS"
+},
+"623356": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
+},
+"631590": {
+"city": "Ronkonkoma",
+"lat": 40.823397,
+"lon": -73.107637,
+"state": "NY"
+},
+"631987": {
+"city": "Brentwood",
+"lat": 40.777234,
+"lon": -73.246435,
+"state": "NY"
+},
+"646226": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646236": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646531": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"651303": {
+"city": "Stillwater",
+"lat": 45.057615,
+"lon": -92.819369,
+"state": "MN"
+},
+"651470": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"651551": {
+"city": "Stillwater",
+"lat": 45.057615,
+"lon": -92.819369,
+"state": "MN"
+},
+"660221": {
+"city": "Sedalia",
+"lat": 38.709285,
+"lon": -93.235478,
+"state": "MO"
+},
+"661505": {
+"city": "Santa Clarita: Newhall-Castaic DA",
+"lat": 34.385708,
+"lon": -118.525616,
+"state": "CA"
+},
+"678361": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"682432": {
+"city": "Fort Worth",
+"lat": 32.750103,
+"lon": -97.329486,
+"state": "TX"
+},
+"689353": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"701865": {
+"city": "Inkster",
+"lat": 48.148198,
+"lon": -97.641932,
+"state": "ND"
+},
+"702376": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
+"702541": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
+"702581": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
+"702771": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
+"702982": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
+"703201": {
+"city": "Washington Zone 8",
+"lat": 38.880541,
+"lon": -77.099019,
+"state": "VA"
+},
+"703559": {
+"city": "Washington Zone 17",
+"lat": 38.891499,
+"lon": -77.160829,
+"state": "VA"
+},
+"704322": {
+"city": "Albemarle",
+"lat": 35.351915,
+"lon": -80.199079,
+"state": "NC"
+},
+"704748": {
+"city": "Lincolnton",
+"lat": 35.467552,
+"lon": -81.250575,
+"state": "NC"
+},
+"704949": {
+"city": "Huntersville",
+"lat": 35.405621,
+"lon": -80.841074,
+"state": "NC"
+},
+"706469": {
+"city": "Augusta",
+"lat": 33.4761,
+"lon": -81.968107,
+"state": "GA"
+},
+"706691": {
+"city": "Augusta",
+"lat": 33.4761,
+"lon": -81.968107,
+"state": "GA"
+},
+"708506": {
+"city": "Chicago Heights",
+"lat": 41.505751,
+"lon": -87.633046,
+"state": "IL"
+},
+"708724": {
+"city": "La Grange",
+"lat": 41.815363,
+"lon": -87.871448,
+"state": "IL"
+},
+"713319": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"713364": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"713373": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"713705": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"714272": {
+"city": "Anaheim",
+"lat": 33.823556,
+"lon": -117.895625,
+"state": "CA"
+},
+"714561": {
+"city": "Anaheim",
+"lat": 33.823556,
+"lon": -117.895625,
+"state": "CA"
+},
+"719201": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719210": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719229": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719232": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719250": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719252": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719257": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719258": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719271": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719281": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719290": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719291": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719297": {
+"city": "Limon",
+"lat": 39.266133,
+"lon": -103.683595,
+"state": "CO"
+},
+"719299": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719308": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719309": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719310": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719321": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719333": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719334": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719337": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719338": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719342": {
+"city": "Burlington",
+"lat": 39.307857,
+"lon": -102.265461,
+"state": "CO"
+},
+"719352": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719359": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719362": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719367": {
+"city": "Peyton",
+"lat": 39.031041,
+"lon": -104.483613,
+"state": "CO"
+},
+"719369": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719371": {
+"city": "Canon City",
+"lat": 38.442329,
+"lon": -105.23402,
+"state": "CO"
+},
+"719373": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719381": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719396": {
+"city": "Peyton",
+"lat": 39.031041,
+"lon": -104.483613,
+"state": "CO"
+},
+"719400": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719412": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719413": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719415": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719419": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719424": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719429": {
+"city": "Canon City",
+"lat": 38.442329,
+"lon": -105.23402,
+"state": "CO"
+},
+"719433": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719437": {
+"city": "Peyton",
+"lat": 39.031041,
+"lon": -104.483613,
+"state": "CO"
+},
+"719440": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719453": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719459": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719460": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719463": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719464": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719465": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719491": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719493": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719500": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719502": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719509": {
+"city": "Trinidad",
+"lat": 37.173959,
+"lon": -104.510609,
+"state": "CO"
+},
+"719510": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719517": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719551": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719569": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719580": {
+"city": "Alamosa",
+"lat": 37.46794,
+"lon": -105.86634,
+"state": "CO"
+},
+"719620": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719621": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719639": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719640": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719641": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719649": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719663": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719664": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719671": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719678": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719680": {
+"city": "Trinidad",
+"lat": 37.173959,
+"lon": -104.510609,
+"state": "CO"
+},
+"719714": {
+"city": "Peyton",
+"lat": 39.031041,
+"lon": -104.483613,
+"state": "CO"
+},
+"719722": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719723": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719725": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719726": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719728": {
+"city": "Peyton",
+"lat": 39.031041,
+"lon": -104.483613,
+"state": "CO"
+},
+"719747": {
+"city": "Peyton",
+"lat": 39.031041,
+"lon": -104.483613,
+"state": "CO"
+},
+"719766": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719778": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719799": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719820": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719849": {
+"city": "Monte Vista",
+"lat": 37.574979,
+"lon": -106.139661,
+"state": "CO"
+},
+"719850": {
+"city": "Monte Vista",
+"lat": 37.574979,
+"lon": -106.139661,
+"state": "CO"
+},
+"719877": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"719920": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719922": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719940": {
+"city": "Lamar",
+"lat": 38.085207,
+"lon": -102.606581,
+"state": "CO"
+},
+"719960": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719963": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719989": {
+"city": "Walsenburg",
+"lat": 37.619088,
+"lon": -104.784637,
+"state": "CO"
+},
+"719992": {
+"city": "Alamosa",
+"lat": 37.46794,
+"lon": -105.86634,
+"state": "CO"
+},
+"719994": {
+"city": "Pueblo-Main",
+"lat": 38.267236,
+"lon": -104.605968,
+"state": "CO"
+},
+"720201": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720202": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720209": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720215": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720227": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720229": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720232": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720233": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720243": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720252": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720253": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720254": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720257": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720261": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720262": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720270": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720272": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720273": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720276": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720280": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720281": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720288": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720289": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720290": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720291": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720292": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720296": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720298": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720299": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720300": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720303": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720304": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720309": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720313": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720318": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720325": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720338": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720341": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720343": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720347": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720352": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720355": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720357": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720363": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720364": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720366": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720369": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720375": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720377": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720384": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720389": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720390": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720391": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720392": {
+"city": "Deer Trail",
+"lat": 39.606655,
+"lon": -104.04246,
+"state": "CO"
+},
+"720394": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720397": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720404": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720416": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720425": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720427": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720429": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720431": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720435": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720436": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720440": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720442": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720443": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720447": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720448": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720450": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720452": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720453": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720459": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720461": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720467": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720469": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720471": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720473": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720476": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720477": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720487": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720490": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720492": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720499": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720505": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720518": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720530": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720532": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720534": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720541": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720545": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720550": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720560": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720563": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720568": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720569": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720572": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720576": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720581": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720582": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720584": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720586": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720589": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720594": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720603": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720606": {
+"city": "Fort Lupton",
+"lat": 40.084441,
+"lon": -104.806429,
+"state": "CO"
+},
+"720609": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720610": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720612": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720616": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720618": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720621": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720626": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720628": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720629": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720639": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720646": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720653": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720654": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720660": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720661": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720662": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720666": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720668": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720669": {
+"city": "Hudson",
+"lat": 40.074595,
+"lon": -104.641396,
+"state": "CO"
+},
+"720672": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720681": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720690": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720691": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720692": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720693": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720695": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720696": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720698": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720707": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720715": {
+"city": "Deckers",
+"lat": 39.249459,
+"lon": -105.219081,
+"state": "CO"
+},
+"720731": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720737": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720745": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720749": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720750": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720757": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720761": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720763": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720767": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720768": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720771": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720787": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720789": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720793": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720804": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720808": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720809": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720812": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720822": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720825": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720831": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720837": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720839": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720840": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720849": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720850": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720862": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720863": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720877": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720882": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720883": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720885": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720891": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720896": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720899": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720908": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720909": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720916": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720919": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720926": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720930": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720933": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720935": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720936": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720937": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720938": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720939": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720949": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720953": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720955": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720957": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720960": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720964": {
+"city": "Longmont",
+"lat": 40.164036,
+"lon": -105.10673,
+"state": "CO"
+},
+"720975": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720980": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720982": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720984": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720985": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720989": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720990": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720998": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720999": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"724516": {
+"city": "Greensburg",
+"lat": 40.29919,
+"lon": -79.548076,
+"state": "PA"
+},
+"726214": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"726246": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"726250": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"726259": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"732910": {
+"city": "Metuchen",
+"lat": 40.539577,
+"lon": -74.363137,
+"state": "NJ"
+},
+"737423": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"737900": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"747243": {
+"city": "Van Nuys",
+"lat": 34.150704,
+"lon": -118.459864,
+"state": "CA"
+},
+"747335": {
+"city": "Reseda",
+"lat": 34.192509,
+"lon": -118.535408,
+"state": "CA"
+},
+"754269": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"757389": {
+"city": "Norfolk Zone 1",
+"lat": 36.716602,
+"lon": -76.23601,
+"state": "VA"
+},
+"757503": {
+"city": "Newport News Zone 3",
+"lat": 37.139872,
+"lon": -76.51684,
+"state": "VA"
+},
+"757726": {
+"city": "Newport News Zone 2",
+"lat": 37.026542,
+"lon": -76.342748,
+"state": "VA"
+},
+"760402": {
+"city": "Encinitas",
+"lat": 33.050559,
+"lon": -117.297375,
+"state": "CA"
+},
+"772485": {
+"city": "Stuart",
+"lat": 27.193258,
+"lon": -80.249404,
+"state": "FL"
+},
+"773354": {
+"city": "Chicago Zone 01-Calumet",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"773512": {
+"city": "Chicago Zone 03-Kildare",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"773619": {
+"city": "Chicago Zone 03-Kildare",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"773682": {
+"city": "Chicago Zone 03-Kildare",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"773844": {
+"city": "Chicago Zone 03-Kildare",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"773892": {
+"city": "Chicago Zone 07-Stewart",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"779357": {
+"city": "Leaf River",
+"lat": 42.123787,
+"lon": -89.404398,
+"state": "IL"
+},
+"785576": {
+"city": "Abilene",
+"lat": 38.917862,
+"lon": -97.210471,
+"state": "KS"
+},
+"785800": {
+"city": "Ottawa",
+"lat": 38.61704,
+"lon": -95.265572,
+"state": "KS"
+},
+"785984": {
+"city": "Alton",
+"lat": 39.46757,
+"lon": -98.952613,
+"state": "KS"
+},
+"786269": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786306": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786620": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"801369": {
+"city": "Provo",
+"lat": 40.232953,
+"lon": -111.669843,
+"state": "UT"
+},
+"801414": {
+"city": "Salt Lake City",
+"lat": 40.758158,
+"lon": -111.882412,
+"state": "UT"
+},
+"801450": {
+"city": "Salt Lake City",
+"lat": 40.758158,
+"lon": -111.882412,
+"state": "UT"
+},
+"801550": {
+"city": "Salt Lake City",
+"lat": 40.758158,
+"lon": -111.882412,
+"state": "UT"
+},
+"803316": {
+"city": "North Sumter",
+"lat": 33.959819,
+"lon": -80.374785,
+"state": "SC"
+},
+"805252": {
+"city": "Santa Barbara",
+"lat": 34.417726,
+"lon": -119.699571,
+"state": "CA"
+},
+"805698": {
+"city": "Santa Barbara",
+"lat": 34.417726,
+"lon": -119.699571,
+"state": "CA"
+},
+"806323": {
+"city": "Canadian",
+"lat": 35.91494,
+"lon": -100.382508,
+"state": "TX"
+},
+"806338": {
+"city": "Gruver",
+"lat": 36.265405,
+"lon": -101.407322,
+"state": "TX"
+},
+"808302": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
+"808428": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
+"808436": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
+"808561": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
+"808783": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
+"812882": {
+"city": "Vincennes",
+"lat": 38.685907,
+"lon": -87.517131,
+"state": "IN"
+},
+"813465": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813638": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"814777": {
+"city": "Boalsburg",
+"lat": 40.773276,
+"lon": -77.801108,
+"state": "PA"
+},
+"815252": {
+"city": "Oglesby",
+"lat": 41.298282,
+"lon": -89.064283,
+"state": "IL"
+},
+"815261": {
+"city": "Crystal Lake",
+"lat": 42.242981,
+"lon": -88.321242,
+"state": "IL"
+},
+"815641": {
+"city": "Joliet",
+"lat": 41.527594,
+"lon": -88.081078,
+"state": "IL"
+},
+"816392": {
+"city": "Kansas City",
+"lat": 39.102432,
+"lon": -94.583699,
+"state": "MO"
+},
+"817528": {
+"city": "Arlington EMS",
+"lat": 32.734744,
+"lon": -97.108536,
+"state": "TX"
+},
+"817743": {
+"city": "North Richland Hills",
+"lat": 32.877552,
+"lon": -97.234445,
+"state": "TX"
+},
+"818917": {
+"city": "Canoga Park",
+"lat": 34.18954,
+"lon": -118.586236,
+"state": "CA"
+},
+"828302": {
+"city": "Hickory",
+"lat": 35.734086,
+"lon": -81.340966,
+"state": "NC"
+},
+"830245": {
+"city": "Del Rio",
+"lat": 29.358855,
+"lon": -100.900045,
+"state": "TX"
+},
+"830267": {
+"city": "Pearsall",
+"lat": 28.891902,
+"lon": -99.08955,
+"state": "TX"
+},
+"830299": {
+"city": "Kenedy",
+"lat": 28.81553,
+"lon": -97.852419,
+"state": "TX"
+},
+"830317": {
+"city": "Pearsall",
+"lat": 28.891902,
+"lon": -99.08955,
+"state": "TX"
+},
+"830357": {
+"city": "Boerne",
+"lat": 29.791394,
+"lon": -98.723842,
+"state": "TX"
+},
+"830402": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830423": {
+"city": "Hondo",
+"lat": 29.351543,
+"lon": -99.143682,
+"state": "TX"
+},
+"830446": {
+"city": "Boerne",
+"lat": 29.791394,
+"lon": -98.723842,
+"state": "TX"
+},
+"830463": {
+"city": "Seguin EMS",
+"lat": 29.568042,
+"lon": -97.967244,
+"state": "TX"
+},
+"830477": {
+"city": "Gillett",
+"lat": 29.124105,
+"lon": -97.79394,
+"state": "TX"
+},
+"830480": {
+"city": "Pleasanton",
+"lat": 28.957656,
+"lon": -98.493198,
+"state": "TX"
+},
+"830484": {
+"city": "Poth",
+"lat": 29.076498,
+"lon": -98.072531,
+"state": "TX"
+},
+"830556": {
+"city": "Seguin",
+"lat": 29.568042,
+"lon": -97.967244,
+"state": "TX"
+},
+"830560": {
+"city": "Seguin EMS",
+"lat": 29.568042,
+"lon": -97.967244,
+"state": "TX"
+},
+"830643": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830666": {
+"city": "Seguin",
+"lat": 29.568042,
+"lon": -97.967244,
+"state": "TX"
+},
+"830708": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830730": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830734": {
+"city": "Del Rio",
+"lat": 29.358855,
+"lon": -100.900045,
+"state": "TX"
+},
+"830783": {
+"city": "Poteet",
+"lat": 29.035166,
+"lon": -98.559928,
+"state": "TX"
+},
+"830822": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830837": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830900": {
+"city": "Uvalde",
+"lat": 29.20874,
+"lon": -99.789651,
+"state": "TX"
+},
+"830968": {
+"city": "Eagle Pass",
+"lat": 28.70879,
+"lon": -100.501199,
+"state": "TX"
+},
+"832448": {
+"city": "Houston Suburban",
+"lat": 29.751809,
+"lon": -95.368499,
+"state": "TX"
+},
+"832564": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"832702": {
+"city": "Spring",
+"lat": 30.085026,
+"lon": -95.425753,
+"state": "TX"
+},
+"832731": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"832766": {
+"city": "Bammel",
+"lat": 29.973263,
+"lon": -95.490724,
+"state": "TX"
+},
+"832767": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"845394": {
+"city": "Middletown",
+"lat": 41.447507,
+"lon": -74.42029,
+"state": "NY"
+},
+"845729": {
+"city": "Nanuet",
+"lat": 41.091677,
+"lon": -74.00898,
+"state": "NY"
+},
+"845996": {
+"city": "Congers",
+"lat": 41.150747,
+"lon": -73.941726,
+"state": "NY"
+},
+"847530": {
+"city": "Northbrook",
+"lat": 42.128375,
+"lon": -87.830075,
+"state": "IL"
+},
+"847987": {
+"city": "Roselle",
+"lat": 41.983819,
+"lon": -88.086059,
+"state": "IL"
+},
+"850417": {
+"city": "Pensacola",
+"lat": 30.417849,
+"lon": -87.214854,
+"state": "FL"
+},
+"850693": {
+"city": "Marianna",
+"lat": 30.774814,
+"lon": -85.23118,
+"state": "FL"
+},
+"856979": {
+"city": "Collingswood",
+"lat": 39.917169,
+"lon": -75.072613,
+"state": "NJ"
+},
+"860480": {
+"city": "Torrington",
+"lat": 41.803702,
+"lon": -73.123705,
+"state": "CT"
+},
+"860816": {
+"city": "Hartford",
+"lat": 41.767575,
+"lon": -72.679511,
+"state": "CT"
+},
+"862436": {
+"city": "Newark",
+"lat": 40.739362,
+"lon": -74.172513,
+"state": "NJ"
+},
+"863662": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863873": {
+"city": "Avon Park",
+"lat": 27.613867,
+"lon": -81.50491,
+"state": "FL"
+},
+"864356": {
+"city": "Anderson",
+"lat": 34.501738,
+"lon": -82.650872,
+"state": "SC"
+},
+"865548": {
+"city": "Knoxville",
+"lat": 35.969138,
+"lon": -83.926252,
+"state": "TN"
+},
+"870250": {
+"city": "Fordyce",
+"lat": 33.810897,
+"lon": -92.417801,
+"state": "AR"
+},
+"903335": {
+"city": "Sulphur Springs",
+"lat": 33.140282,
+"lon": -95.59968,
+"state": "TX"
+},
+"903360": {
+"city": "Tyler",
+"lat": 32.349216,
+"lon": -95.301711,
+"state": "TX"
+},
+"903393": {
+"city": "Jacksonville",
+"lat": 31.965996,
+"lon": -95.285915,
+"state": "TX"
+},
+"904423": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"907370": {
+"city": "Fort Wainwright",
+"lat": 64.848174,
+"lon": -147.598757,
+"state": "AK"
+},
+"909531": {
+"city": "San Bernardino",
+"lat": 34.110048,
+"lon": -117.295087,
+"state": "CA"
+},
+"909548": {
+"city": "Chino",
+"lat": 33.998508,
+"lon": -117.7093,
+"state": "CA"
+},
+"909961": {
+"city": "Rialto",
+"lat": 34.100838,
+"lon": -117.36411,
+"state": "CA"
+},
+"910214": {
+"city": "Clinton",
+"lat": 35.002381,
+"lon": -78.325343,
+"state": "NC"
+},
+"910358": {
+"city": "Jacksonville",
+"lat": 34.750505,
+"lon": -77.43501,
+"state": "NC"
+},
+"910546": {
+"city": "Jacksonville",
+"lat": 34.750505,
+"lon": -77.43501,
+"state": "NC"
+},
+"910885": {
+"city": "St Pauls",
+"lat": 34.808364,
+"lon": -78.980153,
+"state": "NC"
+},
+"912536": {
+"city": "Statesboro",
+"lat": 32.444605,
+"lon": -81.783005,
+"state": "GA"
+},
+"913645": {
+"city": "Kansas City",
+"lat": 39.114735,
+"lon": -94.634764,
+"state": "KS"
+},
+"915246": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915342": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915491": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915540": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915730": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915731": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915867": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"916397": {
+"city": "Sacramento: Main DA",
+"lat": 38.575598,
+"lon": -121.482308,
+"state": "CA"
+},
+"916616": {
+"city": "Sacramento: Main DA",
+"lat": 38.575598,
+"lon": -121.482308,
+"state": "CA"
+},
+"918281": {
+"city": "Tulsa",
+"lat": 36.151312,
+"lon": -95.984191,
+"state": "OK"
+},
+"918886": {
+"city": "Bartlesville",
+"lat": 36.745422,
+"lon": -95.975673,
+"state": "OK"
+},
+"919413": {
+"city": "Raleigh",
+"lat": 35.78544,
+"lon": -78.651062,
+"state": "NC"
+},
+"919478": {
+"city": "Sanford",
+"lat": 35.472975,
+"lon": -79.183561,
+"state": "NC"
+},
+"919920": {
+"city": "Goldsboro",
+"lat": 35.38481,
+"lon": -77.989421,
+"state": "NC"
+},
+"920445": {
+"city": "Green Bay",
+"lat": 44.508386,
+"lon": -88.005078,
+"state": "WI"
+},
+"925400": {
+"city": "Pleasanton",
+"lat": 37.656978,
+"lon": -121.884382,
+"state": "CA"
+},
+"928230": {
+"city": "Lake Havasu City",
+"lat": 34.460302,
+"lon": -114.365467,
+"state": "AZ"
+},
+"931223": {
+"city": "Columbia",
+"lat": 35.607774,
+"lon": -87.032369,
+"state": "TN"
+},
+"931319": {
+"city": "Cookeville",
+"lat": 36.164717,
+"lon": -85.509319,
+"state": "TN"
+},
+"931346": {
+"city": "Clarksville",
+"lat": 36.525051,
+"lon": -87.351331,
+"state": "TN"
+},
+"936293": {
+"city": "Huntsville",
+"lat": 30.727481,
+"lon": -95.55869,
+"state": "TX"
+},
+"936332": {
+"city": "Center",
+"lat": 31.801238,
+"lon": -94.173782,
+"state": "TX"
+},
+"937224": {
+"city": "Dayton",
+"lat": 39.758195,
+"lon": -84.201865,
+"state": "OH"
+},
+"940594": {
+"city": "Denton",
+"lat": 33.217425,
+"lon": -97.132475,
+"state": "TX"
+},
+"940999": {
+"city": "Denton",
+"lat": 33.217425,
+"lon": -97.132475,
+"state": "TX"
+},
+"941548": {
+"city": "Englewood",
+"lat": 26.956292,
+"lon": -82.3582,
+"state": "FL"
+},
+"949715": {
+"city": "Laguna Beach",
+"lat": 33.549099,
+"lon": -117.785187,
+"state": "CA"
+},
+"952201": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"956249": {
+"city": "McAllen",
+"lat": 26.199713,
+"lon": -98.233793,
+"state": "TX"
+},
+"956334": {
+"city": "Laredo",
+"lat": 27.510265,
+"lon": -99.506902,
+"state": "TX"
+},
+"956336": {
+"city": "Brownsville",
+"lat": 25.91078,
+"lon": -97.500505,
+"state": "TX"
+},
+"956371": {
+"city": "Brownsville",
+"lat": 25.91078,
+"lon": -97.500505,
+"state": "TX"
+},
+"956372": {
+"city": "Brownsville",
+"lat": 25.91078,
+"lon": -97.500505,
+"state": "TX"
+},
+"956439": {
+"city": "Laredo",
+"lat": 27.510265,
+"lon": -99.506902,
+"state": "TX"
+},
+"956593": {
+"city": "Weslaco",
+"lat": 26.157919,
+"lon": -97.991093,
+"state": "TX"
+},
+"956659": {
+"city": "Harlingen",
+"lat": 26.184779,
+"lon": -97.691524,
+"state": "TX"
+},
+"956667": {
+"city": "Brownsville",
+"lat": 25.91078,
+"lon": -97.500505,
+"state": "TX"
+},
+"956888": {
+"city": "Mission",
+"lat": 26.206543,
+"lon": -98.323132,
+"state": "TX"
+},
+"970213": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970214": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970222": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970227": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970270": {
+"city": "Grand Junction",
+"lat": 39.067327,
+"lon": -108.558926,
+"state": "CO"
+},
+"970290": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970300": {
+"city": "Aspen",
+"lat": 39.189184,
+"lon": -106.823098,
+"state": "CO"
+},
+"970302": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970305": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970308": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970310": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970371": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970373": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970380": {
+"city": "Fort Morgan",
+"lat": 40.257475,
+"lon": -103.789196,
+"state": "CO"
+},
+"970381": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970390": {
+"city": "Vail",
+"lat": 39.518059,
+"lon": -106.377104,
+"state": "CO"
+},
+"970396": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970397": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970412": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970413": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970415": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970420": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970433": {
+"city": "Grand Junction",
+"lat": 39.067327,
+"lon": -108.558926,
+"state": "CO"
+},
+"970445": {
+"city": "Vail",
+"lat": 39.518059,
+"lon": -106.377104,
+"state": "CO"
+},
+"970451": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970471": {
+"city": "Vail",
+"lat": 39.518059,
+"lon": -106.377104,
+"state": "CO"
+},
+"970488": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970493": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970515": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970518": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970531": {
+"city": "Fraser",
+"lat": 39.940704,
+"lon": -105.816485,
+"state": "CO"
+},
+"970534": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970539": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970566": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970568": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970573": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970576": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970581": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970584": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970590": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970596": {
+"city": "Montrose",
+"lat": 38.476521,
+"lon": -107.87201,
+"state": "CO"
+},
+"970599": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970622": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970632": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970634": {
+"city": "Johnstown-Milliken",
+"lat": 40.335101,
+"lon": -104.908002,
+"state": "CO"
+},
+"970643": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970646": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970650": {
+"city": "Montrose",
+"lat": 38.476521,
+"lon": -107.87201,
+"state": "CO"
+},
+"970652": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970682": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970685": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970688": {
+"city": "Vail",
+"lat": 39.518059,
+"lon": -106.377104,
+"state": "CO"
+},
+"970689": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970691": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970692": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970698": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970702": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970708": {
+"city": "Telluride",
+"lat": 37.941786,
+"lon": -107.807731,
+"state": "CO"
+},
+"970710": {
+"city": "Aspen",
+"lat": 39.189184,
+"lon": -106.823098,
+"state": "CO"
+},
+"970714": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970744": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970768": {
+"city": "Fort Morgan",
+"lat": 40.257475,
+"lon": -103.789196,
+"state": "CO"
+},
+"970783": {
+"city": "Grand Junction",
+"lat": 39.067327,
+"lon": -108.558926,
+"state": "CO"
+},
+"970786": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970787": {
+"city": "Montrose",
+"lat": 38.476521,
+"lon": -107.87201,
+"state": "CO"
+},
+"970797": {
+"city": "Fort Collins",
+"lat": 40.582566,
+"lon": -105.080894,
+"state": "CO"
+},
+"970804": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970815": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970820": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970822": {
+"city": "Grand Junction",
+"lat": 39.067327,
+"lon": -108.558926,
+"state": "CO"
+},
+"970836": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970888": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970908": {
+"city": "Loveland",
+"lat": 40.39852,
+"lon": -105.077659,
+"state": "CO"
+},
+"970910": {
+"city": "Greeley",
+"lat": 40.427066,
+"lon": -104.701934,
+"state": "CO"
+},
+"970986": {
+"city": "Grand Junction",
+"lat": 39.067327,
+"lon": -108.558926,
+"state": "CO"
+},
+"972333": {
+"city": "Grand Prairie",
+"lat": 32.742388,
+"lon": -96.999539,
+"state": "TX"
+},
+"979743": {
+"city": "Schulenburg",
+"lat": 29.675778,
+"lon": -96.908808,
+"state": "TX"
+},
+"979895": {
+"city": "Bryan-College Station",
+"lat": 30.673434,
+"lon": -96.365751,
+"state": "TX"
+},
+"983204": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"983215": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"983217": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"983224": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"983277": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"983456": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"983777": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"984269": {
+"city": "Raleigh",
+"lat": 35.78544,
+"lon": -78.651062,
+"state": "NC"
+},
+"985662": {
+"city": "Hammond",
+"lat": 30.500811,
+"lon": -90.457523,
+"state": "LA"
+}
+}

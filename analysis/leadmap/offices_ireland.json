@@ -1,0 +1,5 @@
+[
+ {"name":"San Antonio","addr":"9901 I-10 W, Ste 215, San Antonio TX 78230","zip":"78230","county":"Bexar","lat":29.5338207,"lon":-98.5619100},
+ {"name":"New Braunfels","addr":"170 E San Antonio St, New Braunfels TX 78130","zip":"78130","county":"Comal","lat":29.7036445,"lon":-98.1236057},
+ {"name":"Victoria","addr":"101 W Goodwin Ave, Ste 1025, Victoria TX 77901","zip":"77901","county":"Victoria","lat":28.8006686,"lon":-97.0059772}
+]

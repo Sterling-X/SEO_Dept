@@ -1,6 +1,6 @@
 ---
 name: family-law-service-pages
-description: "Produce full-copy family law service pages (Core Practice Area hubs and Procedural child pages) delivered as DOCX files. Use this skill whenever the user asks to write, draft, build, or produce a family law service page, practice area page, or legal process page for any family law firm in any U.S. state. Trigger on requests mentioning divorce pages, custody pages, child support pages, alimony pages, property division pages, paternity pages, guardianship pages, or any similar family law service content. Also trigger when the user says 'build the next service page', 'write the core page for [topic]', 'create the procedural page for [topic]', or references a family law site architecture or page hierarchy. Do NOT use for blog content (use cluster-blog-writer instead) or for non-family-law verticals."
+description: "Produce full-copy family law service pages delivered as DOCX files. The Core Practice-Area Hub route has a locally repaired generation, validation, and render workflow; the Procedural route remains dependency-incomplete and must be reported as pending. Use this skill whenever the user asks to write, draft, build, or produce a family law service page, practice area page, or legal process page for any family law firm in any U.S. state. Trigger on divorce, custody, child support, alimony, property division, paternity, guardianship, or similar family law service content. Do NOT use for blog content (use cluster-blog-writer instead) or non-family-law verticals."
 ---
 
 # Family Law Service Page Writer
@@ -14,6 +14,10 @@ This skill produces publication-ready family law service pages as DOCX files. It
 
 Every page produced must serve a distinct role in the site hierarchy, maintain clean intent separation, follow strict internal linking rules, reflect the firm's brand voice, and include researched and verified state-specific legal content.
 
+**Local readiness boundary:** The Core Practice-Area Hub route is locally usable through DOCX generation, deterministic validation, and rendered visual review by following the commands below. The repaired template, generator, structural validator, render adapter, and test harness are transparent local replacements, not original export files. `scripts/validate-page.js` is a genuine separately recovered companion file. The Procedural template and end-to-end workflow remain pending. A mechanical pass is never editorial, SEO, publication, or legal-accuracy clearance.
+
+**Architecture authority:** In this repository, read `context/architecture/family-law-architecture-v2.md` and consult `context/architecture/Family_Law_StructureV2.html` for exact nodes and relationships. V2 overrides the limited intake list, cluster summary, blanket link defaults, URL assumptions, and publishing sequence below whenever they conflict. Explicit user instructions remain controlling.
+
 ---
 
 ## Session Start: Collect Client Context
@@ -22,7 +26,7 @@ Before writing any page, confirm you have the following. If a brief or intake do
 
 ### Required Inputs
 1. **Page type** -- Core Practice Area or Procedural
-2. **Practice area** -- Divorce, Child Custody, Child Support, Spousal Support/Alimony, Property Division, Paternity, Guardianship
+2. **Practice area** -- select an exact Core Hub or branch from the governing architecture. The examples Divorce, Child Custody, Child Support, Spousal Support/Alimony, Property Division, Paternity, and Guardianship are not a complete V2 hub list.
 3. **Specific topic** -- for Procedural pages, the exact process (e.g., Contested Divorce, Child Support Enforcement)
 4. **State** -- the U.S. state for jurisdiction-specific content
 5. **City or region** -- if the firm targets a specific metro or county
@@ -52,8 +56,8 @@ Once all required inputs are confirmed, state the page type, practice area, stat
 
 After collecting inputs, read the appropriate reference template before writing:
 
-- **Core Practice Area Page** → Read `references/core-hub-template.md`
-- **Procedural Page** → Read `references/procedural-template.md`
+- **Core Practice Area Page** → Read `references/core-hub-template.md`, which is a documented local replacement.
+- **Procedural Page** → Stop and report the route as pending. `references/procedural-template.md` remains absent and has not been repaired or validated.
 
 Follow the template section by section. Do not skip required sections. Conditional sections should be included when the practice area or state context warrants them.
 
@@ -132,7 +136,7 @@ Before writing any state-specific content, research and verify the legal details
 - Integrate local court names, filing locations, and county-specific details when provided by the user.
 
 **How to handle unverifiable details:**
-- If a detail is hyper-local (county-specific court rules, specific judge procedures, current filing fee dollar amounts) and the user has not provided it, use a clear placeholder: `[LOCAL DETAIL: describe what goes here]`
+- If a detail is hyper-local (county-specific court rules, specific judge procedures, current filing fee dollar amounts) and the user has not provided it, use a clear placeholder: `[LOCAL DETAIL: describe what goes here]`. In the local Core workflow, keep the complete marker inside one bold run. It will produce a mechanical warning and must be resolved before publication.
 - Do not fabricate statute numbers, fee amounts, or case law. If you cannot confirm it, leave a placeholder rather than guessing.
 - Placeholders should be rare. Most state-level legal details are researchable.
 
@@ -213,9 +217,9 @@ BAD: "For deeper guidance on individual processes, see our pages on [X](url), [Y
 - The same destination URL used as multiple distinct anchors anywhere on the page
 
 ### Core Practice Area Pages
-- **Required structural links out:** Link to each published Procedural child page. Each child page is linked exactly once, at its strongest placement.
-- **Allowed secondary contextual links:** Max 4 links to related Core pages (e.g., Divorce hub linking to Child Custody hub where topics overlap). These go in the Related Topics module near the bottom. They are not primary navigation. Each related Core hub appears exactly once.
-- **Required structural links in:** Every Procedural page under this hub must link back to it.
+- **Manifested links out:** Use only exact directional relationships and paths present in V2, plus a reviewed publication inventory and a contextual inclusion reason. Parentage, topical proximity, visual grouping, or a numerical ceiling does not independently authorize a link. Each approved destination appears exactly once at its strongest placement. Held or blocked targets cannot be enabled; a target on a V2 validation gate requires explicit approval and evidence in its manifest entry.
+- **Secondary contextual links:** The four-link ceiling below remains a ceiling, not permission. V2 currently contains no mapped source-derived Core-Hub-to-Core-Hub relationship; do not invent one.
+- **Inbound links:** Do not infer a reciprocal link from the Core page's outbound manifest. Use the exact V2 direction and the Procedural page's own reviewed link plan when that pending route is eventually repaired.
 
 ### Procedural Pages
 - **Required structural link out:** Link back to the parent Core hub. Linked exactly once.
@@ -263,7 +267,7 @@ Every page is delivered as a .docx file. Follow the docx skill's creation proces
 - Use proper heading levels (H1 for page title, H2 for main sections, H3 for subsections)
 - Use docx-js bullet lists (LevelFormat.BULLET), never unicode bullets
 - All internal links and citation references must be functional hyperlinks (see Link Implementation above)
-- Use a consistent callout style for `[LOCAL DETAIL]` placeholders -- bold, bracketed notation that's easy to find and fill
+- Use `[LOCAL DETAIL: description]` as one bold run. The local Core validator warns on a well-formed marker and rejects malformed or unbold markers.
 - FAQ sections use H3 for each question
 
 ### Skimmability
@@ -282,8 +286,15 @@ Examples: `florida-divorce-core.docx`, `florida-contested-divorce-procedural.doc
 ### Validation
 After generating the DOCX, run two scans before presenting it to the user:
 
-1. `python scripts/office/validate.py` for structural validation.
-2. `node scripts/validate-page.js path/to/page.docx` (provided alongside this skill) for the page-level pre-delivery scan: duplicate-URL detection, banned linking patterns, em-dash detection, banned-phrase detection, and "North Star" usage count. The script exits non-zero if any hard rule fails. Do not present the file until the validator passes.
+From the repository root:
+
+1. `python3 .agents/skills/family-law-service-pages/scripts/office/validate.py path/to/page.docx --manifest path/to/input.json` for the local Core-only structural and manifest scan.
+2. `node .agents/skills/family-law-service-pages/scripts/validate-page.js path/to/page.docx` for the genuine recovered page-level scan.
+3. `.agents/skills/family-law-service-pages/scripts/render-core-hub.sh path/to/page.docx --output_dir path/to/new-or-empty-render-directory --dpi 144 --emit_pdf --verbose`, followed by human inspection of every PNG. The wrapper verifies the pinned renderer and rejects a nonempty output directory.
+
+Use `python3 .agents/skills/family-law-service-pages/scripts/test-core-hub.py path/to/page.docx path/to/input.json path/to/evidence` to rerun the positive validators and meaningful negative regressions.
+
+The recovered JavaScript file preserves a Johnson Law Group-specific `North Star` limit and broader phrase patterns that are not defined as generic acceptance requirements in this skill. Preserve its findings, but adjudicate those client-specific or overbroad findings against the applicable voice and evidence rather than generalizing them silently. The local structural validator enforces measurable package, layout, DOCX/manifest paragraph parity, heading and required-section order, list, exhaustive hyperlink, source-format, content-word-count, paragraph, and placeholder rules. Neither validator decides intent quality, link relevance, helpfulness, brand voice, visual quality, live URL status, or legal accuracy.
 
 ---
 
@@ -315,7 +326,7 @@ Before delivering the DOCX, verify the following. If any gate fails, fix it befo
 
 ## Known Cluster Architecture
 
-Use this reference to understand the expected page relationships when planning links and avoiding overlap.
+This imported summary is non-governing in this repository. Use V2 for exact page types, paths, gates, hierarchy, and directional relationships; do not create links from this prose alone. In particular, V2 classifies Emergency Guardianship (`FL-M166`) as a Required Procedural page, not Situational.
 
 ### Divorce
 - Procedural: Contested Divorce, Uncontested Divorce, Legal Separation, Divorce Mediation, Collaborative Divorce
@@ -348,12 +359,4 @@ Use this reference to understand the expected page relationships when planning l
 
 ## Publishing Sequence Awareness
 
-When the user asks to build a page, verify where it falls in the production order:
-
-1. Core Practice Area hubs are built first.
-2. Highest-priority Procedural pages are built immediately after their hub.
-3. Remaining Procedural pages follow after the hub exists.
-
-If a user requests a Procedural page and the Core hub does not yet exist, flag this: "The parent Core hub for [PRACTICE_AREA] should be built first to establish the authority anchor. Want to start there instead, or proceed with the Procedural page knowing the hub will follow?"
-
-For Divorce specifically: Contested Divorce and Uncontested Divorce are the first two Procedural pages after the hub.
+Use V2's staged build sequence and node-specific gates. The imported three-step sequence and Divorce ordering are not authoritative where they differ from V2. Build stages are planning aids, not internal links, and Optional or Conditional status is not automatic client approval. The Procedural generation route remains pending regardless of sequence.

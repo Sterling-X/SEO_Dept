@@ -1,0 +1,22 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/validate-page.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-xflw59om/synthetic-divorce-core.docx
+exit=1
+
+
+=== Pre-delivery validation: synthetic-divorce-core.docx ===
+
+Link inventory: 6 total (6 in body, 0 in Sources). 5 unique body destinations.
+Em dashes: 0 | En dashes: 0
+North Star count: 0
+Body cites: []  Sources entries: []
+Word count (body text): 1777
+
+HARD FAIL (2):
+  ✗ Single-Placement Rule violated. 1 URL linked more than once in body content:
+  ✗   - https://example.com/divorce/collaborative-divorce/  (linked 2x in body)
+
+WARNINGS (1):
+  ⚠ Possible multi-link cluster: two hyperlinks within 392 chars in body content. Confirm placement is intentional and that prose leads into each link.
+
+INFO:
+  • "North Star" not used. Acceptable for non-JLG firms or for procedural pages where the brand anchor is not required. If this is a JLG hub page, consider one mention in the firm section.
+

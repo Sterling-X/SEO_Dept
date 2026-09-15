@@ -1,0 +1,375 @@
+{
+ "meta": {
+  "client": "Michael Ireland & Associates, PLLC",
+  "period": "June 14 to August 13, 2026",
+  "data_span": "June 15 to August 10, 2026",
+  "snapshot": "August 13, 2026",
+  "total_leads": 250,
+  "tx_leads": 199,
+  "tx_consults": 56,
+  "oos_leads": 48,
+  "oos_consults": 14,
+  "no_phone": 3,
+  "regions": 14,
+  "hired_tracked": false
+ },
+ "points": [
+  {
+   "n": "San Antonio metro",
+   "lat": 29.4241,
+   "lon": -98.4936,
+   "t": 108,
+   "c": 26,
+   "q": 0,
+   "codes": [
+    "210",
+    "726"
+   ]
+  },
+  {
+   "n": "Victoria / Coastal Bend",
+   "lat": 28.8053,
+   "lon": -97.0036,
+   "t": 30,
+   "c": 12,
+   "q": 0,
+   "codes": [
+    "361"
+   ]
+  },
+  {
+   "n": "Hill Country / New Braunfels",
+   "lat": 29.7008,
+   "lon": -98.1245,
+   "t": 19,
+   "c": 6,
+   "q": 0,
+   "codes": [
+    "830"
+   ]
+  },
+  {
+   "n": "Houston metro",
+   "lat": 29.7604,
+   "lon": -95.3698,
+   "t": 14,
+   "c": 3,
+   "q": 0,
+   "codes": [
+    "281",
+    "346",
+    "713",
+    "832"
+   ]
+  },
+  {
+   "n": "Austin",
+   "lat": 30.2672,
+   "lon": -97.7431,
+   "t": 8,
+   "c": 3,
+   "q": 0,
+   "codes": [
+    "512",
+    "737"
+   ]
+  },
+  {
+   "n": "Rio Grande Valley",
+   "lat": 26.2034,
+   "lon": -98.23,
+   "t": 6,
+   "c": 2,
+   "q": 0,
+   "codes": [
+    "956"
+   ]
+  },
+  {
+   "n": "Waco / Killeen",
+   "lat": 31.5493,
+   "lon": -97.1467,
+   "t": 3,
+   "c": 1,
+   "q": 0,
+   "codes": [
+    "254"
+   ]
+  },
+  {
+   "n": "El Paso",
+   "lat": 31.7619,
+   "lon": -106.485,
+   "t": 2,
+   "c": 0,
+   "q": 0,
+   "codes": [
+    "915"
+   ]
+  },
+  {
+   "n": "Abilene / San Angelo",
+   "lat": 32.4487,
+   "lon": -99.7331,
+   "t": 2,
+   "c": 0,
+   "q": 0,
+   "codes": [
+    "325"
+   ]
+  },
+  {
+   "n": "Tyler / Northeast Texas",
+   "lat": 32.3513,
+   "lon": -95.3011,
+   "t": 2,
+   "c": 1,
+   "q": 0,
+   "codes": [
+    "903"
+   ]
+  },
+  {
+   "n": "Bryan / College Station",
+   "lat": 30.628,
+   "lon": -96.3344,
+   "t": 2,
+   "c": 0,
+   "q": 0,
+   "codes": [
+    "979"
+   ]
+  },
+  {
+   "n": "Conroe / Huntsville",
+   "lat": 30.3119,
+   "lon": -95.4561,
+   "t": 1,
+   "c": 1,
+   "q": 0,
+   "codes": [
+    "936"
+   ]
+  },
+  {
+   "n": "Lubbock / Amarillo",
+   "lat": 33.5779,
+   "lon": -101.8552,
+   "t": 1,
+   "c": 1,
+   "q": 0,
+   "codes": [
+    "806"
+   ]
+  },
+  {
+   "n": "Dallas / Fort Worth",
+   "lat": 32.7767,
+   "lon": -96.797,
+   "t": 1,
+   "c": 0,
+   "q": 0,
+   "codes": [
+    "469"
+   ]
+  }
+ ],
+ "oos": [
+  {
+   "st": "CA",
+   "t": 5,
+   "c": 2
+  },
+  {
+   "st": "NC",
+   "t": 5,
+   "c": 1
+  },
+  {
+   "st": "FL",
+   "t": 4,
+   "c": 2
+  },
+  {
+   "st": "PA",
+   "t": 4,
+   "c": 0
+  },
+  {
+   "st": "HI",
+   "t": 3,
+   "c": 1
+  },
+  {
+   "st": "LA",
+   "t": 3,
+   "c": 1
+  },
+  {
+   "st": "WA",
+   "t": 3,
+   "c": 0
+  },
+  {
+   "st": "CO",
+   "t": 2,
+   "c": 1
+  },
+  {
+   "st": "IL",
+   "t": 2,
+   "c": 0
+  },
+  {
+   "st": "KS",
+   "t": 2,
+   "c": 1
+  },
+  {
+   "st": "OH",
+   "t": 2,
+   "c": 0
+  },
+  {
+   "st": "WI",
+   "t": 2,
+   "c": 2
+  },
+  {
+   "st": "AZ",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "IN",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "KY",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "MA",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "MD",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "NE",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "NJ",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "NM",
+   "t": 1,
+   "c": 1
+  },
+  {
+   "st": "RI",
+   "t": 1,
+   "c": 0
+  },
+  {
+   "st": "TN",
+   "t": 1,
+   "c": 1
+  },
+  {
+   "st": "WY",
+   "t": 1,
+   "c": 1
+  }
+ ],
+ "offices": [
+  {
+   "name": "San Antonio",
+   "addr": "9901 I-10 W, Ste 215",
+   "zip": "78230",
+   "lat": 29.5338207,
+   "lon": -98.56191
+  },
+  {
+   "name": "New Braunfels",
+   "addr": "170 E San Antonio St",
+   "zip": "78130",
+   "lat": 29.7036445,
+   "lon": -98.1236057
+  },
+  {
+   "name": "Victoria",
+   "addr": "101 W Goodwin Ave, Ste 1025",
+   "zip": "77901",
+   "lat": 28.8006686,
+   "lon": -97.0059772
+  }
+ ],
+ "callerid_cities": [
+  {
+   "n": "SAN ANTONIO TX",
+   "t": 17
+  },
+  {
+   "n": "HOUSTON TX",
+   "t": 7
+  },
+  {
+   "n": "FLAT TX",
+   "t": 1
+  },
+  {
+   "n": "HYATTSVILLE MD",
+   "t": 1
+  },
+  {
+   "n": "MARBLEHEAD MA",
+   "t": 1
+  },
+  {
+   "n": "PALATKA FL",
+   "t": 1
+  },
+  {
+   "n": "WESTBROOK TX",
+   "t": 1
+  },
+  {
+   "n": "LA GRANGE KY",
+   "t": 1
+  },
+  {
+   "n": "FRISCO TX",
+   "t": 1
+  },
+  {
+   "n": "DAYTON OH",
+   "t": 1
+  },
+  {
+   "n": "COLLINGSWOOD NJ",
+   "t": 1
+  },
+  {
+   "n": "ALBEMARLE NC",
+   "t": 1
+  },
+  {
+   "n": "LINCOLNTON NC",
+   "t": 1
+  },
+  {
+   "n": "CO,CO UNKNOWN",
+   "t": 1
+  }
+ ]
+}

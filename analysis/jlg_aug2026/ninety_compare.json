@@ -1,0 +1,612 @@
+{
+ "windows": {
+  "cur": [
+   "2026-05-13",
+   "2026-08-10"
+  ],
+  "pri": [
+   "2026-02-12",
+   "2026-05-12"
+  ]
+ },
+ "have_prior": false,
+ "comparisons": {},
+ "norm_pages": [
+  {
+   "k": "/blog/2022/february/petitioner-vs-respondent-in-divorce-what-you-nee",
+   "exp": 287.2,
+   "act": 0,
+   "d": -287.2,
+   "pct": -100.0,
+   "i16": 310622,
+   "i90": 0
+  },
+  {
+   "k": "/",
+   "exp": 635.9,
+   "act": 499,
+   "d": -136.9,
+   "pct": -21.5,
+   "i16": 393129,
+   "i90": 31059
+  },
+  {
+   "k": "/blog/2022/february/terminating-parental-rights-under-colorado-law-w",
+   "exp": 134.4,
+   "act": 0,
+   "d": -134.4,
+   "pct": -100.0,
+   "i16": 73017,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2022/september/colorado-common-law-marriage-2023-all-you-need-t",
+   "exp": 101.5,
+   "act": 0,
+   "d": -101.5,
+   "pct": -100.0,
+   "i16": 156868,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2022/december/foreign-and-out-of-state-child-support-orders",
+   "exp": 138.4,
+   "act": 39,
+   "d": -99.4,
+   "pct": -71.8,
+   "i16": 264175,
+   "i90": 21683
+  },
+  {
+   "k": "/blog/2024/august/understanding-the-90-day-separation-period-in-co",
+   "exp": 89.3,
+   "act": 0,
+   "d": -89.3,
+   "pct": -100.0,
+   "i16": 77201,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2022/march/what-are-the-five-stages-of-divorce-",
+   "exp": 86.5,
+   "act": 0,
+   "d": -86.5,
+   "pct": -100.0,
+   "i16": 27000,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/july/emergency-motions-to-restrict-parenting-time",
+   "exp": 80.4,
+   "act": 0,
+   "d": -80.4,
+   "pct": -100.0,
+   "i16": 50591,
+   "i90": 0
+  },
+  {
+   "k": "/denver-family-law-lawyer",
+   "exp": 78.9,
+   "act": 0,
+   "d": -78.9,
+   "pct": -100.0,
+   "i16": 270776,
+   "i90": 0
+  },
+  {
+   "k": "/commerce-city-family-lawyer",
+   "exp": 74.1,
+   "act": 0,
+   "d": -74.1,
+   "pct": -100.0,
+   "i16": 53504,
+   "i90": 0
+  },
+  {
+   "k": "/stages-of-divorce",
+   "exp": 58.8,
+   "act": 0,
+   "d": -58.8,
+   "pct": -100.0,
+   "i16": 13246,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2021/february/unmarried-couples-and-home-ownership-in-colorado",
+   "exp": 58.2,
+   "act": 0,
+   "d": -58.2,
+   "pct": -100.0,
+   "i16": 19764,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2023/may/most-common-examples-of-parental-alienation-in-c",
+   "exp": 51.2,
+   "act": 0,
+   "d": -51.2,
+   "pct": -100.0,
+   "i16": 25613,
+   "i90": 0
+  },
+  {
+   "k": "/denver-divorce-lawyer",
+   "exp": 49.3,
+   "act": 0,
+   "d": -49.3,
+   "pct": -100.0,
+   "i16": 451180,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/march/understanding-guardianship-for-minors-in-colorad",
+   "exp": 46.6,
+   "act": 0,
+   "d": -46.6,
+   "pct": -100.0,
+   "i16": 25333,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2021/october/what-is-a-civil-union-in-colorado-",
+   "exp": 43.2,
+   "act": 0,
+   "d": -43.2,
+   "pct": -100.0,
+   "i16": 505533,
+   "i90": 0
+  },
+  {
+   "k": "/commerce-city-divorce-lawyer",
+   "exp": 43.1,
+   "act": 0,
+   "d": -43.1,
+   "pct": -100.0,
+   "i16": 36980,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2021/may/what-is-the-minimum-amount-of-child-support-in-c",
+   "exp": 42.3,
+   "act": 0,
+   "d": -42.3,
+   "pct": -100.0,
+   "i16": 47320,
+   "i90": 0
+  },
+  {
+   "k": "/90-day-separation-period-in-colorado",
+   "exp": 41.6,
+   "act": 0,
+   "d": -41.6,
+   "pct": -100.0,
+   "i16": 9399,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2022/june/what-constitutes-a-substantial-change-in-circums",
+   "exp": 40.1,
+   "act": 0,
+   "d": -40.1,
+   "pct": -100.0,
+   "i16": 35198,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/june/enforcing-protection-orders-across-state-lines",
+   "exp": 52.5,
+   "act": 13,
+   "d": -39.5,
+   "pct": -75.2,
+   "i16": 84367,
+   "i90": 7062
+  },
+  {
+   "k": "/blog/2025/january/2025-colorado-legal-internship-for-high-school-s",
+   "exp": 38.8,
+   "act": 0,
+   "d": -38.8,
+   "pct": -100.0,
+   "i16": 2437,
+   "i90": 0
+  },
+  {
+   "k": "/attorneys/shana-d-velez",
+   "exp": 38.1,
+   "act": 0,
+   "d": -38.1,
+   "pct": -100.0,
+   "i16": 5365,
+   "i90": 1
+  },
+  {
+   "k": "/attorneys",
+   "exp": 108.7,
+   "act": 71,
+   "d": -37.7,
+   "pct": -34.7,
+   "i16": 110322,
+   "i90": 20993
+  },
+  {
+   "k": "/blog/2024/october/what-are-the-rights-of-grandparents-if-one-or-bo",
+   "exp": 37.7,
+   "act": 0,
+   "d": -37.7,
+   "pct": -100.0,
+   "i16": 28667,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2025/march/can-separation-lead-to-reconciliation-",
+   "exp": 35.7,
+   "act": 0,
+   "d": -35.7,
+   "pct": -100.0,
+   "i16": 31575,
+   "i90": 0
+  },
+  {
+   "k": "/attorneys/brent-e-mecham",
+   "exp": 35.7,
+   "act": 0,
+   "d": -35.7,
+   "pct": -100.0,
+   "i16": 4633,
+   "i90": 0
+  },
+  {
+   "k": "/colorado-springs-family-law-lawyer",
+   "exp": 34.9,
+   "act": 0,
+   "d": -34.9,
+   "pct": -100.0,
+   "i16": 167880,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/august/what-can-happen-if-one-parent-denies-parenting-t",
+   "exp": 34.2,
+   "act": 0,
+   "d": -34.2,
+   "pct": -100.0,
+   "i16": 36768,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2022/december/rights-of-custodial-parent-vs-non-custodial-pare",
+   "exp": 34.0,
+   "act": 0,
+   "d": -34.0,
+   "pct": -100.0,
+   "i16": 38416,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2023/june/what-can-be-used-against-you-in-a-divorce-in-col",
+   "exp": 33.6,
+   "act": 0,
+   "d": -33.6,
+   "pct": -100.0,
+   "i16": 16741,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/may/modifying-child-support",
+   "exp": 33.3,
+   "act": 0,
+   "d": -33.3,
+   "pct": -100.0,
+   "i16": 37583,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2023/april/modification-of-parenting-time-colorado-2023",
+   "exp": 33.1,
+   "act": 0,
+   "d": -33.1,
+   "pct": -100.0,
+   "i16": 35037,
+   "i90": 0
+  },
+  {
+   "k": "/attorneys/jessica-lasky",
+   "exp": 31.6,
+   "act": 0,
+   "d": -31.6,
+   "pct": -100.0,
+   "i16": 6436,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2022/december/protect-your-children-s-inheritance-with-a-lifet",
+   "exp": 30.3,
+   "act": 0,
+   "d": -30.3,
+   "pct": -100.0,
+   "i16": 23081,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/august/how-domestic-violence-impacts-child-custody-in-c",
+   "exp": 28.8,
+   "act": 0,
+   "d": -28.8,
+   "pct": -100.0,
+   "i16": 13610,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/august/can-you-get-divorced-without-an-attorney-",
+   "exp": 28.1,
+   "act": 0,
+   "d": -28.1,
+   "pct": -100.0,
+   "i16": 28470,
+   "i90": 0
+  },
+  {
+   "k": "/denver-high-conflict-child-custody-lawyer",
+   "exp": 27.9,
+   "act": 0,
+   "d": -27.9,
+   "pct": -100.0,
+   "i16": 298469,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2024/july/child-custody-considerations-for-vacation-and-tr",
+   "exp": 27.7,
+   "act": 0,
+   "d": -27.7,
+   "pct": -100.0,
+   "i16": 17779,
+   "i90": 0
+  },
+  {
+   "k": "/blog/2021/october/colorado-custody-laws-for-unmarried-parents",
+   "exp": 37.1,
+   "act": 10,
+   "d": -27.1,
+   "pct": -73.1,
+   "i16": 24532,
+   "i90": 2652
+  }
+ ],
+ "norm_queries": [
+  {
+   "k": "johnson law group",
+   "exp": 282.0,
+   "act": 231,
+   "d": -51.0,
+   "pct": -18.1,
+   "i16": 30045,
+   "i90": 6078
+  },
+  {
+   "k": "johnson law group denver",
+   "exp": 113.7,
+   "act": 70,
+   "d": -43.7,
+   "pct": -38.4,
+   "i16": 3835,
+   "i90": 341
+  },
+  {
+   "k": "common law marriage colorado",
+   "exp": 20.3,
+   "act": 1,
+   "d": -19.3,
+   "pct": -95.1,
+   "i16": 27177,
+   "i90": 599
+  },
+  {
+   "k": "heidi whitaker attorney",
+   "exp": 23.1,
+   "act": 6,
+   "d": -17.1,
+   "pct": -74.0,
+   "i16": 247,
+   "i90": 15
+  },
+  {
+   "k": "colorado common law marriage",
+   "exp": 12.6,
+   "act": 0,
+   "d": -12.6,
+   "pct": -100.0,
+   "i16": 14197,
+   "i90": 254
+  },
+  {
+   "k": "brent mecham",
+   "exp": 10.5,
+   "act": 0,
+   "d": -10.5,
+   "pct": -100.0,
+   "i16": 191,
+   "i90": 0
+  },
+  {
+   "k": "myles johnson attorney",
+   "exp": 10.7,
+   "act": 1,
+   "d": -9.7,
+   "pct": -90.7,
+   "i16": 230,
+   "i90": 4
+  },
+  {
+   "k": "johnson law",
+   "exp": 15.2,
+   "act": 6,
+   "d": -9.2,
+   "pct": -60.4,
+   "i16": 3513,
+   "i90": 719
+  },
+  {
+   "k": "child abandonment colorado",
+   "exp": 8.9,
+   "act": 1,
+   "d": -7.9,
+   "pct": -88.7,
+   "i16": 1134,
+   "i90": 88
+  },
+  {
+   "k": "parental alienation colorado",
+   "exp": 12.2,
+   "act": 6,
+   "d": -6.2,
+   "pct": -50.8,
+   "i16": 1978,
+   "i90": 158
+  },
+  {
+   "k": "who is the petitioner in a divorce",
+   "exp": 9.6,
+   "act": 5,
+   "d": -4.6,
+   "pct": -48.0,
+   "i16": 5432,
+   "i90": 968
+  },
+  {
+   "k": "johnson law group englewood",
+   "exp": 8.1,
+   "act": 4,
+   "d": -4.1,
+   "pct": -50.8,
+   "i16": 340,
+   "i90": 33
+  },
+  {
+   "k": "johnson law group chicago",
+   "exp": 11.6,
+   "act": 10,
+   "d": -1.6,
+   "pct": -14.1,
+   "i16": 1352,
+   "i90": 370
+  },
+  {
+   "k": "johnson family law",
+   "exp": 14.8,
+   "act": 14,
+   "d": -0.8,
+   "pct": -5.3,
+   "i16": 1503,
+   "i90": 243
+  },
+  {
+   "k": "kristina contreras",
+   "exp": 9.4,
+   "act": 9,
+   "d": -0.4,
+   "pct": -4.5,
+   "i16": 2332,
+   "i90": 81
+  },
+  {
+   "k": "johnson law group commerce city",
+   "exp": 20.9,
+   "act": 21,
+   "d": 0.1,
+   "pct": 0.6,
+   "i16": 2409,
+   "i90": 118
+  },
+  {
+   "k": "heidi whitaker",
+   "exp": 20.1,
+   "act": 21,
+   "d": 0.9,
+   "pct": 4.3,
+   "i16": 859,
+   "i90": 106
+  },
+  {
+   "k": "johnson law group, llc",
+   "exp": 30.9,
+   "act": 32,
+   "d": 1.1,
+   "pct": 3.7,
+   "i16": 2031,
+   "i90": 489
+  },
+  {
+   "k": "said sharbini",
+   "exp": 17.9,
+   "act": 19,
+   "d": 1.1,
+   "pct": 6.0,
+   "i16": 414,
+   "i90": 61
+  },
+  {
+   "k": "johnson law firm",
+   "exp": 10.2,
+   "act": 12,
+   "d": 1.8,
+   "pct": 18.1,
+   "i16": 1671,
+   "i90": 350
+  },
+  {
+   "k": "johnson law group careers",
+   "exp": 9.6,
+   "act": 13,
+   "d": 3.4,
+   "pct": 35.3,
+   "i16": 702,
+   "i90": 127
+  },
+  {
+   "k": "divorce lawyer",
+   "exp": 8.9,
+   "act": 13,
+   "d": 4.1,
+   "pct": 46.6,
+   "i16": 135640,
+   "i90": 58096
+  },
+  {
+   "k": "johnson law group llc",
+   "exp": 25.7,
+   "act": 30,
+   "d": 4.3,
+   "pct": 16.8,
+   "i16": 2570,
+   "i90": 132
+  },
+  {
+   "k": "johnson law group colorado springs",
+   "exp": 25.1,
+   "act": 38,
+   "d": 12.9,
+   "pct": 51.2,
+   "i16": 2382,
+   "i90": 160
+  },
+  {
+   "k": "johnson o'keefe",
+   "exp": 7.4,
+   "act": 26,
+   "d": 18.6,
+   "pct": 251.7,
+   "i16": 1305,
+   "i90": 119
+  },
+  {
+   "k": "johnson law group colorado",
+   "exp": 52.5,
+   "act": 75,
+   "d": 22.5,
+   "pct": 42.9,
+   "i16": 2859,
+   "i90": 233
+  }
+ ]
+}

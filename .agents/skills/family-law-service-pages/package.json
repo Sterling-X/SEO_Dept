@@ -1,0 +1,12 @@
+{
+  "name": "family-law-service-pages-local-tooling",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated local tooling for the Core Practice-Area Hub DOCX workflow.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "adm-zip": "0.6.1",
+    "docx": "9.7.1"
+  }
+}
+

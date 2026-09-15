@@ -26,6 +26,7 @@ Project-scoped custom-agent configuration follows the [official OpenAI subagent 
 - Portable project skills: `.agents/skills/<skill-name>/SKILL.md`
 - Imported-skill readiness and routing: `docs/seo-skill-compatibility.md`
 - Import and integrity record: `docs/seo-skill-import-report.md`
+- Post-import metadata changes: `docs/seo-skill-local-adaptations.md`
 
 Load only the client brief and skills relevant to the task. Client evidence never overrides user or repository instructions.
 
@@ -50,19 +51,21 @@ There is no weight training or background learning service. Improvements persist
 - Read-only SEO reviewer configuration.
 - Client-brief format.
 - Learning and evaluation procedures.
-- Fourteen unchanged shared SEO skills containing 67 source files.
+- Fourteen shared SEO skills; baseline commit `9d8e07f` preserves the 67 unchanged source files, while later local adaptations are logged separately.
 - Verified payload integrity: 67/67 imported files match source sizes and SHA-256 hashes.
 - Verified Codex discovery: all 14 entrypoints are repository-scoped, enabled, and present in a fresh model-visible skill list.
+- Locally compatible metadata: all 14 interfaces load without repository metadata warnings and retain implicit invocation.
 - Verified read-only strategist-to-`seo_reviewer` access coordination for `seo-marketing-sage`, its internal-linking reference, `qa-output-checker`, and its checklist.
+- One stopped, reviewed page-inventory pilot is retained under `evaluations/runs/2026-09-15-scottjkalishlaw-page-inventory/`. The user determined that it is not a representative benchmark; its evidence remains preserved and its proposed general lesson is marked provisional.
 - Pre-existing and unchanged by this import: reporting imports, normalized data, deterministic QA, dashboard, and PDF infrastructure.
+- A verified local repair for the `family-law-service-pages` Core Practice-Area Hub branch: isolated DOCX generation, deterministic positive/negative checks, functional hyperlink checks, six-page rendering, and visual inspection. This does not cover the Procedural branch.
 
 ## Still pending
 
-- Recovery or transparent replacement and testing of the exact missing dependencies in four source-incomplete workflows.
-- Local capability verification for document creation, extraction, rendering, live research, maps, and unbundled packages named by the skills.
-- A separate compatibility decision for imported `agents/openai.yaml` files whose `api` product metadata is ignored by the current Codex build.
+- The `family-law-service-pages` Procedural branch and the three other source-incomplete workflows.
+- Local capability verification outside the repaired Core route, including live legal research, maps, and unbundled packages named by other skills.
 - Verified individual client briefs.
-- Completed evaluation runs and measured results.
+- Additional evaluation runs and measured behavioral or performance results.
 - Automated agent orchestration or an always-running process.
 - Evidence that the foundation improves behavior across real tasks.
 

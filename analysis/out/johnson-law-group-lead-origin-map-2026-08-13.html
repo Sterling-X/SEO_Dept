@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lead Origins</title>
+<style>
+:root{
+  --paper:#f3f2ec; --sheet:#fbfaf6; --ink:#1c2a39; --muted:#5d6a77; --hair:#d9d8cd;
+  --county:#eef0e7; --countyline:#9aa38b; --countyoffice:#f2e7cd; --stateline:#3f4a58; --grat:#d6dbca;
+  --lead:#848d7e; --leadline:#5c6356; --consult:#20507e; --gold:#a9822e; --office:#7d520c; --ttbg:#ffffff;
+  --serif:"Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#0e1319; --sheet:#131a22; --ink:#e6eaee; --muted:#94a1ae; --hair:#2a333e;
+  --county:#1b2431; --countyline:#4a5a70; --countyoffice:#33291a; --stateline:#8794a6; --grat:#232f3f;
+  --lead:#6d7568; --leadline:#9aa18f; --consult:#7db3ea; --gold:#d0aa56; --office:#e0bd72; --ttbg:#1b242e;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.sheet{max-width:1040px;margin:28px auto;background:var(--sheet);border:1px solid var(--hair);padding:34px 38px 30px}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:fade .45s ease}}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.tblock{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;border-bottom:2px solid var(--ink);padding-bottom:16px}
+.eyebrow{font:600 10.5px var(--mono);letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin:0 0 8px}
+h1{font:400 34px/1.05 var(--serif);margin:0;letter-spacing:.01em}
+.sub{font:13px var(--sans);color:var(--muted);margin:8px 0 0;max-width:54ch}
+.meta{font:11px var(--mono);text-align:right;color:var(--muted);min-width:228px}
+.meta div{padding:3px 0;border-bottom:1px solid var(--hair)}
+.meta div:last-child{border-bottom:none}
+.meta b{color:var(--ink);font-weight:600;margin-left:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0 26px;margin:18px 0 6px}
+.kpi{border-top:1px solid var(--hair);padding-top:9px}
+.kpi .lab{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kpi .val{font:500 26px var(--mono);margin-top:3px}
+.kpi .val small{font-size:13px;color:var(--muted);font-weight:400;margin-left:4px}
+.kpi .val.na{font-size:17px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font:12px var(--sans);color:var(--muted);margin:20px 0 4px;align-items:center}
+.sw{width:12px;height:12px;border-radius:50%;display:inline-block;vertical-align:-2px;margin-right:6px}
+.sw-lead{background:var(--lead);opacity:.55;border:1px solid var(--leadline)}
+.sw-con{background:var(--consult)}
+.sw-off{width:10px;height:10px;border-radius:0;transform:rotate(45deg);background:transparent;border:1.6px solid var(--gold)}
+.sw-cty{width:13px;height:9px;border-radius:0;background:var(--county);border:1px solid var(--countyline)}
+#mapwrap{position:relative;margin:6px 0 4px}
+#map{display:block;width:100%;height:auto;cursor:grab;touch-action:none}
+#map.grabbing{cursor:grabbing}
+#map:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.zoomctl{position:absolute;top:9px;left:9px;display:flex;gap:5px;align-items:center;
+         background:color-mix(in srgb,var(--sheet) 88%,transparent);border:1px solid var(--hair);
+         padding:4px 6px;font:11px var(--mono)}
+.zoomctl button{all:unset;cursor:pointer;min-width:20px;height:20px;text-align:center;
+         border:1px solid var(--hair);color:var(--ink);font:600 12px var(--mono);line-height:18px}
+.zoomctl button:hover:not(:disabled){background:color-mix(in srgb,var(--gold) 18%,transparent)}
+.zoomctl button:focus-visible{outline:1px solid var(--gold);outline-offset:1px}
+.zoomctl button:disabled{opacity:.35;cursor:default}
+.zoomctl button.wide{min-width:auto;padding:0 7px;font-weight:400}
+.zoomctl #zlevel{color:var(--muted);min-width:34px;text-align:right}
+.maphint{font:11px var(--sans);color:var(--muted);margin:2px 0 0;display:flex;
+         justify-content:space-between;gap:14px;flex-wrap:wrap}
+tr.clickable{cursor:pointer}
+.county{fill:var(--county);stroke:var(--countyline);stroke-width:.85;stroke-linejoin:round}
+.county-off{fill:var(--countyoffice)}
+.grat{fill:none;stroke:var(--grat);stroke-width:.6;stroke-dasharray:2 3}
+.state{fill:none;stroke:var(--stateline);stroke-width:1.7;stroke-linejoin:round}
+.oc{fill:var(--lead);fill-opacity:.5;stroke:var(--leadline);stroke-width:.9}
+.oc-k{fill-opacity:.24;stroke-dasharray:3 2}
+.ic{fill:var(--consult);fill-opacity:.95;pointer-events:none}
+.pt{cursor:default}
+.pt:hover .oc,.pt:focus .oc{stroke-width:2}
+.gridlab{font:10px var(--mono);fill:var(--muted)}
+/* paint-order:stroke puts a surface-coloured halo behind glyphs so labels stay readable
+   where they cross county lines. */
+.citylab{font:11px var(--sans);fill:var(--muted);pointer-events:none;
+         paint-order:stroke;stroke:var(--sheet);stroke-width:3.5px;stroke-linejoin:round}
+.citynum{font-family:var(--mono);font-weight:600;fill:var(--ink)}
+.offlab{font:600 11px var(--sans);fill:var(--office);pointer-events:none;
+        paint-order:stroke;stroke:var(--sheet);stroke-width:3.5px;stroke-linejoin:round}
+.ctylab{font:9.5px var(--sans);fill:var(--muted);opacity:.9;pointer-events:none;
+        paint-order:stroke;stroke:var(--sheet);stroke-width:2.6px;stroke-linejoin:round}
+.scale{stroke:var(--ink);stroke-width:1.1;fill:none}
+.scalelab{font:9.5px var(--mono);fill:var(--muted)}
+#tt{position:absolute;display:none;pointer-events:none;background:var(--ttbg);border:1px solid var(--hair);
+    padding:8px 11px;font:12px/1.5 var(--sans);max-width:240px;box-shadow:0 2px 10px rgba(0,0,0,.10);z-index:5}
+#tt .n{font-weight:600;font-size:13px}
+#tt .d{font-family:var(--mono);color:var(--muted)}
+h2{font:400 19px var(--serif);border-top:1px solid var(--hair);padding-top:18px;margin:22px 0 10px}
+h2 span{font:11px var(--mono);color:var(--muted);letter-spacing:.08em;margin-left:10px}
+table{width:100%;border-collapse:collapse;font:12.5px var(--sans)}
+th{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+   border-bottom:1.5px solid var(--ink);padding:6px 8px;text-align:left}
+th.num,td.num{text-align:right;font-family:var(--mono)}
+th button{all:unset;cursor:pointer;letter-spacing:inherit}
+th button:hover,th button:focus-visible{color:var(--ink);outline:1px dotted var(--gold);outline-offset:2px}
+td{border-bottom:1px solid var(--hair);padding:5px 8px}
+tr:hover td{background:color-mix(in srgb,var(--gold) 7%,transparent)}
+tfoot td{border-bottom:none;border-top:1.5px solid var(--ink);font-weight:600}
+.notes{font:12px/1.65 var(--sans);color:var(--muted);margin-top:20px;border-top:1px solid var(--hair);padding-top:14px}
+.notes b{color:var(--ink);font-weight:600}
+.notes p{margin:0 0 9px}
+.foot{font:10.5px var(--mono);color:var(--muted);letter-spacing:.06em;margin-top:16px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:640px){.sheet{padding:22px 16px;margin:10px}.tblock{flex-direction:column;align-items:flex-start}.meta{text-align:left}}
+@media print{body{background:#fff}.sheet{border:none;margin:0;max-width:none}}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="tblock">
+    <div>
+      <p class="eyebrow" id="m-client"></p>
+      <h1 id="m-title"></h1>
+      <p class="sub" id="m-sub"></p>
+    </div>
+    <div class="meta">
+      <div>PERIOD<b id="m-period"></b></div>
+      <div>WINDOW<b id="m-window"></b></div>
+      <div>SNAPSHOT<b id="m-snap"></b></div>
+      <div>PREPARED BY<b>Rocket Clicks</b></div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="lab">Leads on map</div><div class="val" id="k-tot"></div></div>
+    <div class="kpi"><div class="lab" id="k-mlab"></div><div class="val" id="k-con"></div></div>
+    <div class="kpi"><div class="lab">Origin points</div><div class="val" id="k-pts"></div></div>
+    <div class="kpi" id="k-hbox"><div class="lab">Hired</div><div class="val na">Not tracked</div></div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+
+  <div id="mapwrap">
+    <svg id="map" viewBox="0 0 960 750" role="img" aria-labelledby="map-desc"></svg>
+    <div class="zoomctl">
+      <button id="zout" type="button" title="Zoom out (minus key)" aria-label="Zoom out">&minus;</button>
+      <button id="zin" type="button" title="Zoom in (plus key)" aria-label="Zoom in">+</button>
+      <button id="zreset" type="button" class="wide" title="Reset view (0 key)">Reset</button>
+      <span id="zlevel" aria-live="polite">1.0&times;</span>
+    </div>
+    <p id="map-desc" hidden></p>
+    <div id="tt"></div>
+  </div>
+
+  <p class="maphint">
+    <span>Scroll or pinch to zoom &middot; drag to pan &middot; double&#8209;click to zoom in &middot;
+      arrow keys and &plus;&thinsp;/&thinsp;&minus;&thinsp;/&thinsp;0 when focused</span>
+    <span id="hint-precision"></span>
+  </p>
+
+  <h2>Schedule of origins <span id="h-tx"></span></h2>
+  <table id="tbl">
+    <thead><tr>
+      <th><button data-k="n">Origin</button></th>
+      <th><button data-k="lvl">Precision</button></th>
+      <th class="num"><button data-k="t">Leads</button></th>
+      <th class="num"><button data-k="c" id="th-metric"></button></th>
+      <th class="num"><button data-k="r">Rate</button></th>
+    </tr></thead>
+    <tbody></tbody>
+    <tfoot></tfoot>
+  </table>
+
+  <div id="offblock" hidden>
+    <h2>Offices</h2>
+    <table id="tbl3">
+      <thead><tr><th>Office</th><th>Address</th><th>County</th><th class="num">City leads</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="notes" id="notes"></div>
+
+  <div class="foot"><span id="f-left"></span><span>LEAD ORIGIN MAP &middot; SHEET 1 OF 1</span></div>
+</div>
+
+<script>
+const GEO = {"counties":{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Alamosa"},"geometry":{"type":"Polygon","coordinates":[[[-105.486,37.578],[-105.743,37.357],[-106.039,37.357],[-106.038,37.748],[-105.457,37.751],[-105.486,37.578]]]}},{"type":"Feature","properties":{"name":"Boulder"},"geometry":{"type":"Polygon","coordinates":[[[-105.055,40.262],[-105.055,40.0],[-105.053,40.0],[-105.053,39.978],[-105.07,39.97],[-105.079,39.962],[-105.088,39.96],[-105.089,39.958],[-105.072,39.958],[-105.072,39.951],[-105.076,39.951],[-105.076,39.943],[-105.091,39.943],[-105.091,39.936],[-105.109,39.936],[-105.114,39.931],[-105.109,39.924],[-105.119,39.934],[-105.119,39.943],[-105.109,39.943],[-105.109,39.95],[-105.121,39.951],[-105.109,39.957],[-105.121,39.952],[-105.122,39.955],[-105.128,39.955],[-105.127,39.94],[-105.138,39.94],[-105.138,39.929],[-105.147,39.929],[-105.147,39.914],[-105.398,39.913],[-105.398,39.935],[-105.676,39.932],[-105.639,40.039],[-105.653,40.26],[-105.055,40.262]]]}},{"type":"Feature","properties":{"name":"Broomfield"},"geometry":{"type":"Polygon","coordinates":[[[-105.147,39.914],[-105.147,39.929],[-105.138,39.929],[-105.138,39.94],[-105.127,39.94],[-105.128,39.955],[-105.122,39.955],[-105.121,39.952],[-105.109,39.957],[-105.121,39.951],[-105.109,39.95],[-105.109,39.943],[-105.119,39.943],[-105.119,39.934],[-105.109,39.924],[-105.114,39.931],[-105.109,39.936],[-105.091,39.936],[-105.091,39.943],[-105.076,39.943],[-105.076,39.951],[-105.072,39.951],[-105.072,39.958],[-105.089,39.958],[-105.087,39.96],[-105.079,39.962],[-105.067,39.972],[-105.053,39.978],[-105.053,40.0],[-105.009,40.0],[-105.008,40.007],[-105.008,40.0],[-105.008,40.007],[-104.99,40.008],[-104.99,40.015],[-104.999,40.015],[-104.996,40.02],[-104.999,40.021],[-104.997,40.021],[-104.997,40.024],[-104.999,40.024],[-104.999,40.026],[-104.987,40.026],[-104.987,40.029],[-104.98,40.029],[-104.979,40.044],[-104.961,40.044],[-104.961,40.0],[-105.053,39.914],[-105.147,39.914]]]}},{"type":"Feature","properties":{"name":"Crowley"},"geometry":{"type":"Polygon","coordinates":[[[-103.502,38.265],[-103.509,38.173],[-103.619,38.171],[-103.619,38.113],[-103.836,38.113],[-104.058,38.146],[-104.054,38.522],[-103.505,38.516],[-103.502,38.265]]]}},{"type":"Feature","properties":{"name":"Denver"},"geometry":{"type":"Polygon","coordinates":[[[-105.053,39.621],[-105.059,39.614],[-105.097,39.614],[-105.093,39.618],[-105.065,39.619],[-105.065,39.62],[-105.077,39.624],[-105.075,39.625],[-105.081,39.632],[-105.084,39.632],[-105.084,39.63],[-105.082,39.63],[-105.082,39.628],[-105.084,39.628],[-105.084,39.629],[-105.085,39.629],[-105.085,39.626],[-105.091,39.627],[-105.091,39.624],[-105.109,39.624],[-105.109,39.627],[-105.11,39.627],[-105.11,39.635],[-105.092,39.635],[-105.092,39.639],[-105.082,39.639],[-105.082,39.636],[-105.074,39.637],[-105.074,39.639],[-105.077,39.639],[-105.072,39.646],[-105.064,39.646],[-105.063,39.65],[-105.057,39.65],[-105.057,39.652],[-105.055,39.652],[-105.059,39.653],[-105.059,39.651],[-105.063,39.652],[-105.064,39.65],[-105.071,39.65],[-105.067,39.653],[-105.067,39.657],[-105.071,39.657],[-105.072,39.66],[-105.078,39.659],[-105.078,39.661],[-105.081,39.662],[-105.081,39.67],[-105.077,39.669],[-105.075,39.671],[-105.072,39.67],[-105.072,39.668],[-105.053,39.668],[-105.053,39.675],[-105.063,39.675],[-105.063,39.68],[-105.058,39.679],[-105.058,39.682],[-105.053,39.682],[-105.053,39.733],[-105.056,39.733],[-105.056,39.735],[-105.053,39.735],[-105.053,39.784],[-105.063,39.784],[-105.062,39.788],[-105.065,39.788],[-105.065,39.791],[-105.062,39.79],[-104.791,39.798],[-104.693,39.914],[-104.6,39.899],[-104.62,39.827],[-104.762,39.823],[-104.735,39.769],[-104.856,39.769],[-104.885,39.74],[-104.847,39.657],[-104.853,39.656],[-104.876,39.644],[-104.876,39.652],[-104.88,39.653],[-104.88,39.641],[-104.885,39.639],[-104.885,39.624],[-104.913,39.624],[-104.932,39.653],[-105.016,39.679],[-105.032,39.657],[-105.035,39.628],[-105.053,39.632],[-105.053,39.621]]]}},{"type":"Feature","properties":{"name":"Douglas"},"geometry":{"type":"Polygon","coordinates":[[[-105.049,39.566],[-104.661,39.566],[-104.663,39.13],[-105.329,39.13],[-105.26,39.21],[-105.049,39.566]]]}},{"type":"Feature","properties":{"name":"Gilpin"},"geometry":{"type":"Polygon","coordinates":[[[-105.398,39.913],[-105.398,39.747],[-105.545,39.774],[-105.69,39.852],[-105.676,39.932],[-105.398,39.935],[-105.398,39.913]]]}},{"type":"Feature","properties":{"name":"Hinsdale"},"geometry":{"type":"Polygon","coordinates":[[[-107.482,37.423],[-107.482,37.64],[-107.469,37.81],[-107.517,37.826],[-107.569,37.965],[-107.511,38.061],[-107.569,38.147],[-107.001,38.147],[-107.001,37.956],[-107.138,37.939],[-107.145,37.675],[-107.124,37.675],[-107.129,37.423],[-107.482,37.423]]]}},{"type":"Feature","properties":{"name":"Jackson"},"geometry":{"type":"Polygon","coordinates":[[[-106.321,40.999],[-106.191,40.998],[-106.185,40.934],[-106.058,40.817],[-105.855,40.486],[-105.892,40.477],[-105.96,40.348],[-106.019,40.373],[-106.23,40.323],[-106.354,40.358],[-106.443,40.347],[-106.49,40.412],[-106.612,40.379],[-106.652,40.445],[-106.706,40.617],[-106.637,40.789],[-106.655,40.849],[-106.825,40.932],[-106.852,40.925],[-106.858,41.003],[-106.44,41.002],[-106.321,40.999]]]}},{"type":"Feature","properties":{"name":"Jefferson"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-105.093,39.618],[-105.097,39.614],[-105.059,39.614],[-105.053,39.621],[-105.054,39.566],[-105.049,39.566],[-105.26,39.21],[-105.329,39.13],[-105.398,39.13],[-105.399,39.566],[-105.398,39.913],[-105.053,39.914],[-105.053,39.791],[-105.065,39.791],[-105.065,39.789],[-105.062,39.788],[-105.063,39.784],[-105.053,39.784],[-105.053,39.735],[-105.056,39.735],[-105.056,39.733],[-105.053,39.733],[-105.053,39.682],[-105.058,39.682],[-105.058,39.679],[-105.063,39.68],[-105.063,39.675],[-105.053,39.675],[-105.053,39.668],[-105.072,39.668],[-105.072,39.67],[-105.075,39.671],[-105.077,39.669],[-105.081,39.67],[-105.081,39.669],[-105.081,39.662],[-105.078,39.661],[-105.078,39.659],[-105.072,39.66],[-105.071,39.657],[-105.067,39.657],[-105.067,39.653],[-105.071,39.65],[-105.064,39.65],[-105.063,39.652],[-105.059,39.651],[-105.059,39.653],[-105.055,39.652],[-105.057,39.652],[-105.057,39.65],[-105.063,39.65],[-105.064,39.646],[-105.072,39.646],[-105.077,39.639],[-105.074,39.639],[-105.074,39.637],[-105.082,39.636],[-105.082,39.639],[-105.092,39.639],[-105.092,39.635],[-105.11,39.635],[-105.109,39.624],[-105.091,39.624],[-105.091,39.627],[-105.085,39.626],[-105.085,39.629],[-105.084,39.629],[-105.084,39.628],[-105.082,39.628],[-105.082,39.63],[-105.084,39.63],[-105.084,39.632],[-105.081,39.632],[-105.075,39.625],[-105.077,39.624],[-105.065,39.62],[-105.065,39.619],[-105.093,39.618]]]]}},{"type":"Feature","properties":{"name":"Lincoln"},"geometry":{"type":"Polygon","coordinates":[[[-103.505,38.516],[-104.054,38.522],[-104.056,38.869],[-103.72,38.867],[-103.722,39.084],[-103.715,39.128],[-103.714,39.566],[-103.155,39.566],[-103.163,39.038],[-103.173,38.612],[-103.173,38.525],[-103.505,38.516]]]}},{"type":"Feature","properties":{"name":"Montezuma"},"geometry":{"type":"Polygon","coordinates":[[[-109.046,37.375],[-109.043,37.485],[-108.917,37.632],[-107.97,37.64],[-108.023,37.591],[-108.038,37.452],[-108.197,37.355],[-108.379,36.999],[-109.045,36.999],[-109.046,37.375]]]}},{"type":"Feature","properties":{"name":"Phillips"},"geometry":{"type":"Polygon","coordinates":[[[-102.051,40.698],[-102.051,40.44],[-102.665,40.438],[-102.651,40.749],[-102.051,40.75],[-102.051,40.698]]]}},{"type":"Feature","properties":{"name":"Rio Grande"},"geometry":{"type":"Polygon","coordinates":[[[-106.711,37.404],[-106.712,37.664],[-106.694,37.835],[-106.587,37.834],[-106.586,37.748],[-106.038,37.748],[-106.039,37.401],[-106.711,37.404]]]}},{"type":"Feature","properties":{"name":"San Juan"},"geometry":{"type":"Polygon","coordinates":[[[-107.738,37.905],[-107.569,37.965],[-107.517,37.826],[-107.469,37.81],[-107.482,37.64],[-107.97,37.64],[-107.969,37.696],[-107.861,37.776],[-107.738,37.905]]]}},{"type":"Feature","properties":{"name":"Weld"},"geometry":{"type":"Polygon","coordinates":[[[-104.882,40.998],[-104.497,41.002],[-103.575,41.002],[-103.582,40.523],[-104.148,40.524],[-104.148,40.35],[-104.15,40.35],[-104.15,40.001],[-104.961,40.0],[-104.961,40.044],[-104.979,40.044],[-104.98,40.029],[-104.987,40.029],[-104.987,40.026],[-104.999,40.026],[-104.999,40.024],[-104.997,40.024],[-104.997,40.021],[-104.999,40.021],[-104.996,40.02],[-104.999,40.015],[-104.99,40.015],[-104.99,40.008],[-105.008,40.007],[-105.008,40.0],[-105.008,40.007],[-105.009,40.0],[-105.055,40.0],[-105.055,40.262],[-105.057,40.349],[-104.946,40.349],[-104.943,40.998],[-104.882,40.998]]]}},{"type":"Feature","properties":{"name":"Adams"},"geometry":{"type":"Polygon","coordinates":[[[-103.707,39.74],[-104.885,39.74],[-104.856,39.769],[-104.735,39.769],[-104.762,39.823],[-104.62,39.827],[-104.6,39.899],[-104.693,39.914],[-104.791,39.798],[-105.053,39.791],[-105.053,39.914],[-104.961,40.0],[-103.706,40.001],[-103.707,39.74]]]}},{"type":"Feature","properties":{"name":"Archuleta"},"geometry":{"type":"Polygon","coordinates":[[[-106.476,36.993],[-106.87,36.992],[-107.001,37.0],[-107.482,37.0],[-107.482,37.423],[-107.129,37.423],[-107.129,37.392],[-106.711,37.404],[-106.678,37.404],[-106.678,37.229],[-106.476,36.993]]]}},{"type":"Feature","properties":{"name":"Baca"},"geometry":{"type":"Polygon","coordinates":[[[-102.042,36.993],[-102.571,36.995],[-102.875,37.0],[-102.987,36.999],[-103.002,37.0],[-103.086,37.0],[-103.076,37.643],[-102.042,37.644],[-102.042,36.993]]]}},{"type":"Feature","properties":{"name":"Chaffee"},"geometry":{"type":"Polygon","coordinates":[[[-106.578,39.058],[-106.191,39.056],[-106.111,38.94],[-106.028,38.943],[-105.925,38.872],[-105.907,38.807],[-105.97,38.694],[-105.879,38.607],[-105.909,38.506],[-106.011,38.447],[-106.247,38.423],[-106.452,38.699],[-106.326,38.911],[-106.465,38.91],[-106.599,38.998],[-106.592,39.025],[-106.597,39.045],[-106.581,39.049],[-106.578,39.058]]]}},{"type":"Feature","properties":{"name":"Cheyenne"},"geometry":{"type":"Polygon","coordinates":[[[-102.047,39.047],[-102.045,38.615],[-103.173,38.612],[-103.163,39.038],[-102.047,39.047]]]}},{"type":"Feature","properties":{"name":"Conejos"},"geometry":{"type":"Polygon","coordinates":[[[-105.718,36.996],[-106.476,36.993],[-106.678,37.229],[-106.678,37.404],[-106.039,37.401],[-106.039,37.357],[-105.743,37.357],[-105.73,37.181],[-105.77,37.061],[-105.718,36.996]]]}},{"type":"Feature","properties":{"name":"Costilla"},"geometry":{"type":"Polygon","coordinates":[[[-105.155,36.995],[-105.718,36.996],[-105.77,37.061],[-105.73,37.181],[-105.743,37.357],[-105.486,37.578],[-105.296,37.654],[-105.188,37.62],[-105.154,37.293],[-105.155,36.995]]]}},{"type":"Feature","properties":{"name":"Delta"},"geometry":{"type":"Polygon","coordinates":[[[-107.501,38.669],[-108.379,38.668],[-108.379,38.829],[-107.858,39.08],[-107.765,39.043],[-107.501,39.218],[-107.501,38.669]]]}},{"type":"Feature","properties":{"name":"Eagle"},"geometry":{"type":"Polygon","coordinates":[[[-106.207,39.38],[-106.426,39.362],[-107.113,39.366],[-107.114,39.919],[-106.627,39.919],[-106.627,39.925],[-106.435,39.925],[-106.385,39.767],[-106.178,39.609],[-106.252,39.465],[-106.207,39.38]]]}},{"type":"Feature","properties":{"name":"Fremont"},"geometry":{"type":"Polygon","coordinates":[[[-104.942,38.52],[-104.94,38.258],[-105.049,38.258],[-105.797,38.265],[-106.011,38.447],[-105.909,38.506],[-105.879,38.607],[-105.97,38.694],[-105.238,38.697],[-105.24,38.648],[-104.942,38.65],[-104.942,38.52]]]}},{"type":"Feature","properties":{"name":"Kiowa"},"geometry":{"type":"Polygon","coordinates":[[[-102.045,38.582],[-102.045,38.269],[-103.502,38.265],[-103.505,38.516],[-103.173,38.525],[-103.173,38.612],[-102.045,38.615],[-102.045,38.582]]]}},{"type":"Feature","properties":{"name":"Kit Carson"},"geometry":{"type":"Polygon","coordinates":[[[-102.05,39.574],[-102.047,39.047],[-103.163,39.038],[-103.154,39.566],[-102.05,39.574]]]}},{"type":"Feature","properties":{"name":"Larimer"},"geometry":{"type":"Polygon","coordinates":[[[-105.277,40.998],[-104.943,40.998],[-104.946,40.349],[-105.057,40.349],[-105.055,40.262],[-105.653,40.26],[-105.855,40.486],[-106.058,40.817],[-106.185,40.934],[-106.191,40.998],[-105.73,40.997],[-105.277,40.998]]]}},{"type":"Feature","properties":{"name":"Montrose"},"geometry":{"type":"Polygon","coordinates":[[[-109.042,38.155],[-109.06,38.275],[-109.06,38.5],[-108.379,38.5],[-108.379,38.668],[-107.501,38.669],[-107.5,38.302],[-107.635,38.302],[-107.636,38.332],[-108.132,38.332],[-108.087,38.255],[-107.938,38.219],[-107.966,38.152],[-109.042,38.153],[-109.042,38.155]]]}},{"type":"Feature","properties":{"name":"Logan"},"geometry":{"type":"Polygon","coordinates":[[[-103.575,41.002],[-102.653,41.002],[-102.651,40.749],[-102.665,40.438],[-103.465,40.436],[-103.467,40.523],[-103.582,40.523],[-103.575,41.002]]]}},{"type":"Feature","properties":{"name":"Mesa"},"geometry":{"type":"Polygon","coordinates":[[[-109.06,38.5],[-109.06,38.72],[-109.053,38.942],[-109.051,39.367],[-107.431,39.366],[-107.466,39.322],[-107.394,39.256],[-107.501,39.218],[-107.765,39.043],[-107.858,39.08],[-108.379,38.829],[-108.379,38.5],[-109.06,38.5]]]}},{"type":"Feature","properties":{"name":"Moffat"},"geometry":{"type":"Polygon","coordinates":[[[-109.05,41.001],[-108.251,41.0],[-107.318,41.003],[-107.314,40.6],[-107.429,40.542],[-107.439,40.22],[-107.644,40.224],[-109.051,40.223],[-109.05,40.54],[-109.048,40.654],[-109.05,41.001]]]}},{"type":"Feature","properties":{"name":"Morgan"},"geometry":{"type":"Polygon","coordinates":[[[-104.15,40.001],[-104.15,40.35],[-104.148,40.35],[-104.148,40.524],[-103.467,40.523],[-103.465,40.436],[-103.472,40.002],[-104.15,40.001]]]}},{"type":"Feature","properties":{"name":"Ouray"},"geometry":{"type":"Polygon","coordinates":[[[-107.738,37.905],[-107.795,37.989],[-107.9,38.026],[-107.891,38.116],[-107.966,38.152],[-107.938,38.219],[-108.087,38.255],[-108.132,38.332],[-107.636,38.332],[-107.635,38.302],[-107.569,38.147],[-107.511,38.061],[-107.569,37.965],[-107.738,37.905]]]}},{"type":"Feature","properties":{"name":"Pitkin"},"geometry":{"type":"Polygon","coordinates":[[[-107.394,39.256],[-107.466,39.322],[-107.431,39.366],[-107.113,39.366],[-106.426,39.362],[-106.485,39.313],[-106.509,39.167],[-106.578,39.058],[-106.581,39.049],[-106.597,39.045],[-106.592,39.025],[-106.599,38.998],[-106.695,39.056],[-106.802,38.978],[-106.906,38.992],[-107.002,39.042],[-107.066,39.119],[-107.282,39.119],[-107.376,39.198],[-107.394,39.256]]]}},{"type":"Feature","properties":{"name":"Rio Blanco"},"geometry":{"type":"Polygon","coordinates":[[[-109.051,40.059],[-109.051,40.223],[-107.644,40.224],[-107.439,40.22],[-107.439,40.223],[-107.038,40.225],[-107.037,40.092],[-107.317,40.091],[-107.319,39.915],[-107.432,39.918],[-107.432,39.828],[-107.939,39.825],[-107.939,39.694],[-109.051,39.66],[-109.051,40.059]]]}},{"type":"Feature","properties":{"name":"Saguache"},"geometry":{"type":"Polygon","coordinates":[[[-106.247,38.423],[-106.011,38.447],[-105.797,38.265],[-105.676,38.146],[-105.604,38.009],[-105.473,37.896],[-105.429,37.852],[-105.457,37.751],[-106.038,37.748],[-106.586,37.748],[-106.587,37.834],[-106.694,37.835],[-106.694,37.874],[-106.879,37.961],[-107.001,37.956],[-107.001,38.426],[-106.247,38.423]]]}},{"type":"Feature","properties":{"name":"Teller"},"geometry":{"type":"Polygon","coordinates":[[[-105.33,39.13],[-105.034,39.13],[-105.029,38.869],[-105.072,38.799],[-104.939,38.797],[-104.942,38.65],[-105.24,38.648],[-105.238,38.697],[-105.329,38.697],[-105.33,39.13]]]}},{"type":"Feature","properties":{"name":"Washington"},"geometry":{"type":"Polygon","coordinates":[[[-103.706,40.001],[-103.472,40.002],[-103.465,40.436],[-102.78,40.438],[-102.804,40.003],[-102.803,39.568],[-103.154,39.566],[-103.707,39.566],[-103.706,40.001]]]}},{"type":"Feature","properties":{"name":"Yuma"},"geometry":{"type":"Polygon","coordinates":[[[-102.051,40.44],[-102.052,39.85],[-102.05,39.574],[-102.803,39.568],[-102.804,40.003],[-102.78,40.438],[-102.051,40.44]]]}},{"type":"Feature","properties":{"name":"Bent"},"geometry":{"type":"Polygon","coordinates":[[[-103.404,37.792],[-103.4,38.265],[-102.742,38.267],[-102.748,37.644],[-103.404,37.644],[-103.404,37.792]]]}},{"type":"Feature","properties":{"name":"Clear Creek"},"geometry":{"type":"Polygon","coordinates":[[[-105.399,39.566],[-105.588,39.568],[-105.83,39.565],[-105.793,39.636],[-105.925,39.699],[-105.887,39.797],[-105.736,39.805],[-105.69,39.852],[-105.545,39.774],[-105.398,39.747],[-105.399,39.566]]]}},{"type":"Feature","properties":{"name":"Custer"},"geometry":{"type":"Polygon","coordinates":[[[-105.049,38.258],[-105.05,37.915],[-105.195,38.008],[-105.285,37.899],[-105.317,37.939],[-105.473,37.896],[-105.604,38.009],[-105.676,38.146],[-105.797,38.265],[-105.049,38.258]]]}},{"type":"Feature","properties":{"name":"El Paso"},"geometry":{"type":"Polygon","coordinates":[[[-104.054,38.522],[-104.942,38.52],[-104.942,38.65],[-104.939,38.797],[-105.072,38.799],[-105.029,38.869],[-105.034,39.13],[-104.052,39.128],[-104.056,38.869],[-104.054,38.522]]]}},{"type":"Feature","properties":{"name":"Grand"},"geometry":{"type":"Polygon","coordinates":[[[-106.652,40.445],[-106.612,40.379],[-106.49,40.412],[-106.443,40.347],[-106.354,40.358],[-106.23,40.323],[-106.019,40.373],[-105.96,40.348],[-105.892,40.477],[-105.855,40.486],[-105.653,40.26],[-105.639,40.039],[-105.676,39.932],[-105.69,39.852],[-105.736,39.805],[-105.887,39.797],[-105.925,39.699],[-106.024,39.688],[-106.084,39.806],[-106.252,39.915],[-106.435,39.925],[-106.627,39.925],[-106.632,40.342],[-106.652,40.445]]]}},{"type":"Feature","properties":{"name":"Gunnison"},"geometry":{"type":"Polygon","coordinates":[[[-107.501,39.218],[-107.394,39.256],[-107.376,39.198],[-107.282,39.119],[-107.066,39.119],[-107.002,39.042],[-106.906,38.992],[-106.802,38.978],[-106.695,39.056],[-106.599,38.998],[-106.465,38.91],[-106.326,38.911],[-106.452,38.699],[-106.247,38.423],[-107.001,38.426],[-107.001,38.147],[-107.569,38.147],[-107.635,38.302],[-107.5,38.302],[-107.501,39.218]]]}},{"type":"Feature","properties":{"name":"Huerfano"},"geometry":{"type":"Polygon","coordinates":[[[-105.473,37.896],[-105.317,37.939],[-105.285,37.899],[-105.195,38.008],[-105.05,37.915],[-105.014,37.881],[-104.646,37.901],[-104.351,37.817],[-104.455,37.741],[-104.548,37.609],[-104.549,37.575],[-104.649,37.495],[-104.696,37.485],[-104.695,37.44],[-104.749,37.407],[-104.996,37.376],[-105.154,37.293],[-105.188,37.62],[-105.296,37.654],[-105.486,37.578],[-105.457,37.751],[-105.429,37.852],[-105.473,37.896]]]}},{"type":"Feature","properties":{"name":"Lake"},"geometry":{"type":"Polygon","coordinates":[[[-106.426,39.362],[-106.207,39.38],[-106.136,39.38],[-106.184,39.309],[-106.191,39.056],[-106.578,39.058],[-106.509,39.167],[-106.485,39.313],[-106.426,39.362]]]}},{"type":"Feature","properties":{"name":"Mineral"},"geometry":{"type":"Polygon","coordinates":[[[-106.694,37.835],[-106.712,37.664],[-106.711,37.404],[-107.129,37.392],[-107.124,37.675],[-107.145,37.675],[-107.138,37.939],[-107.001,37.956],[-106.879,37.961],[-106.694,37.874],[-106.694,37.835]]]}},{"type":"Feature","properties":{"name":"Otero"},"geometry":{"type":"Polygon","coordinates":[[[-103.619,38.113],[-103.619,38.171],[-103.509,38.173],[-103.502,38.265],[-103.4,38.265],[-103.404,37.644],[-104.058,37.644],[-104.061,37.735],[-104.058,38.146],[-103.836,38.113],[-103.619,38.113]]]}},{"type":"Feature","properties":{"name":"Pueblo"},"geometry":{"type":"Polygon","coordinates":[[[-104.054,38.522],[-104.061,37.735],[-104.646,37.901],[-105.014,37.881],[-105.05,37.915],[-105.049,38.258],[-104.94,38.258],[-104.942,38.52],[-104.054,38.522]]]}},{"type":"Feature","properties":{"name":"Summit"},"geometry":{"type":"Polygon","coordinates":[[[-106.435,39.925],[-106.252,39.915],[-106.084,39.806],[-106.024,39.688],[-105.925,39.699],[-105.793,39.636],[-105.83,39.565],[-105.818,39.538],[-105.967,39.438],[-106.018,39.366],[-106.136,39.38],[-106.207,39.38],[-106.252,39.465],[-106.178,39.609],[-106.385,39.767],[-106.435,39.925]]]}},{"type":"Feature","properties":{"name":"Arapahoe"},"geometry":{"type":"Polygon","coordinates":[[[-104.885,39.74],[-103.707,39.74],[-103.707,39.566],[-105.054,39.566],[-105.053,39.632],[-105.035,39.628],[-105.032,39.657],[-105.016,39.679],[-104.932,39.653],[-104.913,39.624],[-104.885,39.624],[-104.885,39.639],[-104.88,39.641],[-104.88,39.653],[-104.876,39.652],[-104.876,39.644],[-104.853,39.656],[-104.847,39.657],[-104.885,39.74]]]}},{"type":"Feature","properties":{"name":"La Plata"},"geometry":{"type":"Polygon","coordinates":[[[-107.482,37.0],[-108.379,36.999],[-108.197,37.355],[-108.038,37.452],[-108.023,37.591],[-107.97,37.64],[-107.482,37.64],[-107.482,37.0]]]}},{"type":"Feature","properties":{"name":"Las Animas"},"geometry":{"type":"Polygon","coordinates":[[[-104.008,36.996],[-104.732,36.993],[-105.001,36.993],[-105.155,36.995],[-105.154,37.293],[-104.996,37.376],[-104.749,37.407],[-104.695,37.44],[-104.696,37.485],[-104.649,37.495],[-104.549,37.575],[-104.548,37.609],[-104.455,37.741],[-104.351,37.817],[-104.061,37.735],[-104.058,37.644],[-103.076,37.643],[-103.086,37.0],[-104.008,36.996]]]}},{"type":"Feature","properties":{"name":"Dolores"},"geometry":{"type":"Polygon","coordinates":[[[-109.042,37.531],[-109.042,37.881],[-108.256,37.894],[-108.209,37.821],[-107.989,37.857],[-107.861,37.776],[-107.969,37.696],[-107.97,37.64],[-108.917,37.632],[-109.043,37.485],[-109.042,37.531]]]}},{"type":"Feature","properties":{"name":"Elbert"},"geometry":{"type":"Polygon","coordinates":[[[-104.663,39.13],[-104.661,39.566],[-103.714,39.566],[-103.715,39.128],[-103.722,39.084],[-103.72,38.867],[-104.056,38.869],[-104.052,39.128],[-104.663,39.13]]]}},{"type":"Feature","properties":{"name":"Garfield"},"geometry":{"type":"Polygon","coordinates":[[[-109.051,39.367],[-109.051,39.66],[-107.939,39.694],[-107.939,39.825],[-107.432,39.828],[-107.432,39.918],[-107.319,39.915],[-107.317,40.091],[-107.037,40.092],[-107.034,39.919],[-107.114,39.919],[-107.113,39.366],[-109.051,39.367]]]}},{"type":"Feature","properties":{"name":"Park"},"geometry":{"type":"Polygon","coordinates":[[[-105.399,39.566],[-105.398,39.13],[-105.33,39.13],[-105.329,38.697],[-105.97,38.694],[-105.907,38.807],[-105.925,38.872],[-106.028,38.943],[-106.111,38.94],[-106.191,39.056],[-106.184,39.309],[-106.136,39.38],[-106.018,39.366],[-105.967,39.438],[-105.818,39.538],[-105.83,39.565],[-105.588,39.568],[-105.399,39.566]]]}},{"type":"Feature","properties":{"name":"Prowers"},"geometry":{"type":"Polygon","coordinates":[[[-102.045,38.262],[-102.042,37.644],[-102.748,37.644],[-102.742,38.267],[-102.045,38.269],[-102.045,38.262]]]}},{"type":"Feature","properties":{"name":"Routt"},"geometry":{"type":"Polygon","coordinates":[[[-107.001,41.003],[-106.858,41.003],[-106.852,40.925],[-106.825,40.932],[-106.655,40.849],[-106.637,40.789],[-106.706,40.617],[-106.652,40.445],[-106.632,40.342],[-106.627,39.919],[-107.034,39.919],[-107.037,40.092],[-107.038,40.225],[-107.439,40.223],[-107.429,40.542],[-107.314,40.6],[-107.318,41.003],[-107.001,41.003]]]}},{"type":"Feature","properties":{"name":"San Miguel"},"geometry":{"type":"Polygon","coordinates":[[[-109.042,37.881],[-109.043,37.974],[-109.042,38.153],[-107.966,38.152],[-107.891,38.116],[-107.9,38.026],[-107.795,37.989],[-107.738,37.905],[-107.861,37.776],[-107.989,37.857],[-108.209,37.821],[-108.256,37.894],[-109.042,37.881]]]}},{"type":"Feature","properties":{"name":"Sedgwick"},"geometry":{"type":"Polygon","coordinates":[[[-102.653,41.002],[-102.052,41.002],[-102.051,40.75],[-102.651,40.749],[-102.653,41.002]]]}}]},"state":{"type":"Feature","properties":{"name":"Colorado"},"geometry":{"type":"MultiPolygon","coordinates":[[[[-106.321,40.999],[-106.061,40.997],[-105.73,40.997],[-104.882,40.998],[-104.497,41.002],[-102.052,41.002],[-102.052,39.85],[-102.045,38.813],[-102.044,37.926],[-102.042,37.68],[-102.042,36.993],[-102.571,36.995],[-102.875,37.0],[-102.987,36.999],[-103.002,37.0],[-104.732,36.993],[-105.001,36.993],[-105.121,36.995],[-105.447,36.996],[-106.87,36.992],[-107.001,37.0],[-109.045,36.999],[-109.046,37.375],[-109.042,37.531],[-109.042,37.842],[-109.043,37.974],[-109.042,38.155],[-109.06,38.275],[-109.06,38.72],[-109.054,38.905],[-109.052,39.125],[-109.051,40.181],[-109.05,40.54],[-109.048,40.654],[-109.05,41.001],[-108.251,41.0],[-107.918,41.002],[-107.001,41.003],[-106.44,41.002],[-106.321,40.999]]]]}}};
+const D = {"meta":{"client":"Johnson Law Group","client_id":"0c4e2f26-cf3d-41e3-978f-8cd31726062f","state_ab":"CO","state":"Colorado","period":"June 15 to August 13, 2026","window_days":60,"date_from":"2026-06-15","date_to":"2026-08-13","snapshot":"August 13, 2026","in_window":890,"plotted":548,"conversions":65,"origin_points":28,"cities":28,"dropped_oos":330,"dropped_nophone":11,"dropped_unresolved":1,"metric_status":"Funded Agreement","metric_label":"Hired","hired_tracked":true,"zip_source":{"dataset":"johnson_law_group","column":"zip_code"},"last_event":"2026-08-11","stages":{"New Leads":43130,"Qualified Potential Clients":203,"Consults Complete":785,"Funded Agreement":1061,"Consults Scheduled":920}},"points":[{"n":"Denver","k":false,"lat":39.745902,"lon":-105.051526,"t":319,"c":36},{"n":"Colorado Springs","k":false,"lat":38.840471,"lon":-104.817061,"t":76,"c":9},{"n":"Fort Collins","k":false,"lat":40.582566,"lon":-105.080894,"t":29,"c":5},{"n":"Greeley","k":false,"lat":40.427066,"lon":-104.701934,"t":29,"c":4},{"n":"Pueblo","k":false,"lat":38.267236,"lon":-104.605968,"t":22,"c":2},{"n":"Longmont","k":false,"lat":40.164036,"lon":-105.10673,"t":13,"c":1},{"n":"Loveland","k":false,"lat":40.39852,"lon":-105.077659,"t":12,"c":2},{"n":"Peyton","k":false,"lat":39.031041,"lon":-104.483613,"t":7,"c":0},{"n":"Fort Lupton","k":false,"lat":40.084441,"lon":-104.806429,"t":6,"c":0},{"n":"Grand Junction","k":false,"lat":39.067327,"lon":-108.558926,"t":5,"c":0},{"n":"Vail","k":false,"lat":39.518059,"lon":-106.377104,"t":4,"c":1},{"n":"Canon City","k":false,"lat":38.442329,"lon":-105.23402,"t":3,"c":1},{"n":"Alamosa","k":false,"lat":37.46794,"lon":-105.86634,"t":2,"c":0},{"n":"Aspen","k":false,"lat":39.189184,"lon":-106.823098,"t":2,"c":0},{"n":"Fort Morgan","k":false,"lat":40.257475,"lon":-103.789196,"t":2,"c":0},{"n":"Johnstown-Milliken","k":false,"lat":40.335101,"lon":-104.908002,"t":2,"c":1},{"n":"Monte Vista","k":false,"lat":37.574979,"lon":-106.139661,"t":2,"c":1},{"n":"Montrose","k":false,"lat":38.476521,"lon":-107.87201,"t":2,"c":0},{"n":"Trinidad","k":false,"lat":37.173959,"lon":-104.510609,"t":2,"c":0},{"n":"Burlington","k":false,"lat":39.307857,"lon":-102.265461,"t":1,"c":0},{"n":"Deckers","k":false,"lat":39.249459,"lon":-105.219081,"t":1,"c":0},{"n":"Deer Trail","k":false,"lat":39.606655,"lon":-104.04246,"t":1,"c":0},{"n":"Fraser","k":false,"lat":39.940704,"lon":-105.816485,"t":1,"c":0},{"n":"Hudson","k":false,"lat":40.074595,"lon":-104.641396,"t":1,"c":0},{"n":"Lamar","k":false,"lat":38.085207,"lon":-102.606581,"t":1,"c":0},{"n":"Limon","k":false,"lat":39.266133,"lon":-103.683595,"t":1,"c":1},{"n":"Telluride","k":false,"lat":37.941786,"lon":-107.807731,"t":1,"c":1},{"n":"Walsenburg","k":false,"lat":37.619088,"lon":-104.784637,"t":1,"c":0}],"offices":[]};
+const M = D.meta;
+
+/* ---- Albers equal-area conic, derived from the state's own bounding box -------------
+   Standard parallels are set at the 25th/75th percentile of the state's latitude span
+   and the central meridian at its mid-longitude, so the projection is reasonable for
+   any state without hand tuning.                                                     */
+const RAD = Math.PI / 180;
+let lo0 = 999, la0 = 999, lo1 = -999, la1 = -999;
+function eachC(g, fn){
+  const polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+  for (const poly of polys) for (const ring of poly) for (const c of ring) fn(c);
+}
+for (const f of GEO.counties.features) eachC(f.geometry, c => {
+  if (c[0] < lo0) lo0 = c[0]; if (c[0] > lo1) lo1 = c[0];
+  if (c[1] < la0) la0 = c[1]; if (c[1] > la1) la1 = c[1];
+});
+const P1 = (la0 + (la1 - la0) * 0.25) * RAD, P2 = (la0 + (la1 - la0) * 0.75) * RAD;
+const P0 = ((la0 + la1) / 2) * RAD, L0 = ((lo0 + lo1) / 2) * RAD;
+const nA = (Math.sin(P1) + Math.sin(P2)) / 2;
+const CA = Math.cos(P1) ** 2 + 2 * nA * Math.sin(P1);
+const rho0 = Math.sqrt(CA - 2 * nA * Math.sin(P0)) / nA;
+function raw(lon, lat){
+  const th = nA * (lon * RAD - L0);
+  const rho = Math.sqrt(Math.max(0, CA - 2 * nA * Math.sin(lat * RAD))) / nA;
+  return [rho * Math.sin(th), rho * Math.cos(th) - rho0];
+}
+
+const W = 960, H = 750, PAD = 17;
+let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+for (const f of GEO.counties.features) eachC(f.geometry, c => {
+  const p = raw(c[0], c[1]);
+  if (p[0] < x0) x0 = p[0]; if (p[0] > x1) x1 = p[0];
+  if (p[1] < y0) y0 = p[1]; if (p[1] > y1) y1 = p[1];
+});
+const KS = Math.min((W - 2 * PAD) / (x1 - x0), (H - 2 * PAD) / (y1 - y0));
+const TXo = PAD + (W - 2 * PAD - KS * (x1 - x0)) / 2 - KS * x0;
+const TYo = PAD + (H - 2 * PAD - KS * (y1 - y0)) / 2 - KS * y0;
+function proj(lon, lat){ const p = raw(lon, lat); return [KS * p[0] + TXo, KS * p[1] + TYo]; }
+
+function pathOf(g){
+  const polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+  let d = "";
+  for (const poly of polys) for (const ring of poly){
+    for (let i = 0; i < ring.length; i++){
+      const p = proj(ring[i][0], ring[i][1]);
+      d += (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1);
+    }
+    d += "Z";
+  }
+  return d;
+}
+
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("map");
+const wrap = document.getElementById("mapwrap");
+const tt = document.getElementById("tt");
+function E(tag, attrs, parent){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  (parent || svg).appendChild(e); return e;
+}
+
+/* Everything geographic lives in #vp, which carries the zoom transform. Anything anchored
+   to a point sits in its own group carrying scale(1/k), so markers and type keep a
+   CONSTANT SCREEN SIZE while the map grows underneath. Zooming then separates a dense
+   cluster instead of inflating it into the same overlapping discs. */
+const SCALED = [], CITY = [], CTY = [], OFF = [];
+const gVP = E("g", {id: "vp"});
+function cg(px, py, parent){
+  const g = E("g", {transform: `translate(${px},${py}) scale(1)`}, parent);
+  SCALED.push({el: g, px: px, py: py});
+  return g;
+}
+
+const OFFICE_COUNTIES = new Set((D.offices || []).map(o => o.county).filter(Boolean));
+const defs = E("defs", {}, svg);
+E("path", {d: pathOf(GEO.state.geometry)}, E("clipPath", {id: "stclip"}, defs));
+
+/* vector-effect holds every boundary at its authored width on screen at any zoom, so
+   county lines never thicken into blobs or thin out of sight. */
+const gCounty = E("g", {}, gVP);
+GEO.counties.features.forEach(f => {
+  E("path", {class: "county" + (OFFICE_COUNTIES.has(f.properties.name) ? " county-off" : ""),
+             d: pathOf(f.geometry), "vector-effect": "non-scaling-stroke"}, gCounty);
+});
+
+const span = Math.max(lo1 - lo0, la1 - la0);
+const step = span > 9 ? 2 : span > 4 ? 1 : 0.5;
+let gd = "";
+for (let la = Math.ceil(la0 / step) * step; la <= la1; la += step){
+  let first = true;
+  for (let lo = lo0 - 0.5; lo <= lo1 + 0.5; lo += 0.5){
+    const p = proj(lo, la); gd += (first ? "M" : "L") + p[0].toFixed(1) + "," + p[1].toFixed(1);
+    first = false;
+  }
+}
+for (let lo = Math.ceil(lo0 / step) * step; lo <= lo1; lo += step){
+  let first = true;
+  for (let la = la0 - 0.5; la <= la1 + 0.5; la += 0.5){
+    const p = proj(lo, la); gd += (first ? "M" : "L") + p[0].toFixed(1) + "," + p[1].toFixed(1);
+    first = false;
+  }
+}
+E("path", {class: "grat", d: gd, "clip-path": "url(#stclip)", "vector-effect": "non-scaling-stroke"}, gVP);
+E("path", {class: "state", d: pathOf(GEO.state.geometry), "vector-effect": "non-scaling-stroke"}, gVP);
+
+/* Graticule labels sit in the margins. Skip the outermost gridline on each axis and
+   anything landing near the canvas edge or the map furniture — at the extremes of a
+   non-rectangular state those points fall in the corners, on top of the zoom control or
+   the scale bar. */
+function edgeOK(p){
+  return p[0] > 22 && p[0] < W - 34 && p[1] > 62 && p[1] < H - 46;
+}
+for (let la = Math.ceil(la0 / step) * step + step; la <= la1 - step; la += step){
+  const p = proj(lo0, la);
+  if (!edgeOK(p)) continue;
+  E("text", {class: "gridlab", x: 5, y: -4}, cg(p[0], p[1], gVP)).textContent = la + "°N";
+}
+for (let lo = Math.ceil(lo0 / step) * step + step; lo <= lo1 - step; lo += step){
+  const p = proj(lo, la0);
+  if (!edgeOK(p)) continue;
+  E("text", {class: "gridlab", x: 0, y: -6, "text-anchor": "middle"}, cg(p[0], p[1], gVP))
+    .textContent = Math.abs(lo).toFixed(0) + "°W";
+}
+
+/* County names: area-weighted centroid of the largest ring. Hidden until zoomed in, then
+   they answer "which county is this" without a second lookup. */
+function centroid(g){
+  const polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+  let best = null, bestA = -1;
+  for (const poly of polys){
+    const ring = poly[0];
+    let a = 0, cx = 0, cy = 0;
+    for (let i = 0; i < ring.length - 1; i++){
+      const [xa, ya] = proj(ring[i][0], ring[i][1]);
+      const [xb, yb] = proj(ring[i + 1][0], ring[i + 1][1]);
+      const f = xa * yb - xb * ya; a += f; cx += (xa + xb) * f; cy += (ya + yb) * f;
+    }
+    if (Math.abs(a) < 1e-9) continue;
+    const ar = Math.abs(a / 2);
+    if (ar > bestA){ bestA = ar; best = [cx / (3 * a), cy / (3 * a)]; }
+  }
+  return best;
+}
+const gCtyLab = E("g", {}, gVP);
+GEO.counties.features.forEach(f => {
+  const c = centroid(f.geometry); if (!c) return;
+  const g = cg(c[0], c[1], gCtyLab);
+  g.setAttribute("display", "none");
+  E("text", {class: "ctylab", x: 0, y: 0, "text-anchor": "middle"}, g).textContent = f.properties.name;
+  CTY.push({el: g, px: c[0], py: c[1], w: 0});
+});
+
+/* ---- Origin bubbles: area proportional to volume, capped at 20px of SCREEN size ----- */
+const pts = D.points.slice().sort((a, b) => b.t - a.t);
+const maxT = Math.max.apply(null, pts.map(p => p.t));
+const kR = 20 / Math.sqrt(maxT);
+const R = t => Math.max(3, kR * Math.sqrt(t));
+const MIN_N = 3;
+const rateCell = (c, t) => t >= MIN_N ? (c / t * 100).toFixed(1) + "%" : "—";
+const METRIC = M.metric_label.toLowerCase();
+
+const gPts = E("g", {}, gVP);
+pts.forEach(d => {
+  const xy = proj(d.lon, d.lat);
+  const g = cg(xy[0], xy[1], gPts);
+  g.setAttribute("class", "pt"); g.setAttribute("tabindex", "-1");
+  const r = R(d.t);
+  E("circle", {class: d.k ? "oc oc-k" : "oc", cx: 0, cy: 0, r: r,
+               "vector-effect": "non-scaling-stroke"}, g);
+  if (d.c > 0) E("circle", {class: "ic", cx: 0, cy: 0, r: r * Math.sqrt(d.c / d.t)}, g);
+  E("circle", {cx: 0, cy: 0, r: Math.max(r, 11), fill: "transparent"}, g);
+  g.addEventListener("pointerenter", () => {
+    if (dragging) return;
+    const pct = rateCell(d.c, d.t);
+    tt.innerHTML = '<span class="n">' + d.n + ", " + M.state_ab + '</span><br><span class="d">' +
+      d.t + " leads · " + d.c + " " + METRIC + (pct === "—" ? "" : " (" + pct + ")") +
+      "</span>" + (d.k ? '<br><span class="d">approximate location</span>' : "");
+    tt.style.display = "block";
+  });
+  g.addEventListener("pointermove", ev => {
+    if (dragging){ tt.style.display = "none"; return; }
+    const b = wrap.getBoundingClientRect();
+    let x = ev.clientX - b.left + 14, y = ev.clientY - b.top + 14;
+    if (x > b.width - 250) x = ev.clientX - b.left - 250;
+    if (y > b.height - 96) y = ev.clientY - b.top - 96;
+    tt.style.left = x + "px"; tt.style.top = y + "px";
+  });
+  g.addEventListener("pointerleave", () => { tt.style.display = "none"; });
+});
+
+/* City labels: no hand-placed offsets. Each label tries candidate positions around its
+   point and takes the first that collides with nothing already placed, biggest volume
+   first. Re-run on every zoom, so labels that do not fit at low zoom appear as the map
+   spreads out — which is what makes zooming reveal detail rather than just magnify it. */
+const gLab = E("g", {}, gVP);
+pts.forEach(d => {
+  const p = proj(d.lon, d.lat);
+  const g = cg(p[0], p[1], gLab);
+  const t = E("text", {class: "citylab", x: 0, y: 0}, g);
+  t.textContent = d.n + " ";
+  E("tspan", {class: "citynum"}, t).textContent = d.t;
+  CITY.push({el: g, txt: t, px: p[0], py: p[1], r: R(d.t), t: d.t, w: 0});
+});
+
+/* Offices: two-thirds of the time an office sits on top of its own city's bubble, so it
+   is drawn as an open diamond ringing the data plus a dot on the exact address. */
+const gOff = E("g", {}, gVP);
+(D.offices || []).forEach(o => {
+  const p = proj(o.lon, o.lat), s = 8.5;
+  const g = cg(p[0], p[1], gOff);
+  const dd = `M0,${-s}L${s},0L0,${s}L${-s},0Z`;
+  E("path", {d: dd, fill: "none", stroke: "var(--sheet)", "stroke-width": 3.4, "stroke-linejoin": "round"}, g);
+  E("path", {d: dd, fill: "none", stroke: "var(--gold)", "stroke-width": 1.7, "stroke-linejoin": "round"}, g);
+  E("circle", {cx: 0, cy: 0, r: 1.9, fill: "var(--office)", stroke: "var(--sheet)", "stroke-width": 1.1}, g);
+  const lg = cg(p[0], p[1], gOff);
+  const t = E("text", {class: "offlab", x: 0, y: 0}, lg);
+  t.textContent = o.name;
+  OFF.push({el: lg, txt: t, px: p[0], py: p[1], r: s, w: 0});
+});
+
+/* ---- Screen-fixed furniture ------------------------------------------------------- */
+const gFixed = E("g", {}, svg);
+const star = E("g", {transform: "translate(906,44)"}, gFixed);
+// Halo: a wide state fills the frame, so the arrow can land on top of the map.
+E("circle", {cx: 0, cy: 6, r: 25, fill: "var(--sheet)", "fill-opacity": .82}, star);
+E("path", {d: "M0,-15 L3,-3 L13,0 L3,3 L0,15 L-3,3 L-13,0 L-3,-3 Z", fill: "var(--gold)"}, star);
+E("text", {class: "gridlab", x: 0, y: 30, "text-anchor": "middle"}, star).textContent = "N";
+
+const MI_PER_DEG = 69.17 * Math.cos((la0 + la1) / 2 * RAD);
+const PX_PER_DEG = (function(){
+  const c = (lo0 + lo1) / 2, m = (la0 + la1) / 2;
+  const a = proj(c, m), b = proj(c + 1, m);
+  return Math.hypot(b[0] - a[0], b[1] - a[1]);
+})();
+const NICE = [1, 2, 5, 10, 25, 50, 100, 150, 300, 500];
+const gScale = E("g", {}, gFixed);
+const sPath = E("path", {class: "scale", d: ""}, gScale);
+const sTick = E("path", {class: "scale", d: ""}, gScale);
+const sLab = E("text", {class: "scalelab", x: 40, y: H - 18}, gScale);
+function drawScale(k){
+  const target = 130 / (PX_PER_DEG * k) * MI_PER_DEG;
+  let mi = NICE[0];
+  for (const m of NICE) if (m <= target) mi = m;
+  const len = mi / MI_PER_DEG * PX_PER_DEG * k, x = 40, y = H - 30;
+  sPath.setAttribute("d", `M${x},${y - 5}L${x},${y}L${x + len},${y}L${x + len},${y - 5}`);
+  sTick.setAttribute("d", `M${x + len / 2},${y}L${x + len / 2},${y - 3.5}`);
+  sLab.textContent = mi + " mi";
+}
+
+/* ---- Zoom + pan ------------------------------------------------------------------- */
+const MINK = 1, MAXK = 14;
+let k = 1, tx = 0, ty = 0, dragging = false;
+const CAND = r => [[r + 6, 4, "start"], [-(r + 6), 4, "end"], [r + 6, -8, "start"],
+                   [-(r + 6), -8, "end"], [0, -(r + 8), "middle"], [0, r + 15, "middle"],
+                   [r + 10, 14, "start"], [-(r + 10), 14, "end"]];
+const hit = (a, b) => a[0] < b[0] + b[2] && b[0] < a[0] + a[2] &&
+                      a[1] < b[1] + b[3] && b[1] < a[1] + a[3];
+
+function measure(list){
+  for (const o of list) if (!o.w){
+    try { o.w = o.txt.getBBox().width || o.txt.textContent.length * 6; }
+    catch (e) { o.w = o.txt.textContent.length * 6; }
+  }
+}
+
+function place(){
+  measure(OFF); measure(CITY);
+  const taken = [];
+  const put = (o, forced) => {
+    const sx = tx + k * o.px, sy = ty + k * o.py;
+    if (sx < -40 || sx > W + 40 || sy < -40 || sy > H + 40){ o.el.setAttribute("display", "none"); return; }
+    for (const [dx, dy, an] of CAND(o.r)){
+      const bx = an === "end" ? sx + dx - o.w : an === "middle" ? sx + dx - o.w / 2 : sx + dx;
+      const rect = [bx - 1, sy + dy - 9, o.w + 2, 12];
+      if (rect[0] < 2 || rect[0] + rect[2] > W - 2) continue;
+      if (taken.some(r => hit(r, rect))) continue;
+      o.txt.setAttribute("x", dx); o.txt.setAttribute("y", dy);
+      o.txt.setAttribute("text-anchor", an);
+      o.el.setAttribute("display", "inline");
+      taken.push(rect); return;
+    }
+    o.el.setAttribute("display", forced ? "inline" : "none");
+  };
+  // offices first (they are the annotation the reader is looking for), then by volume
+  OFF.forEach(o => put(o, true));
+  CITY.forEach(o => put(o, false));
+  if (k >= 3){ CTY.forEach(o => { measure([o]); put(o, false); }); }
+  else CTY.forEach(o => o.el.setAttribute("display", "none"));
+}
+
+function apply(){
+  const minTx = W - W * k, minTy = H - H * k;
+  tx = Math.min(0, Math.max(minTx, tx));
+  ty = Math.min(0, Math.max(minTy, ty));
+  gVP.setAttribute("transform", `translate(${tx.toFixed(2)},${ty.toFixed(2)}) scale(${k.toFixed(4)})`);
+  const inv = 1 / k;
+  for (const s of SCALED) s.el.setAttribute("transform", `translate(${s.px},${s.py}) scale(${inv})`);
+  place();
+  drawScale(k);
+  document.getElementById("zlevel").textContent = k.toFixed(1) + "×";
+  document.getElementById("zreset").disabled = (k === 1);
+}
+
+function toVB(ev){
+  const r = svg.getBoundingClientRect();
+  return [(ev.clientX - r.left) / r.width * W, (ev.clientY - r.top) / r.height * H];
+}
+function zoomAt(vx, vy, f){
+  const k2 = Math.min(MAXK, Math.max(MINK, k * f));
+  if (k2 === k) return;
+  tx = vx - (vx - tx) * (k2 / k); ty = vy - (vy - ty) * (k2 / k); k = k2; apply();
+}
+svg.addEventListener("wheel", ev => {
+  ev.preventDefault();
+  const [vx, vy] = toVB(ev);
+  zoomAt(vx, vy, Math.exp(-ev.deltaY * (ev.ctrlKey ? 0.012 : 0.0022)));
+}, {passive: false});
+svg.addEventListener("dblclick", ev => { ev.preventDefault(); const v = toVB(ev); zoomAt(v[0], v[1], 1.8); });
+
+let px0 = 0, py0 = 0;
+svg.addEventListener("pointerdown", ev => {
+  if (ev.button !== 0) return;
+  dragging = true; px0 = ev.clientX; py0 = ev.clientY;
+  svg.setPointerCapture(ev.pointerId); svg.classList.add("grabbing");
+});
+svg.addEventListener("pointermove", ev => {
+  if (!dragging) return;
+  const r = svg.getBoundingClientRect();
+  tx += (ev.clientX - px0) / r.width * W; ty += (ev.clientY - py0) / r.height * H;
+  px0 = ev.clientX; py0 = ev.clientY; apply();
+});
+function endDrag(ev){
+  if (!dragging) return;
+  dragging = false; svg.classList.remove("grabbing");
+  try { svg.releasePointerCapture(ev.pointerId); } catch (e) {}
+}
+svg.addEventListener("pointerup", endDrag);
+svg.addEventListener("pointercancel", endDrag);
+document.getElementById("zin").addEventListener("click", () => zoomAt(W / 2, H / 2, 1.6));
+document.getElementById("zout").addEventListener("click", () => zoomAt(W / 2, H / 2, 1 / 1.6));
+document.getElementById("zreset").addEventListener("click", () => { k = 1; tx = 0; ty = 0; apply(); });
+svg.setAttribute("tabindex", "0");
+svg.addEventListener("keydown", ev => {
+  const s = 40 / k;
+  const mv = {ArrowLeft: [s, 0], ArrowRight: [-s, 0], ArrowUp: [0, s], ArrowDown: [0, -s]};
+  if (mv[ev.key]){ ev.preventDefault(); tx += mv[ev.key][0]; ty += mv[ev.key][1]; apply(); }
+  else if (ev.key === "+" || ev.key === "=") { ev.preventDefault(); zoomAt(W / 2, H / 2, 1.6); }
+  else if (ev.key === "-" || ev.key === "_") { ev.preventDefault(); zoomAt(W / 2, H / 2, 1 / 1.6); }
+  else if (ev.key === "0") { ev.preventDefault(); k = 1; tx = 0; ty = 0; apply(); }
+});
+function flyTo(lon, lat, level){
+  const p = proj(lon, lat);
+  k = level; tx = W / 2 - p[0] * k; ty = H / 2 - p[1] * k; apply();
+  wrap.scrollIntoView({behavior: "smooth", block: "center"});
+}
+window.mapFlyTo = flyTo;
+
+/* ---- Header, legend, tables, notes ------------------------------------------------ */
+const rate = M.plotted ? (M.conversions / M.plotted * 100).toFixed(1) : "0.0";
+document.title = M.client + " | " + M.state + " Lead Origins | Last " + M.window_days + " Days";
+document.getElementById("m-client").textContent = M.client;
+document.getElementById("m-title").textContent = M.state + " Lead Origins";
+document.getElementById("m-sub").textContent =
+  "Where the last " + M.window_days + " days of leads came from, and which of them reached " +
+  METRIC + ". Hover any point for detail." +
+  ((D.offices || []).length ? " Offices marked in gold." : "");
+document.getElementById("m-period").textContent = M.period;
+document.getElementById("m-window").textContent = M.window_days + " days";
+document.getElementById("m-snap").textContent = M.snapshot;
+document.getElementById("k-tot").textContent = M.plotted;
+document.getElementById("k-mlab").textContent = M.metric_label;
+document.getElementById("k-con").innerHTML = M.conversions + ' <small>' + rate + '%</small>';
+document.getElementById("k-pts").innerHTML = M.origin_points + ' <small>cities</small>';
+document.getElementById("th-metric").textContent = M.metric_label;
+document.getElementById("h-tx").textContent = M.plotted + " leads · " + M.origin_points + " origins";
+document.getElementById("f-left").textContent =
+  (M.client + " · " + M.state + " · LAST " + M.window_days + " DAYS").toUpperCase();
+document.getElementById("hint-precision").textContent =
+  "Zooming reveals more city and county names — it does not add precision beyond the city";
+// The Hired tile only appears when it is genuinely not tracked; otherwise it IS the metric.
+if (M.hired_tracked) document.getElementById("k-hbox").remove();
+
+document.getElementById("legend").innerHTML =
+  '<span><span class="sw sw-lead"></span>Lead volume (bubble area)</span>' +
+  '<span><span class="sw sw-con"></span>' + M.metric_label + ' (inner dot)</span>' +
+  ((D.offices || []).length ? '<span><span class="sw sw-off"></span>Office location</span>' : '') +
+  '<span><span class="sw sw-cty"></span>County boundaries</span>';
+
+document.getElementById("map-desc").textContent =
+  "Map of " + M.state + " with all " + GEO.counties.features.length + " county boundaries. " +
+  "Proportional bubbles mark each of the " + M.origin_points + " cities where leads " +
+  "originated in the last " + M.window_days + " days; the inner dot shows how many reached " +
+  METRIC + ". " + (pts.length ? pts[0].n + " leads with " + pts[0].t + " of " + M.plotted +
+  " leads. " : "") + "The map can be zoomed and panned.";
+
+const rows = pts.map(d => ({n: d.n, lvl: d.k ? "Area approx." : "City", t: d.t, c: d.c,
+                            r: d.t >= MIN_N ? d.c / d.t : -1, lon: d.lon, lat: d.lat}));
+let sortK = "t", sortDir = -1;
+const tbody = document.querySelector("#tbl tbody");
+function render(){
+  rows.sort((a, b) => {
+    const va = a[sortK], vb = b[sortK];
+    return (typeof va === "string" ? va.localeCompare(vb) : va - vb) * sortDir || b.t - a.t;
+  });
+  tbody.innerHTML = rows.map(r =>
+    "<tr class='clickable' data-lon='" + r.lon + "' data-lat='" + r.lat + "' title='Zoom to " +
+    r.n + "'><td>" + r.n + "</td><td>" + r.lvl + "</td><td class='num'>" + r.t +
+    "</td><td class='num'>" + r.c + "</td><td class='num'>" + rateCell(r.c, r.t) +
+    "</td></tr>").join("");
+}
+tbody.addEventListener("click", ev => {
+  const tr = ev.target.closest("tr.clickable"); if (!tr) return;
+  flyTo(parseFloat(tr.dataset.lon), parseFloat(tr.dataset.lat), 6);
+});
+document.querySelector("#tbl tfoot").innerHTML =
+  "<tr><td>" + M.state + " total</td><td></td><td class='num'>" + M.plotted +
+  "</td><td class='num'>" + M.conversions + "</td><td class='num'>" + rate + "%</td></tr>";
+document.querySelectorAll("#tbl th button").forEach(b => {
+  b.addEventListener("click", () => {
+    const kk = b.dataset.k;
+    sortDir = (kk === sortK) ? -sortDir : (kk === "n" || kk === "lvl" ? 1 : -1);
+    sortK = kk; render();
+  });
+});
+render();
+
+if ((D.offices || []).length){
+  document.getElementById("offblock").hidden = false;
+  const byName = {}; pts.forEach(p => byName[p.n] = p);
+  document.querySelector("#tbl3 tbody").innerHTML = D.offices.map(o =>
+    "<tr><td>" + o.name + "</td><td>" + (o.addr || "") + "</td><td>" + (o.county || "—") +
+    "</td><td class='num'>" + ((byName[o.name] || {}).t ?? "—") + "</td></tr>").join("");
+}
+
+const N = [];
+N.push("<b>Window.</b> The last " + M.window_days + " days, " + M.period +
+  " inclusive, by lead creation date. " + M.in_window + " deduplicated leads fall inside it." +
+  (M.last_event ? " The client's most recent recorded event is " + M.last_event +
+   "; any gap to the window end is pipeline lag, not a drop in volume." : ""));
+N.push("<b>" + M.state + " only.</b> " + M.plotted + " of " + M.in_window +
+  " leads carry a " + M.state_ab + " number and are plotted. Excluded: " + M.dropped_oos +
+  " out-of-state, " + M.dropped_nophone + " with no usable phone, " + M.dropped_unresolved +
+  " whose exchange could not be resolved. Totals describe the " + M.state +
+  " book, not the whole pipeline.");
+N.push("<b>Geocoding.</b> Each lead's telephone exchange (NPA-NXX) was resolved to its telco " +
+  "rate-center city and coordinates via the public localcallingguide.com prefix registry. " +
+  "Billing-zone suffixes that are not places were folded into their city, so " +
+  "\"Houston Suburban\" counts as Houston. A rate center is where the <i>number</i> was " +
+  "issued, not where the person lives: a mobile line follows its owner, so a share of these " +
+  "points are approximately rather than exactly right." +
+  (M.zip_source ? " <b>Note:</b> this client also has lead-level zip in <span " +
+   "style='font-family:var(--mono)'>" + M.zip_source.dataset + ".call_data</span> (" +
+   M.zip_source.column + "), which would geocode more precisely than the exchange." : ""));
+N.push("<b>Rates below " + MIN_N + " leads are withheld.</b> " +
+  pts.filter(p => p.t < MIN_N).length + " of the " + M.origin_points +
+  " origins hold one or two leads; they show counts but a dash for rate, because " +
+  "\"100%\" off a single lead invites exactly the wrong read.");
+if (M.hired_tracked){
+  N.push("<b>" + M.metric_label + ".</b> " + M.conversions + " of " + M.plotted + " leads (" +
+    rate + "%) reached " + METRIC + ", the deepest stage this client records.");
+} else {
+  N.push("<b>Hired is not tracked.</b> This client has no Funded Agreement records at any " +
+    "point, so no hire rate can be computed and the inner dot shows " + METRIC +
+    " instead — the deepest stage actually recorded. <b>A blank Hired figure means " +
+    "\"not measured,\" not \"nobody signed.\"</b>");
+}
+N.push("<b>Source.</b> <span style='font-family:var(--mono)'>all_clients_offline_conversion." +
+  "all_firms_offline_conversion</span>, SterlingX_Client_ID <span style='font-family:var(--mono)'>" +
+  M.client_id.slice(0, 8) + "…</span>, refreshed daily; snapshot " + M.snapshot +
+  ". Deduplicated on normalized phone and email with firm-internal notification records " +
+  "removed. County geometry from the US Census county file, state outline dissolved from it.");
+document.getElementById("notes").innerHTML = N.map(p => "<p>" + p + "</p>").join("");
+
+apply();
+</script>
+</body>
+</html>

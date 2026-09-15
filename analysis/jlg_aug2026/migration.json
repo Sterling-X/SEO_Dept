@@ -1,0 +1,1870 @@
+{
+ "migration_pairs": [
+  {
+   "old": "/blog/2022/february/petitioner-vs-respondent-in-divorce-what-you-nee",
+   "new": "/blog/2022/february/petitioner-vs-respondent-in-divorce-what-you-need-to-know",
+   "old16": 1554,
+   "new16": 150,
+   "hist90": 314.9,
+   "now90": 21,
+   "delta": -293.9,
+   "pct": -93.3,
+   "old90": 0,
+   "new90": 21,
+   "old_pos": 9.59,
+   "new_pos": 9.62,
+   "old_impr16": 310622,
+   "now_impr": 15250
+  },
+  {
+   "old": "/blog/2022/february/terminating-parental-rights-under-colorado-law-w",
+   "new": "/blog/2022/february/terminating-parental-rights-under-colorado-law-what-you-need-to-know",
+   "old16": 727,
+   "new16": 50,
+   "hist90": 143.6,
+   "now90": 9,
+   "delta": -134.6,
+   "pct": -93.7,
+   "old90": 0,
+   "new90": 9,
+   "old_pos": 16.81,
+   "new_pos": 15.2,
+   "old_impr16": 73017,
+   "now_impr": 1713
+  },
+  {
+   "old": "/blog/2022/september/colorado-common-law-marriage-2023-all-you-need-t",
+   "new": "/blog/2022/september/colorado-common-law-marriage-2023-all-you-need-to-know",
+   "old16": 549,
+   "new16": 37,
+   "hist90": 108.3,
+   "now90": 2,
+   "delta": -106.3,
+   "pct": -98.2,
+   "old90": 0,
+   "new90": 2,
+   "old_pos": 12.8,
+   "new_pos": 19.67,
+   "old_impr16": 156868,
+   "now_impr": 3590
+  },
+  {
+   "old": "/blog/2024/august/understanding-the-90-day-separation-period-in-co",
+   "new": "/blog/2024/august/understanding-the-90-day-separation-period-in-colorado",
+   "old16": 483,
+   "new16": 11,
+   "hist90": 91.3,
+   "now90": 1,
+   "delta": -90.3,
+   "pct": -98.9,
+   "old90": 0,
+   "new90": 1,
+   "old_pos": 7.38,
+   "new_pos": 11.69,
+   "old_impr16": 77201,
+   "now_impr": 578
+  },
+  {
+   "old": "/blog/2022/march/what-are-the-five-stages-of-divorce-",
+   "new": "/blog/2022/march/what-are-the-five-stages-of-divorce",
+   "old16": 468,
+   "new16": 9,
+   "hist90": 88.2,
+   "now90": 4,
+   "delta": -84.2,
+   "pct": -95.5,
+   "old90": 0,
+   "new90": 4,
+   "old_pos": 13.0,
+   "new_pos": 32.22,
+   "old_impr16": 27000,
+   "now_impr": 1283
+  },
+  {
+   "old": "/blog/2023/may/most-common-examples-of-parental-alienation-in-c",
+   "new": "/blog/2023/may/most-common-examples-of-parental-alienation-in-colorado-2023",
+   "old16": 277,
+   "new16": 54,
+   "hist90": 61.2,
+   "now90": 4,
+   "delta": -57.2,
+   "pct": -93.5,
+   "old90": 0,
+   "new90": 4,
+   "old_pos": 15.2,
+   "new_pos": 11.96,
+   "old_impr16": 25613,
+   "now_impr": 556
+  },
+  {
+   "old": "/blog/2024/march/understanding-guardianship-for-minors-in-colorad",
+   "new": "/blog/2024/march/understanding-guardianship-for-minors-in-colorado",
+   "old16": 252,
+   "new16": 56,
+   "hist90": 56.9,
+   "now90": 4,
+   "delta": -52.9,
+   "pct": -93.0,
+   "old90": 0,
+   "new90": 4,
+   "old_pos": 20.14,
+   "new_pos": 15.88,
+   "old_impr16": 25333,
+   "now_impr": 1056
+  },
+  {
+   "old": "/blog/2022/june/what-constitutes-a-substantial-change-in-circums",
+   "new": "/blog/2022/june/what-constitutes-a-substantial-change-in-circumstance",
+   "old16": 217,
+   "new16": 28,
+   "hist90": 45.3,
+   "now90": 3,
+   "delta": -42.3,
+   "pct": -93.4,
+   "old90": 0,
+   "new90": 3,
+   "old_pos": 9.87,
+   "new_pos": 11.19,
+   "old_impr16": 35198,
+   "now_impr": 866
+  },
+  {
+   "old": "/blog/2024/october/what-are-the-rights-of-grandparents-if-one-or-bo",
+   "new": "/blog/2024/october/what-are-the-rights-of-grandparents-if-one-or-both-parents-are-deceased",
+   "old16": 204,
+   "new16": 5,
+   "hist90": 38.6,
+   "now90": 2,
+   "delta": -36.6,
+   "pct": -94.8,
+   "old90": 0,
+   "new90": 2,
+   "old_pos": 13.43,
+   "new_pos": 9.18,
+   "old_impr16": 28667,
+   "now_impr": 853
+  },
+  {
+   "old": "/blog/2021/may/what-is-the-minimum-amount-of-child-support-in-c",
+   "new": "/blog/2021/may/what-is-the-minimum-amount-of-child-support-in-colorado",
+   "old16": 229,
+   "new16": 54,
+   "hist90": 52.3,
+   "now90": 18,
+   "delta": -34.3,
+   "pct": -65.6,
+   "old90": 0,
+   "new90": 18,
+   "old_pos": 12.85,
+   "new_pos": 23.05,
+   "old_impr16": 47320,
+   "now_impr": 3426
+  },
+  {
+   "old": "/blog/2025/january/2025-colorado-legal-internship-for-high-school-s",
+   "new": "/blog/2025/january/2025-colorado-legal-internship-for-high-school-students",
+   "old16": 210,
+   "new16": 66,
+   "hist90": 51.0,
+   "now90": 17,
+   "delta": -34.0,
+   "pct": -66.7,
+   "old90": 0,
+   "new90": 17,
+   "old_pos": 13.84,
+   "new_pos": 13.16,
+   "old_impr16": 2437,
+   "now_impr": 525
+  },
+  {
+   "old": "/blog/2023/june/what-can-be-used-against-you-in-a-divorce-in-col",
+   "new": "/blog/2023/june/what-can-be-used-against-you-in-a-divorce-in-colorado-2023",
+   "old16": 182,
+   "new16": 13,
+   "hist90": 36.0,
+   "now90": 9,
+   "delta": -27.0,
+   "pct": -75.0,
+   "old90": 0,
+   "new90": 9,
+   "old_pos": 16.96,
+   "new_pos": 15.81,
+   "old_impr16": 16741,
+   "now_impr": 971
+  },
+  {
+   "old": "/blog/2022/december/rights-of-custodial-parent-vs-non-custodial-pare",
+   "new": "/blog/2022/december/rights-of-custodial-parent-vs-non-custodial-parent-in-colorado-2023",
+   "old16": 184,
+   "new16": 36,
+   "hist90": 40.7,
+   "now90": 15,
+   "delta": -25.7,
+   "pct": -63.1,
+   "old90": 0,
+   "new90": 15,
+   "old_pos": 24.4,
+   "new_pos": 16.76,
+   "old_impr16": 38416,
+   "now_impr": 3001
+  },
+  {
+   "old": "/blog/2024/august/what-can-happen-if-one-parent-denies-parenting-t",
+   "new": "/blog/2024/august/what-can-happen-if-one-parent-denies-parenting-time",
+   "old16": 185,
+   "new16": 18,
+   "hist90": 37.5,
+   "now90": 13,
+   "delta": -24.5,
+   "pct": -65.3,
+   "old90": 0,
+   "new90": 13,
+   "old_pos": 5.33,
+   "new_pos": 7.62,
+   "old_impr16": 36768,
+   "now_impr": 1848
+  },
+  {
+   "old": "/blog/2023/february/colorado-civil-protection-order-all-you-need-to-",
+   "new": "/blog/2023/february/colorado-civil-protection-order-all-you-need-to-know",
+   "old16": 126,
+   "new16": 0,
+   "hist90": 23.3,
+   "now90": 0,
+   "delta": -23.3,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 25.76,
+   "new_pos": 9.96,
+   "old_impr16": 34596,
+   "now_impr": 83
+  },
+  {
+   "old": "/blog/2024/august/how-domestic-violence-impacts-child-custody-in-c",
+   "new": "/blog/2024/august/how-domestic-violence-impacts-child-custody-in-colorado",
+   "old16": 156,
+   "new16": 13,
+   "hist90": 31.2,
+   "now90": 11,
+   "delta": -20.2,
+   "pct": -64.8,
+   "old90": 0,
+   "new90": 11,
+   "old_pos": 15.31,
+   "new_pos": 11.36,
+   "old_impr16": 13610,
+   "now_impr": 543
+  },
+  {
+   "old": "/blog/2023/march/johnson-law-group-colorado-announces-new-office-",
+   "new": "/blog/2023/march/johnson-law-group-colorado-announces-new-office-in-chicago-illinois",
+   "old16": 103,
+   "new16": 5,
+   "hist90": 20.0,
+   "now90": 0,
+   "delta": -20.0,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 9.35,
+   "new_pos": 12.34,
+   "old_impr16": 5244,
+   "now_impr": 120
+  },
+  {
+   "old": "/blog/2025/march/can-separation-lead-to-reconciliation-",
+   "new": "/blog/2025/march/can-separation-lead-to-reconciliation",
+   "old16": 193,
+   "new16": 98,
+   "hist90": 53.8,
+   "now90": 36,
+   "delta": -17.8,
+   "pct": -33.1,
+   "old90": 0,
+   "new90": 36,
+   "old_pos": 6.19,
+   "new_pos": 9.12,
+   "old_impr16": 31575,
+   "now_impr": 8106
+  },
+  {
+   "old": "/blog/2021/may/what-is-the-most-common-reason-for-divorce-",
+   "new": "/blog/2021/may/what-is-the-most-common-reason-for-divorce",
+   "old16": 113,
+   "new16": 17,
+   "hist90": 24.0,
+   "now90": 7,
+   "delta": -17.0,
+   "pct": -70.9,
+   "old90": 0,
+   "new90": 7,
+   "old_pos": 38.5,
+   "new_pos": 30.05,
+   "old_impr16": 69489,
+   "now_impr": 11346
+  },
+  {
+   "old": "/blog/2024/august/can-you-get-divorced-without-an-attorney-",
+   "new": "/blog/2024/august/can-you-get-divorced-without-an-attorney",
+   "old16": 152,
+   "new16": 41,
+   "hist90": 35.7,
+   "now90": 19,
+   "delta": -16.7,
+   "pct": -46.7,
+   "old90": 0,
+   "new90": 19,
+   "old_pos": 20.97,
+   "new_pos": 12.69,
+   "old_impr16": 28470,
+   "now_impr": 6975
+  },
+  {
+   "old": "/blog/2024/january/2024-colorado-legal-internship-for-high-school-s",
+   "new": "/blog/2024/january/2024-colorado-legal-internship-for-high-school-students",
+   "old16": 81,
+   "new16": 5,
+   "hist90": 15.9,
+   "now90": 0,
+   "delta": -15.9,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 29.72,
+   "new_pos": 28.85,
+   "old_impr16": 3435,
+   "now_impr": 89
+  },
+  {
+   "old": "/blog/2022/april/dissolution-vs-divorce-colorado-what-is-the-diff",
+   "new": "/blog/2022/april/dissolution-vs-divorce-colorado-what-is-the-difference",
+   "old16": 104,
+   "new16": 19,
+   "hist90": 22.7,
+   "now90": 7,
+   "delta": -15.7,
+   "pct": -69.2,
+   "old90": 0,
+   "new90": 7,
+   "old_pos": 18.49,
+   "new_pos": 14.01,
+   "old_impr16": 42467,
+   "now_impr": 4566
+  },
+  {
+   "old": "/blog/2024/august/meet-heidi-whitaker-lead-family-law-attorney-in-",
+   "new": "/blog/2024/august/meet-heidi-whitaker-lead-family-law-attorney-in-new-wyoming-office",
+   "old16": 106,
+   "new16": 16,
+   "hist90": 22.5,
+   "now90": 9,
+   "delta": -13.5,
+   "pct": -60.1,
+   "old90": 0,
+   "new90": 9,
+   "old_pos": 23.46,
+   "new_pos": 15.74,
+   "old_impr16": 8842,
+   "now_impr": 461
+  },
+  {
+   "old": "/blog/2024/september/financial-considerations-for-divorce-in-colorado",
+   "new": "/blog/2024/september/financial-considerations-for-divorce-in-colorado-what-you-need-to-know",
+   "old16": 82,
+   "new16": 20,
+   "hist90": 18.9,
+   "now90": 6,
+   "delta": -12.9,
+   "pct": -68.2,
+   "old90": 0,
+   "new90": 6,
+   "old_pos": 15.75,
+   "new_pos": 12.65,
+   "old_impr16": 6281,
+   "now_impr": 1196
+  },
+  {
+   "old": "/blog/2022/february/how-to-avoid-paying-spousal-support-in-colorado-",
+   "new": "/blog/2022/february/how-to-avoid-paying-spousal-support-in-colorado-strategies-and-legal-tips",
+   "old16": 82,
+   "new16": 19,
+   "hist90": 18.7,
+   "now90": 7,
+   "delta": -11.7,
+   "pct": -62.5,
+   "old90": 0,
+   "new90": 7,
+   "old_pos": 33.56,
+   "new_pos": 18.46,
+   "old_impr16": 20490,
+   "now_impr": 494
+  },
+  {
+   "old": "/blog/2024/june/building-a-family-through-love-same-sex-adoption",
+   "new": "/blog/2024/june/building-a-family-through-love-same-sex-adoption-in-colorado",
+   "old16": 81,
+   "new16": 10,
+   "hist90": 16.8,
+   "now90": 6,
+   "delta": -10.8,
+   "pct": -64.3,
+   "old90": 0,
+   "new90": 6,
+   "old_pos": 45.51,
+   "new_pos": 14.41,
+   "old_impr16": 13165,
+   "now_impr": 643
+  },
+  {
+   "old": "/blog/2024/december/how-to-apply-for-guardianship-of-a-minor-step-by",
+   "new": "/blog/2024/december/how-to-apply-for-guardianship-of-a-minor-step-by-step-guide",
+   "old16": 52,
+   "new16": 5,
+   "hist90": 10.5,
+   "now90": 0,
+   "delta": -10.5,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 33.79,
+   "new_pos": 21.1,
+   "old_impr16": 16576,
+   "now_impr": 277
+  },
+  {
+   "old": "/blog/2024/july/child-custody-considerations-for-vacation-and-tr",
+   "new": "/blog/2024/july/child-custody-considerations-for-vacation-and-travel-plans",
+   "old16": 150,
+   "new16": 49,
+   "hist90": 36.8,
+   "now90": 27,
+   "delta": -9.8,
+   "pct": -26.6,
+   "old90": 0,
+   "new90": 27,
+   "old_pos": 7.69,
+   "new_pos": 10.23,
+   "old_impr16": 17779,
+   "now_impr": 4805
+  },
+  {
+   "old": "/blog/2024/april/filing-for-divorce-in-colorado-2024-guide-",
+   "new": "/blog/2024/april/filing-for-divorce-in-colorado-2024-guide",
+   "old16": 52,
+   "new16": 0,
+   "hist90": 9.6,
+   "now90": 0,
+   "delta": -9.6,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 28.03,
+   "new_pos": 49.95,
+   "old_impr16": 21720,
+   "now_impr": 0
+  },
+  {
+   "old": "/blog/2021/july/moving-out-of-state-during-a-divorce-what-to-exp",
+   "new": "/blog/2021/july/moving-out-of-state-during-a-divorce-what-to-expect",
+   "old16": 47,
+   "new16": 3,
+   "hist90": 9.2,
+   "now90": 0,
+   "delta": -9.2,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 16.67,
+   "new_pos": 15.44,
+   "old_impr16": 11140,
+   "now_impr": 98
+  },
+  {
+   "old": "/colorado-springs-high-conflict-child-custody-law",
+   "new": "/colorado-springs-high-conflict-child-custody-lawyer",
+   "old16": 43,
+   "new16": 4,
+   "hist90": 8.7,
+   "now90": 0,
+   "delta": -8.7,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 32.27,
+   "new_pos": 27.36,
+   "old_impr16": 27067,
+   "now_impr": 0
+  },
+  {
+   "old": "/blog/2021/july/what-qualifies-as-an-unfit-parent-in-colorado-",
+   "new": "/blog/2021/july/what-qualifies-as-an-unfit-parent-in-colorado",
+   "old16": 102,
+   "new16": 31,
+   "hist90": 24.6,
+   "now90": 16,
+   "delta": -8.6,
+   "pct": -34.9,
+   "old90": 0,
+   "new90": 16,
+   "old_pos": 25.45,
+   "new_pos": 18.76,
+   "old_impr16": 8267,
+   "now_impr": 2036
+  },
+  {
+   "old": "/blog/2022/september/understanding-best-interest-of-the-child-standar",
+   "new": "/blog/2022/september/understanding-best-interest-of-the-child-standard",
+   "old16": 46,
+   "new16": 0,
+   "hist90": 8.5,
+   "now90": 0,
+   "delta": -8.5,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 13.92,
+   "new_pos": 15.16,
+   "old_impr16": 21407,
+   "now_impr": 57
+  },
+  {
+   "old": "/blog/2022/july/colorado-divorce-laws-for-division-of-property-2",
+   "new": "/blog/2022/july/colorado-divorce-laws-for-division-of-property-2023",
+   "old16": 47,
+   "new16": 1,
+   "hist90": 8.9,
+   "now90": 1,
+   "delta": -7.9,
+   "pct": -88.7,
+   "old90": 0,
+   "new90": 1,
+   "old_pos": 24.17,
+   "new_pos": 72.38,
+   "old_impr16": 28521,
+   "now_impr": 426
+  },
+  {
+   "old": "/blog/2021/may/what-questions-do-they-ask-in-divorce-court-",
+   "new": "/blog/2021/may/what-questions-do-they-ask-in-divorce-court",
+   "old16": 106,
+   "new16": 44,
+   "hist90": 27.7,
+   "now90": 20,
+   "delta": -7.7,
+   "pct": -27.9,
+   "old90": 0,
+   "new90": 20,
+   "old_pos": 21.25,
+   "new_pos": 16.78,
+   "old_impr16": 8873,
+   "now_impr": 2347
+  },
+  {
+   "old": "/blog/2021/april/how-to-calculate-income-for-child-support-and-al",
+   "new": "/blog/2021/april/how-to-calculate-income-for-child-support-and-alimony-in-colorado",
+   "old16": 58,
+   "new16": 1,
+   "hist90": 10.9,
+   "now90": 4,
+   "delta": -6.9,
+   "pct": -63.3,
+   "old90": 0,
+   "new90": 4,
+   "old_pos": 25.15,
+   "new_pos": 14.2,
+   "old_impr16": 11294,
+   "now_impr": 1131
+  },
+  {
+   "old": "/blog/2021/january/is-colorado-a-community-property-state-",
+   "new": "/blog/2021/january/is-colorado-a-community-property-state",
+   "old16": 31,
+   "new16": 6,
+   "hist90": 6.8,
+   "now90": 0,
+   "delta": -6.8,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 16.5,
+   "new_pos": 11.98,
+   "old_impr16": 24015,
+   "now_impr": 1583
+  },
+  {
+   "old": "/blog/2022/january/how-to-file-for-custody-of-a-child-in-colorado-i",
+   "new": "/blog/2022/january/how-to-file-for-custody-of-a-child-in-colorado-in-2023",
+   "old16": 35,
+   "new16": 1,
+   "hist90": 6.7,
+   "now90": 0,
+   "delta": -6.7,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 37.97,
+   "new_pos": 46.8,
+   "old_impr16": 32880,
+   "now_impr": 1063
+  },
+  {
+   "old": "/blog/2022/april/top-10-sneaky-divorce-tactics-in-colorado-and-ho",
+   "new": "/blog/2022/april/top-10-sneaky-divorce-tactics-in-colorado-and-how-to-avoid-them",
+   "old16": 29,
+   "new16": 6,
+   "hist90": 6.5,
+   "now90": 0,
+   "delta": -6.5,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 33.04,
+   "new_pos": 19.01,
+   "old_impr16": 3992,
+   "now_impr": 160
+  },
+  {
+   "old": "/blog/2021/july/all-you-need-to-know-about-testamentary-trusts-1",
+   "new": "/blog/2021/july/all-you-need-to-know-about-testamentary-trusts-101",
+   "old16": 34,
+   "new16": 6,
+   "hist90": 7.4,
+   "now90": 1,
+   "delta": -6.4,
+   "pct": -86.5,
+   "old90": 0,
+   "new90": 1,
+   "old_pos": 28.58,
+   "new_pos": 25.35,
+   "old_impr16": 33926,
+   "now_impr": 413
+  },
+  {
+   "old": "/blog/2024/december/protection-orders-for-domestic-violence-victims-",
+   "new": "/blog/2024/december/protection-orders-for-domestic-violence-victims-how-they-work-and-how-to-stay-safe",
+   "old16": 31,
+   "new16": 5,
+   "hist90": 6.7,
+   "now90": 1,
+   "delta": -5.7,
+   "pct": -85.0,
+   "old90": 0,
+   "new90": 1,
+   "old_pos": 15.39,
+   "new_pos": 13.72,
+   "old_impr16": 14031,
+   "now_impr": 1885
+  },
+  {
+   "old": "/fort-collins-prenuptial-and-postnuptial-agreemen",
+   "new": "/fort-collins-prenuptial-and-postnuptial-agreement-lawyer",
+   "old16": 29,
+   "new16": 1,
+   "hist90": 5.5,
+   "now90": 0,
+   "delta": -5.5,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 58.54,
+   "new_pos": 41.81,
+   "old_impr16": 14990,
+   "now_impr": 0
+  },
+  {
+   "old": "/blog/2023/september/5-tips-for-negotiating-a-child-custody-agreement",
+   "new": "/blog/2023/september/5-tips-for-negotiating-a-child-custody-agreement-in-colorado",
+   "old16": 21,
+   "new16": 9,
+   "hist90": 5.5,
+   "now90": 0,
+   "delta": -5.5,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 15.47,
+   "new_pos": 13.82,
+   "old_impr16": 4760,
+   "now_impr": 933
+  },
+  {
+   "old": "/blog/2024/august/can-alimony-be-modified-after-divorce-",
+   "new": "/blog/2024/august/can-alimony-be-modified-after-divorce",
+   "old16": 33,
+   "new16": 12,
+   "hist90": 8.3,
+   "now90": 3,
+   "delta": -5.3,
+   "pct": -63.9,
+   "old90": 0,
+   "new90": 3,
+   "old_pos": 22.99,
+   "new_pos": 18.86,
+   "old_impr16": 11457,
+   "now_impr": 2004
+  },
+  {
+   "old": "/blog/2024/march/understanding-colorado-divorce-laws-grounds-for-",
+   "new": "/blog/2024/march/understanding-colorado-divorce-laws-grounds-for-divorce",
+   "old16": 25,
+   "new16": 3,
+   "hist90": 5.2,
+   "now90": 0,
+   "delta": -5.2,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 26.87,
+   "new_pos": 16.16,
+   "old_impr16": 11777,
+   "now_impr": 2580
+  },
+  {
+   "old": "/blog/2024/november/navigating-child-custody-issues-through-divorce-",
+   "new": "/blog/2024/november/navigating-child-custody-issues-through-divorce-mediation",
+   "old16": 27,
+   "new16": 0,
+   "hist90": 5.0,
+   "now90": 0,
+   "delta": -5.0,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 37.45,
+   "new_pos": 22.96,
+   "old_impr16": 14862,
+   "now_impr": 1237
+  },
+  {
+   "old": "/blog/2025/january/how-domestic-violence-affects-child-custody-and-",
+   "new": "/blog/2025/january/how-domestic-violence-affects-child-custody-and-visitation-rights",
+   "old16": 34,
+   "new16": 2,
+   "hist90": 6.7,
+   "now90": 2,
+   "delta": -4.7,
+   "pct": -69.9,
+   "old90": 0,
+   "new90": 2,
+   "old_pos": 9.12,
+   "new_pos": 17.28,
+   "old_impr16": 4892,
+   "now_impr": 1452
+  },
+  {
+   "old": "/attorneys/myron-l-latney-jr-",
+   "new": "/attorneys/myron-l-latney-jr",
+   "old16": 105,
+   "new16": 53,
+   "hist90": 29.2,
+   "now90": 25,
+   "delta": -4.2,
+   "pct": -14.4,
+   "old90": 0,
+   "new90": 25,
+   "old_pos": 12.26,
+   "new_pos": 7.3,
+   "old_impr16": 2696,
+   "now_impr": 372
+  },
+  {
+   "old": "/blog/2021/september/when-does-child-support-end-in-colorado-",
+   "new": "/blog/2021/september/when-does-child-support-end-in-colorado",
+   "old16": 21,
+   "new16": 1,
+   "hist90": 4.1,
+   "now90": 0,
+   "delta": -4.1,
+   "pct": -100.0,
+   "old90": 0,
+   "new90": 0,
+   "old_pos": 15.6,
+   "new_pos": 18.06,
+   "old_impr16": 13695,
+   "now_impr": 95
+  },
+  {
+   "old": "/blog/2022/february/what-are-my-rights-if-i-leave-the-marital-home-",
+   "new": "/blog/2022/february/what-are-my-rights-if-i-leave-the-marital-home",
+   "old16": 74,
+   "new16": 23,
+   "hist90": 17.9,
+   "now90": 14,
+   "delta": -3.9,
+   "pct": -21.9,
+   "old90": 0,
+   "new90": 14,
+   "old_pos": 15.92,
+   "new_pos": 12.96,
+   "old_impr16": 12751,
+   "now_impr": 2502
+  },
+  {
+   "old": "/blog/2021/june/can-a-small-estate-avoid-probate-in-colorado-",
+   "new": "/blog/2021/june/can-a-small-estate-avoid-probate-in-colorado",
+   "old16": 37,
+   "new16": 16,
+   "hist90": 9.8,
+   "now90": 6,
+   "delta": -3.8,
+   "pct": -38.7,
+   "old90": 0,
+   "new90": 6,
+   "old_pos": 29.05,
+   "new_pos": 17.68,
+   "old_impr16": 12341,
+   "now_impr": 3942
+  },
+  {
+   "old": "/blog/2022/march/what-do-judges-look-for-in-child-custody-cases-",
+   "new": "/blog/2022/march/what-do-judges-look-for-in-child-custody-cases",
+   "old16": 33,
+   "new16": 5,
+   "hist90": 7.0,
+   "now90": 4,
+   "delta": -3.0,
+   "pct": -43.0,
+   "old90": 0,
+   "new90": 4,
+   "old_pos": 20.03,
+   "new_pos": 17.67,
+   "old_impr16": 3743,
+   "now_impr": 1122
+  },
+  {
+   "old": "/blog/2022/june/spending-of-marital-assets-before-or-during-a-di",
+   "new": "/blog/2022/june/spending-of-marital-assets-before-or-during-a-divorce",
+   "old16": 24,
+   "new16": 9,
+   "hist90": 6.1,
+   "now90": 5,
+   "delta": -1.1,
+   "pct": -18.0,
+   "old90": 0,
+   "new90": 5,
+   "old_pos": 17.68,
+   "new_pos": 12.6,
+   "old_impr16": 3609,
+   "now_impr": 1199
+  },
+  {
+   "old": "/blog/2022/february/what-is-a-gun-trust-",
+   "new": "/blog/2022/february/what-is-a-gun-trust",
+   "old16": 24,
+   "new16": 3,
+   "hist90": 5.0,
+   "now90": 4,
+   "delta": -1.0,
+   "pct": -19.8,
+   "old90": 0,
+   "new90": 4,
+   "old_pos": 45.03,
+   "new_pos": 19.86,
+   "old_impr16": 9129,
+   "now_impr": 1130
+  },
+  {
+   "old": "/blog/2021/december/navigating-the-family-support-registry-in-colora",
+   "new": "/blog/2021/december/navigating-the-family-support-registry-in-colorado",
+   "old16": 34,
+   "new16": 11,
+   "hist90": 8.3,
+   "now90": 9,
+   "delta": 0.7,
+   "pct": 8.2,
+   "old90": 0,
+   "new90": 9,
+   "old_pos": 14.1,
+   "new_pos": 9.36,
+   "old_impr16": 25085,
+   "now_impr": 26933
+  },
+  {
+   "old": "/blog/2021/may/how-domestic-violence-impacts-divorce-in-colorad",
+   "new": "/blog/2021/may/how-domestic-violence-impacts-divorce-in-colorado",
+   "old16": 49,
+   "new16": 37,
+   "hist90": 15.9,
+   "now90": 17,
+   "delta": 1.1,
+   "pct": 7.0,
+   "old90": 0,
+   "new90": 17,
+   "old_pos": 11.23,
+   "new_pos": 12.31,
+   "old_impr16": 2182,
+   "now_impr": 1124
+  },
+  {
+   "old": "/blog/2024/february/meet-attorney-anne-hinds-managing-partner-in-new",
+   "new": "/blog/2024/february/meet-attorney-anne-hinds-managing-partner-in-new-florida-office",
+   "old16": 24,
+   "new16": 8,
+   "hist90": 5.9,
+   "now90": 7,
+   "delta": 1.1,
+   "pct": 18.4,
+   "old90": 0,
+   "new90": 7,
+   "old_pos": 7.93,
+   "new_pos": 8.49,
+   "old_impr16": 1141,
+   "now_impr": 146
+  },
+  {
+   "old": "/blog/2025/january/protective-measures-for-children-in-divorces-inv",
+   "new": "/blog/2025/january/protective-measures-for-children-in-divorces-involving-substance-abuse",
+   "old16": 21,
+   "new16": 5,
+   "hist90": 4.8,
+   "now90": 7,
+   "delta": 2.2,
+   "pct": 45.7,
+   "old90": 0,
+   "new90": 7,
+   "old_pos": 10.96,
+   "new_pos": 9.8,
+   "old_impr16": 1417,
+   "now_impr": 417
+  },
+  {
+   "old": "/blog/2021/october/what-is-a-civil-union-in-colorado-",
+   "new": "/blog/2021/october/what-is-a-civil-union-in-colorado",
+   "old16": 234,
+   "new16": 59,
+   "hist90": 54.1,
+   "now90": 68,
+   "delta": 13.9,
+   "pct": 25.6,
+   "old90": 0,
+   "new90": 68,
+   "old_pos": 11.54,
+   "new_pos": 5.51,
+   "old_impr16": 505533,
+   "now_impr": 221113
+  }
+ ],
+ "vanished": [
+  {
+   "u": "/blog/2022/february/petitioner-vs-respondent-in-divorce-what-you-nee",
+   "clicks": 1554,
+   "impr": 310622,
+   "pos": 9.59
+  },
+  {
+   "u": "/blog/2022/february/terminating-parental-rights-under-colorado-law-w",
+   "clicks": 727,
+   "impr": 73017,
+   "pos": 16.81
+  },
+  {
+   "u": "/blog/2022/september/colorado-common-law-marriage-2023-all-you-need-t",
+   "clicks": 549,
+   "impr": 156868,
+   "pos": 12.8
+  },
+  {
+   "u": "/blog/2024/august/understanding-the-90-day-separation-period-in-co",
+   "clicks": 483,
+   "impr": 77201,
+   "pos": 7.38
+  },
+  {
+   "u": "/blog/2022/march/what-are-the-five-stages-of-divorce-",
+   "clicks": 468,
+   "impr": 27000,
+   "pos": 13.0
+  },
+  {
+   "u": "/blog/2024/july/emergency-motions-to-restrict-parenting-time",
+   "clicks": 435,
+   "impr": 50591,
+   "pos": 7.84
+  },
+  {
+   "u": "/denver-family-law-lawyer",
+   "clicks": 427,
+   "impr": 270776,
+   "pos": 29.43
+  },
+  {
+   "u": "/commerce-city-family-lawyer",
+   "clicks": 401,
+   "impr": 53504,
+   "pos": 12.753247794557414
+  },
+  {
+   "u": "/stages-of-divorce",
+   "clicks": 318,
+   "impr": 13246,
+   "pos": 12.98
+  },
+  {
+   "u": "/blog/2021/february/unmarried-couples-and-home-ownership-in-colorado",
+   "clicks": 315,
+   "impr": 19764,
+   "pos": 21.52
+  },
+  {
+   "u": "/blog/2023/may/most-common-examples-of-parental-alienation-in-c",
+   "clicks": 277,
+   "impr": 25613,
+   "pos": 15.2
+  },
+  {
+   "u": "/denver-divorce-lawyer",
+   "clicks": 267,
+   "impr": 451180,
+   "pos": 32.64118848353207
+  },
+  {
+   "u": "/blog/2024/march/understanding-guardianship-for-minors-in-colorad",
+   "clicks": 252,
+   "impr": 25333,
+   "pos": 20.14
+  },
+  {
+   "u": "/blog/2021/october/what-is-a-civil-union-in-colorado-",
+   "clicks": 234,
+   "impr": 505533,
+   "pos": 11.54
+  },
+  {
+   "u": "/commerce-city-divorce-lawyer",
+   "clicks": 233,
+   "impr": 36980,
+   "pos": 20.61
+  },
+  {
+   "u": "/blog/2021/may/what-is-the-minimum-amount-of-child-support-in-c",
+   "clicks": 229,
+   "impr": 47320,
+   "pos": 12.85
+  },
+  {
+   "u": "/90-day-separation-period-in-colorado",
+   "clicks": 225,
+   "impr": 9399,
+   "pos": 9.91
+  },
+  {
+   "u": "/blog/2022/june/what-constitutes-a-substantial-change-in-circums",
+   "clicks": 217,
+   "impr": 35198,
+   "pos": 9.87
+  },
+  {
+   "u": "/blog/2025/january/2025-colorado-legal-internship-for-high-school-s",
+   "clicks": 210,
+   "impr": 2437,
+   "pos": 13.84
+  },
+  {
+   "u": "/blog/2024/october/what-are-the-rights-of-grandparents-if-one-or-bo",
+   "clicks": 204,
+   "impr": 28667,
+   "pos": 13.43
+  },
+  {
+   "u": "/blog/2025/march/can-separation-lead-to-reconciliation-",
+   "clicks": 193,
+   "impr": 31575,
+   "pos": 6.19
+  },
+  {
+   "u": "/attorneys/brent-e-mecham",
+   "clicks": 193,
+   "impr": 4633,
+   "pos": 14.56
+  },
+  {
+   "u": "/colorado-springs-family-law-lawyer",
+   "clicks": 189,
+   "impr": 167880,
+   "pos": 34.72476912080057
+  },
+  {
+   "u": "/blog/2024/august/what-can-happen-if-one-parent-denies-parenting-t",
+   "clicks": 185,
+   "impr": 36768,
+   "pos": 5.33
+  },
+  {
+   "u": "/blog/2022/december/rights-of-custodial-parent-vs-non-custodial-pare",
+   "clicks": 184,
+   "impr": 38416,
+   "pos": 24.4
+  },
+  {
+   "u": "/blog/2023/june/what-can-be-used-against-you-in-a-divorce-in-col",
+   "clicks": 182,
+   "impr": 16741,
+   "pos": 16.96
+  },
+  {
+   "u": "/blog/2024/may/modifying-child-support",
+   "clicks": 180,
+   "impr": 37583,
+   "pos": 14.02
+  },
+  {
+   "u": "/blog/2023/april/modification-of-parenting-time-colorado-2023",
+   "clicks": 179,
+   "impr": 35037,
+   "pos": 13.08
+  },
+  {
+   "u": "/attorneys/jessica-lasky",
+   "clicks": 171,
+   "impr": 6436,
+   "pos": 15.213537911746425
+  },
+  {
+   "u": "/blog/2022/december/protect-your-children-s-inheritance-with-a-lifet",
+   "clicks": 164,
+   "impr": 23081,
+   "pos": 20.24
+  },
+  {
+   "u": "/blog/2024/august/how-domestic-violence-impacts-child-custody-in-c",
+   "clicks": 156,
+   "impr": 13610,
+   "pos": 15.31
+  },
+  {
+   "u": "/blog/2024/august/can-you-get-divorced-without-an-attorney-",
+   "clicks": 152,
+   "impr": 28470,
+   "pos": 20.97
+  },
+  {
+   "u": "/denver-high-conflict-child-custody-lawyer",
+   "clicks": 151,
+   "impr": 298469,
+   "pos": 44.14127071823204
+  },
+  {
+   "u": "/blog/2024/july/child-custody-considerations-for-vacation-and-tr",
+   "clicks": 150,
+   "impr": 17779,
+   "pos": 7.69
+  },
+  {
+   "u": "/blog/2024/may/how-to-enforce-child-support-orders-in-colorado",
+   "clicks": 146,
+   "impr": 46094,
+   "pos": 19.67
+  },
+  {
+   "u": "/blog/2024/july/understanding-postnuptial-agreements-in-colorado",
+   "clicks": 136,
+   "impr": 13751,
+   "pos": 12.58
+  },
+  {
+   "u": "/attorneys/andrea-dalton",
+   "clicks": 134,
+   "impr": 19993,
+   "pos": 13.830162056719852
+  },
+  {
+   "u": "/attorneys/thomas-nellessen",
+   "clicks": 130,
+   "impr": 2315,
+   "pos": 12.908941684665226
+  },
+  {
+   "u": "/blog/2023/february/colorado-civil-protection-order-all-you-need-to-",
+   "clicks": 126,
+   "impr": 34596,
+   "pos": 25.76
+  },
+  {
+   "u": "/attorneys/ethan-sumida",
+   "clicks": 119,
+   "impr": 2832,
+   "pos": 12.683329802259887
+  },
+  {
+   "u": "/attorneys/dawn-gould",
+   "clicks": 114,
+   "impr": 3815,
+   "pos": 10.18
+  },
+  {
+   "u": "/blog/2021/may/what-is-the-most-common-reason-for-divorce-",
+   "clicks": 113,
+   "impr": 69489,
+   "pos": 38.5
+  },
+  {
+   "u": "/colorado-springs-divorce-attorney",
+   "clicks": 108,
+   "impr": 59627,
+   "pos": 41.75
+  },
+  {
+   "u": "/blog/2021/may/what-questions-do-they-ask-in-divorce-court-",
+   "clicks": 106,
+   "impr": 8873,
+   "pos": 21.25
+  },
+  {
+   "u": "/blog/2024/august/meet-heidi-whitaker-lead-family-law-attorney-in-",
+   "clicks": 106,
+   "impr": 8842,
+   "pos": 23.46
+  },
+  {
+   "u": "/attorneys/myron-l-latney-jr-",
+   "clicks": 105,
+   "impr": 2696,
+   "pos": 12.26
+  },
+  {
+   "u": "/blog/2022/april/dissolution-vs-divorce-colorado-what-is-the-diff",
+   "clicks": 104,
+   "impr": 42467,
+   "pos": 18.49
+  },
+  {
+   "u": "/blog/2023/march/johnson-law-group-colorado-announces-new-office-",
+   "clicks": 103,
+   "impr": 5244,
+   "pos": 9.35
+  },
+  {
+   "u": "/englewood-family-lawyer",
+   "clicks": 102,
+   "impr": 34038,
+   "pos": 13.530351371996005
+  },
+  {
+   "u": "/blog/2022/december/what-can-i-do-if-my-child-s-parent-engages-in-da",
+   "clicks": 102,
+   "impr": 10068,
+   "pos": 9.95
+  },
+  {
+   "u": "/blog/2021/july/what-qualifies-as-an-unfit-parent-in-colorado-",
+   "clicks": 102,
+   "impr": 8267,
+   "pos": 25.45
+  },
+  {
+   "u": "/blog/2024/april/calculating-child-support-in-colorado",
+   "clicks": 100,
+   "impr": 22526,
+   "pos": 15.49
+  },
+  {
+   "u": "/blog/2022/november/establishing-paternity-in-colorado",
+   "clicks": 99,
+   "impr": 32427,
+   "pos": 13.84
+  },
+  {
+   "u": "/blog/2024/september/can-a-child-s-preference-influence-custody-decis",
+   "clicks": 98,
+   "impr": 23775,
+   "pos": 12.42
+  },
+  {
+   "u": "/colorado-springs-domestic-partnership-lawyer",
+   "clicks": 97,
+   "impr": 25767,
+   "pos": 26.35922109675166
+  },
+  {
+   "u": "/common-law-marriage",
+   "clicks": 87,
+   "impr": 37483,
+   "pos": 26.54
+  },
+  {
+   "u": "/blog/2023/march/annulments-in-colorado-2023-what-how-when",
+   "clicks": 85,
+   "impr": 30270,
+   "pos": 10.84
+  },
+  {
+   "u": "/blog/2022/february/how-to-avoid-paying-spousal-support-in-colorado-",
+   "clicks": 82,
+   "impr": 20490,
+   "pos": 33.56
+  },
+  {
+   "u": "/blog/2024/september/financial-considerations-for-divorce-in-colorado",
+   "clicks": 82,
+   "impr": 6281,
+   "pos": 15.75
+  },
+  {
+   "u": "/blog/2024/june/building-a-family-through-love-same-sex-adoption",
+   "clicks": 81,
+   "impr": 13165,
+   "pos": 45.51
+  },
+  {
+   "u": "/blog/2024/january/2024-colorado-legal-internship-for-high-school-s",
+   "clicks": 81,
+   "impr": 3435,
+   "pos": 29.72
+  },
+  {
+   "u": "/fort-collins-family-law-lawyer",
+   "clicks": 78,
+   "impr": 14845,
+   "pos": 16.46
+  },
+  {
+   "u": "/blog/2022/february/what-are-my-rights-if-i-leave-the-marital-home-",
+   "clicks": 74,
+   "impr": 12751,
+   "pos": 15.92
+  },
+  {
+   "u": "/englewood-divorce-lawyer",
+   "clicks": 69,
+   "impr": 34871,
+   "pos": 26.896076682630266
+  },
+  {
+   "u": "/attorneys/daniel-sol",
+   "clicks": 64,
+   "impr": 2174,
+   "pos": 13.95
+  },
+  {
+   "u": "/blog/2021/april/how-to-calculate-income-for-child-support-and-al",
+   "clicks": 58,
+   "impr": 11294,
+   "pos": 25.15
+  },
+  {
+   "u": "/colorado-springs-prenuptial-postnuptial-agreemen",
+   "clicks": 52,
+   "impr": 26699,
+   "pos": 46.67
+  },
+  {
+   "u": "/blog/2024/april/filing-for-divorce-in-colorado-2024-guide-",
+   "clicks": 52,
+   "impr": 21720,
+   "pos": 28.03
+  },
+  {
+   "u": "/blog/2024/december/how-to-apply-for-guardianship-of-a-minor-step-by",
+   "clicks": 52,
+   "impr": 16576,
+   "pos": 33.79
+  },
+  {
+   "u": "/blog/2022/november/splitting-the-house-in-a-divorce",
+   "clicks": 49,
+   "impr": 17314,
+   "pos": 21.0
+  },
+  {
+   "u": "/blog/2021/may/how-domestic-violence-impacts-divorce-in-colorad",
+   "clicks": 49,
+   "impr": 2182,
+   "pos": 11.23
+  },
+  {
+   "u": "/blog/2022/july/colorado-divorce-laws-for-division-of-property-2",
+   "clicks": 47,
+   "impr": 28521,
+   "pos": 24.17
+  },
+  {
+   "u": "/blog/2021/july/moving-out-of-state-during-a-divorce-what-to-exp",
+   "clicks": 47,
+   "impr": 11140,
+   "pos": 16.67
+  },
+  {
+   "u": "/blog/2022/september/understanding-best-interest-of-the-child-standar",
+   "clicks": 46,
+   "impr": 21407,
+   "pos": 13.92
+  },
+  {
+   "u": "/colorado-springs-orders-of-protection-lawyer",
+   "clicks": 45,
+   "impr": 36232,
+   "pos": 37.31
+  },
+  {
+   "u": "/fort-collins-domestic-partnership-lawyer",
+   "clicks": 45,
+   "impr": 14480,
+   "pos": 38.64560428176796
+  },
+  {
+   "u": "/denver-child-custody-lawyer",
+   "clicks": 43,
+   "impr": 418353,
+   "pos": 54.49227695271697
+  },
+  {
+   "u": "/fort-collins-family-law-attorney",
+   "clicks": 43,
+   "impr": 40697,
+   "pos": 24.688597439614714
+  },
+  {
+   "u": "/colorado-springs-high-conflict-child-custody-law",
+   "clicks": 43,
+   "impr": 27067,
+   "pos": 32.27
+  },
+  {
+   "u": "/annulment-in-colorado",
+   "clicks": 43,
+   "impr": 11097,
+   "pos": 16.53
+  },
+  {
+   "u": "/denver-orders-of-protection-lawyer",
+   "clicks": 41,
+   "impr": 59740,
+   "pos": 44.81
+  },
+  {
+   "u": "/fort-collins-divorce-lawyer",
+   "clicks": 37,
+   "impr": 20484,
+   "pos": 28.9
+  },
+  {
+   "u": "/blog/2021/june/can-a-small-estate-avoid-probate-in-colorado-",
+   "clicks": 37,
+   "impr": 12341,
+   "pos": 29.05
+  },
+  {
+   "u": "/fort-collins-orders-of-protection-lawyer",
+   "clicks": 37,
+   "impr": 12991,
+   "pos": 47.96478331152336
+  },
+  {
+   "u": "/colorado-child-custody",
+   "clicks": 36,
+   "impr": 29792,
+   "pos": 40.38
+  },
+  {
+   "u": "/englewood-domestic-partnership-lawyer",
+   "clicks": 36,
+   "impr": 27702,
+   "pos": 41.56
+  },
+  {
+   "u": "/attorneys/courtney-ragland",
+   "clicks": 36,
+   "impr": 2256,
+   "pos": 19.52159131205674
+  },
+  {
+   "u": "/blog/2022/january/how-to-file-for-custody-of-a-child-in-colorado-i",
+   "clicks": 35,
+   "impr": 32880,
+   "pos": 37.97
+  },
+  {
+   "u": "/blog/2021/july/all-you-need-to-know-about-testamentary-trusts-1",
+   "clicks": 34,
+   "impr": 33926,
+   "pos": 28.58
+  },
+  {
+   "u": "/blog/2021/december/navigating-the-family-support-registry-in-colora",
+   "clicks": 34,
+   "impr": 25085,
+   "pos": 14.1
+  },
+  {
+   "u": "/blog/2025/january/how-domestic-violence-affects-child-custody-and-",
+   "clicks": 34,
+   "impr": 4892,
+   "pos": 9.12
+  },
+  {
+   "u": "/blog/2024/august/can-alimony-be-modified-after-divorce-",
+   "clicks": 33,
+   "impr": 11457,
+   "pos": 22.99
+  },
+  {
+   "u": "/blog/2022/march/what-do-judges-look-for-in-child-custody-cases-",
+   "clicks": 33,
+   "impr": 3743,
+   "pos": 20.03
+  },
+  {
+   "u": "/blog/2021/january/is-colorado-a-community-property-state-",
+   "clicks": 31,
+   "impr": 24015,
+   "pos": 16.5
+  },
+  {
+   "u": "/blog/2024/december/protection-orders-for-domestic-violence-victims-",
+   "clicks": 31,
+   "impr": 14031,
+   "pos": 15.39
+  },
+  {
+   "u": "/attorneys/timothy-leo",
+   "clicks": 31,
+   "impr": 405,
+   "pos": 7.29
+  },
+  {
+   "u": "/blog/2022/january/how-social-media-is-ruining-your-divorce",
+   "clicks": 30,
+   "impr": 6229,
+   "pos": 20.71
+  },
+  {
+   "u": "/fort-collins-prenuptial-and-postnuptial-agreemen",
+   "clicks": 29,
+   "impr": 14990,
+   "pos": 58.54
+  },
+  {
+   "u": "/blog/2022/april/top-10-sneaky-divorce-tactics-in-colorado-and-ho",
+   "clicks": 29,
+   "impr": 3992,
+   "pos": 33.04
+  },
+  {
+   "u": "/ji-attorneys",
+   "clicks": 28,
+   "impr": 10824,
+   "pos": 6.16
+  },
+  {
+   "u": "/blog/2024/november/navigating-child-custody-issues-through-divorce-",
+   "clicks": 27,
+   "impr": 14862,
+   "pos": 37.45
+  },
+  {
+   "u": "/family-law-lawyer",
+   "clicks": 27,
+   "impr": 222363,
+   "pos": 57.134159010267
+  },
+  {
+   "u": "/blog/2024/march/understanding-colorado-divorce-laws-grounds-for-",
+   "clicks": 25,
+   "impr": 11777,
+   "pos": 26.87
+  }
+ ],
+ "vanished_independent": [
+  {
+   "u": "/blog/2024/july/emergency-motions-to-restrict-parenting-time",
+   "clicks": 435,
+   "impr": 50591,
+   "pos": 7.84
+  },
+  {
+   "u": "/denver-family-law-lawyer",
+   "clicks": 427,
+   "impr": 270776,
+   "pos": 29.43
+  },
+  {
+   "u": "/commerce-city-family-lawyer",
+   "clicks": 401,
+   "impr": 53504,
+   "pos": 12.753247794557414
+  },
+  {
+   "u": "/stages-of-divorce",
+   "clicks": 318,
+   "impr": 13246,
+   "pos": 12.98
+  },
+  {
+   "u": "/blog/2021/february/unmarried-couples-and-home-ownership-in-colorado",
+   "clicks": 315,
+   "impr": 19764,
+   "pos": 21.52
+  },
+  {
+   "u": "/denver-divorce-lawyer",
+   "clicks": 267,
+   "impr": 451180,
+   "pos": 32.64118848353207
+  },
+  {
+   "u": "/commerce-city-divorce-lawyer",
+   "clicks": 233,
+   "impr": 36980,
+   "pos": 20.61
+  },
+  {
+   "u": "/90-day-separation-period-in-colorado",
+   "clicks": 225,
+   "impr": 9399,
+   "pos": 9.91
+  },
+  {
+   "u": "/attorneys/brent-e-mecham",
+   "clicks": 193,
+   "impr": 4633,
+   "pos": 14.56
+  },
+  {
+   "u": "/colorado-springs-family-law-lawyer",
+   "clicks": 189,
+   "impr": 167880,
+   "pos": 34.72476912080057
+  },
+  {
+   "u": "/blog/2024/may/modifying-child-support",
+   "clicks": 180,
+   "impr": 37583,
+   "pos": 14.02
+  },
+  {
+   "u": "/blog/2023/april/modification-of-parenting-time-colorado-2023",
+   "clicks": 179,
+   "impr": 35037,
+   "pos": 13.08
+  },
+  {
+   "u": "/attorneys/jessica-lasky",
+   "clicks": 171,
+   "impr": 6436,
+   "pos": 15.213537911746425
+  },
+  {
+   "u": "/blog/2022/december/protect-your-children-s-inheritance-with-a-lifet",
+   "clicks": 164,
+   "impr": 23081,
+   "pos": 20.24
+  },
+  {
+   "u": "/denver-high-conflict-child-custody-lawyer",
+   "clicks": 151,
+   "impr": 298469,
+   "pos": 44.14127071823204
+  },
+  {
+   "u": "/blog/2024/may/how-to-enforce-child-support-orders-in-colorado",
+   "clicks": 146,
+   "impr": 46094,
+   "pos": 19.67
+  },
+  {
+   "u": "/blog/2024/july/understanding-postnuptial-agreements-in-colorado",
+   "clicks": 136,
+   "impr": 13751,
+   "pos": 12.58
+  },
+  {
+   "u": "/attorneys/andrea-dalton",
+   "clicks": 134,
+   "impr": 19993,
+   "pos": 13.830162056719852
+  },
+  {
+   "u": "/attorneys/thomas-nellessen",
+   "clicks": 130,
+   "impr": 2315,
+   "pos": 12.908941684665226
+  },
+  {
+   "u": "/attorneys/ethan-sumida",
+   "clicks": 119,
+   "impr": 2832,
+   "pos": 12.683329802259887
+  },
+  {
+   "u": "/attorneys/dawn-gould",
+   "clicks": 114,
+   "impr": 3815,
+   "pos": 10.18
+  },
+  {
+   "u": "/colorado-springs-divorce-attorney",
+   "clicks": 108,
+   "impr": 59627,
+   "pos": 41.75
+  },
+  {
+   "u": "/englewood-family-lawyer",
+   "clicks": 102,
+   "impr": 34038,
+   "pos": 13.530351371996005
+  },
+  {
+   "u": "/blog/2022/december/what-can-i-do-if-my-child-s-parent-engages-in-da",
+   "clicks": 102,
+   "impr": 10068,
+   "pos": 9.95
+  },
+  {
+   "u": "/blog/2024/april/calculating-child-support-in-colorado",
+   "clicks": 100,
+   "impr": 22526,
+   "pos": 15.49
+  },
+  {
+   "u": "/blog/2022/november/establishing-paternity-in-colorado",
+   "clicks": 99,
+   "impr": 32427,
+   "pos": 13.84
+  },
+  {
+   "u": "/blog/2024/september/can-a-child-s-preference-influence-custody-decis",
+   "clicks": 98,
+   "impr": 23775,
+   "pos": 12.42
+  },
+  {
+   "u": "/colorado-springs-domestic-partnership-lawyer",
+   "clicks": 97,
+   "impr": 25767,
+   "pos": 26.35922109675166
+  },
+  {
+   "u": "/common-law-marriage",
+   "clicks": 87,
+   "impr": 37483,
+   "pos": 26.54
+  },
+  {
+   "u": "/blog/2023/march/annulments-in-colorado-2023-what-how-when",
+   "clicks": 85,
+   "impr": 30270,
+   "pos": 10.84
+  },
+  {
+   "u": "/fort-collins-family-law-lawyer",
+   "clicks": 78,
+   "impr": 14845,
+   "pos": 16.46
+  },
+  {
+   "u": "/englewood-divorce-lawyer",
+   "clicks": 69,
+   "impr": 34871,
+   "pos": 26.896076682630266
+  },
+  {
+   "u": "/attorneys/daniel-sol",
+   "clicks": 64,
+   "impr": 2174,
+   "pos": 13.95
+  },
+  {
+   "u": "/colorado-springs-prenuptial-postnuptial-agreemen",
+   "clicks": 52,
+   "impr": 26699,
+   "pos": 46.67
+  },
+  {
+   "u": "/blog/2022/november/splitting-the-house-in-a-divorce",
+   "clicks": 49,
+   "impr": 17314,
+   "pos": 21.0
+  },
+  {
+   "u": "/colorado-springs-orders-of-protection-lawyer",
+   "clicks": 45,
+   "impr": 36232,
+   "pos": 37.31
+  },
+  {
+   "u": "/fort-collins-domestic-partnership-lawyer",
+   "clicks": 45,
+   "impr": 14480,
+   "pos": 38.64560428176796
+  },
+  {
+   "u": "/denver-child-custody-lawyer",
+   "clicks": 43,
+   "impr": 418353,
+   "pos": 54.49227695271697
+  },
+  {
+   "u": "/fort-collins-family-law-attorney",
+   "clicks": 43,
+   "impr": 40697,
+   "pos": 24.688597439614714
+  },
+  {
+   "u": "/annulment-in-colorado",
+   "clicks": 43,
+   "impr": 11097,
+   "pos": 16.53
+  },
+  {
+   "u": "/denver-orders-of-protection-lawyer",
+   "clicks": 41,
+   "impr": 59740,
+   "pos": 44.81
+  },
+  {
+   "u": "/fort-collins-divorce-lawyer",
+   "clicks": 37,
+   "impr": 20484,
+   "pos": 28.9
+  },
+  {
+   "u": "/fort-collins-orders-of-protection-lawyer",
+   "clicks": 37,
+   "impr": 12991,
+   "pos": 47.96478331152336
+  },
+  {
+   "u": "/colorado-child-custody",
+   "clicks": 36,
+   "impr": 29792,
+   "pos": 40.38
+  },
+  {
+   "u": "/englewood-domestic-partnership-lawyer",
+   "clicks": 36,
+   "impr": 27702,
+   "pos": 41.56
+  },
+  {
+   "u": "/attorneys/courtney-ragland",
+   "clicks": 36,
+   "impr": 2256,
+   "pos": 19.52159131205674
+  },
+  {
+   "u": "/attorneys/timothy-leo",
+   "clicks": 31,
+   "impr": 405,
+   "pos": 7.29
+  },
+  {
+   "u": "/blog/2022/january/how-social-media-is-ruining-your-divorce",
+   "clicks": 30,
+   "impr": 6229,
+   "pos": 20.71
+  },
+  {
+   "u": "/ji-attorneys",
+   "clicks": 28,
+   "impr": 10824,
+   "pos": 6.16
+  },
+  {
+   "u": "/family-law-lawyer",
+   "clicks": 27,
+   "impr": 222363,
+   "pos": 57.134159010267
+  }
+ ]
+}

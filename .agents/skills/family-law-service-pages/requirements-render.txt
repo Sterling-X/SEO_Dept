@@ -1,0 +1,4 @@
+# Isolated dependency for the narrow pdf2image adapter used with Codex's
+# packaged render_docx.py. LibreOffice is recorded in renderer-tools.lock.json.
+PyMuPDF==1.26.4
+

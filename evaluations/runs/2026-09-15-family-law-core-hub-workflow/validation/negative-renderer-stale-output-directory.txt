@@ -1,0 +1,4 @@
+$ /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/render-core-hub.sh /Users/rocketclicks_1/SEO_Dept/evaluations/runs/2026-09-15-family-law-core-hub-workflow/synthetic-divorce-core.docx --output_dir /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-xflw59om/stale-render --dpi 144
+exit=2
+
+ERROR: Render output directory must be absent or empty: /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-xflw59om/stale-render

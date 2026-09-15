@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnson Law Group — Organic Performance</title>
+<style>
+:root{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --surface-2:#212120;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --clicks:#3987e5; --users:#199e70; --impr:#c98500; --pos:#e66767; --brand:#9085e9;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --surface-2:#f3f2ee;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --clicks:#2a78d6; --users:#1baf7a; --impr:#eda100; --pos:#e34948; --brand:#4a3aa7;
+  --good:#006300;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:20px;margin:54px 0 4px;letter-spacing:-.01em}
+h3{font-size:15px;margin:22px 0 8px}
+.sub{color:var(--ink-2);font-size:14px;margin:0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;border:1px solid var(--border);color:var(--ink-2);background:var(--surface)}
+p{color:var(--ink-2);font-size:14.5px;max-width:80ch}
+p strong,li strong{color:var(--ink)}
+button.toggle{background:var(--surface);color:var(--ink-2);border:1px solid var(--border);border-radius:8px;
+  padding:7px 12px;font-size:13px;cursor:pointer}
+button.toggle:hover{color:var(--ink)}
+
+/* the one-line answer */
+.answer{margin:22px 0 6px;padding:18px 20px;border-radius:14px;background:var(--surface);
+  border:1px solid var(--border);border-left:4px solid var(--crit)}
+.answer .big{font-size:19px;font-weight:650;color:var(--ink);letter-spacing:-.01em;margin:0 0 6px}
+.answer p{margin:0;font-size:14.5px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 4px}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.kpi.hero{border-left:3px solid var(--clicks)}
+.kpi .lab{font-size:12px;color:var(--muted);margin-bottom:6px}
+.kpi .val{font-size:25px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .delta{font-size:12.5px;margin-top:4px;font-weight:600}
+.up{color:var(--good)} .down{color:var(--crit)} .flat{color:var(--muted)}
+.kpi .note{font-size:11.5px;color:var(--muted);margin-top:2px}
+.rowlab{font-size:12px;color:var(--muted);margin:16px 0 -6px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 18px 12px;margin:14px 0}
+.card h3{margin:0 0 2px}
+.card .cap{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.takeaway{font-size:13.5px;color:var(--ink);margin:10px 0 2px;padding:9px 12px;background:var(--surface-2);
+  border-radius:8px;border-left:3px solid var(--brand)}
+.takeaway.bad{border-color:var(--crit)} .takeaway.good{border-color:var(--good)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin:2px 0 6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:3px;display:inline-block}
+.swatch.line{height:3px;width:16px;border-radius:2px}
+svg{display:block;width:100%;height:auto;overflow:visible;font-family:inherit}
+.gl{stroke:var(--grid);stroke-width:1}
+.axis{stroke:var(--axis);stroke-width:1}
+.tick{fill:var(--muted);font-size:11px}
+.tickx{fill:var(--muted);font-size:10.5px}
+.dailywisp{opacity:.26}
+.mk{stroke-dasharray:4 4;stroke-width:1.4}
+.mklab{font-size:10.5px;font-weight:600}
+.trend{stroke-dasharray:6 5;stroke-width:2}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+
+.tip{position:fixed;pointer-events:none;z-index:20;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:9px;padding:8px 10px;font-size:12px;color:var(--ink);box-shadow:0 6px 22px rgba(0,0,0,.35);opacity:0;transition:opacity .08s}
+.tip .r{display:flex;justify-content:space-between;gap:14px;font-variant-numeric:tabular-nums}
+.tip .r span:first-child{color:var(--ink-2)}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 2px}
+th,td{text-align:right;padding:7px 10px;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.02em}
+td.u{color:var(--ink);max-width:420px;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-block;padding:2px 7px;border-radius:999px;font-size:11px;font-weight:600}
+.pill.good{background:rgba(12,163,12,.14);color:var(--good)}
+.pill.warn{background:rgba(250,178,25,.16);color:#b9820c}
+.pill.crit{background:rgba(208,59,59,.15);color:var(--crit)}
+:root[data-theme="dark"] .pill.warn{color:var(--warn)}
+ul.clean{padding-left:18px;margin:8px 0}
+ul.clean li{color:var(--ink-2);font-size:14px;margin:7px 0}
+.two{columns:2;column-gap:40px}
+.two li{break-inside:avoid}
+@media(max-width:820px){.two{columns:1}}
+.callout{border-left:3px solid var(--brand);background:var(--surface);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+.callout.win{border-color:var(--good)} .callout.risk{border-color:var(--crit)} .callout.warnbox{border-color:var(--warn)}
+.callout p{margin:4px 0;font-size:14px}
+.foot{color:var(--muted);font-size:12px;margin-top:40px;border-top:1px solid var(--grid);padding-top:14px}
+.src{color:var(--clicks)}
+.need{background:var(--surface);border:1px dashed var(--axis);border-radius:12px;padding:14px 16px;margin:14px 0}
+.need h3{margin:0 0 6px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <span class="tag">RocketClicks · Organic Performance Review</span>
+    <h1>Johnson Law Group — Organic Search &amp; Engagement</h1>
+    <p class="sub">Google Search Console + GA4 · Mar 2025 → Jul 2026 · Paid, Referral &amp; Cross-network excluded</p>
+  </div>
+  <button class="toggle" id="themeBtn">◐ Theme</button>
+</header>
+
+<div class="answer" style="border-left-color:var(--warn)">
+  <p class="big">Two signals are diverging — and only one is reliable this year.</p>
+  <p><strong>Search Console clicks are down ~40%</strong> vs the 2025 peak — but Google changed how it reports clicks/impressions this year (§3), so GSC now <strong>under-counts real organic visits</strong>. The trustworthy measure is <strong>GA4 new users &amp; engaged sessions</strong>, where organic is the firm's best-quality channel. The decisive chart is <strong>organic new users year-over-year (§2)</strong> — once that data is in, it leads this report. Impressions and average position are shown as plain-text context only, never as trend charts, because both are distorted this year.</p>
+</div>
+
+<div class="rowlab">What matters — clicks &amp; traffic (organic)</div>
+<div class="kpis" id="kpiClicks"></div>
+
+<div class="rowlab">On-site engagement — organic visitors (GA4, cumulative Jan 2025–Jul 2026)</div>
+<div class="kpis" id="kpiEng"></div>
+<p class="note" style="font-size:11.5px;color:var(--muted)">Engagement figures are all-time cumulative for the Organic Search channel — a quality benchmark, not a trend. Month-by-month engagement trends need the GA4 export described at the bottom.</p>
+
+<h2>1 · The traffic story — clicks are the scorecard</h2>
+
+<div class="card">
+  <h3>Monthly organic clicks</h3>
+  <p class="cap">Full calendar months. Amber = agency era (from Mar 2026). Hatched = partial month. Dashed line = trend.</p>
+  <div id="c_mbars"></div>
+  <div class="takeaway bad" id="tk_bars"></div>
+</div>
+
+<div class="card">
+  <h3>Daily clicks with trend</h3>
+  <p class="cap">7-day average (bold) over raw daily (faint). The dashed line is the overall trend across the full period.</p>
+  <div class="legend">
+    <span><i class="swatch line" style="background:var(--clicks)"></i>7-day avg</span>
+    <span><i class="swatch" style="background:var(--clicks);opacity:.35"></i>daily</span>
+    <span><i class="swatch line" style="background:var(--muted)"></i>trend</span>
+    <span><i class="swatch" style="background:var(--warn);opacity:.5"></i>Google update window</span>
+    <span><i class="swatch" style="background:var(--brand)"></i>agency takeover</span>
+  </div>
+  <div id="c_clicks"></div>
+  <div class="takeaway bad">The trend line slopes down across the whole record. Amber bands mark confirmed Google updates — note how the Aug 2025 Spam Update reshaped visibility. The agency era (right of the purple marker) is flat-to-declining in clicks, not yet recovering.</div>
+</div>
+
+<h2>2 · Why it declined — aging content vs. Google's algorithm</h2>
+<p>The most likely primary driver is a large base of <strong>old, overlapping, unrefreshed content</strong> losing favor as Google's 2024–2025 updates raised the bar on quality, originality and consolidation. This is exactly the profile those updates target — and the evidence is in the site's own data.</p>
+<div class="grid2">
+  <div class="card">
+    <h3 style="font-size:14px">Ranking blog content by publish year</h3>
+    <p class="cap">Top ~230 pages. Red = 2021–2022 — <strong>55% of ranking blog URLs</strong> are 3–5 years old.</p>
+    <div id="c_age"></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14px">Duplication &amp; cannibalization</h3>
+    <p class="cap">The same content competing against itself — a direct core-update liability.</p>
+    <ul class="clean" style="margin-top:2px">
+      <li><strong>12 duplicate URL paths</strong> — homepage indexed on <em>both</em> www &amp; non-www; <code>/reviews/</code>, <code>denver-divorce-lawyer</code> and others live at two URLs each.</li>
+      <li><strong>19 overlapping truncated-slug pairs</strong> — e.g. <em>petitioner vs respondent</em> at 1,554 clicks on one URL and 150 on its near-duplicate twin; <em>civil union</em> 234 vs 59.</li>
+      <li><strong>51 pages</strong> draw 20k+ impressions each yet rank <strong>below position 20</strong> — content Google sees but no longer trusts to rank.</li>
+    </ul>
+  </div>
+</div>
+<div class="callout warnbox">
+<p><strong>The timeline fits.</strong> The site's window opens (Mar 20 2025) already depressed at ~position 39 — right as the <strong>March 2025 Core Update</strong> finished. The dramatic autumn shift (impressions halve, position 38→14, accelerating ~Sep 11) overlaps the <strong>confirmed Aug 2025 Spam Update (Aug 26–Sep 22)</strong>: weak/duplicative pages lose visibility, so impressions fall while the surviving pages' average position improves. The original, larger devaluation most likely traces to the <strong>2024 core updates</strong> (esp. <strong>March 2024</strong>, which folded the Helpful Content system into core) — but that predates this data window.</p>
+</div>
+<div class="callout risk">
+<p><strong>Honest caveats.</strong> This is a strong inference, not proof: Search Console gives no per-URL dated ranking history or an update label, so we're matching patterns and dates. And note the autumn-2025 improvement was <em>algorithmic/site-side and pre-dates the March 2026 engagement</em> — the agency inherits the cleanup, it didn't cause the earlier swing. The payoff from fixing this (consolidating duplicates, pruning/refreshing stale posts, aligning with Helpful-Content principles) should show up in <strong>clicks and new users</strong> — which is why those, not impressions, are the recovery scorecard.</p>
+</div>
+
+<h2>3 · Organic new users &amp; engagement — the truer scorecard</h2>
+<p>Search Console clicks are under-counted this year (§3), so the more reliable read is what GA4 measures on the site itself: <strong>new users, engaged sessions, and engagement time.</strong> On quality, organic is the firm's best channel — the open question is the <em>year-over-year new-user trend</em>, charted below.</p>
+
+<div class="card">
+  <h3>Organic new users — year over year</h3>
+  <p class="cap">GA4, first-user channel = Organic Search. Compare the same months across years.</p>
+  <div id="c_yoy"></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3 style="font-size:14px">New users by non-paid channel</h3>
+    <p class="cap">GA4, cumulative. Organic Search is the #2 source of new users and the top converting one.</p>
+    <div id="c_chanUsers"></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14px">Avg engagement time per user (seconds)</h3>
+    <p class="cap">Organic visitors stay ~2× longer than Direct and far longer than social.</p>
+    <div id="c_chanTime"></div>
+  </div>
+</div>
+<div class="callout win">
+<p><strong>Organic punches above its weight.</strong> Organic Search produced <strong>27,539 engaged sessions</strong> and <strong>5,184 key events</strong> — the most conversions of any channel — at <strong>103s</strong> average engagement (vs 47s for Direct). Fewer clicks are reaching the site, but the ones that do convert. Recovering organic click volume directly grows the firm's best lead source.</p>
+</div>
+
+<h2>4 · Why impressions &amp; position are NOT the scorecard this year</h2>
+<div class="callout warnbox">
+<p><strong>Google changed how Search impressions are counted.</strong> Over the past year, AI Overviews and other new result surfaces began generating impressions — and shifting average position — that didn't exist a year ago. This <strong>inflates impressions and distorts year-over-year position</strong>. A rising impression count can mean "Google showed us inside an AI Overview nobody clicked," not "we're winning." The same change means <strong>Search Console clicks now under-count real organic visits</strong> — which is why GSC clicks can fall while GA4 new users rise (§2). We deliberately show <em>no impression or position charts</em> here to avoid a misleading trend line.</p>
+</div>
+<p style="font-size:14px">For the record, in plain numbers (context only — do not treat as success/failure):</p>
+<ul class="clean">
+<li><strong>Average position:</strong> the big ranking gain (≈39 → 14) landed <strong>Aug–Oct 2025, before the engagement began</strong>, then <strong>slipped ~4 positions</strong> (≈15 → 19) in Q2 2026. The slippage is a real signal worth acting on; the earlier gain was not the agency's and did not lift traffic.</li>
+<li><strong>Impressions:</strong> volatile and partly inflated by AI surfaces — not a reliable year-over-year comparison, so we don't score on it.</li>
+</ul>
+
+<h2>5 · Where to optimize — biggest click opportunities</h2>
+<p class="cap" style="font-size:12.5px;color:var(--muted)">High search demand, poor rank. These commercial city×service pages are the fastest paths back to click growth.</p>
+<table>
+<thead><tr><th>Page / query</th><th>Impressions*</th><th>Clicks</th><th>Position</th><th>Priority</th></tr></thead>
+<tbody id="oppTable"></tbody>
+</table>
+<p class="note" style="font-size:11.5px;color:var(--muted)">*Impressions shown for sizing latent demand only; see §3 caveat. 16-month GSC totals.</p>
+
+<ul class="clean two" style="margin-top:14px">
+<li><strong>Money pages stuck on page 3–5:</strong> the Denver &amp; Colorado-Springs divorce / custody / family-law landing pages rank at position 29–57 despite huge demand — the top revenue lever.</li>
+<li><strong>Non-branded head terms are weak:</strong> "child support lawyer" (pos 61), "child custody lawyer" (pos 50), "family attorney" (pos 70).</li>
+<li><strong>The blog is the bright spot:</strong> informational articles rank page-one (petitioner vs respondent, 90-day separation, foreign child support) — use internal links from these to pass authority to the weak money pages.</li>
+<li><strong>Desktop CTR is half of mobile</strong> (0.22% vs 0.56%) — a title/meta &amp; SERP-feature gap on desktop.</li>
+</ul>
+
+<h2>6 · The 90-day focus</h2>
+<ul class="clean">
+<li><strong>Consolidate the duplicate/aging content (root cause).</strong> Canonicalize www vs non-www, merge the truncated-slug twins into one authoritative URL with 301s, and prune or refresh the 2021–2022 posts. This directly addresses what the 2024–2025 updates devalued.</li>
+<li><strong>Stop the Q2 ranking drift</strong> — diagnose the April indexation anomaly (position briefly spiked to ~63) and recover the ~4 positions lost since March.</li>
+<li><strong>Attack the money pages</strong> — Denver &amp; Colorado-Springs divorce/custody/family-law pages from page 3–5 onto page one.</li>
+<li><strong>Grow the firm's best channel</strong> — every recovered organic click flows into the highest-engagement, highest-converting channel (§2).</li>
+<li><strong>Report on clicks + engaged sessions, not impressions.</strong> Recovery is real only when monthly clicks clear the ~1,600/mo pre-takeover run-rate for two consecutive clean months.</li>
+</ul>
+
+<div class="need">
+<h3>To add the engagement trends you asked for, I need one more export</h3>
+<p style="margin:2px 0">The GA4 file provided is a single all-time snapshot, so I can show engagement <em>quality</em> but not its <em>trend</em>. To chart <strong>new users, engaged sessions, and engagement time over time</strong>, pull from GA4:</p>
+<p style="margin:6px 0;color:var(--ink)"><strong>Reports → Acquisition → Traffic acquisition</strong> (or Explore) · Dimension: <strong>Month</strong> · Filter: <strong>Session/First-user channel = Organic Search</strong> · Metrics: New users, Total users, Engaged sessions, Avg engagement time · Range: Jan 2025–present · Export CSV.</p>
+<p style="margin:2px 0">With that, I'll add month-over-month organic engagement lines beside the clicks chart so traffic and quality trends sit together.</p>
+</div>
+
+<div class="foot">
+<p><span class="src">Sources:</span> Google Search Console (Web, 16 months) and GA4 User-acquisition channel export (Johnson Law Group). GSC dimension tables are 16-month aggregates without a time axis; the daily Chart series carries all time-based conclusions. GA4 channel figures are cumulative. Note: the GA4 export's "New users" exceeds "Total users" per channel (a first-user-attribution export quirk) — engaged sessions, engagement time, and key events are used as the reliable quality signals. Impressions/position are shown as context only per §3. Hover charts for values; toggle theme top-right.</p>
+</div>
+</div>
+
+<div class="tip" id="tip"></div>
+<script>
+const DATA = __DATA__;
+const $=id=>document.getElementById(id);
+const tip=$('tip');
+const fmt=n=>n>=1000?(n/1000).toFixed(n>=10000?0:1)+'k':(''+Math.round(n));
+const fmtF=(n,d=0)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const parse=d=>new Date(d+'T00:00:00');
+const daily=DATA.daily, monthly=DATA.monthly, channels=DATA.channels;
+const t0=parse(daily[0].d).getTime(), t1=parse(daily[daily.length-1].d).getTime();
+const MARKERS=[{d:'2026-03-01',l:'Agency takeover'}];
+// Confirmed Google update rollout windows (Search Console data starts 2025-03-20)
+const UPDATES=[
+  {s:'2025-03-13',e:'2025-03-27',l:'Mar 2025 Core'},
+  {s:'2025-06-30',e:'2025-07-17',l:'Jun 2025 Core'},
+  {s:'2025-08-26',e:'2025-09-22',l:'Aug 2025 Spam'},
+  {s:'2025-12-11',e:'2025-12-29',l:'Dec 2025 Core'},
+];
+
+function agg(a,b){let c=0,i=0,ps=0,n=0;for(const x of daily){if(x.d>=a&&x.d<=b){c+=x.c;i+=x.i;ps+=x.p;n++;}}return{c,cpd:c/n,ipd:i/n,ctr:100*c/i,pos:ps/n,n};}
+const pre=agg('2025-12-01','2026-02-28'), post=agg('2026-03-01','2026-07-19');
+const ly=agg('2025-03-20','2025-07-19'), ty=agg('2026-03-20','2026-07-19');
+
+function deltaHTML(cur,prev,inv,pct,unit){let d=cur-prev,better=inv?d<0:d>0;
+  let s=(d>0?'+':'')+(pct?fmtF(100*d/prev,0)+'%':fmtF(d,1)+unit);
+  return `<div class="delta ${better?'up':'down'}">${better?'▲':'▼'} ${s}</div>`;}
+
+$('kpiClicks').innerHTML=[
+ {h:1,lab:'Clicks/day — agency era',val:fmtF(post.cpd,1),d:deltaHTML(post.cpd,pre.cpd,false,true)+`<div class="note">vs prior 90d (${fmtF(pre.cpd,1)})</div>`},
+ {h:1,lab:'Clicks vs same period last yr',val:fmtF(ty.cpd,1)+'/d',d:deltaHTML(ty.cpd,ly.cpd,false,true)+`<div class="note">Mar–Jul: ${fmtF(ly.cpd,1)}→${fmtF(ty.cpd,1)}/day</div>`},
+ {lab:'Total clicks — agency era',val:fmtF(post.c),d:`<div class="note">Mar 1–Jul 19 2026 · ${post.n} days</div>`},
+ {lab:'CTR — agency era',val:fmtF(post.ctr,2)+'%',d:deltaHTML(post.ctr,pre.ctr,false,true)+`<div class="note">vs prior 90d (${fmtF(pre.ctr,2)}%)</div>`},
+].map(k=>`<div class="kpi ${k.h?'hero':''}"><div class="lab">${k.lab}</div><div class="val">${k.val}</div>${k.d}</div>`).join('');
+
+const org=channels[0];
+$('kpiEng').innerHTML=[
+ {lab:'New users (organic)',val:fmtF(org.nu)},
+ {lab:'Engaged sessions (organic)',val:fmtF(org.eng)},
+ {lab:'Avg engagement time',val:org.engT+'s'},
+ {lab:'Key events / conversions',val:fmtF(org.ke)},
+].map(k=>`<div class="kpi"><div class="lab">${k.lab}</div><div class="val">${k.val}</div><div class="note">cumulative, all-time</div></div>`).join('');
+
+// linear regression helper -> {m,b} on index
+function linreg(ys){const n=ys.length;let sx=0,sy=0,sxy=0,sxx=0;
+  for(let i=0;i<n;i++){sx+=i;sy+=ys[i];sxy+=i*ys[i];sxx+=i*i;}
+  const m=(n*sxy-sx*sy)/(n*sxx-sx*sx);const b=(sy-m*sx)/n;return{m,b};}
+
+function tsChart(el,key,color,{invert=false,wisp=false,trend=false,bands=false,fmtY=fmt,h=210}={}){
+  const W=720,H=h,mL=46,mR=14,mT=16,mB=26;
+  const xs=t=>mL+(t-t0)/(t1-t0)*(W-mL-mR);
+  const vals=daily.map(x=>x[key]);
+  let lo=Math.min(...vals),hi=Math.max(...vals);
+  if(key==='pR'||key==='p'){hi=Math.min(hi,50);}
+  const pad=(hi-lo)*0.08;lo-=pad;hi+=pad;if(invert){[lo,hi]=[hi,lo];}
+  const ys=v=>{v=Math.max(Math.min(v,Math.max(lo,hi)),Math.min(lo,hi));return mT+(v-lo)/(hi-lo)*(H-mT-mB);};
+  let g='';const rlo=invert?hi:lo,rhi=invert?lo:hi;
+  for(let s=0;s<=4;s++){const v=rlo+(rhi-rlo)*s/4,y=ys(v);
+    g+=`<line class="gl" x1="${mL}" y1="${y.toFixed(1)}" x2="${W-mR}" y2="${y.toFixed(1)}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmtY(v)}</text>`;}
+  if(bands){for(const u of UPDATES){const x1=xs(parse(u.s).getTime()),x2=xs(parse(u.e).getTime());
+    g+=`<rect x="${x1.toFixed(1)}" y="${mT}" width="${Math.max(2,x2-x1).toFixed(1)}" height="${H-mT-mB}" fill="var(--warn)" opacity="0.14"/>`;
+    g+=`<text class="mklab" fill="var(--warn)" transform="translate(${(x1+2).toFixed(1)},${mT+2}) rotate(90)" style="font-size:9px">${u.l}</text>`;}}
+  let cur=new Date(parse(daily[0].d));cur.setDate(1);const end=parse(daily[daily.length-1].d);
+  while(cur<=end){const t=cur.getTime();if(t>=t0&&t<=t1){const x=xs(t);
+    g+=`<text class="tickx" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${cur.toLocaleDateString('en-US',{month:'short'})}${cur.getMonth()===0?" '"+String(cur.getFullYear()).slice(2):''}</text>`;}
+    cur.setMonth(cur.getMonth()+2);}
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  for(const m of MARKERS){const x=xs(parse(m.d).getTime());
+    g+=`<line class="mk" stroke="var(--brand)" x1="${x.toFixed(1)}" y1="${mT}" x2="${x.toFixed(1)}" y2="${H-mB}"/>`;
+    g+=`<text class="mklab" fill="var(--brand)" x="${(x+4).toFixed(1)}" y="${mT+10}">${m.l}</text>`;}
+  if(wisp){let p='';daily.forEach((x,i)=>{p+=(i?'L':'M')+xs(parse(x.d).getTime()).toFixed(1)+' '+ys(x[key.replace('R','')]).toFixed(1);});
+    g+=`<path class="dailywisp" d="${p}" fill="none" stroke="${color}" stroke-width="1"/>`;}
+  let p='';daily.forEach((x,i)=>{p+=(i?'L':'M')+xs(parse(x.d).getTime()).toFixed(1)+' '+ys(x[key]).toFixed(1);});
+  g+=`<path d="${p}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round"/>`;
+  if(trend){const rawKey=key.replace('R','');const lr=linreg(daily.map(x=>x[rawKey]));
+    const y0=ys(lr.b),y1=ys(lr.b+lr.m*(daily.length-1));
+    g+=`<path class="trend" stroke="var(--muted)" fill="none" d="M${xs(t0).toFixed(1)} ${y0.toFixed(1)} L${xs(t1).toFixed(1)} ${y1.toFixed(1)}"/>`;}
+  g+=`<rect x="${mL}" y="${mT}" width="${W-mL-mR}" height="${H-mT-mB}" fill="transparent" class="hit"/>`;
+  g+=`<line id="cr_${key}" x1="0" y1="${mT}" x2="0" y2="${H-mB}" stroke="var(--muted)" stroke-width="1" opacity="0"/>`;
+  g+=`<circle id="dt_${key}" r="4" fill="${color}" stroke="var(--surface)" stroke-width="1.5" opacity="0"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${g}</svg>`;
+  const svg=el.querySelector('svg'),cross=svg.querySelector('#cr_'+key),dot=svg.querySelector('#dt_'+key);
+  svg.querySelector('.hit').addEventListener('mousemove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=(ev.clientX-r.left)/r.width*W,frac=(sx-mL)/(W-mL-mR),tt=t0+frac*(t1-t0);
+    let best=daily[0],bd=1e18;for(const x of daily){const dd=Math.abs(parse(x.d).getTime()-tt);if(dd<bd){bd=dd;best=x;}}
+    const x=xs(parse(best.d).getTime()),y=ys(best[key]);
+    cross.setAttribute('x1',x);cross.setAttribute('x2',x);cross.setAttribute('opacity','1');
+    dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('opacity','1');
+    tip.style.opacity='1';tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';
+    tip.innerHTML=`<b>${parse(best.d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</b>
+      <div class="r"><span>Clicks</span><span>${best.c}</span></div>
+      <div class="r"><span>Impressions</span><span>${fmtF(best.i)}</span></div>
+      <div class="r"><span>CTR</span><span>${best.ctr}%</span></div>
+      <div class="r"><span>Position</span><span>${best.p}</span></div>`;});
+  svg.querySelector('.hit').addEventListener('mouseleave',()=>{tip.style.opacity='0';cross.setAttribute('opacity','0');dot.setAttribute('opacity','0');});
+}
+
+// monthly bars with trend + partial marking
+function bars(el){
+  const W=720,H=240,mL=46,mR=14,mT=16,mB=36;
+  const max=Math.max(...monthly.map(m=>m.c));
+  const bw=(W-mL-mR)/monthly.length;
+  const partial=m=>m.days<=20;
+  let g='';
+  for(let s=0;s<=4;s++){const v=max*s/4,y=mT+(1-s/4)*(H-mT-mB);
+    g+=`<line class="gl" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${y+3}" text-anchor="end">${fmt(v)}</text>`;}
+  // hatch pattern for partial
+  g=`<defs><pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+       <rect width="6" height="6" fill="var(--muted)" opacity="0.18"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--muted)" stroke-width="2"/></pattern></defs>`+g;
+  monthly.forEach((m,i)=>{const agency=m.m>='2026-03';
+    const x=mL+i*bw+3,w=bw-6,hgt=(m.c/max)*(H-mT-mB),y=H-mB-hgt;
+    const fill=partial(m)?'url(#hatch)':(agency?'var(--impr)':'var(--clicks)');
+    g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${hgt.toFixed(1)}" rx="3" fill="${fill}" class="mbar" data-m="${m.m}" data-c="${m.c}" data-p="${m.p}" data-ctr="${m.ctr}" data-pt="${partial(m)?1:0}"/>`;
+    if(i%2===0||i===monthly.length-1)g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-20}" text-anchor="middle">${m.m.slice(5)}</text>`;
+    g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-8}" text-anchor="middle" fill="var(--muted)">${m.m.slice(0,4)==='2025'?"'25":"'26"}</text>`;});
+  // trend over FULL months only
+  const full=monthly.map((m,i)=>({i,c:m.c,p:m.days>20}));
+  const fm=full.filter(o=>o.p);const lr=linreg(fm.map(o=>o.c));
+  const yAt=idx=>{const c=lr.b+lr.m*(fm.findIndex(o=>o.i===idx));return c;};
+  // draw trend line across full-month bar centers
+  const first=fm[0],last=fm[fm.length-1];
+  const cx=idx=>mL+idx*bw+bw/2;
+  const cyc=c=>H-mB-(c/max)*(H-mT-mB);
+  const y0=cyc(lr.b),y1=cyc(lr.b+lr.m*(fm.length-1));
+  g+=`<path class="trend" stroke="var(--muted)" fill="none" d="M${cx(first.i).toFixed(1)} ${y0.toFixed(1)} L${cx(last.i).toFixed(1)} ${y1.toFixed(1)}"/>`;
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  el.querySelectorAll('.mbar').forEach(r=>{
+    r.addEventListener('mousemove',ev=>{tip.style.opacity='1';tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';
+      tip.innerHTML=`<b>${r.dataset.m}${r.dataset.pt==='1'?' (partial)':''}</b><div class="r"><span>Clicks</span><span>${fmtF(+r.dataset.c)}</span></div>
+      <div class="r"><span>CTR</span><span>${r.dataset.ctr}%</span></div><div class="r"><span>Avg position</span><span>${r.dataset.p}</span></div>`;});
+    r.addEventListener('mouseleave',()=>tip.style.opacity='0');});
+  // takeaway text
+  const peak=Math.max(...monthly.filter(m=>m.days>20).map(m=>m.c));
+  const recent=monthly.filter(m=>m.days>20).slice(-3);
+  const recentAvg=recent.reduce((a,m)=>a+m.c,0)/recent.length;
+  $('tk_bars').innerHTML=`Peak full month was <b>${fmtF(peak)}</b> clicks (spring 2025). Recent full months average <b>${fmtF(Math.round(recentAvg))}</b> — about <b>${Math.round(100-100*recentAvg/peak)}% lower</b>. The agency-era bars (amber) are not trending up.`;
+}
+
+function hbars(el,items,valKey,color,fmtV){
+  const max=Math.max(...items.map(x=>x[valKey]));
+  el.innerHTML=items.filter(x=>x[valKey]>0).map(x=>{const w=(x[valKey]/max)*100;
+    return `<div style="margin:9px 0">
+      <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:3px">
+        <span style="color:var(--ink)">${x.k}</span><span style="color:var(--ink-2);font-variant-numeric:tabular-nums">${fmtV(x)}</span></div>
+      <div style="background:var(--surface-2);border-radius:5px;height:12px"><div style="width:${w}%;background:${color};height:12px;border-radius:5px"></div></div></div>`;}).join('');
+}
+
+const OPP=[
+ ['/denver-divorce-lawyer/',450148,239,32.7,'crit','Critical'],
+ ['/denver-child-custody-lawyer/',418094,43,54.5,'crit','Critical'],
+ ['/denver-family-law-lawyer/',270776,427,29.4,'crit','Critical'],
+ ['/denver-high-conflict-child-custody-lawyer/',246865,122,45.2,'crit','Critical'],
+ ['/denver-child-support-lawyer/',239330,18,56.7,'crit','Critical'],
+ ['/colorado-springs-family-law-lawyer/',103992,176,31.1,'warn','High'],
+ ['“child support lawyer” (query)',74937,3,60.8,'crit','Critical'],
+ ['“child custody lawyer” (query)',54576,5,50.0,'crit','Critical'],
+ ['“family lawyer” (query)',85483,12,19.9,'warn','High'],
+ ['“divorce lawyer” (query)',135640,48,9.8,'good','Push to top-5'],
+];
+
+// YoY organic new users. Fill from GA4 when available:
+//   const YOY = [{p:'Jan–Jul 2025', nu: 12345}, {p:'Jan–Jul 2026', nu: 23456}];
+const YOY = null;
+function yoyChart(el){
+  if(!YOY){
+    el.innerHTML=`<div style="padding:22px;border:1px dashed var(--axis);border-radius:10px;text-align:center;color:var(--muted);font-size:13.5px">
+      <div style="color:var(--ink);font-weight:600;margin-bottom:4px">Awaiting GA4 year-over-year new-user data</div>
+      The export provided is a single all-time total (${fmtF(channels[0].nu)} organic new users, cumulative).
+      Send organic <b>New users</b> for two matching windows (e.g. Jan–Jul 2025 vs Jan–Jul 2026) and this becomes the headline chart.</div>`;
+    return;
+  }
+  const W=720,H=210,mL=54,mR=16,mT=16,mB=30,max=Math.max(...YOY.map(y=>y.nu));
+  const bw=(W-mL-mR)/YOY.length;let g='';
+  for(let s=0;s<=4;s++){const v=max*s/4,y=mT+(1-s/4)*(H-mT-mB);
+    g+=`<line class="gl" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${y+3}" text-anchor="end">${fmt(v)}</text>`;}
+  YOY.forEach((y,i)=>{const x=mL+i*bw+bw*0.22,w=bw*0.56,hgt=(y.nu/max)*(H-mT-mB),yy=H-mB-hgt;
+    g+=`<rect x="${x.toFixed(1)}" y="${yy.toFixed(1)}" width="${w.toFixed(1)}" height="${hgt.toFixed(1)}" rx="4" fill="${i===YOY.length-1?'var(--users)':'var(--muted)'}"/>`;
+    g+=`<text x="${(x+w/2).toFixed(1)}" y="${(yy-6).toFixed(1)}" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="650">${fmtF(y.nu)}</text>`;
+    g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-8}" text-anchor="middle">${y.p}</text>`;});
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  if(YOY.length===2){const d=100*(YOY[1].nu-YOY[0].nu)/YOY[0].nu,up=d>=0;
+    el.insertAdjacentHTML('beforeend',`<div class="takeaway ${up?'good':'bad'}">Organic new users are <b>${up?'up':'down'} ${Math.abs(d).toFixed(0)}%</b> year over year (${fmtF(YOY[0].nu)} → ${fmtF(YOY[1].nu)}) — the on-site metric that matters, and it moves opposite to raw Search Console clicks.</div>`);}
+}
+// Blog content by publish year (from Pages export, top ~230 pages) — [year, pages, clicks, impressions]
+const AGE=[['2021',32,2434,1239028],['2022',35,6169,1390826],['2023',9,1172,189208],['2024',33,3875,758127],['2025',8,721,83519],['2026',4,190,38582]];
+function ageChart(el){
+  const W=720,H=200,mL=40,mR=14,mT=14,mB=30,max=Math.max(...AGE.map(a=>a[1]));
+  const bw=(W-mL-mR)/AGE.length;let g='';
+  for(let s=0;s<=4;s++){const v=max*s/4,y=mT+(1-s/4)*(H-mT-mB);
+    g+=`<line class="gl" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${y+3}" text-anchor="end">${Math.round(v)}</text>`;}
+  AGE.forEach((a,i)=>{const aging=a[0]==='2021'||a[0]==='2022';
+    const x=mL+i*bw+bw*0.18,w=bw*0.64,hgt=(a[1]/max)*(H-mT-mB),y=H-mB-hgt;
+    g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${hgt.toFixed(1)}" rx="3" fill="${aging?'var(--pos)':'var(--muted)'}" class="agebar" data-y="${a[0]}" data-pg="${a[1]}" data-cl="${a[2]}" data-im="${a[3]}"/>`;
+    g+=`<text x="${(x+w/2).toFixed(1)}" y="${(y-5).toFixed(1)}" text-anchor="middle" fill="var(--ink)" font-size="12" font-weight="600">${a[1]}</text>`;
+    g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-10}" text-anchor="middle">${a[0]}</text>`;});
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  el.querySelectorAll('.agebar').forEach(r=>{
+    r.addEventListener('mousemove',ev=>{tip.style.opacity='1';tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';
+      tip.innerHTML=`<b>${r.dataset.y} blog posts</b><div class="r"><span>Pages</span><span>${r.dataset.pg}</span></div>
+      <div class="r"><span>Clicks</span><span>${fmtF(+r.dataset.cl)}</span></div><div class="r"><span>Impressions</span><span>${fmtF(+r.dataset.im)}</span></div>`;});
+    r.addEventListener('mouseleave',()=>tip.style.opacity='0');});
+}
+function render(){
+  tsChart($('c_clicks'),'cR','var(--clicks)',{wisp:true,trend:true,bands:true,h:250});
+  bars($('c_mbars'));
+  yoyChart($('c_yoy'));
+  ageChart($('c_age'));
+  hbars($('c_chanUsers'),channels,'nu','var(--users)',x=>fmtF(x.nu)+' new · '+fmtF(x.ke)+' conv.');
+  hbars($('c_chanTime'),channels,'engT','var(--clicks)',x=>x.engT+'s');
+  $('oppTable').innerHTML=OPP.map(r=>`<tr><td class="u">${r[0]}</td><td>${fmtF(r[1])}</td><td>${r[2]}</td><td>${r[3]}</td><td style="text-align:right"><span class="pill ${r[4]}">${r[5]}</span></td></tr>`).join('');
+}
+render();
+$('themeBtn').addEventListener('click',()=>{const cur=document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme',cur==='dark'?'light':'dark');render();});
+</script>
+</body>
+</html>

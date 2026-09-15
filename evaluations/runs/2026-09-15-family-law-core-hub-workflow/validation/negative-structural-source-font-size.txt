@@ -1,0 +1,12 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/office/validate.py /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-xflw59om/example-bad-divorce-core.docx --manifest /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-xflw59om/sourced-formatting.json
+exit=1
+
+
+=== Core Hub structural validation: example-bad-divorce-core.docx ===
+
+Inventory: words=1833 | headings=15 | lists=10 | hyperlinks=7 | manifest_links=5 | sources=1
+
+FAIL (1):
+  ✗ Sources text must use 12 pt body size; found '22' in '[1] Synthetic source-format marker | https://example.com/sou'.
+
+Scope: structure and manifest mechanics only; not editorial, SEO, visual, publication, or legal clearance.

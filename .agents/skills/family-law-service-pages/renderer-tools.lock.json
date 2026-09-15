@@ -1,0 +1,27 @@
+{
+  "scope": "isolated local visual-review tooling; not application dependencies",
+  "libreoffice": {
+    "version": "26.8.0",
+    "platform": "macOS aarch64",
+    "source_url": "https://download.documentfoundation.org/libreoffice/stable/26.8.0/mac/aarch64/LibreOffice_26.8.0_MacOS_aarch64.dmg",
+    "dmg_sha256": "8858d8058da4f862f47559486814e65efc27294da67c5e4bb56b006b1ee59f89",
+    "install_path": ".tools/LibreOffice.app"
+  },
+  "python": {
+    "requirement": "PyMuPDF==1.26.4",
+    "observed_wheel_sha256": "67e9e6b45832c33726651c2a031e9a20108fd9e759140b9e843f934de813a7ff",
+    "adapter": "scripts/render_support/pdf2image.py"
+  },
+  "renderer": {
+    "package_version": "26.819.11345",
+    "relative_path": "plugins/cache/openai-primary-runtime/documents/26.819.11345/skills/documents/render_docx.py",
+    "sha256": "d8fe979f76e11215e146e53484bb4cb4e5f3906b58debed6844171073b187286",
+    "selection": "Exact installed package path; wrapper fails closed if absent or changed"
+  },
+  "limitations": [
+    "The adapter implements only the two pdf2image functions used by render_docx.py.",
+    "A different Codex documents renderer requires explicit revalidation and a lock update.",
+    "LibreOffice pagination may differ slightly from Microsoft Word.",
+    "Fonts absent from the local machine may be substituted."
+  ]
+}

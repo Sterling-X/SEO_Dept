@@ -1,5 +1,7 @@
 # SEO Skill Import Report
 
+> Historical import record: baseline commit `9d8e07f9c31f6611213bcee30fd1fecf44fd811b` preserves the verified unchanged export. Fourteen `agents/openai.yaml` files were adapted afterward for the installed Codex parser and no longer match their original hashes. See [SEO Skill Local Adaptations](seo-skill-local-adaptations.md).
+
 Completed: 2026-09-15  
 Repository: `/Users/rocketclicks_1/SEO_Dept`  
 Branch: `seo-agent-foundation`
@@ -70,7 +72,7 @@ A separate verifier reread the JSON source and every destination file. It compar
 - Payload bytes verified: 504,131
 - Mismatches: 0
 
-The imported skill files were checked again after the requested documentation updates; results remained 67/67 with zero mismatches.
+The imported skill files were checked again after the requested import documentation updates; at baseline commit `9d8e07f`, results remained 67/67 with zero mismatches. Later local adaptations are outside this historical integrity result.
 
 ## Discovery result
 
@@ -79,7 +81,7 @@ File presence and Codex discovery were tested separately.
 - Presence: all 14 skill directories and 67 payload files exist. Including the pre-existing shared README, `.agents/skills` contains 68 files.
 - Resolver discovery: `skills/list` with `forceReload: true` returned 14 repository-scoped, enabled skills and zero list errors.
 - Model visibility: a fresh prompt render listed all 14 imported skill names and descriptions under the repository skill root.
-- Metadata compatibility: this Codex build warned on all 14 imported `agents/openai.yaml` files because `policy.products` includes unsupported value `api`. It ignored that optional interface metadata but still discovered every `SKILL.md` entrypoint.
+- Metadata compatibility at import and in the unchanged baseline: this Codex build warned on all 14 imported `agents/openai.yaml` files because `policy.products` included unsupported value `api`. It ignored that optional interface metadata but still discovered every `SKILL.md` entrypoint. The later working-tree adaptation and current warning-free result are recorded separately in [SEO Skill Local Adaptations](seo-skill-local-adaptations.md).
 
 These are actual results from `codex-cli 0.154.0-alpha.6.2` on 2026-09-15. They establish discovery, not execution or quality.
 

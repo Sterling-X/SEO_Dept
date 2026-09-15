@@ -8,9 +8,9 @@ Portable project skills are stored as folders under:
 
 Each skill may include its own `scripts/`, `references/`, `assets/`, or other supporting resources. Keep a skill narrowly scoped, document when it should trigger, and avoid embedding client-specific confidential data in a portable skill.
 
-The unchanged SEO transfer was imported on 2026-09-15: 14 skills, 67 payload files, and 504,131 payload bytes. All 67 destination files match their declared source sizes and SHA-256 hashes. See [the import report](../../docs/seo-skill-import-report.md) for the inventory and [the compatibility contract](../../docs/seo-skill-compatibility.md) before using a workflow.
+The unchanged SEO transfer was imported on 2026-09-15: 14 skills, 67 payload files, and 504,131 payload bytes. Baseline commit `9d8e07f` preserves all 67 files at their verified source hashes. Fourteen metadata files were adapted afterward for this Codex build; see [the local adaptation log](../../docs/seo-skill-local-adaptations.md). Read [the import report](../../docs/seo-skill-import-report.md) and [the compatibility contract](../../docs/seo-skill-compatibility.md) before using a workflow.
 
-Four source workflows remain incomplete: `family-law-service-pages`, `family-law-situational-pages`, `family-law-service-area-seo`, and `cluster-blog-writer`. Their exact missing dependencies and repair order are recorded in the compatibility document. Do not claim their absent validations passed.
+Four imported source packages were incomplete. The Core Practice-Area Hub branch of `family-law-service-pages` now has a separately documented and tested local repair, including a genuine recovered page validator; its Procedural branch remains pending. `family-law-situational-pages`, `family-law-service-area-seo`, and `cluster-blog-writer` remain incomplete. See the compatibility document for exact status and do not extend the Core result to any pending branch.
 
 Client voice is explicitly routed by domain:
 
@@ -25,7 +25,7 @@ Actual discovery was checked with `codex-cli 0.154.0-alpha.6.2` on 2026-09-15:
 - a structured resolver reload returned all 14 skills as repository-scoped and enabled, with zero list errors; and
 - a fresh model-prompt render included all 14 imported names and descriptions.
 
-All imported `agents/openai.yaml` files warn on the unsupported `api` product value in this Codex build. That optional interface metadata is ignored, but all 14 core `SKILL.md` entrypoints are discovered. The imported metadata remains unchanged so any compatibility repair can be reviewed separately.
+The original `agents/openai.yaml` files warned on unsupported product value `api`. The local adaptation removed only that value. Current verification returns all 14 interface objects and zero repository metadata warnings while preserving `allow_implicit_invocation: true` in every skill.
 
 For later versions or sessions:
 

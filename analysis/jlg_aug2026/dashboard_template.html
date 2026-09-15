@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnson Law Group — Organic Search Diagnostic</title>
+<style>
+:root{
+  color-scheme: light;
+  --surface-1:#fcfcfb; --page:#f9f9f7;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --o1:#86b6ef; --o2:#5598e7; --o3:#2a78d6; --o4:#1c5cab; --o5:#104281;
+  --db-before:#86b6ef; --db-after:#1c5cab;
+  --deemph:#a8a79c;
+  --r1:#1c5cab; --r2:#5598e7; --r3:#86b6ef;
+  --good:#0ca30c; --warning:#fab219; --serious:#ec835a; --critical:#d03b3b;
+  --delta-good:#006300; --delta-bad:#d03b3b;
+  --wash:rgba(42,120,214,0.10);
+}
+@media (prefers-color-scheme: dark){
+ :root:where(:not([data-theme="light"])){
+  color-scheme: dark;
+  --surface-1:#1a1a19; --page:#0d0d0d;
+  --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --o1:#cde2fb; --o2:#9ec5f4; --o3:#6da7ec; --o4:#3987e5; --o5:#184f95;
+  --db-before:#3987e5; --db-after:#cde2fb;
+  --deemph:#5c5b56;
+  --r1:#cde2fb; --r2:#6da7ec; --r3:#3987e5;
+  --delta-good:#0ca30c; --delta-bad:#e66767;
+  --wash:rgba(57,135,229,0.14);
+ }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --surface-1:#1a1a19; --page:#0d0d0d;
+  --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --o1:#cde2fb; --o2:#9ec5f4; --o3:#6da7ec; --o4:#3987e5; --o5:#184f95;
+  --db-before:#3987e5; --db-after:#cde2fb;
+  --deemph:#5c5b56;
+  --r1:#cde2fb; --r2:#6da7ec; --r3:#3987e5;
+  --delta-good:#0ca30c; --delta-bad:#e66767;
+  --wash:rgba(57,135,229,0.14);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--page); color:var(--text-primary);
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 24px 96px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:8px;flex-wrap:wrap}
+h1{font-size:26px;font-weight:650;letter-spacing:-.02em;margin:0 0 4px}
+.sub{color:var(--text-secondary);font-size:13.5px;margin:0}
+.toggle{background:var(--surface-1);border:1px solid var(--border);border-radius:8px;
+  padding:7px 13px;font:inherit;font-size:12.5px;color:var(--text-secondary);cursor:pointer}
+.toggle:hover{color:var(--text-primary)}
+
+h2{font-size:12px;font-weight:660;letter-spacing:.09em;text-transform:uppercase;
+   color:var(--text-muted);margin:52px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
+h2:first-of-type{margin-top:36px}
+
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:22px 22px 18px;margin-bottom:16px}
+.card h3{font-size:15.5px;font-weight:620;margin:0 0 3px;letter-spacing:-.01em}
+.card .note{color:var(--text-secondary);font-size:13px;margin:0 0 18px;max-width:82ch}
+.card .foot{color:var(--text-muted);font-size:12px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--border)}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(186px,1fr));gap:12px;margin-bottom:8px}
+.kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:16px 17px}
+.kpi .lbl{font-size:12px;color:var(--text-secondary);margin-bottom:7px;line-height:1.35;min-height:2.7em}
+.kpi .val{font-size:29px;font-weight:650;letter-spacing:-.025em;line-height:1.05}
+.kpi .dlt{font-size:12.5px;margin-top:5px;color:var(--text-secondary)}
+.dlt .dn{color:var(--delta-bad);font-weight:600}
+.dlt .up{color:var(--delta-good);font-weight:600}
+.hero{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;
+  padding:26px 24px;margin-bottom:16px;display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.hero .fig{font-size:60px;font-weight:660;letter-spacing:-.035em;line-height:1;color:var(--delta-bad)}
+.hero .txt{flex:1;min-width:280px}
+.hero .txt strong{display:block;font-size:15px;margin-bottom:3px}
+.hero .txt span{color:var(--text-secondary);font-size:13.5px}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+
+svg{display:block;overflow:visible}
+.gl{stroke:var(--grid);stroke-width:1;shape-rendering:crispEdges}
+.ax{stroke:var(--axis);stroke-width:1;shape-rendering:crispEdges}
+.tick{fill:var(--text-muted);font-size:11px;font-variant-numeric:tabular-nums}
+.tickc{fill:var(--text-muted);font-size:11px}
+.dlab{fill:var(--text-primary);font-size:11.5px;font-weight:620}
+.dlab2{fill:var(--text-secondary);font-size:11px}
+.axtitle{fill:var(--text-muted);font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 14px;font-size:12.5px;color:var(--text-secondary)}
+.legend .it{display:flex;align-items:center;gap:7px}
+.legend .sw{width:12px;height:12px;border-radius:3px;flex:none}
+.legend .ln{width:16px;height:2px;border-radius:1px;flex:none}
+
+.tt{position:fixed;pointer-events:none;z-index:99;background:var(--surface-1);
+  border:1px solid var(--border);border-radius:9px;padding:9px 11px;font-size:12.5px;
+  box-shadow:0 6px 22px rgba(0,0,0,.16);opacity:0;transition:opacity .1s;min-width:132px}
+.tt .h{color:var(--text-secondary);font-size:11.5px;margin-bottom:6px}
+.tt .r{display:flex;align-items:center;gap:8px;margin-top:3px;white-space:nowrap}
+.tt .k{width:14px;height:2px;border-radius:1px;flex:none}
+.tt .v{font-weight:660;color:var(--text-primary);font-variant-numeric:tabular-nums}
+.tt .n{color:var(--text-secondary);font-size:12px}
+
+.tblbtn{background:none;border:none;color:var(--text-muted);font:inherit;font-size:12px;
+  cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+.tblbtn:hover{color:var(--text-primary)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:14px}
+th,td{text-align:right;padding:6px 9px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left;font-variant-numeric:normal}
+th{color:var(--text-muted);font-weight:620;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+td{color:var(--text-secondary)}
+td.em{color:var(--text-primary);font-weight:600}
+.hid{display:none}
+code{background:var(--wash);padding:1.5px 5px;border-radius:4px;font-size:12px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+.callout{border-left:3px solid var(--critical);background:var(--surface-1);border-radius:0 10px 10px 0;
+  padding:15px 18px;margin:16px 0;font-size:13.5px;color:var(--text-secondary)}
+.callout.warn{border-left-color:var(--warning)}
+.callout.good{border-left-color:var(--good)}
+.callout strong{color:var(--text-primary)}
+.callout .tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:660;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.callout .tag::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--critical)}
+.callout.warn .tag::before{background:var(--warning)}
+.callout.good .tag::before{background:var(--good)}
+ul.tight{margin:9px 0 0;padding-left:19px}
+ul.tight li{margin-bottom:5px;color:var(--text-secondary)}
+ul.tight li strong{color:var(--text-primary)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>Johnson Law Group — Organic Search Diagnostic</h1>
+    <p class="sub">Google Search Console Mar 2025 – Aug 11 2026 · GA4 landing pages Jan 1 – Aug 11 2026 · AI Features report May 10 – Aug 11 2026</p>
+  </div>
+  <button class="toggle" id="themeBtn" type="button">Dark mode</button>
+</header>
+
+<div class="hero">
+  <div class="fig" id="heroFig">−39.7%</div>
+  <div class="txt">
+    <strong>Organic clicks, same 93-day window year over year (May 10 – Aug 10)</strong>
+    <span>6,741 → 4,064 clicks. Impressions fell in step (−40.9%), yet average position <em>improved</em> from 38.8 to 18.3. That combination rules out a ranking penalty — the site lost the pages that were earning the clicks. But the year-over-year window is not the honest frame: the May&ndash;Aug 2025 baseline was <strong>already 28.8% below the March 2025 rate</strong>. On like-for-like 90-day windows the peak-to-now decline is <strong>&minus;50.6%</strong> (87.7 &rarr; 43.4 clicks/day), and &minus;62.6% on a 28-day basis. Search Console only retains 16 months, so &ldquo;peak&rdquo; here means the highest point observable, not the highest ever.</span>
+  </div>
+</div>
+
+<div class="kpis" id="kpis"></div>
+
+<h2>1 · The paradox — rankings up, traffic down</h2>
+<div class="card">
+  <h3>Monthly clicks, impressions and average position</h3>
+  <p class="note">Three separate scales, three separate plots — never one chart with two y-axes. Read them together top-to-bottom: clicks held through the autumn 2025 ranking improvement, then broke in November 2025 and never recovered.</p>
+  <div id="smallMultiples"></div>
+  <button class="tblbtn" data-tbl="tblMonthly">Show data table</button>
+  <div id="tblMonthly" class="hid"></div>
+  <p class="foot">Average position is plotted with the axis inverted so that <em>up = better rank</em>. Aug 2026 is a partial month (10 days).</p>
+</div>
+
+<div class="callout">
+  <div class="tag">What this rules out</div>
+  <strong>This is not a ranking-algorithm penalty.</strong> A penalty pushes position down. Here position improved by 20 places while traffic halved. Improving average position while losing impressions is the signature of <strong>pages leaving the index</strong> — the deindexed URLs were the ones ranking at position 40–60, so removing them mathematically lifted the average. The clicks left with them.
+</div>
+
+<h2>2 · When it broke</h2>
+<div class="card">
+  <h3>Weekly clicks — four distinct phases</h3>
+  <p class="note">Complete weeks only. Two separate events, not one — see the note below the charts.</p>
+  <div id="weeklyChart"></div>
+  <button class="tblbtn" data-tbl="tblWeekly">Show data table</button>
+  <div id="tblWeekly" class="hid"></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>The late-July impression collapse</h3>
+    <p class="note">Impressions per day, recent windows.</p>
+    <div id="augChart"></div>
+  </div>
+  <div class="card">
+    <h3>Phase summary</h3>
+    <p class="note">Clicks per day by era.</p>
+    <div id="phaseChart"></div>
+  </div>
+</div>
+
+<div class="callout warn">
+  <div class="tag">Two events, not one — and this changes the root-cause hunt</div>
+  A changepoint scan over the daily series (1 Feb – 10 Aug 2026, excluding the 11–12 Apr position anomaly) finds
+  <strong>two distinct breaks</strong>, and conflating them sends the investigation to the wrong month.
+  <ul class="tight">
+    <li><strong>First week of June 2026 — rankings and clicks break.</strong> Impression-weighted position steps 14.7 → 19.3 on <strong>7 June</strong>; clicks step 52.1 → 38.2/day on <strong>6 June</strong>. Nothing deployed in August can explain this.</li>
+    <li><strong>Around 31 July 2026 — impressions collapse.</strong> There is <em>no</em> June break in impressions. A two-break fit on log(impressions) lands on 11 Feb and <strong>31 July</strong>: 28,800 → 13,200 → 8,430/day. Nothing that happened in June explains this either.</li>
+    <li><strong>Underneath both, a continuous ranking slide from April.</strong> On a balanced panel of the 101 Semrush slots ranked at every one of the 73 snapshots: 7.7 (Mar) → 9.3 (Apr) → 9.3 (May) → 10.3 (Jun) → 11.6 (Jul) → 13.7 (Aug).</li>
+  </ul>
+  <strong>Correction:</strong> an earlier version of this dashboard called this an &ldquo;August cliff&rdquo; and cited 18,757 impressions/day for May. That figure is 10–31 May only — the truncated first days of the 90-day export. Calendar May is <strong>16,440/day</strong>, so the May→August fall is <strong>&minus;50.1%</strong>, not &minus;56%. April 2026 had already touched 10,056/day, so August is a relapse rather than a new floor, and May is not a safe baseline for anything — it ramped from 6.7k to 24.4k impressions/day inside the month.
+</div>
+
+<h2>3 · Where the clicks actually come from</h2>
+<div class="card">
+  <h3>Brand vs non-brand — 2.3% of impressions produce 67% of clicks</h3>
+  <p class="note">Last 90 days, query-level. People who already know the firm's name do virtually all the clicking. The 688,000 non-brand impressions convert at 0.053%.</p>
+  <div class="legend" id="mixLegend"></div>
+  <div id="mixChart"></div>
+  <button class="tblbtn" data-tbl="tblMix">Show data table</button>
+  <div id="tblMix" class="hid"></div>
+  <p class="foot">Brand = queries containing the firm name, "JLG", or an attorney's name. Totals reflect the 1,000-row query export, which covers 1,091 of 4,064 total clicks; the remainder sits in Google's anonymised long tail.</p>
+</div>
+
+<div class="card">
+  <h3>The same ranking positions perform 28× worse on non-brand terms</h3>
+  <p class="note">Click-through rate by position band, brand queries vs non-brand queries, same site, same 90 days. Non-brand impressions do not convert at any position band — including, as it turns out, when the searcher is unambiguously in Colorado.</p>
+  <div class="legend" id="ctrLegend"></div>
+  <div id="ctrChart"></div>
+  <button class="tblbtn" data-tbl="tblCtr">Show data table</button>
+  <div id="tblCtr" class="hid"></div>
+  <p class="foot"><strong>Correction (verified 11 Aug):</strong> an earlier draft of this card blamed out-of-market impressions. That is wrong, and the site's own data refutes it. Queries containing a Colorado city name, ranking in the top 10, non-brand: <strong>6,176 impressions, 7 clicks, 0.113% CTR</strong> — the same near-zero rate on traffic that is in-market by definition. <code>family lawyer englewood</code> sits at <strong>position 2.31 on 1,583 impressions with zero clicks</strong>, in a city where the firm has an office. Deleting every non-US impression moves sitewide CTR only from 0.296% to 0.340%. Non-US traffic is real (Morocco: 9,331 impressions at average position 3.52, zero clicks) and it does inflate the denominator, but it is not the mechanism. The mechanism is on the SERP itself — title and meta presentation, feature displacement, or the listing simply not being chosen. Note also that 63% of non-brand top-10 impressions are one zero-click query (<code>what is a civil union</code>); excluding it, non-brand top-10 CTR is <strong>0.240%</strong>, not 0.095%.</p>
+</div>
+
+<h2>4 · Commercial visibility — the actual growth problem</h2>
+<div class="card">
+  <h3>Non-brand commercial keywords by position band</h3>
+  <p class="note">Queries containing "lawyer", "attorney", "law firm" or "law office" — the terms that produce cases. Bar length is impressions; the number at each tip is clicks earned.</p>
+  <div id="bucketChart"></div>
+  <button class="tblbtn" data-tbl="tblBuckets">Show data table</button>
+  <div id="tblBuckets" class="hid"></div>
+  <p class="foot">Total: 120 clicks in 90 days from every commercial keyword combined — <strong>1.3 clicks per day</strong>. With a geographic modifier ("denver divorce lawyer"), 64 clicks in 90 days. 390 of 502 commercial keywords sit below position 11.</p>
+</div>
+
+<div class="card">
+  <h3>The money terms</h3>
+  <p class="note">Highest-impression non-brand commercial queries, last 90 days.</p>
+  <div id="tblMoney"></div>
+</div>
+
+<h2>5 · The botched URL migration</h2>
+<div class="card">
+  <h3>Old truncated-slug URLs vs their replacements</h3>
+  <p class="note">The previous CMS cut post slugs at roughly 47 characters. Those truncated URLs were the ones ranking. When the site moved to full-length slugs, the equity did not follow — the replacement URLs earn a fraction of what the originals did. Clicks per 90 days, before vs now.</p>
+  <div class="legend" id="migLegend"></div>
+  <div id="migChart"></div>
+  <button class="tblbtn" data-tbl="tblMig">Show data table</button>
+  <div id="tblMig" class="hid"></div>
+  <p class="foot">"Before" = the pair's combined 16-month click total normalised to a 90-day rate. Across all 59 matched pairs: 1,863 → 471 clicks per 90 days, <strong>−74.7%</strong>.</p>
+</div>
+
+<div class="card">
+  <h3>URLs that now have zero impressions</h3>
+  <p class="note">Pages with 25+ clicks in the prior 16 months that returned <strong>literally zero impressions</strong> in the last 90 days. The 90-day export is complete down to a single impression, so absence here is real, not an export cut-off.</p>
+  <div id="vanStat"></div>
+  <div id="tblVanished"></div>
+  <p class="foot"><strong>Correction (verified 11 Aug).</strong> An earlier version of this card reported 91 URLs and ~2,430 clicks/90d. Two errors cancelled in opposite directions. First, a de-duplication defect in the analysis script assigned rather than summed when the same page appeared as separate <code>www</code> and non-<code>www</code> rows, hiding 13 URLs and 1,903 clicks. Second — and larger — <strong>53 of the 103 dead URLs are the "old" side of a truncated-slug pair and are already counted in the migration table above</strong>, so quoting the gross figure here double-counted about two-thirds of that bucket. The number to carry alongside the migration table is the <strong>independent 50 URLs / 1,178 clicks per 90 days</strong>. Both are flat 16-month averages, not recovery forecasts: per-URL death dates are not in these exports, and site-wide clicks fell from ~96/day to ~36/day across the same window, so pages that died early are overstated and pages that died late understated.</p>
+</div>
+
+<h2>6 · Impression quality — the vanity-traffic trap</h2>
+<div class="card">
+  <h3>One non-commercial blog post is 15% of all site impressions</h3>
+  <p class="note">Top pages by impressions, last 90 days. Bar length is impressions; the number at each tip is clicks.</p>
+  <div class="legend" id="concLegend"></div>
+  <div id="concChart"></div>
+  <button class="tblbtn" data-tbl="tblConc">Show data table</button>
+  <div id="tblConc" class="hid"></div>
+</div>
+
+<div class="callout warn">
+  <div class="tag">Read this before celebrating any impression growth</div>
+  <strong>"What is a civil union" generated 206,799 impressions and zero clicks</strong> at average position 5.22. It is a global dictionary-definition query with no connection to Colorado family law. It inflates impressions, drags down sitewide CTR, distorts the average-position metric, and accounts for <strong>80% of the site's AI Overview impressions</strong>. Any report that leads with impressions or average position is being steered by this single page.
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3>Geography of impressions vs clicks</h3>
+    <p class="note">Non-US traffic is 18% of impressions but 6% of clicks.</p>
+    <div id="geoChart"></div>
+  </div>
+  <div class="card">
+    <h3>AI Overview / AI Mode impressions</h3>
+    <p class="note">146,014 impressions, 9.8% of total — concentrated in one page.</p>
+    <div id="aiChart"></div>
+    <p class="foot">87% desktop. The AI-features surface is currently reflecting the site's <em>worst</em> asset, not its practice pages.</p>
+  </div>
+</div>
+
+<h2>7 · Conversion — the other half of the problem</h2>
+<div class="card">
+  <h3>Key-event rate by page type (GA4, Jan 1 – Aug 11 2026)</h3>
+  <p class="note">Session key-event rate — <em>converting sessions ÷ sessions</em>, taken from GA4's own rate column. Paid landing pages convert at 13.1%; the pages SEO actually ranks convert at 0.6%–2.1%.</p>
+  <div id="convChart"></div>
+  <button class="tblbtn" data-tbl="tblConv">Show data table</button>
+  <div id="tblConv" class="hid"></div>
+  <p class="foot">Booking/scheduler URLs are shown at 0% because they record no key events at all — see the measurement warning below. <strong>Do not read this as a template effect.</strong> The GA4 export is a single &ldquo;All Users&rdquo; table with no channel dimension, so &ldquo;Paid/LP&rdquo; is inferred from the URL pattern, not from traffic source — the 13.1% vs 0.6% gap is a paid-vs-organic <em>audience</em> difference that cannot be separated from template with this file. Within the organic templates there is no reliable difference at all: city+service 4.5% vs city hubs 3.4%, Fisher <em>p</em> = 0.10, on 63 and 66 converting sessions across seven and a half months. Neither arm can carry a template decision. Paid also holds attention longer (118s vs 68s on location pages), so the &ldquo;organic visitors are more engaged&rdquo; story does not hold either.</p>
+</div>
+
+<div class="callout">
+  <div class="tag">Conversion tracking is not trustworthy</div>
+  <ul class="tight">
+    <li><strong>55% of all key events (5,297 of 9,621) are attributed to a landing page of <code>(not set)</code></strong>. That bucket fires <strong>96.3 key events per converting session</strong> against 1.41 for every other row combined — a 68× gap, which is the signature of Measurement Protocol hits or an offline import, not of user behaviour. These conversions cannot be assigned to a channel, campaign, or page.</li>
+    <li><strong>197 on-domain booking URLs took 2,266 sessions at 96.8% engagement and 177 seconds average — and recorded zero key events.</strong> Consultations booked through the scheduler are invisible in GA4.</li>
+    <li><strong>Thank-you pages are counted as key events</strong> (1,638 events on 1,226 sessions), so the same conversion is counted at both the form submit and the confirmation view. Those events <em>are</em> tied to a page — just the wrong one. Counting them as misattributed puts the upper bound at <strong>72.1%</strong> of key events that cannot be traced to the content that earned the conversion; <strong>55.1% is the hard floor</strong>.</li>
+    <li><strong>&ldquo;Key events&rdquo; is an event count, not a conversion count.</strong> Site-wide there are 9,621 key events against roughly 3,115 converting sessions — a 3.1× inflation. Every rate on this page is now computed as converting sessions ÷ sessions from GA4&rsquo;s own rate column; an earlier version divided event counts by sessions and overstated every figure by about half.</li>
+  </ul>
+  Until this is fixed, no channel-level ROI claim about this account is defensible in either direction.
+</div>
+
+<div class="card">
+  <h3>Service pages with traffic but no engagement</h3>
+  <p class="note">Pages with 50+ sessions and under 45 seconds average engagement. Several core money pages are functionally dead on arrival.</p>
+  <div id="tblThin"></div>
+</div>
+
+<h2>8 · Site architecture and index bloat</h2>
+<div class="card">
+  <h3>URL inventory that receives traffic but does no work</h3>
+  <p class="note">GA4 recorded 2,118 distinct landing URLs in seven months. 1,151 of them received five sessions or fewer.</p>
+  <div id="bloatChart"></div>
+  <button class="tblbtn" data-tbl="tblBloat">Show data table</button>
+  <div id="tblBloat" class="hid"></div>
+</div>
+
+<div class="card">
+  <h3>Search performance by page template</h3>
+  <p class="note">Last 90 days, Search Console. Note the <code>/practice-areas/*</code> row.</p>
+  <div id="tblSeg"></div>
+  <p class="foot"><code>/practice-areas/family-law</code> alone holds 60,072 impressions at average position 63.6 and produced <strong>2 clicks</strong>. The site runs at least four parallel URL architectures for the same topics — <code>/colorado/{topic}/</code>, <code>/practice-areas/family-law/{topic}/</code>, <code>/{city}-{service}-lawyer</code>, and dated <code>/blog/{year}/{month}/</code> posts — which splits authority across competing URLs.</p>
+</div>
+
+<h2>9 · Rank tracking — the market you are actually competing in</h2>
+<div class="callout warn">
+  <span class="tag">Read this before reading the rest of section 9</span>
+  Five Semrush projects, 315 tracked keyword–city pairs, daily from <strong>25 March to 11 August 2026</strong>.
+  Average tracked position across all five markets moved from <strong>13.9 to 21.8</strong> over that window —
+  a decline of about eight positions, sitewide, during the period under active management.
+</div>
+
+<div class="card">
+  <h3>Where the demand is, and where the site ranks</h3>
+  <p class="note">Each bar is one city project's total tracked monthly search volume, split by where those keywords currently rank. Denver and Colorado Springs hold 83% of the tracked demand.</p>
+  <div class="legend" id="mktLegend"></div>
+  <div id="mktVis"></div>
+  <button class="tblbtn" data-tbl="tblMkt">Show data table</button>
+  <div id="tblMkt" class="hid"></div>
+  <p class="foot">Colorado Springs: <strong>1,550 searches/month tracked, zero of it ranking in the top 10.</strong> Denver: 7.2%. The two markets that look healthy — Commerce City and Englewood — are the two smallest, together worth 300 searches/month.</p>
+</div>
+
+<div class="card">
+  <h3>The top-3 rankings are a map pack, not a website</h3>
+  <p class="note">Share of all ranking observations that came from the local pack rather than a blue link. The Google Business Profile is carrying the two markets that look strongest.</p>
+  <div id="localPack"></div>
+  <p class="foot">Of Commerce City's 28 top-3 keywords, 22 are local-pack placements. Englewood: 6 of 8. Denver returns a local pack for <strong>0.1%</strong> of observations and Colorado Springs 0.8% — in the two markets that matter, the firm has effectively no map presence to fall back on, and the pages have to win on their own.</p>
+</div>
+
+<div class="card">
+  <h3>Which page templates lost ground, March → August</h3>
+  <p class="note">Average change in tracked position, grouped by which URL was ranking at the start of the window. Higher bar = bigger fall. Pages already inside the new <code>/colorado/locations/*</code> architecture held up best; the layers it was built on top of collapsed.</p>
+  <div id="archDelta"></div>
+  <button class="tblbtn" data-tbl="tblArch">Show data table</button>
+  <div id="tblArch" class="hid"></div>
+  <p class="foot">This revises a simpler reading of the Search Console data. The URL change itself is <em>not</em> the discriminator — everything fell. What separates the groups is <strong>which layer of the architecture a page belonged to</strong>: the new city×service pages lost 4 positions, the old flat city pages 7, and the <code>/practice-areas/*</code> and <code>/colorado/{topic}/*</code> pages they duplicate lost <strong>22–23</strong>. The new layer is winning the internal competition and taking the old layers down with it.</p>
+</div>
+
+<div class="card">
+  <h3>The architecture cutover is dated</h3>
+  <p class="note">Which URL template Google chose to rank, counted across all five projects. The flat <code>/{city}-{service}-lawyer/</code> pages were still serving 109 rankings on 25 March and 0 by 11 August.</p>
+  <div class="legend" id="archLegend"></div>
+  <div id="archMix"></div>
+  <p class="foot">The switch was executed between <strong>25 March and 15 April 2026</strong>. Two-thirds of it landed in the first two weeks.</p>
+</div>
+
+<div class="card">
+  <h3>Google cannot decide which page should rank</h3>
+  <p class="note">Number of distinct landing pages that have held the ranking for a single keyword over the 20-week window.</p>
+  <div id="churnStat"></div>
+  <button class="tblbtn" data-tbl="tblChurn">Show data table</button>
+  <div id="tblChurn" class="hid"></div>
+  <p class="foot">This is what cannibalisation looks like in a rank tracker. When Google swaps the ranking URL five or eight times in twenty weeks, no single page is accumulating the signals it needs — and every swap resets the page's history for that query.</p>
+</div>
+
+<div class="card">
+  <h3>What the gap is worth</h3>
+  <p class="note">For each tracked keyword with a CPC, the difference between the clicks it earns at today's position and the clicks it would earn at position 3, priced at that keyword's own cost-per-click. Tracked keywords only — the real number is larger.</p>
+  <div id="tblGaps"></div>
+  <p class="foot">Roughly <strong>$9,400/month</strong> of paid-equivalent traffic across just 20 tracked commercial keywords, and <strong>$6,200 of it sits in three terms</strong>: <code>divorce lawyer colorado springs</code> (720/mo, position 48), <code>divorce attorney denver</code> (590/mo, position 34), <code>divorce attorney colorado springs</code> (480/mo, position 65).</p>
+</div>
+
+<div class="card">
+  <h3>Head terms — the eight keywords with 100+ monthly searches</h3>
+  <div id="tblHead"></div>
+  <p class="foot">Two of eight improved. <code>child custody lawyer</code> in Denver is the one genuine win in the set: position 15 → 8.9.</p>
+</div>
+
+<div class="card">
+  <h3>AI Overviews are working — on the commercial pages</h3>
+  <p class="note">479 keyword-days of AI Overview citation across 63 distinct URLs and 75 keywords.</p>
+  <div id="aiCite"></div>
+  <p class="foot">This is the opposite of what the Search Console AI-features report suggests. In <em>impression volume</em>, AI features are 80% one civil-union blog post. In <em>citations on tracked commercial keywords</em>, the cited pages are the money pages — Denver alimony, fathers' rights, Commerce City uncontested divorce. Citations peaked in June (170 keyword-days) and have fallen to 63 in August; worth watching, because this is the one surface where the new city pages are clearly winning.</p>
+</div>
+
+<h2>10 · 90 over 90 — what changed most recently</h2>
+<div class="callout warn">
+  <span class="tag">The year-over-year number and the 90-over-90 number describe two different problems</span>
+  Year over year the site lost <strong>impressions</strong> at flat click-through. Quarter over quarter it is losing
+  <strong>click-through</strong> while impressions <em>rise</em>. Same site, opposite mechanisms — which is why a
+  single headline number has been misleading everyone.
+</div>
+
+<div class="card">
+  <h3>Search Console, three matched 90-day windows</h3>
+  <p class="note">Windows end on the last complete day (10 Aug 2026) and are exactly 90 days with an identical weekday mix, so none of this is a calendar artefact.</p>
+  <div id="tbl90"></div>
+  <div id="decomp90"></div>
+  <p class="foot">Read the decomposition carefully. Rising impressions <em>added</em> roughly 873 clicks over the quarter; the collapse in click-through rate <em>removed</em> about 1,314. The net is &minus;443. <strong>Impression volume is not the current problem — conversion of impressions to clicks is.</strong> That is the same conclusion the in-market CTR test reached in section 3, arrived at from a completely different direction.</p>
+</div>
+
+<div class="card">
+  <h3>Most of the impression &ldquo;growth&rdquo; is one page</h3>
+  <p class="note">The civil-union post against its own 16-month average impression rate.</p>
+  <div id="cuStat"></div>
+  <p class="foot">The page is running at <strong>6.0&times; its 16-month average</strong>. That single page accounts for roughly <strong>83% of the quarter&rsquo;s entire impression rise</strong> — and it earns 68 clicks. Strip it out and the current-quarter CTR reads <strong>0.347%</strong> rather than 0.294%. That is better, but still below the prior quarter&rsquo;s 0.393%, and clicks still fell 10.2% in absolute terms. So the denominator inflation explains most of the <em>CTR optics</em> and almost none of the <em>lost clicks</em>. Both problems are real; they are just not the same problem.</p>
+</div>
+
+<div class="card">
+  <h3>Six consecutive 30-day windows</h3>
+  <p class="note">Where inside the last six months the move actually happened.</p>
+  <div id="tblSubs"></div>
+  <p class="foot">The trough is <strong>12 Jun – 11 Jul</strong> (36.3 clicks/day, 0.263% CTR, position 19.46). The most recent 30 days are <em>better</em> on all three — 38.9 clicks/day, 0.319%, position 18.23. On this evidence the decline has <strong>stopped falling and is flattening</strong>, which contradicts an earlier reading in this deck that it was still deteriorating. One month is not a recovery; treat it as a floor to defend, not a turn.</p>
+</div>
+
+<div class="card">
+  <h3>Rank tracking, matched panel, first half vs second half</h3>
+  <p class="note">Semrush begins 25 March, so the longest clean split is 70 days against 70 days. Only keywords observed in both halves are counted, which removes the survivor bias that distorts a naive month-over-month average.</p>
+  <div id="semSplit"></div>
+  <p class="foot">The volume-weighted decline is <strong>roughly twice the unweighted one</strong> (+7.03 vs +3.84 positions). The losses are concentrated in the keywords that carry the search volume — which is the single most commercially damaging shape this data could have taken.</p>
+</div>
+
+<div class="callout">
+  <div class="tag">Only one dimension in this dataset can actually do 90 over 90</div>
+  A true 90-over-90 needs the same dimension exported over two adjacent, non-overlapping 90-day windows.
+  Search Console&rsquo;s Pages, Queries, Devices and Countries tabs carry <strong>no date column</strong> — the only
+  way to compare them across periods is to pull the export twice with the date filter set differently. That
+  second pull does not exist on disk, so:
+  <table style="margin:10px 0 2px">
+    <thead><tr><th>Dimension</th><th>Current 90</th><th>Prior 90</th><th>True 90/90?</th></tr></thead>
+    <tbody>
+      <tr><td class="em">Daily totals (clicks, impressions, CTR, position)</td><td>yes</td><td>yes</td><td class="em">Yes — everything above</td></tr>
+      <tr><td class="em">Pages</td><td>yes</td><td>missing</td><td>Blocked</td></tr>
+      <tr><td class="em">Queries</td><td>yes</td><td>missing</td><td>Blocked</td></tr>
+      <tr><td class="em">Devices</td><td>yes</td><td>missing</td><td>Blocked</td></tr>
+      <tr><td class="em">Countries</td><td>yes</td><td>missing</td><td>Blocked</td></tr>
+      <tr><td class="em">Semrush positions</td><td>yes</td><td>partial</td><td>No — campaigns start 25 Mar, 140 days total; 70/70 is the ceiling until 21 Sept</td></tr>
+      <tr><td class="em">GA4</td><td>overlapping</td><td>missing</td><td>Blocked</td></tr>
+    </tbody>
+  </table>
+  <strong>One export unblocks four of them.</strong> Search Console → Performance → Search results, date range
+  <em>Custom</em> <code>2026-02-12 … 2026-05-12</code>, Export → CSV, unzip to <code>data/gsc_prior90/</code>, then run
+  <code>ninety_compare.py</code>. It is already written and will produce the page-, query-, device- and
+  country-level 90/90 the moment the file lands. Everything in section 10 above is the daily-totals
+  comparison, which is real but cannot tell you <em>which</em> pages or queries moved.
+</div>
+
+<div class="callout">
+  <div class="tag">New users specifically — and why the GA4 file cannot answer it</div>
+  The GA4 export is one aggregate snapshot, <code>2026-01-01 … 2026-08-11</code>, headed <strong>&ldquo;All Users&rdquo;</strong>.
+  <ul class="tight">
+    <li><strong>No date dimension</strong>, so no new-user trend of any kind can be computed from it — not 90-over-90, not month-over-month.</li>
+    <li><strong>No channel dimension</strong>, so even with dates it could not separate organic from paid, direct or LSA.</li>
+    <li><strong>The New users column cannot be summed down a landing-page report.</strong> It is a user-scoped metric on a page-scoped dimension, so a visitor who lands on four pages is counted four times. The file proves it: the column totals <strong>92,950 against 60,674 sessions</strong> — 153%, which is impossible for a real user count.</li>
+  </ul>
+  Pull <strong>Reports → Acquisition → Traffic acquisition</strong>, primary dimension <em>Session primary channel group</em>, metrics sessions / new users / key events, with the date comparison set to <code>13 May – 10 Aug 2026</code> vs <code>12 Feb – 12 May 2026</code>. If total new users are up while organic clicks are down 10% over the same window, the growth is coming from another channel — and that is a finding, not a contradiction.
+</div>
+
+<div class="tt" id="tt"></div>
+</div>
+
+<script>
+const DATA = __DATA__;
+
+/* ---------- helpers ---------- */
+const $=(s)=>document.querySelector(s);
+const NS='http://www.w3.org/2000/svg';
+function el(t,a={},p){const e=document.createElementNS(NS,t);
+  for(const k in a){if(a[k]!==null&&a[k]!==undefined)e.setAttribute(k,a[k]);}
+  if(p)p.appendChild(e);return e;}
+function fmt(n){if(n===null||n===undefined)return '—';
+  const a=Math.abs(n);
+  if(a>=1e6)return (n/1e6).toFixed(a>=1e7?0:1)+'M';
+  if(a>=1e4)return Math.round(n/1e3)+'K';
+  if(a>=1000)return n.toLocaleString('en-US');
+  return (Math.round(n*100)/100).toLocaleString('en-US');}
+function fmtFull(n){return (Math.round(n*100)/100).toLocaleString('en-US');}
+const css=(v)=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+/* nice round axis ticks — never 3,227.84 */
+function niceNum(x,round){
+  if(x<=0)return 1;
+  const e=Math.floor(Math.log10(x)), f=x/Math.pow(10,e);
+  let nf;
+  if(round) nf = f<1.5?1 : f<3?2 : f<7?5 : 10;
+  else      nf = f<=1?1 : f<=2?2 : f<=5?5 : 10;
+  return nf*Math.pow(10,e);
+}
+function niceScale(lo,hi,n){
+  if(hi<=lo) hi=lo+1;
+  const step=niceNum(niceNum(hi-lo,false)/Math.max(1,n),true);
+  const nlo=Math.floor(lo/step)*step, nhi=Math.ceil(hi/step)*step;
+  const ticks=[];
+  for(let v=nlo; v<=nhi+step*1e-9; v+=step) ticks.push(Math.round(v/step)*step);
+  return {lo:nlo,hi:nhi,ticks};
+}
+
+/* ---------- tooltip ---------- */
+const TT=$('#tt');
+function ttShow(ev,title,rows){
+  TT.innerHTML='';
+  const h=document.createElement('div');h.className='h';h.textContent=title;TT.appendChild(h);
+  rows.forEach(r=>{
+    const d=document.createElement('div');d.className='r';
+    if(r.color){const k=document.createElement('span');k.className='k';k.style.background=r.color;d.appendChild(k);}
+    const v=document.createElement('span');v.className='v';v.textContent=r.value;d.appendChild(v);
+    const n=document.createElement('span');n.className='n';n.textContent=r.name;d.appendChild(n);
+    TT.appendChild(d);
+  });
+  TT.style.opacity='1';ttMove(ev);
+}
+function ttMove(ev){
+  const r=TT.getBoundingClientRect();
+  let x=ev.clientX+15,y=ev.clientY-12;
+  if(x+r.width>innerWidth-12)x=ev.clientX-r.width-15;
+  if(y+r.height>innerHeight-12)y=innerHeight-r.height-12;
+  if(y<8)y=8;
+  TT.style.left=x+'px';TT.style.top=y+'px';
+}
+function ttHide(){TT.style.opacity='0';}
+
+/* ---------- table builder ---------- */
+function buildTable(mount,cols,rows,emphCol){
+  const c=document.querySelector(mount);if(!c)return;
+  c.innerHTML='';
+  const t=document.createElement('table');
+  const th=document.createElement('thead');const tr=document.createElement('tr');
+  cols.forEach(x=>{const h=document.createElement('th');h.textContent=x.h;tr.appendChild(h);});
+  th.appendChild(tr);t.appendChild(th);
+  const tb=document.createElement('tbody');
+  rows.forEach(r=>{const q=document.createElement('tr');
+    cols.forEach((x,i)=>{const d=document.createElement('td');
+      if(i===emphCol||i===0)d.className='em';
+      d.textContent=x.f?x.f(r):r[x.k];q.appendChild(d);});
+    tb.appendChild(q);});
+  t.appendChild(tb);c.appendChild(t);
+}
+document.querySelectorAll('[data-tbl]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const t=document.getElementById(b.dataset.tbl);
+    const open=!t.classList.toggle('hid');
+    b.textContent=open?'Hide data table':'Show data table';
+  });
+});
+
+/* ---------- LINE CHART (single series, optional inverted y) ---------- */
+function lineChart(mount,opt){
+  const c=document.querySelector(mount); if(!c) return;
+  const W=opt.width||c.clientWidth||820, H=opt.height||150;
+  const m={t:opt.ytitle?28:16,r:opt.mr!==undefined?opt.mr:46,b:opt.xlabels===false?10:26,l:opt.ml||58};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  c.innerHTML='';
+  const svg=el('svg',{width:'100%',height:H,viewBox:`0 0 ${W} ${H}`,role:'img',
+    'aria-label':opt.aria||opt.title||'line chart'},c);
+  const d=opt.data, vals=d.map(x=>x.v);
+  let rlo=opt.zero?0:Math.min(...vals), rhi=Math.max(...vals);
+  const sc=niceScale(rlo,rhi,opt.ticks||3);
+  const lo=sc.lo, hi=sc.hi;
+  const X=i=>m.l+(d.length===1?iw/2:i*iw/(d.length-1));
+  const Y=v=>{const t=(v-lo)/(hi-lo); return m.t+(opt.invert? t*ih : (1-t)*ih);};
+
+  // grid + y ticks (round numbers only)
+  sc.ticks.forEach(v=>{
+    const y=Y(v);
+    el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'gl'},svg);
+    const tx=el('text',{x:m.l-9,y:y+3.5,'text-anchor':'end',class:'tick'},svg);
+    tx.textContent=opt.yfmt?opt.yfmt(v):fmt(v);
+  });
+  el('line',{x1:m.l,x2:m.l+iw,y1:opt.invert?m.t:m.t+ih,y2:opt.invert?m.t:m.t+ih,class:'ax'},svg);
+
+  // area wash + line
+  const color=opt.color||css('--s1');
+  let dd=d.map((x,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(x.v).toFixed(1)}`).join(' ');
+  if(opt.area){
+    const base=opt.invert?m.t:m.t+ih;
+    el('path',{d:dd+` L${X(d.length-1)},${base} L${X(0)},${base} Z`,fill:color,opacity:.10},svg);
+  }
+  el('path',{d:dd,fill:'none',stroke:color,'stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+
+  // annotations (vertical markers); labels only where asked, to avoid repeating across small multiples
+  (opt.marks||[]).forEach(mk=>{
+    const i=d.findIndex(x=>x.k===mk.at); if(i<0)return;
+    el('line',{x1:X(i),x2:X(i),y1:m.t,y2:m.t+ih,stroke:css('--axis'),'stroke-width':1,
+      'shape-rendering':'crispEdges'},svg);
+    if(mk.label&&opt.markLabels!==false){
+      const t=el('text',{x:X(i)+5,y:m.t-8,class:'dlab2'},svg); t.textContent=mk.label;
+    }
+  });
+
+  // end dot + label
+  const li=d.length-1;
+  el('circle',{cx:X(li),cy:Y(d[li].v),r:6,fill:css('--surface-1')},svg);
+  el('circle',{cx:X(li),cy:Y(d[li].v),r:4,fill:color},svg);
+  if(opt.endLabel!==false){
+    const t=el('text',{x:X(li)+9,y:Y(d[li].v)+4,class:'dlab'},svg);
+    t.textContent=opt.yfmt?opt.yfmt(d[li].v):fmt(d[li].v);
+  }
+
+  // x labels
+  if(opt.xlabels!==false){
+    const step=Math.max(1,Math.ceil(d.length/(opt.xcount||9)));
+    d.forEach((x,i)=>{ if(i%step&&i!==d.length-1)return;
+      const t=el('text',{x:X(i),y:m.t+ih+16,'text-anchor':'middle',class:'tickc'},svg);
+      t.textContent=x.x;});
+  }
+  // y axis title — sits above the plot, left-aligned to the axis so it can never clip
+  if(opt.ytitle){const t=el('text',{x:0,y:12,class:'axtitle'},svg); t.textContent=opt.ytitle;}
+
+  // hover crosshair
+  const cross=el('line',{x1:0,x2:0,y1:m.t,y2:m.t+ih,stroke:css('--axis'),'stroke-width':1,opacity:0,
+    'shape-rendering':'crispEdges'},svg);
+  const hd=el('circle',{r:5,fill:color,stroke:css('--surface-1'),'stroke-width':2,opacity:0},svg);
+  const hit=el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent'},svg);
+  hit.addEventListener('pointermove',e=>{
+    const b=svg.getBoundingClientRect(), sx=(e.clientX-b.left)*(W/b.width);
+    let i=Math.round((sx-m.l)/(iw/(d.length-1))); i=Math.max(0,Math.min(d.length-1,i));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('opacity',1);
+    hd.setAttribute('cx',X(i));hd.setAttribute('cy',Y(d[i].v));hd.setAttribute('opacity',1);
+    ttShow(e,d[i].full||d[i].x,[{color:color,value:opt.yfmt?opt.yfmt(d[i].v):fmtFull(d[i].v),name:opt.name||''}]
+      .concat(d[i].extra||[]));
+  });
+  hit.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);hd.setAttribute('opacity',0);ttHide();});
+  hit.addEventListener('pointerdown',e=>ttMove(e));
+}
+
+/* ---------- HORIZONTAL BAR (one hue or ordinal, tip labels) ---------- */
+function hbar(mount,opt){
+  const c=document.querySelector(mount); if(!c) return;
+  const rows=opt.rows, n=rows.length;
+  const rh=opt.rowH||30, W=opt.width||c.clientWidth||820;
+  const m={t:opt.mt||6,r:opt.mr||74,b:6,l:opt.labelW||210};
+  const H=m.t+m.b+n*rh;
+  c.innerHTML='';
+  const svg=el('svg',{width:'100%',height:H,viewBox:`0 0 ${W} ${H}`,role:'img',
+    'aria-label':opt.aria||'bar chart'},c);
+  const iw=W-m.l-m.r;
+  const max=opt.max||Math.max(...rows.map(r=>r.v))*1.02;
+  const bh=Math.min(20,rh-10);
+  rows.forEach((r,i)=>{
+    const y=m.t+i*rh+(rh-bh)/2;
+    const w=Math.max(1.5,r.v/max*iw);
+    const col=r.color||opt.color||css('--s1');
+    // label
+    const lt=el('text',{x:m.l-11,y:y+bh/2+4,'text-anchor':'end',
+      class:r.emph?'dlab':'dlab2'},svg);
+    lt.textContent=r.label;
+    // track
+    el('rect',{x:m.l,y:y,width:iw,height:bh,fill:css('--grid'),opacity:.34,rx:2},svg);
+    // bar with rounded data-end
+    const p=el('path',{d:roundRightRect(m.l,y,w,bh,4),fill:col},svg);
+    // tip label
+    if(opt.tip){
+      const t=el('text',{x:m.l+w+9,y:y+bh/2+4,class:'dlab'},svg);
+      t.textContent=opt.tip(r);
+    }
+    const hit=el('rect',{x:m.l,y:m.t+i*rh,width:iw+m.r,height:rh,fill:'transparent'},svg);
+    hit.addEventListener('pointermove',e=>{p.setAttribute('opacity',.82);
+      ttShow(e,r.label,(opt.tt?opt.tt(r):[{color:col,value:fmtFull(r.v),name:opt.name||''}]));});
+    hit.addEventListener('pointerleave',()=>{p.setAttribute('opacity',1);ttHide();});
+  });
+}
+function roundRightRect(x,y,w,h,r){
+  r=Math.min(r,w,h/2);
+  return `M${x},${y} H${x+w-r} Q${x+w},${y} ${x+w},${y+r} V${y+h-r} Q${x+w},${y+h} ${x+w-r},${y+h} H${x} Z`;
+}
+
+/* ---------- GROUPED COLUMNS (2 series) ---------- */
+function groupCols(mount,opt){
+  const c=document.querySelector(mount); if(!c) return;
+  const W=opt.width||c.clientWidth||820,H=opt.height||220;
+  const m={t:22,r:14,b:38,l:54};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  c.innerHTML='';
+  const svg=el('svg',{width:'100%',height:H,viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':opt.aria||''},c);
+  const cats=opt.cats, S=opt.series;
+  const sc=niceScale(0,Math.max(...S.flatMap(s=>s.v))*1.14,4);
+  const max=sc.hi;
+  const band=iw/cats.length, bw=Math.min(22,(band-18)/S.length);
+  sc.ticks.forEach(v=>{
+    const y=m.t+ih-(v/max)*ih;
+    el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'gl'},svg);
+    const t=el('text',{x:m.l-9,y:y+3.5,'text-anchor':'end',class:'tick'},svg);
+    t.textContent=opt.yfmt?opt.yfmt(v):fmt(v);
+  });
+  el('line',{x1:m.l,x2:m.l+iw,y1:m.t+ih,y2:m.t+ih,class:'ax'},svg);
+  cats.forEach((cat,i)=>{
+    const gx=m.l+band*i+(band-(bw*S.length+2*(S.length-1)))/2;
+    S.forEach((s,j)=>{
+      const v=s.v[i], h=Math.max(1.5,v/max*ih), x=gx+j*(bw+2), y=m.t+ih-h;
+      const p=el('path',{d:roundTopRect(x,y,bw,h,4),fill:s.color},svg);
+      const t=el('text',{x:x+bw/2,y:y-6,'text-anchor':'middle',class:'dlab'},svg);
+      t.textContent=opt.vfmt?opt.vfmt(v):fmt(v);
+      const hit=el('rect',{x:x-2,y:m.t,width:bw+4,height:ih,fill:'transparent'},svg);
+      hit.addEventListener('pointermove',e=>{p.setAttribute('opacity',.82);
+        ttShow(e,cat,S.map(ss=>({color:ss.color,value:(opt.vfmt?opt.vfmt(ss.v[i]):fmtFull(ss.v[i])),name:ss.name})));});
+      hit.addEventListener('pointerleave',()=>{p.setAttribute('opacity',1);ttHide();});
+    });
+    const t=el('text',{x:m.l+band*i+band/2,y:m.t+ih+17,'text-anchor':'middle',class:'tickc'},svg);
+    t.textContent=cat;
+  });
+  if(opt.xtitle){const t=el('text',{x:m.l+iw/2,y:H-4,'text-anchor':'middle',class:'axtitle'},svg);
+    t.textContent=opt.xtitle;}
+}
+function roundTopRect(x,y,w,h,r){
+  r=Math.min(r,w/2,h);
+  return `M${x},${y+h} V${y+r} Q${x},${y} ${x+r},${y} H${x+w-r} Q${x+w},${y} ${x+w},${y+r} V${y+h} Z`;
+}
+
+/* ---------- STACKED BAR (part-to-whole, horizontal) ---------- */
+function stackedBar(mount,opt){
+  const c=document.querySelector(mount); if(!c) return;
+  const W=opt.width||c.clientWidth||820;
+  const rows=opt.rows, rh=58, m={t:4,r:8,b:4,l:opt.labelW||128};
+  const H=m.t+m.b+rows.length*rh;
+  c.innerHTML='';
+  const svg=el('svg',{width:'100%',height:H,viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':opt.aria||''},c);
+  const iw=W-m.l-m.r, bh=26;
+  rows.forEach((r,i)=>{
+    const y=m.t+i*rh+8;
+    const lt=el('text',{x:m.l-12,y:y+bh/2+4,'text-anchor':'end',class:'dlab'},svg);
+    lt.textContent=r.label;
+    const tot=r.parts.reduce((a,b)=>a+b.v,0);
+    let x=m.l;
+    r.parts.forEach((p,j)=>{
+      const w=p.v/tot*iw;
+      const gap=j<r.parts.length-1?2:0;
+      const ww=Math.max(1,w-gap);
+      const first=j===0,last=j===r.parts.length-1;
+      const rr=4;
+      let d;
+      if(first&&last) d=`M${x},${y} h${ww} v${bh} h${-ww} Z`;
+      else if(first)  d=`M${x+rr},${y} H${x+ww} V${y+bh} H${x+rr} Q${x},${y+bh} ${x},${y+bh-rr} V${y+rr} Q${x},${y} ${x+rr},${y} Z`;
+      else if(last)   d=roundRightRect(x,y,ww,bh,rr);
+      else            d=`M${x},${y} h${ww} v${bh} h${-ww} Z`;
+      const seg=el('path',{d:d,fill:p.color},svg);
+      const pct=(p.v/tot*100);
+      // name the band inside the segment when there is room — a zero-width segment
+      // shifts which band sits leftmost, so position alone can't carry identity
+      const txt = (p.tag && ww>112) ? `${p.tag} · ${pct.toFixed(1)}%` : pct.toFixed(1)+'%';
+      // only label inside if it fits comfortably
+      if(ww>46){
+        const t=el('text',{x:x+ww/2,y:y+bh/2+4,'text-anchor':'middle',
+          fill:p.dark?'#ffffff':css('--text-primary'),'font-size':11.5,'font-weight':650},svg);
+        t.textContent=txt;
+      }
+      const hit=el('rect',{x:x,y:y-6,width:ww,height:bh+12,fill:'transparent'},svg);
+      hit.addEventListener('pointermove',e=>{seg.setAttribute('opacity',.82);
+        ttShow(e,r.label+' · '+p.name,[
+          {color:p.color,value:fmtFull(p.v),name:r.unit||''},
+          {color:null,value:pct.toFixed(1)+'%',name:'of total'}]);});
+      hit.addEventListener('pointerleave',()=>{seg.setAttribute('opacity',1);ttHide();});
+      x+=w;
+    });
+    const st=el('text',{x:m.l,y:y+bh+17,class:'dlab2'},svg);
+    st.textContent=r.sub||'';
+  });
+}
+
+/* ---------- DUMBBELL ---------- */
+function dumbbell(mount,opt){
+  const c=document.querySelector(mount); if(!c) return;
+  const rows=opt.rows, rh=30, W=opt.width||c.clientWidth||820;
+  const m={t:6,r:70,b:26,l:opt.labelW||276};
+  const H=m.t+m.b+rows.length*rh;
+  c.innerHTML='';
+  const svg=el('svg',{width:'100%',height:H,viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':opt.aria||''},c);
+  const iw=W-m.l-m.r;
+  const sc=niceScale(0,Math.max(...rows.map(r=>Math.max(r.before,r.after)))*1.05,4);
+  const max=sc.hi;
+  const X=v=>m.l+v/max*iw;
+  const cb=css('--db-before'), ca=css('--db-after');
+  sc.ticks.forEach(v=>{
+    el('line',{x1:X(v),x2:X(v),y1:m.t,y2:m.t+rows.length*rh,class:'gl'},svg);
+    const t=el('text',{x:X(v),y:m.t+rows.length*rh+16,'text-anchor':'middle',class:'tick'},svg);
+    t.textContent=v.toLocaleString('en-US');
+  });
+  rows.forEach((r,i)=>{
+    const y=m.t+i*rh+rh/2;
+    const lt=el('text',{x:m.l-13,y:y+4,'text-anchor':'end',class:'dlab2'},svg);
+    lt.textContent=r.label;
+    el('line',{x1:X(r.after),x2:X(r.before),y1:y,y2:y,stroke:css('--axis'),'stroke-width':2,
+      'stroke-linecap':'round'},svg);
+    el('circle',{cx:X(r.before),cy:y,r:6.5,fill:css('--surface-1')},svg);
+    el('circle',{cx:X(r.before),cy:y,r:4.5,fill:cb},svg);
+    el('circle',{cx:X(r.after),cy:y,r:6.5,fill:css('--surface-1')},svg);
+    el('circle',{cx:X(r.after),cy:y,r:4.5,fill:ca},svg);
+    const t=el('text',{x:m.l+iw+11,y:y+4,class:'dlab'},svg);
+    t.textContent=r.pct.toFixed(0)+'%';
+    const hit=el('rect',{x:m.l,y:m.t+i*rh,width:iw+m.r,height:rh,fill:'transparent'},svg);
+    hit.addEventListener('pointermove',e=>ttShow(e,r.full||r.label,[
+      {color:cb,value:fmtFull(r.before),name:'clicks/90d before'},
+      {color:ca,value:fmtFull(r.after),name:'clicks/90d now'},
+      {color:null,value:r.pct.toFixed(1)+'%',name:'change'}]));
+    hit.addEventListener('pointerleave',ttHide);
+  });
+}
+
+/* =================== RENDER =================== */
+function renderAll(){
+  const M=DATA.monthly, W=DATA.weekly;
+
+  /* KPIs */
+  const k=$('#kpis'); k.innerHTML='';
+  const kpis=[
+    {l:'Non-brand commercial clicks, last 90 days',v:'120',d:'<span class="dn">1.3 / day</span> from every "lawyer/attorney" keyword combined'},
+    {l:'Share of clicks from branded searches',v:'66.8%',d:'on just <span class="dn">2.3%</span> of impressions'},
+    {l:'Non-brand click-through rate',v:'0.053%',d:'688K impressions → <span class="dn">362 clicks</span>'},
+    {l:'Impressions on one non-commercial blog post',v:'221K',d:'<span class="dn">14.8%</span> of site total, 68 clicks'},
+    {l:'Clicks lost on migrated URLs',v:'−74.7%',d:'59 URL pairs: 1,863 → <span class="dn">471</span> per 90d'},
+    {l:'Key events with no landing page attributed',v:'55%',d:'<span class="dn">5,296 of 9,620</span> are <code>(not set)</code>'},
+  ];
+  kpis.forEach(x=>{
+    const d=document.createElement('div');d.className='kpi';
+    d.innerHTML=`<div class="lbl">${x.l}</div><div class="val">${x.v}</div><div class="dlt">${x.d}</div>`;
+    k.appendChild(d);
+  });
+
+  /* Small multiples */
+  const sm=$('#smallMultiples'); sm.innerHTML='';
+  const mk=[{at:'2025-09',label:'Sep 25'},{at:'2025-11',label:'Nov 25'},{at:'2026-03',label:'Mar 26'}];
+  [['clicks','Clicks / month',false,v=>fmt(v)],
+   ['impr','Impressions / month',false,v=>fmt(v)],
+   ['pos','Avg position (better ↑)',true,v=>v.toFixed(0)]].forEach(([key,title,inv,f],idx)=>{
+    const id='sm'+idx; const w=document.createElement('div'); w.id=id;
+    w.style.marginBottom=idx<2?'2px':'0'; sm.appendChild(w);
+    lineChart('#'+id,{
+      data:M.map(m=>({x:m.m.slice(2).replace('-','/'),k:m.m,v:m[key],full:m.m,
+        extra:[{color:null,value:m.days+' days',name:'in month'}]})),
+      height:idx===2?128:132, invert:inv, area:idx===0, zero:idx!==2,
+      ytitle:title, yfmt:f, xlabels:idx===2, marks:mk, markLabels:idx===0, name:title, ticks:3
+    });
+  });
+  buildTable('#tblMonthly',
+    [{h:'Month',k:'m'},{h:'Clicks',f:r=>r.clicks.toLocaleString()},
+     {h:'Clicks/day',f:r=>r.cpd},{h:'Impressions',f:r=>r.impr.toLocaleString()},
+     {h:'CTR',f:r=>r.ctr.toFixed(2)+'%'},{h:'Avg pos',f:r=>r.pos},{h:'Days',k:'days'}],M);
+
+  /* Weekly */
+  lineChart('#weeklyChart',{
+    data:W.map(w=>({x:w.w.slice(5).replace('-','/'),k:w.w,v:w.clicks,full:'Week of '+w.w,
+      extra:[{color:null,value:fmtFull(w.impr),name:'impressions'},
+             {color:null,value:w.pos,name:'avg position'}]})),
+    height:210, zero:true, area:true, ytitle:'Clicks / week', name:'clicks', xcount:12,
+    marks:[{at:W.find(x=>x.w>='2025-11-03')?.w,label:'Nov 25 break'},
+           {at:W.find(x=>x.w>='2026-06-01')?.w,label:'Jun 26'}]
+  });
+  buildTable('#tblWeekly',[{h:'Week of',k:'w'},{h:'Clicks',f:r=>r.clicks},
+    {h:'Impressions',f:r=>r.impr.toLocaleString()},{h:'CTR',f:r=>r.ctr.toFixed(2)+'%'},
+    {h:'Avg pos',k:'pos'}],W.slice(-30));
+
+  /* August drop */
+  const R=DATA.recent;
+  groupCols('#augChart',{height:190,cats:['May 10–31','Jun 12–Jul 11','Jul 12–Aug 10','Aug 1–10'],
+    series:[{name:'Impressions / day',color:css('--s1'),
+      v:[R.may_2026.ipd,R.prev30.ipd,R.last30.ipd,R.aug_2026.ipd]}],
+    yfmt:v=>fmt(v), vfmt:v=>fmt(v)});
+  /* Phases */
+  groupCols('#phaseChart',{height:190,
+    cats:['Apr–Jul 25','Aug–Oct 25','Nov 25–Feb 26','Mar–Jul 26','Aug 26'],
+    series:[{name:'Clicks / day',color:css('--s1'),v:[76.5,74.7,52.1,45.8,34.4]}],
+    yfmt:v=>v.toFixed(0), vfmt:v=>v.toFixed(0)});
+
+  /* Brand mix */
+  const mx=DATA.mix;
+  $('#mixLegend').innerHTML=
+   `<span class="it"><span class="sw" style="background:${css('--s1')}"></span>Branded queries</span>`+
+   `<span class="it"><span class="sw" style="background:${css('--s2')}"></span>Non-brand queries</span>`;
+  stackedBar('#mixChart',{rows:[
+    {label:'Clicks',unit:'clicks',sub:`${mx.total_clicks.toLocaleString()} clicks attributed to queries`,
+     parts:[{name:'Branded',v:mx.brand.clicks,color:css('--s1'),dark:true},
+            {name:'Non-brand',v:mx.nonbrand.clicks,color:css('--s2'),dark:true}]},
+    {label:'Impressions',unit:'impressions',sub:`${mx.total_impr.toLocaleString()} impressions`,
+     parts:[{name:'Branded',v:mx.brand.impr,color:css('--s1'),dark:true},
+            {name:'Non-brand',v:mx.nonbrand.impr,color:css('--s2'),dark:true}]}]});
+  buildTable('#tblMix',[{h:'Segment',k:'s'},{h:'Queries',k:'n'},{h:'Clicks',k:'c'},
+    {h:'Impressions',f:r=>r.i.toLocaleString()},{h:'CTR',f:r=>r.ctr+'%'},{h:'Avg pos',k:'p'}],
+    [{s:'Branded',n:mx.brand.clicks?82:0,c:mx.brand.clicks,i:mx.brand.impr,ctr:mx.brand.ctr,p:10.8},
+     {s:'Non-brand (all)',n:918,c:mx.nonbrand.clicks,i:mx.nonbrand.impr,ctr:mx.nonbrand.ctr,p:15.6},
+     {s:'— commercial ("lawyer/attorney")',n:mx.nb_comm.n,c:mx.nb_comm.clicks,i:mx.nb_comm.impr,ctr:mx.nb_comm.ctr,p:mx.nb_comm.wpos},
+     {s:'— commercial + geo modifier',n:mx.nb_comm_geo.n,c:mx.nb_comm_geo.clicks,i:mx.nb_comm_geo.impr,ctr:mx.nb_comm_geo.ctr,p:mx.nb_comm_geo.wpos},
+     {s:'— informational',n:mx.info.n,c:mx.info.clicks,i:mx.info.impr,ctr:mx.info.ctr,p:mx.info.wpos}]);
+
+  /* CTR curve */
+  $('#ctrLegend').innerHTML=
+   `<span class="it"><span class="sw" style="background:${css('--s1')}"></span>Branded queries</span>`+
+   `<span class="it"><span class="sw" style="background:${css('--s2')}"></span>Non-brand queries</span>`;
+  groupCols('#ctrChart',{height:236,cats:DATA.ctr_brand.map(x=>x.band),
+    series:[{name:'Brand CTR',color:css('--s1'),v:DATA.ctr_brand.map(x=>x.ctr)},
+            {name:'Non-brand CTR',color:css('--s2'),v:DATA.ctr_nonbrand.map(x=>x.ctr)}],
+    yfmt:v=>v.toFixed(0)+'%', vfmt:v=>v<1?v.toFixed(2)+'%':v.toFixed(1)+'%',
+    xtitle:'Average position band'});
+  buildTable('#tblCtr',[{h:'Position band',k:'band'},{h:'Brand impressions',f:r=>r.bi.toLocaleString()},
+    {h:'Brand clicks',k:'bc'},{h:'Brand CTR',f:r=>r.bctr+'%'},
+    {h:'Non-brand impressions',f:r=>r.ni.toLocaleString()},{h:'Non-brand clicks',k:'nc'},
+    {h:'Non-brand CTR',f:r=>r.nctr+'%'}],
+    DATA.ctr_brand.map((b,i)=>({band:b.band,bi:b.impr,bc:b.clicks,bctr:b.ctr,
+      ni:DATA.ctr_nonbrand[i].impr,nc:DATA.ctr_nonbrand[i].clicks,nctr:DATA.ctr_nonbrand[i].ctr})));
+
+  /* Position buckets */
+  const ORD=[css('--o1'),css('--o2'),css('--o3'),css('--o4'),css('--o5')];
+  hbar('#bucketChart',{labelW:112,rowH:38,mr:150,
+    rows:DATA.buckets.map((b,i)=>({label:'Position '+b.band,v:b.impr,color:ORD[i],
+      clicks:b.clicks,n:b.n,emph:true})),
+    tip:r=>`${r.clicks} clicks · ${r.n} keywords`,
+    tt:r=>[{color:null,value:fmtFull(r.v),name:'impressions'},
+           {color:null,value:r.clicks,name:'clicks'},
+           {color:null,value:r.n,name:'keywords'},
+           {color:null,value:(100*r.clicks/r.v).toFixed(3)+'%',name:'CTR'}]});
+  buildTable('#tblBuckets',[{h:'Position band',f:r=>'Position '+r.band},{h:'Keywords',k:'n'},
+    {h:'Impressions',f:r=>r.impr.toLocaleString()},{h:'Clicks',k:'clicks'},
+    {h:'CTR',f:r=>(100*r.clicks/r.impr).toFixed(3)+'%'}],DATA.buckets);
+
+  /* Money terms table */
+  buildTable('#tblMoney',[{h:'Query',k:'q'},{h:'Impressions',f:r=>r.i.toLocaleString()},
+    {h:'Clicks',k:'c'},{h:'CTR',f:r=>(100*r.c/r.i).toFixed(2)+'%'},{h:'Avg position',f:r=>r.p.toFixed(1)}],
+    DATA.money);
+
+  /* Migration dumbbell */
+  $('#migLegend').innerHTML=
+   `<span class="it"><span class="sw" style="background:${css('--db-before')}"></span>Before (clicks / 90 days)</span>`+
+   `<span class="it"><span class="sw" style="background:${css('--db-after')}"></span>Now (clicks / 90 days)</span>`;
+  dumbbell('#migChart',{rows:DATA.migration.map(r=>({label:r.label,full:r.old,
+    before:r.before,after:r.after,pct:r.pct}))});
+  buildTable('#tblMig',[{h:'Original URL',k:'old'},{h:'Before /90d',k:'before'},
+    {h:'Now /90d',k:'after'},{h:'Change',f:r=>r.pct.toFixed(1)+'%'}],DATA.migration);
+
+  /* Vanished — report the INDEPENDENT set; the gross figure double-counts the migration bucket */
+  const VN=DATA.vanished;
+  $('#vanStat').innerHTML=
+    `<div class="kpis" style="margin:0 0 10px">`+
+    `<div class="kpi"><div class="lbl">Dead URLs independent of the migration pairs</div>`+
+    `<div class="val">${VN.n}</div>`+
+    `<div class="dlt"><span class="dn">${VN.rate90.toLocaleString()} clicks / 90d</span> of historical value</div></div>`+
+    `<div class="kpi"><div class="lbl">Gross dead URLs, before de-duplication</div>`+
+    `<div class="val">${VN.gross_n}</div>`+
+    `<div class="dlt">${VN.overlap_n} of them are migration-pair &ldquo;old&rdquo; URLs, already counted</div></div>`+
+    `</div>`;
+  buildTable('#tblVanished',[{h:'URL',k:'u'},{h:'Clicks (prior 16 mo)',f:r=>r.clicks.toLocaleString()},
+    {h:'Impressions (prior 16 mo)',f:r=>r.impr.toLocaleString()},{h:'Now',f:()=>'0'}],DATA.vanished.top);
+
+  /* Impression concentration */
+  $('#concLegend').innerHTML=
+   `<span class="it"><span class="sw" style="background:${css('--s2')}"></span>"What is a civil union" post</span>`+
+   `<span class="it"><span class="sw" style="background:${css('--s1')}"></span>All other top pages</span>`;
+  hbar('#concChart',{labelW:300,rowH:31,mr:112,
+    rows:DATA.impr_concentration.map((p,i)=>({
+      label:p.u.length>44?p.u.slice(0,43)+'…':p.u, full:p.u, v:p.impr, clicks:p.clicks, pos:p.pos,
+      color:i===0?css('--s2'):css('--s1'), emph:i===0})),
+    tip:r=>`${r.clicks} clicks`,
+    tt:r=>[{color:null,value:fmtFull(r.v),name:'impressions'},
+           {color:null,value:r.clicks,name:'clicks'},
+           {color:null,value:(100*r.clicks/r.v).toFixed(3)+'%',name:'CTR'},
+           {color:null,value:r.pos.toFixed(1),name:'avg position'}]});
+  buildTable('#tblConc',[{h:'Page',k:'u'},{h:'Impressions',f:r=>r.impr.toLocaleString()},
+    {h:'Clicks',k:'clicks'},{h:'CTR',f:r=>(100*r.clicks/r.impr).toFixed(3)+'%'},
+    {h:'Avg position',f:r=>r.pos.toFixed(1)}],DATA.impr_concentration);
+
+  /* Geo */
+  const g=DATA.geo;
+  stackedBar('#geoChart',{labelW:104,rows:[
+    {label:'Impressions',unit:'impressions',sub:'',
+     parts:[{name:'United States',v:g.us_impr,color:css('--s1'),dark:true},
+            {name:'Rest of world',v:g.nonus_impr,color:css('--s2'),dark:true}]},
+    {label:'Clicks',unit:'clicks',sub:'',
+     parts:[{name:'United States',v:g.us_clicks,color:css('--s1'),dark:true},
+            {name:'Rest of world',v:g.nonus_clicks,color:css('--s2'),dark:true}]}]});
+
+  /* AI */
+  hbar('#aiChart',{labelW:172,rowH:27,mr:66,
+    rows:DATA.ai.top.slice(0,6).map((p,i)=>({label:p.u.length>28?p.u.slice(0,27)+'…':p.u,
+      full:p.u,v:p.impr,color:i===0?css('--s2'):css('--s1'),emph:i===0})),
+    tip:r=>fmt(r.v),
+    tt:r=>[{color:null,value:fmtFull(r.v),name:'AI impressions'}]});
+
+  /* Conversion */
+  hbar('#convChart',{labelW:206,rowH:32,mr:96,
+    rows:DATA.ga4_conv.map(s=>({label:s.seg,v:s.kr,sess:s.sess,ke:s.ke,sec:s.et,eng:s.engr,
+      color:s.seg.startsWith('Paid/LP')?css('--s1'):css('--deemph'),
+      emph:s.seg.startsWith('Paid/LP')})),
+    tip:r=>r.v.toFixed(1)+'%  ('+fmt(r.sess)+' sess)',
+    tt:r=>[{color:null,value:r.v.toFixed(2)+'%',name:'key-event rate'},
+           {color:null,value:fmtFull(r.sess),name:'sessions'},
+           {color:null,value:fmtFull(r.ke),name:'key events'},
+           {color:null,value:r.sec+'s',name:'avg engagement'}]});
+  buildTable('#tblConv',[{h:'Page type',k:'seg'},{h:'URLs',k:'n'},{h:'Sessions',f:r=>r.sess.toLocaleString()},
+    {h:'Key events',f:r=>r.ke.toLocaleString()},{h:'Key-event rate',f:r=>r.kr.toFixed(2)+'%'},
+    {h:'Engaged',f:r=>r.engr+'%'},{h:'Avg sec',k:'et'}],DATA.ga4_conv);
+
+  /* Thin */
+  buildTable('#tblThin',[{h:'Landing page',k:'p'},{h:'Sessions',f:r=>r.sess.toLocaleString()},
+    {h:'Avg engagement (sec)',k:'sec'},{h:'Key events',k:'ke'}],DATA.thin);
+
+  /* Bloat */
+  hbar('#bloatChart',{labelW:206,rowH:32,mr:126,
+    rows:DATA.bloat.map(b=>({label:b.k,v:b.urls,sessions:b.sessions,ke:b.key_events,
+      color:css('--s1'),emph:false})),
+    tip:r=>`${r.v} URLs · ${fmt(r.sessions)} sessions`,
+    tt:r=>[{color:null,value:fmtFull(r.v),name:'URLs'},
+           {color:null,value:fmtFull(r.sessions),name:'sessions'},
+           {color:null,value:fmtFull(r.ke),name:'key events'}]});
+  buildTable('#tblBloat',[{h:'URL class',k:'k'},{h:'URLs',k:'urls'},
+    {h:'Sessions',f:r=>r.sessions.toLocaleString()},{h:'Key events',k:'key_events'}],DATA.bloat);
+
+  /* GSC segments */
+  buildTable('#tblSeg',[{h:'Page template',k:'seg'},{h:'URLs',k:'n'},{h:'Clicks',k:'clicks'},
+    {h:'Impressions',f:r=>r.impr.toLocaleString()},{h:'CTR',f:r=>r.ctr+'%'},{h:'Avg position',k:'pos'}],
+    DATA.gsc_segments.filter(s=>s.impr>500));
+
+  /* ===== 9 · rank tracking ===== */
+  const RK=DATA.ranks;
+  const R1=css('--r1'),R2=css('--r2'),R3=css('--r3');
+
+  $('#mktLegend').innerHTML=
+    `<span class="it"><span class="sw" style="background:${R1}"></span>Ranking positions 1–10</span>`+
+    `<span class="it"><span class="sw" style="background:${R2}"></span>Positions 11–30</span>`+
+    `<span class="it"><span class="sw" style="background:${R3}"></span>Position 31 or worse</span>`;
+  stackedBar('#mktVis',{labelW:132,unit:'searches / month',
+    rows:RK.market.map(m=>({label:m.city,
+      sub:`${m.vol.toLocaleString()} searches/mo tracked · ${m.n} keywords · ${m.pct10}% of volume in the top 10`,
+      parts:[{name:'positions 1–10',tag:'top 10',v:m.top10,color:R1},
+             {name:'positions 11–30',tag:'11–30',v:m.mid,color:R2},
+             {name:'position 31+',tag:'31+',v:m.deep,color:R3,dark:true}]}))});
+  buildTable('#tblMkt',[{h:'City project',k:'city'},{h:'Keywords',k:'n'},
+    {h:'Tracked volume / mo',f:r=>r.vol.toLocaleString()},
+    {h:'Vol. in top 10',f:r=>r.top10.toLocaleString()},{h:'% in top 10',f:r=>r.pct10+'%'},
+    {h:'Vol. 11–30',f:r=>r.mid.toLocaleString()},{h:'Vol. 31+',f:r=>r.deep.toLocaleString()}],RK.market);
+
+  hbar('#localPack',{labelW:150,rowH:34,mr:190,max:56,
+    rows:RK.local.map(l=>({label:l.city,v:l.local,organic:l.organic,ai:l.ai,obs:l.obs,
+      color:l.local<2?css('--critical'):css('--s1')})),
+    tip:r=>`${r.v}% local pack · ${r.organic}% organic`,
+    tt:r=>[{color:null,value:r.v+'%',name:'local pack'},
+           {color:null,value:r.organic+'%',name:'organic blue link'},
+           {color:null,value:r.ai+'%',name:'AI Overview'},
+           {color:null,value:fmtFull(r.obs),name:'ranking observations'}]});
+
+  hbar('#archDelta',{labelW:230,rowH:34,mr:150,
+    rows:RK.bydelta.map(b=>({label:b.seg,v:b.delta,n:b.n,base:b.base,now:b.now,
+      color:b.delta>15?css('--critical'):b.delta>6?css('--s2'):css('--deemph')})),
+    tip:r=>`${r.base} → ${r.now}  (${r.v>0?'+':''}${r.v})`,
+    tt:r=>[{color:null,value:r.n,name:'keywords'},
+           {color:null,value:r.base,name:'avg position in March'},
+           {color:null,value:r.now,name:'avg position in August'},
+           {color:null,value:(r.v>0?'+':'')+r.v,name:'change (higher = worse)'}]});
+  buildTable('#tblArch',[{h:'What was ranking in March',k:'seg'},{h:'Keywords',k:'n'},
+    {h:'Avg position, March',k:'base'},{h:'Avg position, August',k:'now'},
+    {h:'Change',f:r=>(r.delta>0?'+':'')+r.delta}],RK.bydelta);
+
+  $('#archLegend').innerHTML=
+    `<span class="it"><span class="sw" style="background:${css('--s2')}"></span>Old flat /{city}-{service}-lawyer</span>`+
+    `<span class="it"><span class="sw" style="background:${css('--s1')}"></span>New /colorado/…</span>`+
+    `<span class="it"><span class="sw" style="background:${css('--s3')}"></span>/practice-areas/*</span>`+
+    `<span class="it"><span class="sw" style="background:${css('--deemph')}"></span>Blog &amp; other</span>`;
+  stackedBar('#archMix',{labelW:104,unit:'keyword rankings',
+    rows:RK.amix.map(a=>({label:a.d,sub:`${a.total} tracked keywords ranking that day`,
+      parts:[{name:'old flat city page',v:a.flat,color:css('--s2'),dark:true},
+             {name:'new /colorado/ page',v:a.nested,color:css('--s1'),dark:true},
+             {name:'/practice-areas/*',v:a.pa,color:css('--s3'),dark:true},
+             {name:'blog & other',v:a.other,color:css('--deemph')}]}))});
+
+  const ch=RK.churn;
+  $('#churnStat').innerHTML=
+    `<div class="kpis" style="margin:0 0 4px">`+
+    `<div class="kpi"><div class="lbl">Tracked keywords whose ranking URL changed at least twice</div>`+
+    `<div class="val">${Math.round(100*ch.ge3/ch.total)}%</div>`+
+    `<div class="dlt"><span class="dn">${ch.ge3} of ${ch.total}</span> had 3+ different pages rank</div></div>`+
+    `<div class="kpi"><div class="lbl">Keywords with five or more different ranking pages</div>`+
+    `<div class="val">${ch.ge5}</div><div class="dlt">worst case: <span class="dn">8 different URLs</span> in 20 weeks</div></div>`+
+    `</div>`;
+  buildTable('#tblChurn',[{h:'City',f:r=>r.city.replace(/-/g,' ')},{h:'Keyword',k:'k'},
+    {h:'Distinct ranking URLs',k:'n'},
+    {h:'Pages that competed',f:r=>r.urls.map(u=>u.replace(/\/$/,'').split('/').pop()||'/').join(', ')}],ch.top);
+
+  buildTable('#tblGaps',[{h:'City',k:'city'},{h:'Keyword',k:'k'},
+    {h:'Volume / mo',f:r=>r.vol.toLocaleString()},{h:'CPC',f:r=>'$'+r.cpc.toFixed(2)},
+    {h:'Position, March',k:'base'},{h:'Position now',k:'now'},
+    {h:'Paid-equivalent gap / mo',f:r=>'$'+r.val.toLocaleString()}],RK.gaps,6);
+
+  buildTable('#tblHead',[{h:'City',k:'city'},{h:'Keyword',k:'k'},
+    {h:'Volume / mo',f:r=>r.vol.toLocaleString()},{h:'CPC',f:r=>'$'+r.cpc.toFixed(2)},
+    {h:'March',k:'base'},{h:'August',k:'now'},
+    {h:'Change',f:r=>(r.delta>0?'+':'')+r.delta}],RK.head);
+
+  /* ===== 10 · 90 over 90 ===== */
+  const N9=DATA.n90;
+  const w=(g,lab)=>({lab:lab,win:`${g.s} → ${g.e}`,clicks:g.clicks,impr:g.impr,ctr:g.ctr,pos:g.pos,cpd:g.cpd});
+  buildTable('#tbl90',[{h:'Window',k:'lab'},{h:'Dates',k:'win'},
+    {h:'Clicks',f:r=>r.clicks.toLocaleString()},{h:'Clicks / day',k:'cpd'},
+    {h:'Impressions',f:r=>r.impr.toLocaleString()},{h:'CTR',f:r=>r.ctr+'%'},
+    {h:'Avg position',k:'pos'}],
+    [w(N9.pri,'Prior 90 days'),w(N9.cur,'Current 90 days'),w(N9.yoy,'Same 90 days, 2025')]);
+  $('#decomp90').innerHTML=
+    `<div class="kpis" style="margin:14px 0 2px">`+
+    `<div class="kpi"><div class="lbl">Clicks added by rising impression volume</div>`+
+    `<div class="val" style="color:var(--delta-good)">+${Math.abs(N9.d_imp).toLocaleString()}</div>`+
+    `<div class="dlt">impressions ${N9.pri.impr.toLocaleString()} → ${N9.cur.impr.toLocaleString()} (<span class="up">+20.1%</span>)</div></div>`+
+    `<div class="kpi"><div class="lbl">Clicks removed by falling click-through rate</div>`+
+    `<div class="val" style="color:var(--delta-bad)">${N9.d_ctr.toLocaleString()}</div>`+
+    `<div class="dlt">CTR ${N9.pri.ctr}% → ${N9.cur.ctr}% (<span class="dn">−25.2%</span>)</div></div>`+
+    `<div class="kpi"><div class="lbl">Net change in clicks, quarter over quarter</div>`+
+    `<div class="val">${N9.d_tot.toLocaleString()}</div>`+
+    `<div class="dlt"><span class="dn">−10.2%</span> · position ${N9.pri.pos} → ${N9.cur.pos}</div></div>`+
+    `</div>`;
+
+  $('#cuStat').innerHTML=
+    `<div class="kpis" style="margin:0 0 2px">`+
+    `<div class="kpi"><div class="lbl">Impressions this quarter, one blog post</div>`+
+    `<div class="val">${(N9.cu.impr90/1000).toFixed(0)}K</div>`+
+    `<div class="dlt">for <span class="dn">${N9.cu.clicks90} clicks</span> · ${N9.cu.mult}× its 16-month rate</div></div>`+
+    `<div class="kpi"><div class="lbl">Share of the quarter's impression rise it explains</div>`+
+    `<div class="val">${N9.cu.share_of_rise}%</div>`+
+    `<div class="dlt">${(N9.cu.flat90/1000).toFixed(0)}K expected → ${(N9.cu.impr90/1000).toFixed(0)}K actual</div></div>`+
+    `<div class="kpi"><div class="lbl">Current-quarter CTR with that page removed</div>`+
+    `<div class="val">${N9.cu.ex_ctr}%</div>`+
+    `<div class="dlt">vs ${N9.cur.ctr}% including it · prior quarter ${N9.pri.ctr}%</div></div>`+
+    `</div>`;
+
+  buildTable('#tblSubs',[{h:'30-day window',k:'label'},
+    {h:'Clicks',f:r=>r.clicks.toLocaleString()},{h:'Clicks / day',k:'cpd'},
+    {h:'Impressions / day',f:r=>r.ipd.toLocaleString()},{h:'CTR',f:r=>r.ctr+'%'},
+    {h:'Avg position',k:'pos'}],N9.subs);
+
+  const SM=N9.sem;
+  $('#semSplit').innerHTML=
+    `<div class="kpis" style="margin:0 0 2px">`+
+    `<div class="kpi"><div class="lbl">Average position, all ${SM.n} matched keywords</div>`+
+    `<div class="val">${SM.unw_a} → ${SM.unw_b}</div>`+
+    `<div class="dlt"><span class="dn">+${(SM.unw_b-SM.unw_a).toFixed(2)} positions</span> worse</div></div>`+
+    `<div class="kpi"><div class="lbl">Weighted by search volume</div>`+
+    `<div class="val">${SM.w_a} → ${SM.w_b}</div>`+
+    `<div class="dlt"><span class="dn">+${(SM.w_b-SM.w_a).toFixed(2)} positions</span> across ${SM.vol.toLocaleString()} searches/mo</div></div>`+
+    `<div class="kpi"><div class="lbl">Direction of travel</div>`+
+    `<div class="val">${SM.worse} / ${SM.better}</div>`+
+    `<div class="dlt">moved &gt;3 positions <span class="dn">worse</span> vs <span class="up">better</span> · ${SM.flat} flat</div></div>`+
+    `</div>`;
+
+  hbar('#aiCite',{labelW:300,rowH:30,mr:130,
+    rows:RK.ai.top.slice(0,10).map(a=>({label:a.u.length>44?'…'+a.u.slice(-43):a.u,
+      v:a.days,kws:a.kws,full:a.u,
+      color:a.u.startsWith('/colorado/locations/')?css('--s1'):css('--deemph')})),
+    tip:r=>`${r.v} days · ${r.kws} keywords`,
+    tt:r=>[{color:null,value:r.full,name:''},
+           {color:null,value:r.v,name:'days cited'},
+           {color:null,value:r.kws,name:'keywords'}]});
+}
+
+/* theme */
+const btn=$('#themeBtn');
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  btn.textContent = t==='dark' ? 'Light mode' : 'Dark mode';
+  renderAll();
+}
+btn.addEventListener('click',()=>{
+  applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+applyTheme(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(renderAll,180);});
+</script>
+</body>
+</html>

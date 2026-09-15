@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "workflow": "core-hub",
+  "meta": {
+    "page_type": "Core Practice-Area Hub",
+    "architecture_node_id": "FL-PA-DIV",
+    "canonical_path": "/divorce/",
+    "site_origin": "https://example.com",
+    "title": "Divorce Services: Synthetic Core Hub Fixture",
+    "voice_source": "synthetic-fixture",
+    "synthetic_fixture": true
+  },
+  "link_inventory": {
+    "status": "synthetic-fixture",
+    "evidence": "V2 relationship mechanics only. No claim that a client owns, publishes, or plans these example.com URLs."
+  },
+  "link_manifest": [
+    {
+      "id": "collaborative",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M003",
+      "target_path": "/divorce/collaborative-divorce/",
+      "target_url": "https://example.com/divorce/collaborative-divorce/",
+      "relationship_type": "Canonical parent → child",
+      "publication_state": "synthetic-fixture",
+      "inclusion_reason": "Exercises one contextual placement for a Required V2 procedural child without asserting live publication."
+    },
+    {
+      "id": "contested",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M004",
+      "target_path": "/divorce/contested-divorce/",
+      "target_url": "https://example.com/divorce/contested-divorce/",
+      "relationship_type": "Canonical parent → child",
+      "publication_state": "synthetic-fixture",
+      "inclusion_reason": "Exercises one contextual placement for a Required V2 procedural child without asserting live publication."
+    },
+    {
+      "id": "mediation",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M005",
+      "target_path": "/divorce/divorce-mediation/",
+      "target_url": "https://example.com/divorce/divorce-mediation/",
+      "relationship_type": "Canonical parent → child",
+      "publication_state": "synthetic-fixture",
+      "inclusion_reason": "Exercises one contextual placement for a Required V2 procedural child without asserting live publication."
+    },
+    {
+      "id": "separation",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M006",
+      "target_path": "/divorce/legal-separation/",
+      "target_url": "https://example.com/divorce/legal-separation/",
+      "relationship_type": "Canonical parent → child",
+      "publication_state": "synthetic-fixture",
+      "inclusion_reason": "Exercises one contextual placement for a Required V2 procedural child without asserting live publication."
+    },
+    {
+      "id": "uncontested",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M007",
+      "target_path": "/divorce/uncontested-divorce/",
+      "target_url": "https://example.com/divorce/uncontested-divorce/",
+      "relationship_type": "Canonical parent → child",
+      "publication_state": "synthetic-fixture",
+      "inclusion_reason": "Exercises one contextual placement for a Required V2 procedural child without asserting live publication."
+    }
+  ],
+  "sources": [],
+  "content": [
+    {
+      "type": "h1",
+      "text": "Divorce Services: Synthetic Core Hub Fixture"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "This synthetic hub shows how a broad divorce service page can orient a reader before focused process pages take over. It demonstrates document structure, deliberate link placement, and a clear route toward a future contact action. It contains no client facts, jurisdictional rules, legal advice, or promises about outcomes."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A useful Core Hub should help a reader recognize the available service pathways without turning every pathway into a miniature child page. The copy should answer broad questions, show meaningful distinctions, and leave detailed procedures to their assigned destinations. Every factual statement would still need evidence before a real page reached publication."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What a Broad Divorce Service Hub Should Help a Reader Do"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The hub should give a reader a useful mental model for choosing the next piece of information. That model starts with the reader's situation, the decisions ahead, and the kind of support being considered. It should not bury that orientation beneath firm history, generic reassurance, or unexplained terminology."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Broad service intent calls for a clear overview rather than an exhaustive explanation of every possible procedure. Each section should resolve one high-level concern and point toward a narrower destination only when that destination adds value. This keeps the hub useful while protecting the distinct purpose of each child page."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The opening should make the page's role obvious within a few lines. A reader should understand that this is an orientation point for service choices, preparation, and next steps. The page should avoid suggesting that reading a general overview replaces advice about an individual matter."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Scannable headings let a stressed reader find the most relevant section without reading from top to bottom. Direct first sentences should carry the essential point, while later sentences add context and practical framing. Short paragraphs and real lists make that structure visible in both the document and the eventual page."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How Focused Service Pathways Stay Distinct"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A Core Hub can acknowledge focused procedures without absorbing their full search intent. The governing architecture identifies separate destinations, but a link still needs a relevant sentence and a verified publication decision. The examples below test that mechanical pattern with reserved URLs rather than a real firm's pages."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A cooperative planning section could introduce a focused "
+        },
+        {
+          "text": "collaborative divorce pathway",
+          "link_id": "collaborative"
+        },
+        {
+          "text": " when that topic is contextually relevant and genuinely published. This placement works because the sentence is about that pathway before the reader reaches the anchor. The fixture does not describe how the process works or suggest that any client provides it."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A section about unresolved disputes could lead into a focused "
+        },
+        {
+          "text": "contested divorce process",
+          "link_id": "contested"
+        },
+        {
+          "text": " after the publication inventory confirms that destination. The anchor names the subject instead of using a generic instruction such as click here. Details about filings, hearings, timelines, and rights remain outside this claim-free fixture."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A discussion of supported conversation could mention a dedicated "
+        },
+        {
+          "text": "divorce mediation page",
+          "link_id": "mediation"
+        },
+        {
+          "text": " if the page exists and the surrounding copy earns the reference. This sentence demonstrates one target appearing in one place, rather than repeating the destination in a footer list. It makes no statement about requirements, availability, cost, or expected results."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A reader comparing relationship-status options could encounter a separate "
+        },
+        {
+          "text": "legal separation overview",
+          "link_id": "separation"
+        },
+        {
+          "text": " only after a qualified writer confirms that the comparison belongs. The Core Hub should preserve the child page's narrower intent instead of explaining its full substance here. No legal distinction is asserted in this mechanical example."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A section about agreement and preparation could point to an "
+        },
+        {
+          "text": "uncontested divorce pathway",
+          "link_id": "uncontested"
+        },
+        {
+          "text": " when that destination is published and useful to the intended reader. One clear anchor avoids competing link placements and keeps the path easy to understand. The example deliberately avoids claims about eligibility, steps, speed, or expense."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Questions Worth Organizing Before a First Conversation"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A broad service page can help a reader prepare useful questions without offering individualized conclusions. Preparation should focus on goals, available records, communication preferences, and areas that need professional clarification. The following synthetic prompts demonstrate a true bullet list and do not prescribe legal action."
+        }
+      ]
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "runs": [
+            {
+              "text": "Immediate priorities: Write down the decisions or uncertainties creating the most pressure today. Rank them by urgency from the reader's perspective, without assuming a legal deadline exists."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Information on hand: List the records already available and note which details remain unclear. A real professional can then explain what is relevant for the actual situation."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Communication needs: Identify whether plain explanations, written summaries, language access, or scheduling flexibility would make the conversation more useful. These preferences are practical inputs, not legal conclusions."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Decision criteria: Record what a helpful next step would need to accomplish. Consider clarity, responsiveness, fit, and verified service availability before choosing a provider."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Open questions: Separate known facts from assumptions and questions. That distinction gives the eventual professional a clearer starting point and reduces accidental overstatement in published content."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How a Service Team Can Explain the Work Clearly"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Clear service writing describes what the reader can expect from a conversation without fabricating a firm's methods. A production page should use verified intake details, communication practices, and service boundaries supplied by the client. When those facts are unavailable, the writer should stop or mark the gap outside the deliverable."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The strongest explanations connect each service detail to a reader need. Responsiveness matters because unanswered questions create uncertainty, while organized preparation helps the reader use limited time well. These general observations still require editorial judgment before becoming client-facing claims."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Trust language should be specific enough to verify and modest enough to defend. Awards, experience, pricing models, office access, testimonials, and results all need current evidence from an authorized source. A polished document cannot turn an unsupported statement into a trustworthy one."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The page should also explain what it cannot establish through general copy. Individual outcomes depend on facts and professional analysis that are absent from a synthetic workflow test. Honest boundaries support trust and keep broad educational framing from sounding like a promise."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Architecture evidence should stay visible throughout drafting instead of becoming an assumption after planning ends. Each heading, page role, path, and link decision needs a traceable basis. When the source leaves a relationship unresolved, the content should preserve that uncertainty rather than filling the gap."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Link quantity is not a measure of helpfulness by itself. A smaller set of relevant destinations can support a clearer decision than a dense collection of loosely related pages. The writer should justify every placement and document why plausible alternatives were left out."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Developer notes should remain outside publishable prose unless the delivery format explicitly includes them. Canonical paths, metadata recommendations, schema ideas, and implementation requirements need their own verified handoff. Mixing those notes into the page body creates avoidable production risk."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Accessibility and clarity also depend on structure that survives the move from DOCX to a website. True headings, descriptive anchors, ordered steps, and concise list items give editors useful semantics. The final web implementation still needs its own accessibility and quality review."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What Must Be Verified Before Publication"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A production Core Hub needs evidence gates beyond successful document generation. Architecture, live page status, client facts, legal claims, brand voice, and contact routing require separate confirmation. This numbered sequence demonstrates an ordered checklist, not a substitute for those reviews."
+        }
+      ]
+    },
+    {
+      "type": "ol",
+      "items": [
+        {
+          "runs": [
+            {
+              "text": "Confirm the selected hub node, canonical path, governance gate, and build status against the current governing architecture. Record any conditional approval rather than assuming it."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Confirm every internal destination is published, canonical, relevant to its sentence, and represented by the correct directional V2 relationship. Record evidence for exclusions as well as inclusions."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Confirm the client name, services, differentiators, office facts, contact method, and voice guidance through authorized current sources. Remove anything that cannot be supported."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Verify every substantive legal statement against live primary authority for the stated jurisdiction. Mechanical checks and editorial review cannot provide legal-accuracy clearance."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Render the final DOCX, inspect every page, test hyperlinks, and run the structural and page-level validators. Resolve real failures before presenting the document."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "firm-help",
+      "text": "How a Verified Firm Could Support the Reader"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "This section would normally translate verified firm capabilities into reader-centered support. It should describe the actual experience from first contact through agreed next steps, using the client's own evidence and voice. The synthetic fixture supplies no firm name, team credentials, office details, fees, testimonials, or service promises."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A real writer should ask which concerns the team handles, how communication works, and what the consultation can realistically accomplish. Those answers shape useful copy because they connect operational facts with reader expectations. They should never be inferred from another firm, a generic template, or an unrelated project."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Differentiation is strongest when it is concrete, relevant, and current. A verified process, credential, access model, or pricing approach can matter when it solves a real reader concern. Unsupported superlatives and vague claims add volume without helping the reader make a sound choice."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The final firm section should lead naturally toward contact without manufacturing urgency. It can state who the service fits, what information to bring, and which verified channel starts the conversation. A production editor must confirm every detail before the call to action becomes public."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "faq",
+      "text": "Frequently Asked Questions About This Synthetic Hub"
+    },
+    {
+      "type": "h3",
+      "text": "Is this fixture legal guidance?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "No. The fixture contains no jurisdiction, client facts, legal rules, deadlines, procedures, rights, remedies, or outcome claims. Its purpose is to test document mechanics with unmistakably synthetic content."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Does a passing validator make the copy publication ready?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "No. A validator can confirm supported structural and pattern-based requirements, but it cannot decide whether the advice is sound or the writing is useful. Production content still needs strategy, editorial, voice, factual, and legal review."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Why does the fixture use example.com links?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Example.com is a reserved domain suitable for documentation and testing. These URLs demonstrate hyperlink relationships without suggesting that a client owns or publishes the destinations. Their paths mirror the selected V2 nodes only for this mechanical test."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Why are only five child destinations included?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The fixture uses five Required V2 procedural children to exercise repeated but separated contextual placements. It does not claim that this is a complete live-site inventory or a universal link requirement. A production manifest must document its own inclusion and exclusion evidence."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "What does visual review add?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Rendering exposes page breaks, orphaned headings, cramped spacing, list problems, and other defects that XML checks can miss. Every rendered page needs human inspection at readable size. The local LibreOffice render may still differ slightly from Microsoft Word."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "cta",
+      "text": "Next Step for This Synthetic Fixture"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Use this document only to confirm that the Core Hub workflow generates, validates, links, and renders as documented. Do not publish, adapt, or present its wording as client advice. A real assignment must begin with approved architecture, verified context, explicit voice guidance, live research, and a reviewed completion condition."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The eventual contact action must use the client's verified channel and describe the actual next step. No phone number, address, person, consultation offer, or response promise belongs in this fixture. That absence is intentional and prevents a mechanical test from inventing client facts."
+        }
+      ]
+    }
+  ]
+}

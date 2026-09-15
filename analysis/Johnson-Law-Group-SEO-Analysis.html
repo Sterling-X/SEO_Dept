@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Johnson Law Group — Organic Performance</title>
+<style>
+:root{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --surface-2:#212120;
+  --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,0.10);
+  --clicks:#3987e5; --users:#199e70; --impr:#c98500; --pos:#e66767; --brand:#9085e9;
+  --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --crit:#d03b3b;
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --surface-2:#f3f2ee;
+  --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,0.10);
+  --clicks:#2a78d6; --users:#1baf7a; --impr:#eda100; --pos:#e34948; --brand:#4a3aa7;
+  --good:#006300;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+h1{font-size:26px;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:20px;margin:54px 0 4px;letter-spacing:-.01em}
+h3{font-size:15px;margin:22px 0 8px}
+.sub{color:var(--ink-2);font-size:14px;margin:0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;border:1px solid var(--border);color:var(--ink-2);background:var(--surface)}
+p{color:var(--ink-2);font-size:14.5px;max-width:80ch}
+p strong,li strong{color:var(--ink)}
+button.toggle{background:var(--surface);color:var(--ink-2);border:1px solid var(--border);border-radius:8px;
+  padding:7px 12px;font-size:13px;cursor:pointer}
+button.toggle:hover{color:var(--ink)}
+
+/* the one-line answer */
+.answer{margin:22px 0 6px;padding:18px 20px;border-radius:14px;background:var(--surface);
+  border:1px solid var(--border);border-left:4px solid var(--crit)}
+.answer .big{font-size:19px;font-weight:650;color:var(--ink);letter-spacing:-.01em;margin:0 0 6px}
+.answer p{margin:0;font-size:14.5px}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 4px}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.kpi.hero{border-left:3px solid var(--clicks)}
+.kpi .lab{font-size:12px;color:var(--muted);margin-bottom:6px}
+.kpi .val{font-size:25px;font-weight:650;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .delta{font-size:12.5px;margin-top:4px;font-weight:600}
+.up{color:var(--good)} .down{color:var(--crit)} .flat{color:var(--muted)}
+.kpi .note{font-size:11.5px;color:var(--muted);margin-top:2px}
+.rowlab{font-size:12px;color:var(--muted);margin:16px 0 -6px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 18px 12px;margin:14px 0}
+.card h3{margin:0 0 2px}
+.card .cap{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.takeaway{font-size:13.5px;color:var(--ink);margin:10px 0 2px;padding:9px 12px;background:var(--surface-2);
+  border-radius:8px;border-left:3px solid var(--brand)}
+.takeaway.bad{border-color:var(--crit)} .takeaway.good{border-color:var(--good)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin:2px 0 6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:11px;height:11px;border-radius:3px;display:inline-block}
+.swatch.line{height:3px;width:16px;border-radius:2px}
+svg{display:block;width:100%;height:auto;overflow:visible;font-family:inherit}
+.gl{stroke:var(--grid);stroke-width:1}
+.axis{stroke:var(--axis);stroke-width:1}
+.tick{fill:var(--muted);font-size:11px}
+.tickx{fill:var(--muted);font-size:10.5px}
+.dailywisp{opacity:.26}
+.mk{stroke-dasharray:4 4;stroke-width:1.4}
+.mklab{font-size:10.5px;font-weight:600}
+.trend{stroke-dasharray:6 5;stroke-width:2}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+
+.tip{position:fixed;pointer-events:none;z-index:20;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:9px;padding:8px 10px;font-size:12px;color:var(--ink);box-shadow:0 6px 22px rgba(0,0,0,.35);opacity:0;transition:opacity .08s}
+.tip .r{display:flex;justify-content:space-between;gap:14px;font-variant-numeric:tabular-nums}
+.tip .r span:first-child{color:var(--ink-2)}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 2px}
+th,td{text-align:right;padding:7px 10px;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.02em}
+td.u{color:var(--ink);max-width:420px;overflow:hidden;text-overflow:ellipsis}
+.pill{display:inline-block;padding:2px 7px;border-radius:999px;font-size:11px;font-weight:600}
+.pill.good{background:rgba(12,163,12,.14);color:var(--good)}
+.pill.warn{background:rgba(250,178,25,.16);color:#b9820c}
+.pill.crit{background:rgba(208,59,59,.15);color:var(--crit)}
+:root[data-theme="dark"] .pill.warn{color:var(--warn)}
+ul.clean{padding-left:18px;margin:8px 0}
+ul.clean li{color:var(--ink-2);font-size:14px;margin:7px 0}
+.two{columns:2;column-gap:40px}
+.two li{break-inside:avoid}
+@media(max-width:820px){.two{columns:1}}
+.callout{border-left:3px solid var(--brand);background:var(--surface);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0}
+.callout.win{border-color:var(--good)} .callout.risk{border-color:var(--crit)} .callout.warnbox{border-color:var(--warn)}
+.callout p{margin:4px 0;font-size:14px}
+.foot{color:var(--muted);font-size:12px;margin-top:40px;border-top:1px solid var(--grid);padding-top:14px}
+.src{color:var(--clicks)}
+.need{background:var(--surface);border:1px dashed var(--axis);border-radius:12px;padding:14px 16px;margin:14px 0}
+.need h3{margin:0 0 6px;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <span class="tag">RocketClicks · Organic Performance Review</span>
+    <h1>Johnson Law Group — Organic Search &amp; Engagement</h1>
+    <p class="sub">Google Search Console + GA4 · Mar 2025 → Jul 2026 · Paid, Referral &amp; Cross-network excluded</p>
+  </div>
+  <button class="toggle" id="themeBtn">◐ Theme</button>
+</header>
+
+<div class="answer" style="border-left-color:var(--warn)">
+  <p class="big">Two signals are diverging — and only one is reliable this year.</p>
+  <p><strong>Search Console clicks are down ~40%</strong> vs the 2025 peak — but Google changed how it reports clicks/impressions this year (§3), so GSC now <strong>under-counts real organic visits</strong>. The trustworthy measure is <strong>GA4 new users &amp; engaged sessions</strong>, where organic is the firm's best-quality channel. The decisive chart is <strong>organic new users year-over-year (§2)</strong> — once that data is in, it leads this report. Impressions and average position are shown as plain-text context only, never as trend charts, because both are distorted this year.</p>
+</div>
+
+<div class="rowlab">What matters — clicks &amp; traffic (organic)</div>
+<div class="kpis" id="kpiClicks"></div>
+
+<div class="rowlab">On-site engagement — organic visitors (GA4, cumulative Jan 2025–Jul 2026)</div>
+<div class="kpis" id="kpiEng"></div>
+<p class="note" style="font-size:11.5px;color:var(--muted)">Engagement figures are all-time cumulative for the Organic Search channel — a quality benchmark, not a trend. Month-by-month engagement trends need the GA4 export described at the bottom.</p>
+
+<h2>1 · The traffic story — clicks are the scorecard</h2>
+
+<div class="card">
+  <h3>Monthly organic clicks</h3>
+  <p class="cap">Full calendar months. Amber = agency era (from Mar 2026). Hatched = partial month. Dashed line = trend.</p>
+  <div id="c_mbars"></div>
+  <div class="takeaway bad" id="tk_bars"></div>
+</div>
+
+<div class="card">
+  <h3>Daily clicks with trend</h3>
+  <p class="cap">7-day average (bold) over raw daily (faint). The dashed line is the overall trend across the full period.</p>
+  <div class="legend">
+    <span><i class="swatch line" style="background:var(--clicks)"></i>7-day avg</span>
+    <span><i class="swatch" style="background:var(--clicks);opacity:.35"></i>daily</span>
+    <span><i class="swatch line" style="background:var(--muted)"></i>trend</span>
+    <span><i class="swatch" style="background:var(--warn);opacity:.5"></i>Google update window</span>
+    <span><i class="swatch" style="background:var(--brand)"></i>agency takeover</span>
+  </div>
+  <div id="c_clicks"></div>
+  <div class="takeaway bad">The trend line slopes down across the whole record. Amber bands mark confirmed Google updates — note how the Aug 2025 Spam Update reshaped visibility. The agency era (right of the purple marker) is flat-to-declining in clicks, not yet recovering.</div>
+</div>
+
+<h2>2 · Why it declined — aging content vs. Google's algorithm</h2>
+<p>The most likely primary driver is a large base of <strong>old, overlapping, unrefreshed content</strong> losing favor as Google's 2024–2025 updates raised the bar on quality, originality and consolidation. This is exactly the profile those updates target — and the evidence is in the site's own data.</p>
+<div class="grid2">
+  <div class="card">
+    <h3 style="font-size:14px">Ranking blog content by publish year</h3>
+    <p class="cap">Top ~230 pages. Red = 2021–2022 — <strong>55% of ranking blog URLs</strong> are 3–5 years old.</p>
+    <div id="c_age"></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14px">Duplication &amp; cannibalization</h3>
+    <p class="cap">The same content competing against itself — a direct core-update liability.</p>
+    <ul class="clean" style="margin-top:2px">
+      <li><strong>12 duplicate URL paths</strong> — homepage indexed on <em>both</em> www &amp; non-www; <code>/reviews/</code>, <code>denver-divorce-lawyer</code> and others live at two URLs each.</li>
+      <li><strong>19 overlapping truncated-slug pairs</strong> — e.g. <em>petitioner vs respondent</em> at 1,554 clicks on one URL and 150 on its near-duplicate twin; <em>civil union</em> 234 vs 59.</li>
+      <li><strong>51 pages</strong> draw 20k+ impressions each yet rank <strong>below position 20</strong> — content Google sees but no longer trusts to rank.</li>
+    </ul>
+  </div>
+</div>
+<div class="callout warnbox">
+<p><strong>The timeline fits.</strong> The site's window opens (Mar 20 2025) already depressed at ~position 39 — right as the <strong>March 2025 Core Update</strong> finished. The dramatic autumn shift (impressions halve, position 38→14, accelerating ~Sep 11) overlaps the <strong>confirmed Aug 2025 Spam Update (Aug 26–Sep 22)</strong>: weak/duplicative pages lose visibility, so impressions fall while the surviving pages' average position improves. The original, larger devaluation most likely traces to the <strong>2024 core updates</strong> (esp. <strong>March 2024</strong>, which folded the Helpful Content system into core) — but that predates this data window.</p>
+</div>
+<div class="callout risk">
+<p><strong>Honest caveats.</strong> This is a strong inference, not proof: Search Console gives no per-URL dated ranking history or an update label, so we're matching patterns and dates. And note the autumn-2025 improvement was <em>algorithmic/site-side and pre-dates the March 2026 engagement</em> — the agency inherits the cleanup, it didn't cause the earlier swing. The payoff from fixing this (consolidating duplicates, pruning/refreshing stale posts, aligning with Helpful-Content principles) should show up in <strong>clicks and new users</strong> — which is why those, not impressions, are the recovery scorecard.</p>
+</div>
+
+<h2>3 · Organic new users &amp; engagement — the truer scorecard</h2>
+<p>Search Console clicks are under-counted this year (§3), so the more reliable read is what GA4 measures on the site itself: <strong>new users, engaged sessions, and engagement time.</strong> On quality, organic is the firm's best channel — the open question is the <em>year-over-year new-user trend</em>, charted below.</p>
+
+<div class="card">
+  <h3>Organic new users — year over year</h3>
+  <p class="cap">GA4, first-user channel = Organic Search. Compare the same months across years.</p>
+  <div id="c_yoy"></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h3 style="font-size:14px">New users by non-paid channel</h3>
+    <p class="cap">GA4, cumulative. Organic Search is the #2 source of new users and the top converting one.</p>
+    <div id="c_chanUsers"></div>
+  </div>
+  <div class="card">
+    <h3 style="font-size:14px">Avg engagement time per user (seconds)</h3>
+    <p class="cap">Organic visitors stay ~2× longer than Direct and far longer than social.</p>
+    <div id="c_chanTime"></div>
+  </div>
+</div>
+<div class="callout win">
+<p><strong>Organic punches above its weight.</strong> Organic Search produced <strong>27,539 engaged sessions</strong> and <strong>5,184 key events</strong> — the most conversions of any channel — at <strong>103s</strong> average engagement (vs 47s for Direct). Fewer clicks are reaching the site, but the ones that do convert. Recovering organic click volume directly grows the firm's best lead source.</p>
+</div>
+
+<h2>4 · Why impressions &amp; position are NOT the scorecard this year</h2>
+<div class="callout warnbox">
+<p><strong>Google changed how Search impressions are counted.</strong> Over the past year, AI Overviews and other new result surfaces began generating impressions — and shifting average position — that didn't exist a year ago. This <strong>inflates impressions and distorts year-over-year position</strong>. A rising impression count can mean "Google showed us inside an AI Overview nobody clicked," not "we're winning." The same change means <strong>Search Console clicks now under-count real organic visits</strong> — which is why GSC clicks can fall while GA4 new users rise (§2). We deliberately show <em>no impression or position charts</em> here to avoid a misleading trend line.</p>
+</div>
+<p style="font-size:14px">For the record, in plain numbers (context only — do not treat as success/failure):</p>
+<ul class="clean">
+<li><strong>Average position:</strong> the big ranking gain (≈39 → 14) landed <strong>Aug–Oct 2025, before the engagement began</strong>, then <strong>slipped ~4 positions</strong> (≈15 → 19) in Q2 2026. The slippage is a real signal worth acting on; the earlier gain was not the agency's and did not lift traffic.</li>
+<li><strong>Impressions:</strong> volatile and partly inflated by AI surfaces — not a reliable year-over-year comparison, so we don't score on it.</li>
+</ul>
+
+<h2>5 · Where to optimize — biggest click opportunities</h2>
+<p class="cap" style="font-size:12.5px;color:var(--muted)">High search demand, poor rank. These commercial city×service pages are the fastest paths back to click growth.</p>
+<table>
+<thead><tr><th>Page / query</th><th>Impressions*</th><th>Clicks</th><th>Position</th><th>Priority</th></tr></thead>
+<tbody id="oppTable"></tbody>
+</table>
+<p class="note" style="font-size:11.5px;color:var(--muted)">*Impressions shown for sizing latent demand only; see §3 caveat. 16-month GSC totals.</p>
+
+<ul class="clean two" style="margin-top:14px">
+<li><strong>Money pages stuck on page 3–5:</strong> the Denver &amp; Colorado-Springs divorce / custody / family-law landing pages rank at position 29–57 despite huge demand — the top revenue lever.</li>
+<li><strong>Non-branded head terms are weak:</strong> "child support lawyer" (pos 61), "child custody lawyer" (pos 50), "family attorney" (pos 70).</li>
+<li><strong>The blog is the bright spot:</strong> informational articles rank page-one (petitioner vs respondent, 90-day separation, foreign child support) — use internal links from these to pass authority to the weak money pages.</li>
+<li><strong>Desktop CTR is half of mobile</strong> (0.22% vs 0.56%) — a title/meta &amp; SERP-feature gap on desktop.</li>
+</ul>
+
+<h2>6 · The 90-day focus</h2>
+<ul class="clean">
+<li><strong>Consolidate the duplicate/aging content (root cause).</strong> Canonicalize www vs non-www, merge the truncated-slug twins into one authoritative URL with 301s, and prune or refresh the 2021–2022 posts. This directly addresses what the 2024–2025 updates devalued.</li>
+<li><strong>Stop the Q2 ranking drift</strong> — diagnose the April indexation anomaly (position briefly spiked to ~63) and recover the ~4 positions lost since March.</li>
+<li><strong>Attack the money pages</strong> — Denver &amp; Colorado-Springs divorce/custody/family-law pages from page 3–5 onto page one.</li>
+<li><strong>Grow the firm's best channel</strong> — every recovered organic click flows into the highest-engagement, highest-converting channel (§2).</li>
+<li><strong>Report on clicks + engaged sessions, not impressions.</strong> Recovery is real only when monthly clicks clear the ~1,600/mo pre-takeover run-rate for two consecutive clean months.</li>
+</ul>
+
+<div class="need">
+<h3>To add the engagement trends you asked for, I need one more export</h3>
+<p style="margin:2px 0">The GA4 file provided is a single all-time snapshot, so I can show engagement <em>quality</em> but not its <em>trend</em>. To chart <strong>new users, engaged sessions, and engagement time over time</strong>, pull from GA4:</p>
+<p style="margin:6px 0;color:var(--ink)"><strong>Reports → Acquisition → Traffic acquisition</strong> (or Explore) · Dimension: <strong>Month</strong> · Filter: <strong>Session/First-user channel = Organic Search</strong> · Metrics: New users, Total users, Engaged sessions, Avg engagement time · Range: Jan 2025–present · Export CSV.</p>
+<p style="margin:2px 0">With that, I'll add month-over-month organic engagement lines beside the clicks chart so traffic and quality trends sit together.</p>
+</div>
+
+<div class="foot">
+<p><span class="src">Sources:</span> Google Search Console (Web, 16 months) and GA4 User-acquisition channel export (Johnson Law Group). GSC dimension tables are 16-month aggregates without a time axis; the daily Chart series carries all time-based conclusions. GA4 channel figures are cumulative. Note: the GA4 export's "New users" exceeds "Total users" per channel (a first-user-attribution export quirk) — engaged sessions, engagement time, and key events are used as the reliable quality signals. Impressions/position are shown as context only per §3. Hover charts for values; toggle theme top-right.</p>
+</div>
+</div>
+
+<div class="tip" id="tip"></div>
+<script>
+const DATA = {"daily":[{"d":"2025-03-20","c":84,"i":23408,"ctr":0.36,"p":38.8,"cR":84.0,"iR":23408,"pR":38.8,"ctrR":0.36},{"d":"2025-03-21","c":104,"i":19414,"ctr":0.54,"p":37.2,"cR":94.0,"iR":21411,"pR":38.0,"ctrR":0.45},{"d":"2025-03-22","c":59,"i":20066,"ctr":0.29,"p":40.5,"cR":82.33,"iR":20963,"pR":38.83,"ctrR":0.4},{"d":"2025-03-23","c":73,"i":20439,"ctr":0.36,"p":39.5,"cR":80.0,"iR":20832,"pR":39.0,"ctrR":0.39},{"d":"2025-03-24","c":158,"i":22035,"ctr":0.72,"p":35.6,"cR":95.6,"iR":21072,"pR":38.32,"ctrR":0.45},{"d":"2025-03-25","c":119,"i":21562,"ctr":0.55,"p":35.2,"cR":99.5,"iR":21154,"pR":37.8,"ctrR":0.47},{"d":"2025-03-26","c":130,"i":19359,"ctr":0.67,"p":33.6,"cR":103.86,"iR":20898,"pR":37.2,"ctrR":0.5},{"d":"2025-03-27","c":130,"i":18871,"ctr":0.69,"p":34.3,"cR":110.43,"iR":20249,"pR":36.56,"ctrR":0.55},{"d":"2025-03-28","c":108,"i":20852,"ctr":0.52,"p":38.4,"cR":111.0,"iR":20455,"pR":36.73,"ctrR":0.54},{"d":"2025-03-29","c":66,"i":18586,"ctr":0.36,"p":39.0,"cR":112.0,"iR":20243,"pR":36.51,"ctrR":0.55},{"d":"2025-03-30","c":75,"i":22226,"ctr":0.34,"p":41.1,"cR":112.29,"iR":20499,"pR":36.74,"ctrR":0.55},{"d":"2025-03-31","c":115,"i":20996,"ctr":0.55,"p":36.0,"cR":106.14,"iR":20350,"pR":36.8,"ctrR":0.53},{"d":"2025-04-01","c":130,"i":25782,"ctr":0.5,"p":40.7,"cR":107.71,"iR":20953,"pR":37.59,"ctrR":0.52},{"d":"2025-04-02","c":129,"i":28145,"ctr":0.46,"p":41.8,"cR":107.57,"iR":22208,"pR":38.76,"ctrR":0.49},{"d":"2025-04-03","c":104,"i":26575,"ctr":0.39,"p":43.5,"cR":103.86,"iR":23309,"pR":40.07,"ctrR":0.45},{"d":"2025-04-04","c":116,"i":20479,"ctr":0.57,"p":37.2,"cR":105.0,"iR":23256,"pR":39.9,"ctrR":0.45},{"d":"2025-04-05","c":63,"i":23476,"ctr":0.27,"p":42.5,"cR":104.57,"iR":23954,"pR":40.4,"ctrR":0.44},{"d":"2025-04-06","c":78,"i":20169,"ctr":0.39,"p":39.8,"cR":105.0,"iR":23660,"pR":40.21,"ctrR":0.45},{"d":"2025-04-07","c":105,"i":21833,"ctr":0.48,"p":35.3,"cR":103.57,"iR":23780,"pR":40.11,"ctrR":0.44},{"d":"2025-04-08","c":131,"i":22434,"ctr":0.58,"p":35.2,"cR":103.71,"iR":23302,"pR":39.33,"ctrR":0.45},{"d":"2025-04-09","c":133,"i":20551,"ctr":0.65,"p":34.5,"cR":104.29,"iR":22217,"pR":38.29,"ctrR":0.48},{"d":"2025-04-10","c":107,"i":22517,"ctr":0.48,"p":38.8,"cR":104.71,"iR":21637,"pR":37.61,"ctrR":0.49},{"d":"2025-04-11","c":82,"i":24725,"ctr":0.33,"p":43.8,"cR":99.86,"iR":22244,"pR":38.56,"ctrR":0.45},{"d":"2025-04-12","c":77,"i":21483,"ctr":0.36,"p":42.9,"cR":101.86,"iR":21959,"pR":38.61,"ctrR":0.47},{"d":"2025-04-13","c":80,"i":21753,"ctr":0.37,"p":42.1,"cR":102.14,"iR":22185,"pR":38.94,"ctrR":0.46},{"d":"2025-04-14","c":128,"i":32922,"ctr":0.39,"p":44.9,"cR":105.43,"iR":23769,"pR":40.31,"ctrR":0.45},{"d":"2025-04-15","c":118,"i":26792,"ctr":0.44,"p":42.1,"cR":103.57,"iR":24392,"pR":41.3,"ctrR":0.43},{"d":"2025-04-16","c":109,"i":20103,"ctr":0.54,"p":36.1,"cR":100.14,"iR":24328,"pR":41.53,"ctrR":0.42},{"d":"2025-04-17","c":92,"i":21376,"ctr":0.43,"p":39.2,"cR":98.0,"iR":24165,"pR":41.59,"ctrR":0.41},{"d":"2025-04-18","c":80,"i":22130,"ctr":0.36,"p":42.2,"cR":97.71,"iR":23794,"pR":41.36,"ctrR":0.41},{"d":"2025-04-19","c":55,"i":28527,"ctr":0.19,"p":48.6,"cR":94.57,"iR":24800,"pR":42.17,"ctrR":0.39},{"d":"2025-04-20","c":72,"i":25515,"ctr":0.28,"p":44.4,"cR":93.43,"iR":25338,"pR":42.5,"ctrR":0.38},{"d":"2025-04-21","c":102,"i":27651,"ctr":0.37,"p":42.1,"cR":89.71,"iR":24585,"pR":42.1,"ctrR":0.37},{"d":"2025-04-22","c":95,"i":27232,"ctr":0.35,"p":42.8,"cR":86.43,"iR":24648,"pR":42.2,"ctrR":0.36},{"d":"2025-04-23","c":96,"i":26862,"ctr":0.36,"p":41.0,"cR":84.57,"iR":25613,"pR":42.9,"ctrR":0.33},{"d":"2025-04-24","c":123,"i":28295,"ctr":0.43,"p":41.4,"cR":89.0,"iR":26602,"pR":43.21,"ctrR":0.33},{"d":"2025-04-25","c":70,"i":27774,"ctr":0.25,"p":43.5,"cR":87.57,"iR":27408,"pR":43.4,"ctrR":0.32},{"d":"2025-04-26","c":55,"i":24752,"ctr":0.22,"p":42.6,"cR":87.57,"iR":26869,"pR":42.54,"ctrR":0.32},{"d":"2025-04-27","c":49,"i":23273,"ctr":0.21,"p":39.3,"cR":84.29,"iR":26548,"pR":41.81,"ctrR":0.31},{"d":"2025-04-28","c":84,"i":24937,"ctr":0.34,"p":37.4,"cR":81.71,"iR":26161,"pR":41.14,"ctrR":0.31},{"d":"2025-04-29","c":110,"i":24682,"ctr":0.45,"p":37.5,"cR":83.86,"iR":25796,"pR":40.39,"ctrR":0.32},{"d":"2025-04-30","c":109,"i":21724,"ctr":0.5,"p":37.0,"cR":85.71,"iR":25062,"pR":39.81,"ctrR":0.34},{"d":"2025-05-01","c":95,"i":23193,"ctr":0.41,"p":37.5,"cR":81.71,"iR":24334,"pR":39.26,"ctrR":0.34},{"d":"2025-05-02","c":82,"i":21220,"ctr":0.39,"p":36.3,"cR":83.43,"iR":23397,"pR":38.23,"ctrR":0.36},{"d":"2025-05-03","c":55,"i":25314,"ctr":0.22,"p":43.2,"cR":83.43,"iR":23478,"pR":38.31,"ctrR":0.36},{"d":"2025-05-04","c":63,"i":22673,"ctr":0.28,"p":39.9,"cR":85.43,"iR":23392,"pR":38.4,"ctrR":0.37},{"d":"2025-05-05","c":107,"i":25611,"ctr":0.42,"p":36.9,"cR":88.71,"iR":23488,"pR":38.33,"ctrR":0.38},{"d":"2025-05-06","c":112,"i":25107,"ctr":0.45,"p":36.0,"cR":89.0,"iR":23549,"pR":38.11,"ctrR":0.38},{"d":"2025-05-07","c":109,"i":23415,"ctr":0.47,"p":34.8,"cR":89.0,"iR":23790,"pR":37.8,"ctrR":0.38},{"d":"2025-05-08","c":102,"i":24799,"ctr":0.41,"p":35.3,"cR":90.0,"iR":24020,"pR":37.49,"ctrR":0.38},{"d":"2025-05-09","c":68,"i":22878,"ctr":0.3,"p":34.7,"cR":88.0,"iR":24257,"pR":37.26,"ctrR":0.36},{"d":"2025-05-10","c":53,"i":27515,"ctr":0.19,"p":40.2,"cR":87.71,"iR":24571,"pR":36.83,"ctrR":0.36},{"d":"2025-05-11","c":66,"i":25465,"ctr":0.26,"p":37.2,"cR":88.14,"iR":24970,"pR":36.44,"ctrR":0.36},{"d":"2025-05-12","c":108,"i":30384,"ctr":0.36,"p":35.7,"cR":88.29,"iR":25652,"pR":36.27,"ctrR":0.35},{"d":"2025-05-13","c":110,"i":30131,"ctr":0.37,"p":36.5,"cR":88.0,"iR":26370,"pR":36.34,"ctrR":0.34},{"d":"2025-05-14","c":87,"i":29181,"ctr":0.3,"p":35.4,"cR":84.86,"iR":27193,"pR":36.43,"ctrR":0.31},{"d":"2025-05-15","c":88,"i":29141,"ctr":0.3,"p":36.4,"cR":82.86,"iR":27814,"pR":36.59,"ctrR":0.3},{"d":"2025-05-16","c":82,"i":26268,"ctr":0.31,"p":36.1,"cR":84.86,"iR":28298,"pR":36.79,"ctrR":0.3},{"d":"2025-05-17","c":66,"i":30193,"ctr":0.22,"p":42.7,"cR":86.71,"iR":28680,"pR":37.14,"ctrR":0.3},{"d":"2025-05-18","c":71,"i":25555,"ctr":0.28,"p":40.3,"cR":87.43,"iR":28693,"pR":37.59,"ctrR":0.31},{"d":"2025-05-19","c":106,"i":28735,"ctr":0.37,"p":37.3,"cR":87.14,"iR":28458,"pR":37.81,"ctrR":0.31},{"d":"2025-05-20","c":100,"i":30126,"ctr":0.33,"p":39.0,"cR":85.71,"iR":28457,"pR":38.17,"ctrR":0.3},{"d":"2025-05-21","c":112,"i":27391,"ctr":0.41,"p":39.5,"cR":89.29,"iR":28201,"pR":38.76,"ctrR":0.32},{"d":"2025-05-22","c":83,"i":25785,"ctr":0.32,"p":38.6,"cR":88.57,"iR":27722,"pR":39.07,"ctrR":0.32},{"d":"2025-05-23","c":53,"i":24670,"ctr":0.21,"p":42.5,"cR":84.43,"iR":27494,"pR":39.99,"ctrR":0.31},{"d":"2025-05-24","c":34,"i":26167,"ctr":0.13,"p":45.0,"cR":79.86,"iR":26918,"pR":40.31,"ctrR":0.29},{"d":"2025-05-25","c":36,"i":22511,"ctr":0.16,"p":43.1,"cR":74.86,"iR":26484,"pR":40.71,"ctrR":0.28},{"d":"2025-05-26","c":55,"i":27282,"ctr":0.2,"p":43.9,"cR":67.57,"iR":26276,"pR":41.66,"ctrR":0.25},{"d":"2025-05-27","c":79,"i":24254,"ctr":0.33,"p":39.1,"cR":64.57,"iR":25437,"pR":41.67,"ctrR":0.25},{"d":"2025-05-28","c":86,"i":23978,"ctr":0.36,"p":37.1,"cR":60.86,"iR":24950,"pR":41.33,"ctrR":0.24},{"d":"2025-05-29","c":89,"i":27422,"ctr":0.32,"p":38.0,"cR":61.71,"iR":25183,"pR":41.24,"ctrR":0.24},{"d":"2025-05-30","c":80,"i":23293,"ctr":0.34,"p":37.5,"cR":65.57,"iR":24987,"pR":40.53,"ctrR":0.26},{"d":"2025-05-31","c":50,"i":28528,"ctr":0.18,"p":43.9,"cR":67.86,"iR":25324,"pR":40.37,"ctrR":0.27},{"d":"2025-06-01","c":55,"i":24832,"ctr":0.22,"p":39.6,"cR":70.57,"iR":25656,"pR":39.87,"ctrR":0.28},{"d":"2025-06-02","c":115,"i":25827,"ctr":0.45,"p":37.4,"cR":79.14,"iR":25448,"pR":38.94,"ctrR":0.31},{"d":"2025-06-03","c":104,"i":26004,"ctr":0.4,"p":36.8,"cR":82.71,"iR":25698,"pR":38.61,"ctrR":0.32},{"d":"2025-06-04","c":103,"i":24693,"ctr":0.42,"p":36.2,"cR":85.14,"iR":25800,"pR":38.49,"ctrR":0.33},{"d":"2025-06-05","c":93,"i":26292,"ctr":0.35,"p":36.0,"cR":85.71,"iR":25638,"pR":38.2,"ctrR":0.34},{"d":"2025-06-06","c":92,"i":25539,"ctr":0.36,"p":37.2,"cR":87.43,"iR":25959,"pR":38.16,"ctrR":0.34},{"d":"2025-06-07","c":34,"i":30023,"ctr":0.11,"p":42.1,"cR":85.14,"iR":26173,"pR":37.9,"ctrR":0.33},{"d":"2025-06-08","c":58,"i":25451,"ctr":0.23,"p":39.3,"cR":85.57,"iR":26261,"pR":37.86,"ctrR":0.33},{"d":"2025-06-09","c":90,"i":27932,"ctr":0.32,"p":38.2,"cR":82.0,"iR":26562,"pR":37.97,"ctrR":0.31},{"d":"2025-06-10","c":97,"i":27152,"ctr":0.36,"p":38.0,"cR":81.0,"iR":26726,"pR":38.14,"ctrR":0.31},{"d":"2025-06-11","c":103,"i":25884,"ctr":0.4,"p":38.1,"cR":81.0,"iR":26896,"pR":38.41,"ctrR":0.3},{"d":"2025-06-12","c":80,"i":26061,"ctr":0.31,"p":39.0,"cR":79.14,"iR":26863,"pR":38.84,"ctrR":0.3},{"d":"2025-06-13","c":79,"i":28348,"ctr":0.28,"p":42.6,"cR":77.29,"iR":27264,"pR":39.61,"ctrR":0.29},{"d":"2025-06-14","c":33,"i":27268,"ctr":0.12,"p":47.9,"cR":77.14,"iR":26871,"pR":40.44,"ctrR":0.29},{"d":"2025-06-15","c":33,"i":24061,"ctr":0.14,"p":43.2,"cR":73.57,"iR":26672,"pR":41.0,"ctrR":0.28},{"d":"2025-06-16","c":80,"i":24648,"ctr":0.32,"p":41.8,"cR":72.14,"iR":26203,"pR":41.51,"ctrR":0.28},{"d":"2025-06-17","c":58,"i":21893,"ctr":0.26,"p":39.0,"cR":66.57,"iR":25452,"pR":41.66,"ctrR":0.26},{"d":"2025-06-18","c":67,"i":21008,"ctr":0.32,"p":39.3,"cR":61.43,"iR":24755,"pR":41.83,"ctrR":0.25},{"d":"2025-06-19","c":69,"i":22090,"ctr":0.31,"p":40.1,"cR":59.86,"iR":24188,"pR":41.99,"ctrR":0.25},{"d":"2025-06-20","c":65,"i":22382,"ctr":0.29,"p":40.4,"cR":57.86,"iR":23336,"pR":41.67,"ctrR":0.25},{"d":"2025-06-21","c":35,"i":24656,"ctr":0.14,"p":42.8,"cR":58.14,"iR":22963,"pR":40.94,"ctrR":0.25},{"d":"2025-06-22","c":29,"i":21194,"ctr":0.14,"p":40.6,"cR":57.57,"iR":22553,"pR":40.57,"ctrR":0.25},{"d":"2025-06-23","c":71,"i":22230,"ctr":0.32,"p":37.9,"cR":56.29,"iR":22208,"pR":40.01,"ctrR":0.25},{"d":"2025-06-24","c":76,"i":22711,"ctr":0.33,"p":38.0,"cR":58.86,"iR":22324,"pR":39.87,"ctrR":0.26},{"d":"2025-06-25","c":88,"i":22701,"ctr":0.39,"p":37.2,"cR":61.86,"iR":22566,"pR":39.57,"ctrR":0.27},{"d":"2025-06-26","c":83,"i":28179,"ctr":0.29,"p":34.6,"cR":63.86,"iR":23436,"pR":38.79,"ctrR":0.27},{"d":"2025-06-27","c":58,"i":24452,"ctr":0.24,"p":34.5,"cR":62.86,"iR":23732,"pR":37.94,"ctrR":0.26},{"d":"2025-06-28","c":47,"i":28611,"ctr":0.16,"p":43.1,"cR":64.57,"iR":24297,"pR":37.99,"ctrR":0.27},{"d":"2025-06-29","c":38,"i":23633,"ctr":0.16,"p":39.1,"cR":65.86,"iR":24645,"pR":37.77,"ctrR":0.27},{"d":"2025-06-30","c":72,"i":26238,"ctr":0.27,"p":38.7,"cR":66.0,"iR":25218,"pR":37.89,"ctrR":0.26},{"d":"2025-07-01","c":69,"i":25423,"ctr":0.27,"p":34.4,"cR":65.0,"iR":25605,"pR":37.37,"ctrR":0.25},{"d":"2025-07-02","c":71,"i":25017,"ctr":0.28,"p":35.8,"cR":62.57,"iR":25936,"pR":37.17,"ctrR":0.24},{"d":"2025-07-03","c":62,"i":21917,"ctr":0.28,"p":36.9,"cR":59.57,"iR":25042,"pR":37.5,"ctrR":0.24},{"d":"2025-07-04","c":38,"i":21989,"ctr":0.17,"p":40.6,"cR":56.71,"iR":24690,"pR":38.37,"ctrR":0.23},{"d":"2025-07-05","c":36,"i":26698,"ctr":0.13,"p":43.1,"cR":55.14,"iR":24416,"pR":38.37,"ctrR":0.22},{"d":"2025-07-06","c":48,"i":22661,"ctr":0.21,"p":40.6,"cR":56.57,"iR":24278,"pR":38.59,"ctrR":0.23},{"d":"2025-07-07","c":90,"i":34331,"ctr":0.26,"p":41.9,"cR":59.14,"iR":25434,"pR":39.04,"ctrR":0.23},{"d":"2025-07-08","c":70,"i":26703,"ctr":0.26,"p":39.9,"cR":59.29,"iR":25617,"pR":39.83,"ctrR":0.23},{"d":"2025-07-09","c":112,"i":26399,"ctr":0.42,"p":36.9,"cR":65.14,"iR":25814,"pR":39.99,"ctrR":0.25},{"d":"2025-07-10","c":97,"i":27851,"ctr":0.35,"p":37.0,"cR":70.14,"iR":26662,"pR":40.0,"ctrR":0.26},{"d":"2025-07-11","c":83,"i":29218,"ctr":0.28,"p":36.2,"cR":76.57,"iR":27694,"pR":39.37,"ctrR":0.27},{"d":"2025-07-12","c":39,"i":27038,"ctr":0.14,"p":42.2,"cR":77.0,"iR":27743,"pR":39.24,"ctrR":0.27},{"d":"2025-07-13","c":44,"i":21478,"ctr":0.2,"p":37.9,"cR":76.43,"iR":27574,"pR":38.86,"ctrR":0.27},{"d":"2025-07-14","c":85,"i":25043,"ctr":0.34,"p":40.0,"cR":75.71,"iR":26247,"pR":38.59,"ctrR":0.28},{"d":"2025-07-15","c":69,"i":24342,"ctr":0.28,"p":39.9,"cR":75.57,"iR":25910,"pR":38.59,"ctrR":0.29},{"d":"2025-07-16","c":75,"i":22232,"ctr":0.34,"p":39.3,"cR":70.29,"iR":25315,"pR":38.93,"ctrR":0.28},{"d":"2025-07-17","c":61,"i":20899,"ctr":0.29,"p":37.1,"cR":65.14,"iR":24321,"pR":38.94,"ctrR":0.27},{"d":"2025-07-18","c":54,"i":22086,"ctr":0.24,"p":41.2,"cR":61.0,"iR":23303,"pR":39.66,"ctrR":0.26},{"d":"2025-07-19","c":36,"i":31110,"ctr":0.12,"p":47.4,"cR":60.57,"iR":23884,"pR":40.4,"ctrR":0.26},{"d":"2025-07-20","c":38,"i":28429,"ctr":0.13,"p":46.1,"cR":59.71,"iR":24877,"pR":41.57,"ctrR":0.25},{"d":"2025-07-21","c":99,"i":26145,"ctr":0.38,"p":40.6,"cR":61.71,"iR":25035,"pR":41.66,"ctrR":0.25},{"d":"2025-07-22","c":85,"i":23068,"ctr":0.37,"p":38.9,"cR":64.0,"iR":24853,"pR":41.51,"ctrR":0.27},{"d":"2025-07-23","c":91,"i":17996,"ctr":0.51,"p":33.5,"cR":66.29,"iR":24248,"pR":40.69,"ctrR":0.29},{"d":"2025-07-24","c":59,"i":20015,"ctr":0.29,"p":33.8,"cR":66.0,"iR":24121,"pR":40.21,"ctrR":0.29},{"d":"2025-07-25","c":76,"i":20299,"ctr":0.37,"p":35.9,"cR":69.14,"iR":23866,"pR":39.46,"ctrR":0.31},{"d":"2025-07-26","c":42,"i":23241,"ctr":0.18,"p":40.8,"cR":70.0,"iR":22742,"pR":38.51,"ctrR":0.32},{"d":"2025-07-27","c":43,"i":19965,"ctr":0.22,"p":37.0,"cR":70.71,"iR":21533,"pR":37.21,"ctrR":0.33},{"d":"2025-07-28","c":101,"i":21856,"ctr":0.46,"p":36.1,"cR":71.0,"iR":20920,"pR":36.57,"ctrR":0.34},{"d":"2025-07-29","c":94,"i":20375,"ctr":0.46,"p":34.7,"cR":72.29,"iR":20535,"pR":35.97,"ctrR":0.36},{"d":"2025-07-30","c":105,"i":21374,"ctr":0.49,"p":34.8,"cR":74.29,"iR":21018,"pR":36.16,"ctrR":0.35},{"d":"2025-07-31","c":91,"i":22357,"ctr":0.41,"p":38.8,"cR":78.86,"iR":21352,"pR":36.87,"ctrR":0.37},{"d":"2025-08-01","c":75,"i":20847,"ctr":0.36,"p":35.6,"cR":78.71,"iR":21431,"pR":36.83,"ctrR":0.37},{"d":"2025-08-02","c":59,"i":23294,"ctr":0.25,"p":40.6,"cR":81.14,"iR":21438,"pR":36.8,"ctrR":0.38},{"d":"2025-08-03","c":63,"i":21773,"ctr":0.29,"p":36.7,"cR":84.0,"iR":21697,"pR":36.76,"ctrR":0.39},{"d":"2025-08-04","c":104,"i":22885,"ctr":0.45,"p":35.3,"cR":84.43,"iR":21844,"pR":36.64,"ctrR":0.39},{"d":"2025-08-05","c":96,"i":22316,"ctr":0.43,"p":33.7,"cR":84.71,"iR":22121,"pR":36.5,"ctrR":0.38},{"d":"2025-08-06","c":101,"i":21052,"ctr":0.48,"p":31.8,"cR":84.14,"iR":22075,"pR":36.07,"ctrR":0.38},{"d":"2025-08-07","c":101,"i":21139,"ctr":0.48,"p":34.3,"cR":85.57,"iR":21901,"pR":35.43,"ctrR":0.39},{"d":"2025-08-08","c":83,"i":25682,"ctr":0.32,"p":36.8,"cR":86.71,"iR":22592,"pR":35.6,"ctrR":0.39},{"d":"2025-08-09","c":47,"i":24883,"ctr":0.19,"p":43.5,"cR":85.0,"iR":22819,"pR":36.01,"ctrR":0.38},{"d":"2025-08-10","c":50,"i":21901,"ctr":0.23,"p":37.5,"cR":83.14,"iR":22837,"pR":36.13,"ctrR":0.37},{"d":"2025-08-11","c":81,"i":23668,"ctr":0.34,"p":38.7,"cR":79.86,"iR":22949,"pR":36.61,"ctrR":0.35},{"d":"2025-08-12","c":66,"i":21149,"ctr":0.31,"p":30.5,"cR":75.57,"iR":22782,"pR":36.16,"ctrR":0.34},{"d":"2025-08-13","c":95,"i":66775,"ctr":0.14,"p":18.8,"cR":74.71,"iR":29314,"pR":34.3,"ctrR":0.29},{"d":"2025-08-14","c":104,"i":19524,"ctr":0.53,"p":28.8,"cR":75.14,"iR":29083,"pR":33.51,"ctrR":0.29},{"d":"2025-08-15","c":77,"i":17956,"ctr":0.43,"p":29.5,"cR":74.29,"iR":27979,"pR":32.47,"ctrR":0.31},{"d":"2025-08-16","c":57,"i":16758,"ctr":0.34,"p":32.0,"cR":75.71,"iR":26819,"pR":30.83,"ctrR":0.33},{"d":"2025-08-17","c":71,"i":18480,"ctr":0.38,"p":31.1,"cR":78.71,"iR":26330,"pR":29.91,"ctrR":0.35},{"d":"2025-08-18","c":108,"i":20630,"ctr":0.52,"p":28.7,"cR":82.57,"iR":25896,"pR":28.49,"ctrR":0.38},{"d":"2025-08-19","c":101,"i":23290,"ctr":0.43,"p":27.1,"cR":87.57,"iR":26202,"pR":28.0,"ctrR":0.4},{"d":"2025-08-20","c":108,"i":21301,"ctr":0.51,"p":29.9,"cR":89.43,"iR":19706,"pR":29.59,"ctrR":0.45},{"d":"2025-08-21","c":99,"i":21329,"ctr":0.46,"p":30.5,"cR":88.71,"iR":19963,"pR":29.83,"ctrR":0.44},{"d":"2025-08-22","c":101,"i":24757,"ctr":0.41,"p":32.8,"cR":92.14,"iR":20935,"pR":30.3,"ctrR":0.44},{"d":"2025-08-23","c":42,"i":22542,"ctr":0.19,"p":36.5,"cR":90.0,"iR":21761,"pR":30.94,"ctrR":0.41},{"d":"2025-08-24","c":48,"i":18822,"ctr":0.26,"p":35.6,"cR":86.71,"iR":21810,"pR":31.59,"ctrR":0.4},{"d":"2025-08-25","c":90,"i":21617,"ctr":0.42,"p":32.4,"cR":84.14,"iR":21951,"pR":32.11,"ctrR":0.38},{"d":"2025-08-26","c":81,"i":21692,"ctr":0.37,"p":31.6,"cR":81.29,"iR":21723,"pR":32.76,"ctrR":0.37},{"d":"2025-08-27","c":74,"i":21657,"ctr":0.34,"p":31.0,"cR":76.43,"iR":21774,"pR":32.91,"ctrR":0.35},{"d":"2025-08-28","c":62,"i":21600,"ctr":0.29,"p":31.8,"cR":71.14,"iR":21812,"pR":33.1,"ctrR":0.33},{"d":"2025-08-29","c":59,"i":19333,"ctr":0.31,"p":33.2,"cR":65.14,"iR":21038,"pR":33.16,"ctrR":0.31},{"d":"2025-08-30","c":33,"i":20876,"ctr":0.16,"p":37.1,"cR":63.86,"iR":20800,"pR":33.24,"ctrR":0.31},{"d":"2025-08-31","c":34,"i":20729,"ctr":0.16,"p":36.0,"cR":61.86,"iR":21072,"pR":33.3,"ctrR":0.29},{"d":"2025-09-01","c":49,"i":21901,"ctr":0.22,"p":37.0,"cR":56.0,"iR":21113,"pR":33.96,"ctrR":0.26},{"d":"2025-09-02","c":99,"i":25952,"ctr":0.38,"p":33.0,"cR":58.57,"iR":21721,"pR":34.16,"ctrR":0.27},{"d":"2025-09-03","c":106,"i":23691,"ctr":0.45,"p":30.3,"cR":63.14,"iR":22012,"pR":34.06,"ctrR":0.28},{"d":"2025-09-04","c":76,"i":23601,"ctr":0.32,"p":31.0,"cR":65.14,"iR":22298,"pR":33.94,"ctrR":0.29},{"d":"2025-09-05","c":59,"i":23734,"ctr":0.25,"p":30.9,"cR":65.14,"iR":22926,"pR":33.61,"ctrR":0.28},{"d":"2025-09-06","c":53,"i":24149,"ctr":0.22,"p":37.7,"cR":68.0,"iR":23394,"pR":33.7,"ctrR":0.29},{"d":"2025-09-07","c":62,"i":24965,"ctr":0.25,"p":31.7,"cR":72.0,"iR":23999,"pR":33.09,"ctrR":0.3},{"d":"2025-09-08","c":89,"i":24830,"ctr":0.36,"p":30.8,"cR":77.71,"iR":24417,"pR":32.2,"ctrR":0.32},{"d":"2025-09-09","c":98,"i":24201,"ctr":0.4,"p":28.0,"cR":77.57,"iR":24167,"pR":31.49,"ctrR":0.32},{"d":"2025-09-10","c":82,"i":22180,"ctr":0.37,"p":27.2,"cR":74.14,"iR":23951,"pR":31.04,"ctrR":0.31},{"d":"2025-09-11","c":86,"i":19462,"ctr":0.44,"p":25.4,"cR":75.57,"iR":23360,"pR":30.24,"ctrR":0.33},{"d":"2025-09-12","c":94,"i":17702,"ctr":0.53,"p":17.5,"cR":80.57,"iR":22498,"pR":28.33,"ctrR":0.37},{"d":"2025-09-13","c":49,"i":13191,"ctr":0.37,"p":12.1,"cR":80.0,"iR":20933,"pR":24.67,"ctrR":0.39},{"d":"2025-09-14","c":52,"i":11282,"ctr":0.46,"p":12.4,"cR":78.57,"iR":18978,"pR":21.91,"ctrR":0.42},{"d":"2025-09-15","c":94,"i":15875,"ctr":0.59,"p":12.5,"cR":79.29,"iR":17699,"pR":19.3,"ctrR":0.45},{"d":"2025-09-16","c":110,"i":17592,"ctr":0.63,"p":14.0,"cR":81.0,"iR":16755,"pR":17.3,"ctrR":0.48},{"d":"2025-09-17","c":99,"i":15660,"ctr":0.63,"p":12.6,"cR":83.43,"iR":15823,"pR":15.21,"ctrR":0.52},{"d":"2025-09-18","c":88,"i":14637,"ctr":0.6,"p":13.3,"cR":83.71,"iR":15134,"pR":13.49,"ctrR":0.54},{"d":"2025-09-19","c":70,"i":13483,"ctr":0.52,"p":13.9,"cR":80.29,"iR":14531,"pR":12.97,"ctrR":0.54},{"d":"2025-09-20","c":62,"i":11834,"ctr":0.52,"p":15.4,"cR":82.14,"iR":14338,"pR":13.44,"ctrR":0.56},{"d":"2025-09-21","c":40,"i":11157,"ctr":0.36,"p":14.7,"cR":80.43,"iR":14320,"pR":13.77,"ctrR":0.55},{"d":"2025-09-22","c":81,"i":14927,"ctr":0.54,"p":15.2,"cR":78.57,"iR":14184,"pR":14.16,"ctrR":0.54},{"d":"2025-09-23","c":72,"i":13829,"ctr":0.52,"p":13.0,"cR":73.14,"iR":13647,"pR":14.01,"ctrR":0.53},{"d":"2025-09-24","c":88,"i":16099,"ctr":0.55,"p":12.6,"cR":71.57,"iR":13709,"pR":14.01,"ctrR":0.52},{"d":"2025-09-25","c":97,"i":16235,"ctr":0.6,"p":11.7,"cR":72.86,"iR":13938,"pR":13.79,"ctrR":0.52},{"d":"2025-09-26","c":54,"i":15321,"ctr":0.35,"p":13.7,"cR":70.57,"iR":14200,"pR":13.76,"ctrR":0.49},{"d":"2025-09-27","c":44,"i":12775,"ctr":0.34,"p":14.9,"cR":68.0,"iR":14335,"pR":13.69,"ctrR":0.47},{"d":"2025-09-28","c":60,"i":13613,"ctr":0.44,"p":15.1,"cR":70.86,"iR":14686,"pR":13.74,"ctrR":0.48},{"d":"2025-09-29","c":93,"i":16770,"ctr":0.55,"p":14.7,"cR":72.57,"iR":14949,"pR":13.67,"ctrR":0.48},{"d":"2025-09-30","c":88,"i":16155,"ctr":0.54,"p":15.3,"cR":74.86,"iR":15281,"pR":14.0,"ctrR":0.48},{"d":"2025-10-01","c":87,"i":17760,"ctr":0.49,"p":16.2,"cR":74.71,"iR":15518,"pR":14.51,"ctrR":0.47},{"d":"2025-10-02","c":76,"i":16383,"ctr":0.46,"p":15.8,"cR":71.71,"iR":15540,"pR":15.1,"ctrR":0.45},{"d":"2025-10-03","c":73,"i":13013,"ctr":0.56,"p":14.1,"cR":74.43,"iR":15210,"pR":15.16,"ctrR":0.48},{"d":"2025-10-04","c":45,"i":11620,"ctr":0.39,"p":15.7,"cR":74.57,"iR":15045,"pR":15.27,"ctrR":0.49},{"d":"2025-10-05","c":46,"i":11417,"ctr":0.4,"p":16.3,"cR":72.57,"iR":14731,"pR":15.44,"ctrR":0.48},{"d":"2025-10-06","c":113,"i":14909,"ctr":0.76,"p":14.5,"cR":75.43,"iR":14465,"pR":15.41,"ctrR":0.51},{"d":"2025-10-07","c":99,"i":16146,"ctr":0.61,"p":15.5,"cR":77.0,"iR":14464,"pR":15.44,"ctrR":0.52},{"d":"2025-10-08","c":91,"i":15325,"ctr":0.59,"p":14.8,"cR":77.57,"iR":14116,"pR":15.24,"ctrR":0.54},{"d":"2025-10-09","c":85,"i":15494,"ctr":0.55,"p":14.3,"cR":78.86,"iR":13989,"pR":15.03,"ctrR":0.55},{"d":"2025-10-10","c":85,"i":16344,"ctr":0.52,"p":13.8,"cR":80.57,"iR":14465,"pR":14.99,"ctrR":0.55},{"d":"2025-10-11","c":35,"i":14665,"ctr":0.24,"p":13.6,"cR":79.14,"iR":14900,"pR":14.69,"ctrR":0.52},{"d":"2025-10-12","c":50,"i":14761,"ctr":0.34,"p":14.4,"cR":79.71,"iR":15378,"pR":14.41,"ctrR":0.52},{"d":"2025-10-13","c":81,"i":17036,"ctr":0.48,"p":13.4,"cR":75.14,"iR":15682,"pR":14.26,"ctrR":0.48},{"d":"2025-10-14","c":89,"i":19179,"ctr":0.46,"p":14.6,"cR":73.71,"iR":16115,"pR":14.13,"ctrR":0.45},{"d":"2025-10-15","c":83,"i":19457,"ctr":0.43,"p":13.7,"cR":72.57,"iR":16705,"pR":13.97,"ctrR":0.43},{"d":"2025-10-16","c":79,"i":17582,"ctr":0.45,"p":14.7,"cR":71.71,"iR":17003,"pR":14.03,"ctrR":0.42},{"d":"2025-10-17","c":82,"i":15408,"ctr":0.53,"p":13.4,"cR":71.29,"iR":16870,"pR":13.97,"ctrR":0.42},{"d":"2025-10-18","c":40,"i":13689,"ctr":0.29,"p":14.3,"cR":72.0,"iR":16730,"pR":14.07,"ctrR":0.43},{"d":"2025-10-19","c":50,"i":14043,"ctr":0.36,"p":14.6,"cR":72.0,"iR":16628,"pR":14.1,"ctrR":0.43},{"d":"2025-10-20","c":69,"i":18096,"ctr":0.38,"p":13.1,"cR":70.29,"iR":16779,"pR":14.06,"ctrR":0.41},{"d":"2025-10-21","c":84,"i":16434,"ctr":0.51,"p":15.8,"cR":69.57,"iR":16387,"pR":14.23,"ctrR":0.42},{"d":"2025-10-22","c":104,"i":17268,"ctr":0.6,"p":15.2,"cR":72.57,"iR":16074,"pR":14.44,"ctrR":0.45},{"d":"2025-10-23","c":79,"i":17443,"ctr":0.45,"p":14.1,"cR":72.57,"iR":16054,"pR":14.36,"ctrR":0.45},{"d":"2025-10-24","c":84,"i":13233,"ctr":0.63,"p":12.9,"cR":72.86,"iR":15744,"pR":14.29,"ctrR":0.46},{"d":"2025-10-25","c":41,"i":10314,"ctr":0.4,"p":14.1,"cR":73.0,"iR":15262,"pR":14.26,"ctrR":0.48},{"d":"2025-10-26","c":43,"i":11114,"ctr":0.39,"p":14.3,"cR":72.0,"iR":14843,"pR":14.21,"ctrR":0.48},{"d":"2025-10-27","c":86,"i":14584,"ctr":0.59,"p":13.8,"cR":74.43,"iR":14341,"pR":14.31,"ctrR":0.51},{"d":"2025-10-28","c":79,"i":14243,"ctr":0.55,"p":15.5,"cR":73.71,"iR":14028,"pR":14.27,"ctrR":0.52},{"d":"2025-10-29","c":84,"i":13099,"ctr":0.64,"p":15.1,"cR":70.86,"iR":13433,"pR":14.26,"ctrR":0.52},{"d":"2025-10-30","c":67,"i":13901,"ctr":0.48,"p":13.9,"cR":69.14,"iR":12927,"pR":14.23,"ctrR":0.53},{"d":"2025-10-31","c":36,"i":11720,"ctr":0.31,"p":13.4,"cR":62.29,"iR":12711,"pR":14.3,"ctrR":0.48},{"d":"2025-11-01","c":33,"i":9490,"ctr":0.35,"p":15.3,"cR":61.14,"iR":12593,"pR":14.47,"ctrR":0.47},{"d":"2025-11-02","c":41,"i":9662,"ctr":0.42,"p":15.2,"cR":60.86,"iR":12386,"pR":14.6,"ctrR":0.48},{"d":"2025-11-03","c":72,"i":11157,"ctr":0.65,"p":13.4,"cR":58.86,"iR":11896,"pR":14.54,"ctrR":0.49},{"d":"2025-11-04","c":66,"i":10199,"ctr":0.65,"p":13.1,"cR":57.0,"iR":11318,"pR":14.2,"ctrR":0.5},{"d":"2025-11-05","c":62,"i":11193,"ctr":0.55,"p":15.5,"cR":53.86,"iR":11046,"pR":14.26,"ctrR":0.49},{"d":"2025-11-06","c":58,"i":11023,"ctr":0.53,"p":13.2,"cR":52.57,"iR":10635,"pR":14.16,"ctrR":0.49},{"d":"2025-11-07","c":65,"i":11459,"ctr":0.57,"p":12.2,"cR":56.71,"iR":10598,"pR":13.99,"ctrR":0.53},{"d":"2025-11-08","c":26,"i":10243,"ctr":0.25,"p":12.2,"cR":55.71,"iR":10705,"pR":13.54,"ctrR":0.52},{"d":"2025-11-09","c":43,"i":8635,"ctr":0.5,"p":12.3,"cR":56.0,"iR":10558,"pR":13.13,"ctrR":0.53},{"d":"2025-11-10","c":69,"i":14952,"ctr":0.46,"p":11.6,"cR":55.57,"iR":11101,"pR":12.87,"ctrR":0.5},{"d":"2025-11-11","c":48,"i":11417,"ctr":0.42,"p":12.9,"cR":53.0,"iR":11275,"pR":12.84,"ctrR":0.47},{"d":"2025-11-12","c":68,"i":11703,"ctr":0.58,"p":12.9,"cR":53.86,"iR":11347,"pR":12.47,"ctrR":0.47},{"d":"2025-11-13","c":69,"i":11114,"ctr":0.62,"p":13.2,"cR":55.43,"iR":11360,"pR":12.47,"ctrR":0.49},{"d":"2025-11-14","c":57,"i":9320,"ctr":0.61,"p":13.6,"cR":54.29,"iR":11055,"pR":12.67,"ctrR":0.49},{"d":"2025-11-15","c":22,"i":8104,"ctr":0.27,"p":14.3,"cR":53.71,"iR":10749,"pR":12.97,"ctrR":0.49},{"d":"2025-11-16","c":33,"i":8742,"ctr":0.38,"p":12.6,"cR":52.29,"iR":10765,"pR":13.01,"ctrR":0.48},{"d":"2025-11-17","c":70,"i":9443,"ctr":0.74,"p":14.8,"cR":52.43,"iR":9978,"pR":13.47,"ctrR":0.52},{"d":"2025-11-18","c":62,"i":9753,"ctr":0.64,"p":17.2,"cR":54.43,"iR":9740,"pR":14.09,"ctrR":0.55},{"d":"2025-11-19","c":57,"i":10559,"ctr":0.54,"p":20.3,"cR":52.86,"iR":9576,"pR":15.14,"ctrR":0.54},{"d":"2025-11-20","c":74,"i":9878,"ctr":0.75,"p":18.8,"cR":53.57,"iR":9400,"pR":15.94,"ctrR":0.56},{"d":"2025-11-21","c":56,"i":8389,"ctr":0.67,"p":15.1,"cR":53.43,"iR":9267,"pR":16.16,"ctrR":0.57},{"d":"2025-11-22","c":30,"i":8556,"ctr":0.35,"p":14.9,"cR":54.57,"iR":9331,"pR":16.24,"ctrR":0.58},{"d":"2025-11-23","c":16,"i":9604,"ctr":0.17,"p":15.6,"cR":52.14,"iR":9455,"pR":16.67,"ctrR":0.55},{"d":"2025-11-24","c":52,"i":11502,"ctr":0.45,"p":14.6,"cR":49.57,"iR":9749,"pR":16.64,"ctrR":0.51},{"d":"2025-11-25","c":55,"i":10884,"ctr":0.51,"p":15.0,"cR":48.57,"iR":9910,"pR":16.33,"ctrR":0.49},{"d":"2025-11-26","c":46,"i":10004,"ctr":0.46,"p":16.0,"cR":47.0,"iR":9831,"pR":15.71,"ctrR":0.48},{"d":"2025-11-27","c":29,"i":8765,"ctr":0.33,"p":16.6,"cR":40.57,"iR":9672,"pR":15.4,"ctrR":0.42},{"d":"2025-11-28","c":24,"i":7666,"ctr":0.31,"p":14.2,"cR":36.0,"iR":9569,"pR":15.27,"ctrR":0.37},{"d":"2025-11-29","c":31,"i":7975,"ctr":0.39,"p":15.2,"cR":36.14,"iR":9486,"pR":15.31,"ctrR":0.37},{"d":"2025-11-30","c":42,"i":7562,"ctr":0.56,"p":15.2,"cR":39.86,"iR":9194,"pR":15.26,"ctrR":0.43},{"d":"2025-12-01","c":64,"i":10973,"ctr":0.58,"p":14.6,"cR":41.57,"iR":9118,"pR":15.26,"ctrR":0.45},{"d":"2025-12-02","c":54,"i":11798,"ctr":0.46,"p":17.4,"cR":41.43,"iR":9249,"pR":15.6,"ctrR":0.44},{"d":"2025-12-03","c":82,"i":13164,"ctr":0.62,"p":15.2,"cR":46.57,"iR":9700,"pR":15.49,"ctrR":0.46},{"d":"2025-12-04","c":66,"i":14626,"ctr":0.45,"p":15.4,"cR":51.86,"iR":10538,"pR":15.31,"ctrR":0.48},{"d":"2025-12-05","c":52,"i":13772,"ctr":0.38,"p":14.4,"cR":55.86,"iR":11410,"pR":15.34,"ctrR":0.49},{"d":"2025-12-06","c":19,"i":13598,"ctr":0.14,"p":16.5,"cR":54.14,"iR":12213,"pR":15.53,"ctrR":0.46},{"d":"2025-12-07","c":13,"i":9011,"ctr":0.14,"p":16.4,"cR":50.0,"iR":12420,"pR":15.7,"ctrR":0.4},{"d":"2025-12-08","c":57,"i":10700,"ctr":0.53,"p":15.8,"cR":49.0,"iR":12381,"pR":15.87,"ctrR":0.39},{"d":"2025-12-09","c":64,"i":12217,"ctr":0.52,"p":16.4,"cR":50.43,"iR":12441,"pR":15.73,"ctrR":0.4},{"d":"2025-12-10","c":51,"i":11297,"ctr":0.45,"p":14.1,"cR":46.0,"iR":12174,"pR":15.57,"ctrR":0.37},{"d":"2025-12-11","c":56,"i":12475,"ctr":0.45,"p":18.0,"cR":44.57,"iR":11867,"pR":15.94,"ctrR":0.37},{"d":"2025-12-12","c":45,"i":12395,"ctr":0.36,"p":16.5,"cR":43.57,"iR":11670,"pR":16.24,"ctrR":0.37},{"d":"2025-12-13","c":28,"i":11358,"ctr":0.25,"p":17.4,"cR":44.86,"iR":11350,"pR":16.37,"ctrR":0.39},{"d":"2025-12-14","c":30,"i":11426,"ctr":0.26,"p":17.1,"cR":47.29,"iR":11695,"pR":16.47,"ctrR":0.4},{"d":"2025-12-15","c":59,"i":13987,"ctr":0.42,"p":13.0,"cR":47.57,"iR":12165,"pR":16.07,"ctrR":0.39},{"d":"2025-12-16","c":54,"i":14364,"ctr":0.38,"p":15.0,"cR":46.14,"iR":12472,"pR":15.87,"ctrR":0.37},{"d":"2025-12-17","c":50,"i":10919,"ctr":0.46,"p":14.0,"cR":46.0,"iR":12418,"pR":15.86,"ctrR":0.37},{"d":"2025-12-18","c":64,"i":11664,"ctr":0.55,"p":14.9,"cR":47.14,"iR":12302,"pR":15.41,"ctrR":0.38},{"d":"2025-12-19","c":53,"i":12492,"ctr":0.42,"p":15.5,"cR":48.29,"iR":12316,"pR":15.27,"ctrR":0.39},{"d":"2025-12-20","c":19,"i":13217,"ctr":0.14,"p":16.2,"cR":47.0,"iR":12581,"pR":15.1,"ctrR":0.38},{"d":"2025-12-21","c":26,"i":11398,"ctr":0.23,"p":16.1,"cR":46.43,"iR":12577,"pR":14.96,"ctrR":0.37},{"d":"2025-12-22","c":51,"i":11948,"ctr":0.43,"p":13.5,"cR":45.29,"iR":12286,"pR":15.03,"ctrR":0.37},{"d":"2025-12-23","c":52,"i":11884,"ctr":0.44,"p":16.9,"cR":45.0,"iR":11932,"pR":15.3,"ctrR":0.38},{"d":"2025-12-24","c":25,"i":9633,"ctr":0.26,"p":16.6,"cR":41.43,"iR":11748,"pR":15.67,"ctrR":0.35},{"d":"2025-12-25","c":19,"i":9947,"ctr":0.19,"p":17.0,"cR":35.0,"iR":11503,"pR":15.97,"ctrR":0.3},{"d":"2025-12-26","c":37,"i":11273,"ctr":0.33,"p":15.1,"cR":32.71,"iR":11329,"pR":15.91,"ctrR":0.29},{"d":"2025-12-27","c":22,"i":13221,"ctr":0.17,"p":16.3,"cR":33.14,"iR":11329,"pR":15.93,"ctrR":0.29},{"d":"2025-12-28","c":31,"i":12885,"ctr":0.24,"p":15.9,"cR":33.86,"iR":11542,"pR":15.9,"ctrR":0.29},{"d":"2025-12-29","c":66,"i":20010,"ctr":0.33,"p":13.8,"cR":36.0,"iR":12693,"pR":15.94,"ctrR":0.28},{"d":"2025-12-30","c":59,"i":21258,"ctr":0.28,"p":15.3,"cR":37.0,"iR":14032,"pR":15.71,"ctrR":0.26},{"d":"2025-12-31","c":38,"i":14919,"ctr":0.25,"p":15.2,"cR":38.86,"iR":14788,"pR":15.51,"ctrR":0.26},{"d":"2026-01-01","c":33,"i":14771,"ctr":0.22,"p":15.3,"cR":40.86,"iR":15477,"pR":15.27,"ctrR":0.26},{"d":"2026-01-02","c":59,"i":16718,"ctr":0.35,"p":13.3,"cR":44.0,"iR":16255,"pR":15.01,"ctrR":0.26},{"d":"2026-01-03","c":39,"i":21357,"ctr":0.18,"p":12.7,"cR":46.43,"iR":17417,"pR":14.5,"ctrR":0.26},{"d":"2026-01-04","c":33,"i":17006,"ctr":0.19,"p":14.6,"cR":46.71,"iR":18006,"pR":14.31,"ctrR":0.26},{"d":"2026-01-05","c":70,"i":20909,"ctr":0.33,"p":13.4,"cR":47.29,"iR":18134,"pR":14.26,"ctrR":0.26},{"d":"2026-01-06","c":67,"i":18121,"ctr":0.37,"p":12.1,"cR":48.43,"iR":17686,"pR":13.8,"ctrR":0.27},{"d":"2026-01-07","c":70,"i":15652,"ctr":0.45,"p":17.1,"cR":53.0,"iR":17791,"pR":14.07,"ctrR":0.3},{"d":"2026-01-08","c":59,"i":16247,"ctr":0.36,"p":18.0,"cR":56.71,"iR":18001,"pR":14.46,"ctrR":0.32},{"d":"2026-01-09","c":66,"i":18830,"ctr":0.35,"p":17.1,"cR":57.71,"iR":18303,"pR":15.0,"ctrR":0.32},{"d":"2026-01-10","c":26,"i":16618,"ctr":0.16,"p":20.5,"cR":55.86,"iR":17626,"pR":16.11,"ctrR":0.32},{"d":"2026-01-11","c":31,"i":15143,"ctr":0.2,"p":19.8,"cR":55.57,"iR":17360,"pR":16.86,"ctrR":0.32},{"d":"2026-01-12","c":68,"i":16452,"ctr":0.41,"p":13.9,"cR":55.29,"iR":16723,"pR":16.93,"ctrR":0.33},{"d":"2026-01-13","c":66,"i":17201,"ctr":0.38,"p":15.1,"cR":55.14,"iR":16592,"pR":17.36,"ctrR":0.33},{"d":"2026-01-14","c":72,"i":16836,"ctr":0.43,"p":13.7,"cR":55.43,"iR":16761,"pR":16.87,"ctrR":0.33},{"d":"2026-01-15","c":64,"i":18743,"ctr":0.34,"p":12.4,"cR":56.14,"iR":17118,"pR":16.07,"ctrR":0.32},{"d":"2026-01-16","c":53,"i":15442,"ctr":0.34,"p":15.5,"cR":54.29,"iR":16634,"pR":15.84,"ctrR":0.32},{"d":"2026-01-17","c":27,"i":13973,"ctr":0.19,"p":18.0,"cR":54.43,"iR":16256,"pR":15.49,"ctrR":0.33},{"d":"2026-01-18","c":32,"i":14719,"ctr":0.22,"p":16.7,"cR":54.57,"iR":16195,"pR":15.04,"ctrR":0.33},{"d":"2026-01-19","c":54,"i":13354,"ctr":0.4,"p":17.5,"cR":52.57,"iR":15753,"pR":15.56,"ctrR":0.33},{"d":"2026-01-20","c":58,"i":17070,"ctr":0.34,"p":15.6,"cR":51.43,"iR":15734,"pR":15.63,"ctrR":0.32},{"d":"2026-01-21","c":72,"i":15458,"ctr":0.47,"p":15.5,"cR":51.43,"iR":15537,"pR":15.89,"ctrR":0.33},{"d":"2026-01-22","c":75,"i":18704,"ctr":0.4,"p":15.8,"cR":53.0,"iR":15531,"pR":16.37,"ctrR":0.34},{"d":"2026-01-23","c":58,"i":17200,"ctr":0.34,"p":14.9,"cR":53.71,"iR":15783,"pR":16.29,"ctrR":0.34},{"d":"2026-01-24","c":33,"i":19192,"ctr":0.17,"p":16.3,"cR":54.57,"iR":16528,"pR":16.04,"ctrR":0.33},{"d":"2026-01-25","c":41,"i":23829,"ctr":0.17,"p":15.5,"cR":55.86,"iR":17830,"pR":15.87,"ctrR":0.33},{"d":"2026-01-26","c":82,"i":26596,"ctr":0.31,"p":14.4,"cR":59.86,"iR":19721,"pR":15.43,"ctrR":0.31},{"d":"2026-01-27","c":75,"i":30916,"ctr":0.24,"p":14.2,"cR":62.29,"iR":21699,"pR":15.23,"ctrR":0.3},{"d":"2026-01-28","c":81,"i":29094,"ctr":0.28,"p":14.4,"cR":63.57,"iR":23647,"pR":15.07,"ctrR":0.27},{"d":"2026-01-29","c":66,"i":34968,"ctr":0.19,"p":12.6,"cR":62.29,"iR":25971,"pR":14.61,"ctrR":0.24},{"d":"2026-01-30","c":57,"i":36116,"ctr":0.16,"p":13.2,"cR":62.14,"iR":28673,"pR":14.37,"ctrR":0.22},{"d":"2026-01-31","c":38,"i":26611,"ctr":0.14,"p":14.8,"cR":62.86,"iR":29733,"pR":14.16,"ctrR":0.21},{"d":"2026-02-01","c":35,"i":27838,"ctr":0.13,"p":15.5,"cR":62.0,"iR":30306,"pR":14.16,"ctrR":0.21},{"d":"2026-02-02","c":78,"i":34455,"ctr":0.23,"p":12.9,"cR":61.43,"iR":31428,"pR":13.94,"ctrR":0.2},{"d":"2026-02-03","c":90,"i":33001,"ctr":0.27,"p":11.8,"cR":63.57,"iR":31726,"pR":13.6,"ctrR":0.2},{"d":"2026-02-04","c":66,"i":32028,"ctr":0.21,"p":12.3,"cR":61.43,"iR":32145,"pR":13.3,"ctrR":0.19},{"d":"2026-02-05","c":72,"i":41901,"ctr":0.17,"p":12.3,"cR":62.29,"iR":33136,"pR":13.26,"ctrR":0.19},{"d":"2026-02-06","c":81,"i":44755,"ctr":0.18,"p":12.9,"cR":65.71,"iR":34370,"pR":13.21,"ctrR":0.19},{"d":"2026-02-07","c":47,"i":28227,"ctr":0.17,"p":12.2,"cR":67.0,"iR":34601,"pR":12.84,"ctrR":0.19},{"d":"2026-02-08","c":22,"i":25725,"ctr":0.09,"p":13.7,"cR":65.14,"iR":34299,"pR":12.59,"ctrR":0.19},{"d":"2026-02-09","c":69,"i":17492,"ctr":0.39,"p":12.5,"cR":63.86,"iR":31876,"pR":12.53,"ctrR":0.21},{"d":"2026-02-10","c":75,"i":15770,"ctr":0.48,"p":13.9,"cR":61.71,"iR":29414,"pR":12.83,"ctrR":0.24},{"d":"2026-02-11","c":81,"i":14927,"ctr":0.54,"p":14.3,"cR":63.86,"iR":26971,"pR":13.11,"ctrR":0.29},{"d":"2026-02-12","c":81,"i":13967,"ctr":0.58,"p":14.1,"cR":65.14,"iR":22980,"pR":13.37,"ctrR":0.35},{"d":"2026-02-13","c":63,"i":12254,"ctr":0.51,"p":13.2,"cR":62.57,"iR":18337,"pR":13.41,"ctrR":0.39},{"d":"2026-02-14","c":33,"i":11543,"ctr":0.29,"p":14.6,"cR":60.57,"iR":15954,"pR":13.76,"ctrR":0.41},{"d":"2026-02-15","c":43,"i":12161,"ctr":0.35,"p":14.0,"cR":63.57,"iR":14016,"pR":13.8,"ctrR":0.45},{"d":"2026-02-16","c":49,"i":13103,"ctr":0.37,"p":12.7,"cR":60.71,"iR":13389,"pR":13.83,"ctrR":0.45},{"d":"2026-02-17","c":69,"i":15137,"ctr":0.46,"p":12.3,"cR":59.86,"iR":13299,"pR":13.6,"ctrR":0.44},{"d":"2026-02-18","c":52,"i":16407,"ctr":0.32,"p":13.0,"cR":55.71,"iR":13510,"pR":13.41,"ctrR":0.41},{"d":"2026-02-19","c":53,"i":14246,"ctr":0.37,"p":11.6,"cR":51.71,"iR":13550,"pR":13.06,"ctrR":0.38},{"d":"2026-02-20","c":56,"i":13551,"ctr":0.41,"p":12.3,"cR":50.71,"iR":13735,"pR":12.93,"ctrR":0.37},{"d":"2026-02-21","c":38,"i":12557,"ctr":0.3,"p":13.5,"cR":51.43,"iR":13880,"pR":12.77,"ctrR":0.37},{"d":"2026-02-22","c":41,"i":13254,"ctr":0.31,"p":14.4,"cR":51.14,"iR":14036,"pR":12.83,"ctrR":0.36},{"d":"2026-02-23","c":59,"i":14829,"ctr":0.4,"p":12.0,"cR":52.57,"iR":14283,"pR":12.73,"ctrR":0.37},{"d":"2026-02-24","c":52,"i":13049,"ctr":0.4,"p":12.8,"cR":50.14,"iR":13985,"pR":12.8,"ctrR":0.36},{"d":"2026-02-25","c":74,"i":13980,"ctr":0.53,"p":14.2,"cR":53.29,"iR":13638,"pR":12.97,"ctrR":0.39},{"d":"2026-02-26","c":61,"i":14443,"ctr":0.42,"p":12.7,"cR":54.43,"iR":13666,"pR":13.13,"ctrR":0.4},{"d":"2026-02-27","c":50,"i":15549,"ctr":0.32,"p":12.9,"cR":53.57,"iR":13952,"pR":13.21,"ctrR":0.38},{"d":"2026-02-28","c":26,"i":9475,"ctr":0.27,"p":14.4,"cR":51.86,"iR":13511,"pR":13.34,"ctrR":0.38},{"d":"2026-03-01","c":32,"i":11704,"ctr":0.27,"p":16.1,"cR":50.57,"iR":13290,"pR":13.59,"ctrR":0.37},{"d":"2026-03-02","c":61,"i":15146,"ctr":0.4,"p":12.6,"cR":50.86,"iR":13335,"pR":13.67,"ctrR":0.37},{"d":"2026-03-03","c":60,"i":13780,"ctr":0.44,"p":11.9,"cR":52.0,"iR":13440,"pR":13.54,"ctrR":0.38},{"d":"2026-03-04","c":56,"i":13351,"ctr":0.42,"p":12.8,"cR":49.43,"iR":13350,"pR":13.34,"ctrR":0.36},{"d":"2026-03-05","c":54,"i":11689,"ctr":0.46,"p":12.9,"cR":48.43,"iR":12956,"pR":13.37,"ctrR":0.37},{"d":"2026-03-06","c":54,"i":10414,"ctr":0.52,"p":14.8,"cR":49.0,"iR":12223,"pR":13.64,"ctrR":0.4},{"d":"2026-03-07","c":28,"i":9258,"ctr":0.3,"p":13.0,"cR":49.29,"iR":12192,"pR":13.44,"ctrR":0.4},{"d":"2026-03-08","c":36,"i":9210,"ctr":0.39,"p":14.0,"cR":49.86,"iR":11835,"pR":13.14,"ctrR":0.42},{"d":"2026-03-09","c":49,"i":11552,"ctr":0.42,"p":13.0,"cR":48.14,"iR":11322,"pR":13.2,"ctrR":0.42},{"d":"2026-03-10","c":44,"i":12821,"ctr":0.34,"p":12.6,"cR":45.86,"iR":11185,"pR":13.3,"ctrR":0.41},{"d":"2026-03-11","c":53,"i":10688,"ctr":0.5,"p":15.5,"cR":45.43,"iR":10805,"pR":13.69,"ctrR":0.42},{"d":"2026-03-12","c":63,"i":12459,"ctr":0.51,"p":12.0,"cR":46.71,"iR":10915,"pR":13.56,"ctrR":0.43},{"d":"2026-03-13","c":37,"i":10238,"ctr":0.36,"p":13.1,"cR":44.29,"iR":10889,"pR":13.31,"ctrR":0.4},{"d":"2026-03-14","c":25,"i":7506,"ctr":0.33,"p":14.9,"cR":43.86,"iR":10639,"pR":13.59,"ctrR":0.41},{"d":"2026-03-15","c":38,"i":8202,"ctr":0.46,"p":15.6,"cR":44.14,"iR":10495,"pR":13.81,"ctrR":0.42},{"d":"2026-03-16","c":67,"i":10515,"ctr":0.64,"p":14.3,"cR":46.71,"iR":10347,"pR":14.0,"ctrR":0.45},{"d":"2026-03-17","c":58,"i":12067,"ctr":0.48,"p":13.5,"cR":48.71,"iR":10239,"pR":14.13,"ctrR":0.47},{"d":"2026-03-18","c":58,"i":12595,"ctr":0.46,"p":15.6,"cR":49.43,"iR":10512,"pR":14.14,"ctrR":0.46},{"d":"2026-03-19","c":55,"i":15562,"ctr":0.35,"p":13.0,"cR":48.29,"iR":10955,"pR":14.29,"ctrR":0.44},{"d":"2026-03-20","c":58,"i":18124,"ctr":0.32,"p":12.7,"cR":51.29,"iR":12082,"pR":14.23,"ctrR":0.43},{"d":"2026-03-21","c":31,"i":16754,"ctr":0.19,"p":13.8,"cR":52.14,"iR":13403,"pR":14.07,"ctrR":0.41},{"d":"2026-03-22","c":34,"i":20004,"ctr":0.17,"p":13.9,"cR":51.57,"iR":15089,"pR":13.83,"ctrR":0.37},{"d":"2026-03-23","c":87,"i":21284,"ctr":0.41,"p":12.8,"cR":54.43,"iR":16627,"pR":13.61,"ctrR":0.34},{"d":"2026-03-24","c":77,"i":19754,"ctr":0.39,"p":13.0,"cR":57.14,"iR":17725,"pR":13.54,"ctrR":0.33},{"d":"2026-03-25","c":76,"i":16668,"ctr":0.46,"p":14.5,"cR":59.71,"iR":18307,"pR":13.39,"ctrR":0.33},{"d":"2026-03-26","c":62,"i":20056,"ctr":0.31,"p":13.5,"cR":60.71,"iR":18949,"pR":13.46,"ctrR":0.32},{"d":"2026-03-27","c":68,"i":18923,"ctr":0.36,"p":16.1,"cR":62.14,"iR":19063,"pR":13.94,"ctrR":0.33},{"d":"2026-03-28","c":31,"i":14697,"ctr":0.21,"p":20.3,"cR":62.14,"iR":18769,"pR":14.87,"ctrR":0.33},{"d":"2026-03-29","c":31,"i":16338,"ctr":0.19,"p":21.6,"cR":61.71,"iR":18246,"pR":15.97,"ctrR":0.33},{"d":"2026-03-30","c":88,"i":17159,"ctr":0.51,"p":16.7,"cR":61.86,"iR":17656,"pR":16.53,"ctrR":0.35},{"d":"2026-03-31","c":51,"i":14347,"ctr":0.36,"p":14.3,"cR":58.14,"iR":16884,"pR":16.71,"ctrR":0.34},{"d":"2026-04-01","c":55,"i":13730,"ctr":0.4,"p":15.6,"cR":55.14,"iR":16464,"pR":16.87,"ctrR":0.33},{"d":"2026-04-02","c":54,"i":12500,"ctr":0.43,"p":16.8,"cR":54.0,"iR":15385,"pR":17.34,"ctrR":0.35},{"d":"2026-04-03","c":41,"i":11600,"ctr":0.35,"p":15.0,"cR":50.14,"iR":14339,"pR":17.19,"ctrR":0.35},{"d":"2026-04-04","c":16,"i":11149,"ctr":0.14,"p":20.0,"cR":48.0,"iR":13832,"pR":17.14,"ctrR":0.34},{"d":"2026-04-05","c":17,"i":10706,"ctr":0.16,"p":17.1,"cR":46.0,"iR":13027,"pR":16.5,"ctrR":0.34},{"d":"2026-04-06","c":65,"i":12135,"ctr":0.54,"p":18.3,"cR":42.71,"iR":12310,"pR":16.73,"ctrR":0.34},{"d":"2026-04-07","c":49,"i":10517,"ctr":0.47,"p":15.7,"cR":42.43,"iR":11762,"pR":16.93,"ctrR":0.36},{"d":"2026-04-08","c":49,"i":10291,"ctr":0.48,"p":15.1,"cR":41.57,"iR":11271,"pR":16.86,"ctrR":0.37},{"d":"2026-04-09","c":39,"i":10302,"ctr":0.38,"p":13.5,"cR":39.43,"iR":10957,"pR":16.39,"ctrR":0.36},{"d":"2026-04-10","c":42,"i":10583,"ctr":0.4,"p":22.5,"cR":39.57,"iR":10812,"pR":17.46,"ctrR":0.37},{"d":"2026-04-11","c":26,"i":14475,"ctr":0.18,"p":64.6,"cR":41.0,"iR":11287,"pR":23.83,"ctrR":0.37},{"d":"2026-04-12","c":18,"i":13670,"ctr":0.13,"p":62.3,"cR":41.14,"iR":11710,"pR":30.29,"ctrR":0.37},{"d":"2026-04-13","c":57,"i":11383,"ctr":0.5,"p":29.8,"cR":40.0,"iR":11603,"pR":31.93,"ctrR":0.36},{"d":"2026-04-14","c":67,"i":9607,"ctr":0.7,"p":17.6,"cR":42.57,"iR":11473,"pR":32.2,"ctrR":0.4},{"d":"2026-04-15","c":52,"i":10199,"ctr":0.51,"p":17.8,"cR":43.0,"iR":11460,"pR":32.59,"ctrR":0.4},{"d":"2026-04-16","c":43,"i":9005,"ctr":0.48,"p":15.4,"cR":43.57,"iR":11275,"pR":32.86,"ctrR":0.41},{"d":"2026-04-17","c":34,"i":8217,"ctr":0.41,"p":14.7,"cR":42.43,"iR":10937,"pR":31.74,"ctrR":0.42},{"d":"2026-04-18","c":28,"i":8179,"ctr":0.34,"p":15.2,"cR":42.71,"iR":10037,"pR":24.69,"ctrR":0.44},{"d":"2026-04-19","c":34,"i":8571,"ctr":0.4,"p":15.6,"cR":45.0,"iR":9309,"pR":18.01,"ctrR":0.48},{"d":"2026-04-20","c":42,"i":9878,"ctr":0.43,"p":14.0,"cR":42.86,"iR":9094,"pR":15.76,"ctrR":0.47},{"d":"2026-04-21","c":51,"i":9051,"ctr":0.56,"p":14.0,"cR":40.57,"iR":9014,"pR":15.24,"ctrR":0.45},{"d":"2026-04-22","c":75,"i":9407,"ctr":0.8,"p":14.0,"cR":43.86,"iR":8901,"pR":14.7,"ctrR":0.49},{"d":"2026-04-23","c":47,"i":8370,"ctr":0.56,"p":12.3,"cR":44.43,"iR":8810,"pR":14.26,"ctrR":0.5},{"d":"2026-04-24","c":53,"i":8019,"ctr":0.66,"p":12.4,"cR":47.14,"iR":8782,"pR":13.93,"ctrR":0.54},{"d":"2026-04-25","c":26,"i":5814,"ctr":0.45,"p":15.5,"cR":46.86,"iR":8444,"pR":13.97,"ctrR":0.55},{"d":"2026-04-26","c":13,"i":6343,"ctr":0.2,"p":16.0,"cR":43.86,"iR":8126,"pR":14.03,"ctrR":0.52},{"d":"2026-04-27","c":50,"i":7713,"ctr":0.65,"p":13.7,"cR":45.0,"iR":7817,"pR":13.99,"ctrR":0.55},{"d":"2026-04-28","c":65,"i":7707,"ctr":0.84,"p":13.7,"cR":47.0,"iR":7625,"pR":13.94,"ctrR":0.59},{"d":"2026-04-29","c":50,"i":11536,"ctr":0.43,"p":12.3,"cR":43.43,"iR":7929,"pR":13.7,"ctrR":0.54},{"d":"2026-04-30","c":39,"i":11022,"ctr":0.35,"p":11.7,"cR":42.29,"iR":8308,"pR":13.61,"ctrR":0.51},{"d":"2026-05-01","c":41,"i":9294,"ctr":0.44,"p":13.4,"cR":40.57,"iR":8490,"pR":13.76,"ctrR":0.48},{"d":"2026-05-02","c":24,"i":6730,"ctr":0.36,"p":15.8,"cR":40.29,"iR":8621,"pR":13.8,"ctrR":0.47},{"d":"2026-05-03","c":27,"i":7473,"ctr":0.36,"p":16.3,"cR":42.29,"iR":8782,"pR":13.84,"ctrR":0.49},{"d":"2026-05-04","c":51,"i":10342,"ctr":0.49,"p":14.7,"cR":42.43,"iR":9158,"pR":13.99,"ctrR":0.47},{"d":"2026-05-05","c":57,"i":16373,"ctr":0.35,"p":9.7,"cR":41.29,"iR":10396,"pR":13.41,"ctrR":0.4},{"d":"2026-05-06","c":53,"i":15862,"ctr":0.33,"p":10.6,"cR":41.71,"iR":11014,"pR":13.17,"ctrR":0.38},{"d":"2026-05-07","c":49,"i":10458,"ctr":0.47,"p":14.4,"cR":43.14,"iR":10933,"pR":13.56,"ctrR":0.4},{"d":"2026-05-08","c":47,"i":10356,"ctr":0.45,"p":13.6,"cR":44.0,"iR":11085,"pR":13.59,"ctrR":0.4},{"d":"2026-05-09","c":19,"i":10093,"ctr":0.19,"p":14.2,"cR":43.29,"iR":11565,"pR":13.36,"ctrR":0.38},{"d":"2026-05-10","c":31,"i":12861,"ctr":0.24,"p":14.1,"cR":43.86,"iR":12335,"pR":13.04,"ctrR":0.36},{"d":"2026-05-11","c":66,"i":15713,"ctr":0.42,"p":13.3,"cR":46.0,"iR":13102,"pR":12.84,"ctrR":0.35},{"d":"2026-05-12","c":63,"i":15460,"ctr":0.41,"p":13.2,"cR":46.86,"iR":12972,"pR":13.34,"ctrR":0.36},{"d":"2026-05-13","c":79,"i":17469,"ctr":0.45,"p":13.1,"cR":50.57,"iR":13201,"pR":13.7,"ctrR":0.38},{"d":"2026-05-14","c":71,"i":15800,"ctr":0.45,"p":13.4,"cR":53.71,"iR":13965,"pR":13.56,"ctrR":0.37},{"d":"2026-05-15","c":73,"i":15221,"ctr":0.48,"p":15.0,"cR":57.43,"iR":14660,"pR":13.76,"ctrR":0.38},{"d":"2026-05-16","c":28,"i":16183,"ctr":0.17,"p":17.6,"cR":58.71,"iR":15530,"pR":14.24,"ctrR":0.37},{"d":"2026-05-17","c":35,"i":18735,"ctr":0.19,"p":17.4,"cR":59.29,"iR":16369,"pR":14.71,"ctrR":0.37},{"d":"2026-05-18","c":83,"i":20690,"ctr":0.4,"p":15.6,"cR":61.71,"iR":17080,"pR":15.04,"ctrR":0.36},{"d":"2026-05-19","c":93,"i":21031,"ctr":0.44,"p":16.3,"cR":66.0,"iR":17876,"pR":15.49,"ctrR":0.37},{"d":"2026-05-20","c":68,"i":20753,"ctr":0.33,"p":18.0,"cR":64.43,"iR":18345,"pR":16.19,"ctrR":0.35},{"d":"2026-05-21","c":72,"i":22081,"ctr":0.33,"p":16.4,"cR":64.57,"iR":19242,"pR":16.61,"ctrR":0.33},{"d":"2026-05-22","c":51,"i":21091,"ctr":0.24,"p":16.6,"cR":61.43,"iR":20081,"pR":16.84,"ctrR":0.3},{"d":"2026-05-23","c":31,"i":20665,"ctr":0.15,"p":17.9,"cR":61.86,"iR":20721,"pR":16.89,"ctrR":0.3},{"d":"2026-05-24","c":39,"i":20657,"ctr":0.19,"p":18.2,"cR":62.43,"iR":20995,"pR":17.0,"ctrR":0.3},{"d":"2026-05-25","c":35,"i":18889,"ctr":0.19,"p":16.2,"cR":55.57,"iR":20738,"pR":17.09,"ctrR":0.27},{"d":"2026-05-26","c":73,"i":21613,"ctr":0.34,"p":16.1,"cR":52.71,"iR":20821,"pR":17.06,"ctrR":0.25},{"d":"2026-05-27","c":79,"i":24368,"ctr":0.32,"p":15.9,"cR":54.29,"iR":21338,"pR":16.76,"ctrR":0.25},{"d":"2026-05-28","c":75,"i":22232,"ctr":0.34,"p":16.2,"cR":54.71,"iR":21359,"pR":16.73,"ctrR":0.25},{"d":"2026-05-29","c":81,"i":19733,"ctr":0.41,"p":14.8,"cR":59.0,"iR":21165,"pR":16.47,"ctrR":0.28},{"d":"2026-05-30","c":25,"i":15840,"ctr":0.16,"p":16.6,"cR":58.14,"iR":20476,"pR":16.29,"ctrR":0.28},{"d":"2026-05-31","c":23,"i":15565,"ctr":0.15,"p":17.7,"cR":55.86,"iR":19749,"pR":16.21,"ctrR":0.27},{"d":"2026-06-01","c":62,"i":20393,"ctr":0.3,"p":15.7,"cR":59.71,"iR":19963,"pR":16.14,"ctrR":0.29},{"d":"2026-06-02","c":59,"i":18380,"ctr":0.32,"p":15.1,"cR":57.71,"iR":19502,"pR":16.0,"ctrR":0.29},{"d":"2026-06-03","c":58,"i":20975,"ctr":0.28,"p":16.5,"cR":54.71,"iR":19017,"pR":16.09,"ctrR":0.28},{"d":"2026-06-04","c":43,"i":17688,"ctr":0.24,"p":14.7,"cR":50.14,"iR":18368,"pR":15.87,"ctrR":0.27},{"d":"2026-06-05","c":50,"i":15847,"ctr":0.32,"p":15.9,"cR":45.71,"iR":17813,"pR":16.03,"ctrR":0.25},{"d":"2026-06-06","c":18,"i":15487,"ctr":0.12,"p":16.6,"cR":44.71,"iR":17762,"pR":16.03,"ctrR":0.25},{"d":"2026-06-07","c":28,"i":15322,"ctr":0.18,"p":18.5,"cR":45.43,"iR":17727,"pR":16.14,"ctrR":0.25},{"d":"2026-06-08","c":46,"i":14555,"ctr":0.32,"p":21.0,"cR":43.14,"iR":16893,"pR":16.9,"ctrR":0.25},{"d":"2026-06-09","c":60,"i":15412,"ctr":0.39,"p":19.8,"cR":43.29,"iR":16469,"pR":17.57,"ctrR":0.26},{"d":"2026-06-10","c":46,"i":12429,"ctr":0.37,"p":16.9,"cR":41.57,"iR":15249,"pR":17.63,"ctrR":0.28},{"d":"2026-06-11","c":63,"i":12504,"ctr":0.5,"p":15.4,"cR":44.43,"iR":14508,"pR":17.73,"ctrR":0.31},{"d":"2026-06-12","c":31,"i":12136,"ctr":0.26,"p":19.3,"cR":41.71,"iR":13978,"pR":18.21,"ctrR":0.31},{"d":"2026-06-13","c":18,"i":11937,"ctr":0.15,"p":19.7,"cR":41.71,"iR":13471,"pR":18.66,"ctrR":0.31},{"d":"2026-06-14","c":34,"i":13708,"ctr":0.25,"p":20.7,"cR":42.57,"iR":13240,"pR":18.97,"ctrR":0.32},{"d":"2026-06-15","c":49,"i":15910,"ctr":0.31,"p":18.9,"cR":43.0,"iR":13434,"pR":18.67,"ctrR":0.32},{"d":"2026-06-16","c":67,"i":14292,"ctr":0.47,"p":21.5,"cR":44.0,"iR":13274,"pR":18.91,"ctrR":0.33},{"d":"2026-06-17","c":43,"i":15899,"ctr":0.27,"p":18.1,"cR":43.57,"iR":13769,"pR":19.09,"ctrR":0.32},{"d":"2026-06-18","c":62,"i":13549,"ctr":0.46,"p":17.9,"cR":43.43,"iR":13919,"pR":19.44,"ctrR":0.31},{"d":"2026-06-19","c":28,"i":12687,"ctr":0.22,"p":17.0,"cR":43.0,"iR":13997,"pR":19.11,"ctrR":0.3},{"d":"2026-06-20","c":9,"i":12169,"ctr":0.07,"p":17.7,"cR":41.71,"iR":14031,"pR":18.83,"ctrR":0.29},{"d":"2026-06-21","c":11,"i":14143,"ctr":0.08,"p":19.0,"cR":38.43,"iR":14093,"pR":18.59,"ctrR":0.27},{"d":"2026-06-22","c":48,"i":14715,"ctr":0.33,"p":15.8,"cR":38.29,"iR":13922,"pR":18.14,"ctrR":0.27},{"d":"2026-06-23","c":58,"i":14303,"ctr":0.41,"p":20.6,"cR":37.0,"iR":13924,"pR":18.01,"ctrR":0.26},{"d":"2026-06-24","c":35,"i":13001,"ctr":0.27,"p":18.5,"cR":35.86,"iR":13510,"pR":18.07,"ctrR":0.26},{"d":"2026-06-25","c":47,"i":13176,"ctr":0.36,"p":17.5,"cR":33.71,"iR":13456,"pR":18.01,"ctrR":0.25},{"d":"2026-06-26","c":27,"i":10282,"ctr":0.26,"p":18.2,"cR":33.57,"iR":13113,"pR":18.19,"ctrR":0.25},{"d":"2026-06-27","c":19,"i":11754,"ctr":0.16,"p":18.9,"cR":35.0,"iR":13053,"pR":18.36,"ctrR":0.27},{"d":"2026-06-28","c":18,"i":13993,"ctr":0.13,"p":21.8,"cR":36.0,"iR":13032,"pR":18.76,"ctrR":0.27},{"d":"2026-06-29","c":49,"i":15028,"ctr":0.33,"p":20.1,"cR":36.14,"iR":13077,"pR":19.37,"ctrR":0.27},{"d":"2026-06-30","c":34,"i":15557,"ctr":0.22,"p":23.1,"cR":32.71,"iR":13256,"pR":19.73,"ctrR":0.25},{"d":"2026-07-01","c":50,"i":14687,"ctr":0.34,"p":21.3,"cR":34.86,"iR":13497,"pR":20.13,"ctrR":0.26},{"d":"2026-07-02","c":37,"i":15093,"ctr":0.25,"p":19.3,"cR":33.43,"iR":13771,"pR":20.39,"ctrR":0.24},{"d":"2026-07-03","c":23,"i":12813,"ctr":0.18,"p":20.7,"cR":32.86,"iR":14132,"pR":20.74,"ctrR":0.23},{"d":"2026-07-04","c":12,"i":12605,"ctr":0.1,"p":20.8,"cR":31.86,"iR":14254,"pR":21.01,"ctrR":0.22},{"d":"2026-07-05","c":21,"i":12991,"ctr":0.16,"p":23.0,"cR":32.29,"iR":14111,"pR":21.19,"ctrR":0.23},{"d":"2026-07-06","c":45,"i":15648,"ctr":0.29,"p":16.6,"cR":31.71,"iR":14199,"pR":20.69,"ctrR":0.22},{"d":"2026-07-07","c":53,"i":16626,"ctr":0.32,"p":20.1,"cR":34.43,"iR":14352,"pR":20.26,"ctrR":0.23},{"d":"2026-07-08","c":55,"i":14312,"ctr":0.38,"p":19.3,"cR":35.14,"iR":14298,"pR":19.97,"ctrR":0.24},{"d":"2026-07-09","c":49,"i":16318,"ctr":0.3,"p":18.3,"cR":36.86,"iR":14473,"pR":19.83,"ctrR":0.25},{"d":"2026-07-10","c":41,"i":12866,"ctr":0.32,"p":19.0,"cR":39.43,"iR":14481,"pR":19.59,"ctrR":0.27},{"d":"2026-07-11","c":17,"i":11949,"ctr":0.14,"p":20.8,"cR":40.14,"iR":14387,"pR":19.59,"ctrR":0.27},{"d":"2026-07-12","c":16,"i":12574,"ctr":0.13,"p":22.6,"cR":39.43,"iR":14328,"pR":19.53,"ctrR":0.27},{"d":"2026-07-13","c":58,"i":27884,"ctr":0.21,"p":14.1,"cR":41.29,"iR":16076,"pR":19.17,"ctrR":0.26},{"d":"2026-07-14","c":58,"i":27798,"ctr":0.21,"p":13.8,"cR":42.0,"iR":17672,"pR":18.27,"ctrR":0.24},{"d":"2026-07-15","c":48,"i":13976,"ctr":0.34,"p":16.8,"cR":41.0,"iR":17624,"pR":17.91,"ctrR":0.24},{"d":"2026-07-16","c":34,"i":11429,"ctr":0.3,"p":17.6,"cR":38.86,"iR":16925,"pR":17.81,"ctrR":0.24},{"d":"2026-07-17","c":40,"i":11632,"ctr":0.34,"p":17.1,"cR":38.71,"iR":16749,"pR":17.54,"ctrR":0.24},{"d":"2026-07-18","c":14,"i":10429,"ctr":0.13,"p":19.2,"cR":38.29,"iR":16532,"pR":17.31,"ctrR":0.24},{"d":"2026-07-19","c":11,"i":12191,"ctr":0.09,"p":22.9,"cR":37.57,"iR":16477,"pR":17.36,"ctrR":0.23}],"monthly":[{"m":"2025-03","c":1221,"i":247814,"ctr":0.49,"p":37.4,"days":12},{"m":"2025-04","c":2882,"i":734469,"ctr":0.39,"p":40.7,"days":30},{"m":"2025-05","c":2487,"i":808185,"ctr":0.31,"p":38.7,"days":31},{"m":"2025-06","c":2105,"i":751993,"ctr":0.28,"p":39.3,"days":30},{"m":"2025-07","c":2163,"i":747555,"ctr":0.29,"p":38.7,"days":31},{"m":"2025-08","c":2370,"i":710257,"ctr":0.33,"p":33.2,"days":31},{"m":"2025-09","c":2294,"i":536803,"ctr":0.43,"p":20.3,"days":30},{"m":"2025-10","c":2245,"i":465680,"ctr":0.48,"p":14.5,"days":31},{"m":"2025-11","c":1476,"i":298953,"ctr":0.49,"p":14.6,"days":30},{"m":"2025-12","c":1406,"i":393829,"ctr":0.36,"p":15.7,"days":31},{"m":"2026-01","c":1725,"i":613846,"ctr":0.28,"p":15.3,"days":31},{"m":"2026-02","c":1616,"i":545624,"ctr":0.3,"p":13.2,"days":28},{"m":"2026-03","c":1622,"i":432865,"ctr":0.37,"p":14.3,"days":31},{"m":"2026-04","c":1297,"i":301679,"ctr":0.43,"p":19.1,"days":30},{"m":"2026-05","c":1642,"i":509631,"ctr":0.32,"p":15.2,"days":31},{"m":"2026-06","c":1220,"i":437231,"ctr":0.28,"p":18.3,"days":30},{"m":"2026-07","c":682,"i":283821,"ctr":0.24,"p":19.1,"days":19}],"devices":[{"k":"Mobile","c":18050,"i":3233753,"ctr":0.56,"p":22.37},{"k":"Desktop","c":12087,"i":5489275,"ctr":0.22,"p":28.79},{"k":"Tablet","c":316,"i":97207,"ctr":0.33,"p":11.08}],"channels":[{"k":"Organic Search","u":42220,"nu":54003,"eng":27539,"engT":102.8,"espu":0.65,"ke":5184},{"k":"Direct","u":52139,"nu":89185,"eng":20502,"engT":46.8,"espu":0.39,"ke":5110},{"k":"Organic Social","u":2172,"nu":3162,"eng":567,"engT":19.5,"espu":0.26,"ke":45},{"k":"Organic Video","u":40,"nu":46,"eng":23,"engT":27.3,"espu":0.58,"ke":1},{"k":"Organic Shopping","u":33,"nu":59,"eng":0,"engT":0,"espu":0,"ke":0},{"k":"AI Assistant","u":17,"nu":34,"eng":11,"engT":47.3,"espu":0.65,"ke":1}]};
+const $=id=>document.getElementById(id);
+const tip=$('tip');
+const fmt=n=>n>=1000?(n/1000).toFixed(n>=10000?0:1)+'k':(''+Math.round(n));
+const fmtF=(n,d=0)=>Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const parse=d=>new Date(d+'T00:00:00');
+const daily=DATA.daily, monthly=DATA.monthly, channels=DATA.channels;
+const t0=parse(daily[0].d).getTime(), t1=parse(daily[daily.length-1].d).getTime();
+const MARKERS=[{d:'2026-03-01',l:'Agency takeover'}];
+// Confirmed Google update rollout windows (Search Console data starts 2025-03-20)
+const UPDATES=[
+  {s:'2025-03-13',e:'2025-03-27',l:'Mar 2025 Core'},
+  {s:'2025-06-30',e:'2025-07-17',l:'Jun 2025 Core'},
+  {s:'2025-08-26',e:'2025-09-22',l:'Aug 2025 Spam'},
+  {s:'2025-12-11',e:'2025-12-29',l:'Dec 2025 Core'},
+];
+
+function agg(a,b){let c=0,i=0,ps=0,n=0;for(const x of daily){if(x.d>=a&&x.d<=b){c+=x.c;i+=x.i;ps+=x.p;n++;}}return{c,cpd:c/n,ipd:i/n,ctr:100*c/i,pos:ps/n,n};}
+const pre=agg('2025-12-01','2026-02-28'), post=agg('2026-03-01','2026-07-19');
+const ly=agg('2025-03-20','2025-07-19'), ty=agg('2026-03-20','2026-07-19');
+
+function deltaHTML(cur,prev,inv,pct,unit){let d=cur-prev,better=inv?d<0:d>0;
+  let s=(d>0?'+':'')+(pct?fmtF(100*d/prev,0)+'%':fmtF(d,1)+unit);
+  return `<div class="delta ${better?'up':'down'}">${better?'▲':'▼'} ${s}</div>`;}
+
+$('kpiClicks').innerHTML=[
+ {h:1,lab:'Clicks/day — agency era',val:fmtF(post.cpd,1),d:deltaHTML(post.cpd,pre.cpd,false,true)+`<div class="note">vs prior 90d (${fmtF(pre.cpd,1)})</div>`},
+ {h:1,lab:'Clicks vs same period last yr',val:fmtF(ty.cpd,1)+'/d',d:deltaHTML(ty.cpd,ly.cpd,false,true)+`<div class="note">Mar–Jul: ${fmtF(ly.cpd,1)}→${fmtF(ty.cpd,1)}/day</div>`},
+ {lab:'Total clicks — agency era',val:fmtF(post.c),d:`<div class="note">Mar 1–Jul 19 2026 · ${post.n} days</div>`},
+ {lab:'CTR — agency era',val:fmtF(post.ctr,2)+'%',d:deltaHTML(post.ctr,pre.ctr,false,true)+`<div class="note">vs prior 90d (${fmtF(pre.ctr,2)}%)</div>`},
+].map(k=>`<div class="kpi ${k.h?'hero':''}"><div class="lab">${k.lab}</div><div class="val">${k.val}</div>${k.d}</div>`).join('');
+
+const org=channels[0];
+$('kpiEng').innerHTML=[
+ {lab:'New users (organic)',val:fmtF(org.nu)},
+ {lab:'Engaged sessions (organic)',val:fmtF(org.eng)},
+ {lab:'Avg engagement time',val:org.engT+'s'},
+ {lab:'Key events / conversions',val:fmtF(org.ke)},
+].map(k=>`<div class="kpi"><div class="lab">${k.lab}</div><div class="val">${k.val}</div><div class="note">cumulative, all-time</div></div>`).join('');
+
+// linear regression helper -> {m,b} on index
+function linreg(ys){const n=ys.length;let sx=0,sy=0,sxy=0,sxx=0;
+  for(let i=0;i<n;i++){sx+=i;sy+=ys[i];sxy+=i*ys[i];sxx+=i*i;}
+  const m=(n*sxy-sx*sy)/(n*sxx-sx*sx);const b=(sy-m*sx)/n;return{m,b};}
+
+function tsChart(el,key,color,{invert=false,wisp=false,trend=false,bands=false,fmtY=fmt,h=210}={}){
+  const W=720,H=h,mL=46,mR=14,mT=16,mB=26;
+  const xs=t=>mL+(t-t0)/(t1-t0)*(W-mL-mR);
+  const vals=daily.map(x=>x[key]);
+  let lo=Math.min(...vals),hi=Math.max(...vals);
+  if(key==='pR'||key==='p'){hi=Math.min(hi,50);}
+  const pad=(hi-lo)*0.08;lo-=pad;hi+=pad;if(invert){[lo,hi]=[hi,lo];}
+  const ys=v=>{v=Math.max(Math.min(v,Math.max(lo,hi)),Math.min(lo,hi));return mT+(v-lo)/(hi-lo)*(H-mT-mB);};
+  let g='';const rlo=invert?hi:lo,rhi=invert?lo:hi;
+  for(let s=0;s<=4;s++){const v=rlo+(rhi-rlo)*s/4,y=ys(v);
+    g+=`<line class="gl" x1="${mL}" y1="${y.toFixed(1)}" x2="${W-mR}" y2="${y.toFixed(1)}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${(y+3).toFixed(1)}" text-anchor="end">${fmtY(v)}</text>`;}
+  if(bands){for(const u of UPDATES){const x1=xs(parse(u.s).getTime()),x2=xs(parse(u.e).getTime());
+    g+=`<rect x="${x1.toFixed(1)}" y="${mT}" width="${Math.max(2,x2-x1).toFixed(1)}" height="${H-mT-mB}" fill="var(--warn)" opacity="0.14"/>`;
+    g+=`<text class="mklab" fill="var(--warn)" transform="translate(${(x1+2).toFixed(1)},${mT+2}) rotate(90)" style="font-size:9px">${u.l}</text>`;}}
+  let cur=new Date(parse(daily[0].d));cur.setDate(1);const end=parse(daily[daily.length-1].d);
+  while(cur<=end){const t=cur.getTime();if(t>=t0&&t<=t1){const x=xs(t);
+    g+=`<text class="tickx" x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle">${cur.toLocaleDateString('en-US',{month:'short'})}${cur.getMonth()===0?" '"+String(cur.getFullYear()).slice(2):''}</text>`;}
+    cur.setMonth(cur.getMonth()+2);}
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  for(const m of MARKERS){const x=xs(parse(m.d).getTime());
+    g+=`<line class="mk" stroke="var(--brand)" x1="${x.toFixed(1)}" y1="${mT}" x2="${x.toFixed(1)}" y2="${H-mB}"/>`;
+    g+=`<text class="mklab" fill="var(--brand)" x="${(x+4).toFixed(1)}" y="${mT+10}">${m.l}</text>`;}
+  if(wisp){let p='';daily.forEach((x,i)=>{p+=(i?'L':'M')+xs(parse(x.d).getTime()).toFixed(1)+' '+ys(x[key.replace('R','')]).toFixed(1);});
+    g+=`<path class="dailywisp" d="${p}" fill="none" stroke="${color}" stroke-width="1"/>`;}
+  let p='';daily.forEach((x,i)=>{p+=(i?'L':'M')+xs(parse(x.d).getTime()).toFixed(1)+' '+ys(x[key]).toFixed(1);});
+  g+=`<path d="${p}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round"/>`;
+  if(trend){const rawKey=key.replace('R','');const lr=linreg(daily.map(x=>x[rawKey]));
+    const y0=ys(lr.b),y1=ys(lr.b+lr.m*(daily.length-1));
+    g+=`<path class="trend" stroke="var(--muted)" fill="none" d="M${xs(t0).toFixed(1)} ${y0.toFixed(1)} L${xs(t1).toFixed(1)} ${y1.toFixed(1)}"/>`;}
+  g+=`<rect x="${mL}" y="${mT}" width="${W-mL-mR}" height="${H-mT-mB}" fill="transparent" class="hit"/>`;
+  g+=`<line id="cr_${key}" x1="0" y1="${mT}" x2="0" y2="${H-mB}" stroke="var(--muted)" stroke-width="1" opacity="0"/>`;
+  g+=`<circle id="dt_${key}" r="4" fill="${color}" stroke="var(--surface)" stroke-width="1.5" opacity="0"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${g}</svg>`;
+  const svg=el.querySelector('svg'),cross=svg.querySelector('#cr_'+key),dot=svg.querySelector('#dt_'+key);
+  svg.querySelector('.hit').addEventListener('mousemove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=(ev.clientX-r.left)/r.width*W,frac=(sx-mL)/(W-mL-mR),tt=t0+frac*(t1-t0);
+    let best=daily[0],bd=1e18;for(const x of daily){const dd=Math.abs(parse(x.d).getTime()-tt);if(dd<bd){bd=dd;best=x;}}
+    const x=xs(parse(best.d).getTime()),y=ys(best[key]);
+    cross.setAttribute('x1',x);cross.setAttribute('x2',x);cross.setAttribute('opacity','1');
+    dot.setAttribute('cx',x);dot.setAttribute('cy',y);dot.setAttribute('opacity','1');
+    tip.style.opacity='1';tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';
+    tip.innerHTML=`<b>${parse(best.d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}</b>
+      <div class="r"><span>Clicks</span><span>${best.c}</span></div>
+      <div class="r"><span>Impressions</span><span>${fmtF(best.i)}</span></div>
+      <div class="r"><span>CTR</span><span>${best.ctr}%</span></div>
+      <div class="r"><span>Position</span><span>${best.p}</span></div>`;});
+  svg.querySelector('.hit').addEventListener('mouseleave',()=>{tip.style.opacity='0';cross.setAttribute('opacity','0');dot.setAttribute('opacity','0');});
+}
+
+// monthly bars with trend + partial marking
+function bars(el){
+  const W=720,H=240,mL=46,mR=14,mT=16,mB=36;
+  const max=Math.max(...monthly.map(m=>m.c));
+  const bw=(W-mL-mR)/monthly.length;
+  const partial=m=>m.days<=20;
+  let g='';
+  for(let s=0;s<=4;s++){const v=max*s/4,y=mT+(1-s/4)*(H-mT-mB);
+    g+=`<line class="gl" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${y+3}" text-anchor="end">${fmt(v)}</text>`;}
+  // hatch pattern for partial
+  g=`<defs><pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+       <rect width="6" height="6" fill="var(--muted)" opacity="0.18"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--muted)" stroke-width="2"/></pattern></defs>`+g;
+  monthly.forEach((m,i)=>{const agency=m.m>='2026-03';
+    const x=mL+i*bw+3,w=bw-6,hgt=(m.c/max)*(H-mT-mB),y=H-mB-hgt;
+    const fill=partial(m)?'url(#hatch)':(agency?'var(--impr)':'var(--clicks)');
+    g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${hgt.toFixed(1)}" rx="3" fill="${fill}" class="mbar" data-m="${m.m}" data-c="${m.c}" data-p="${m.p}" data-ctr="${m.ctr}" data-pt="${partial(m)?1:0}"/>`;
+    if(i%2===0||i===monthly.length-1)g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-20}" text-anchor="middle">${m.m.slice(5)}</text>`;
+    g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-8}" text-anchor="middle" fill="var(--muted)">${m.m.slice(0,4)==='2025'?"'25":"'26"}</text>`;});
+  // trend over FULL months only
+  const full=monthly.map((m,i)=>({i,c:m.c,p:m.days>20}));
+  const fm=full.filter(o=>o.p);const lr=linreg(fm.map(o=>o.c));
+  const yAt=idx=>{const c=lr.b+lr.m*(fm.findIndex(o=>o.i===idx));return c;};
+  // draw trend line across full-month bar centers
+  const first=fm[0],last=fm[fm.length-1];
+  const cx=idx=>mL+idx*bw+bw/2;
+  const cyc=c=>H-mB-(c/max)*(H-mT-mB);
+  const y0=cyc(lr.b),y1=cyc(lr.b+lr.m*(fm.length-1));
+  g+=`<path class="trend" stroke="var(--muted)" fill="none" d="M${cx(first.i).toFixed(1)} ${y0.toFixed(1)} L${cx(last.i).toFixed(1)} ${y1.toFixed(1)}"/>`;
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  el.querySelectorAll('.mbar').forEach(r=>{
+    r.addEventListener('mousemove',ev=>{tip.style.opacity='1';tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';
+      tip.innerHTML=`<b>${r.dataset.m}${r.dataset.pt==='1'?' (partial)':''}</b><div class="r"><span>Clicks</span><span>${fmtF(+r.dataset.c)}</span></div>
+      <div class="r"><span>CTR</span><span>${r.dataset.ctr}%</span></div><div class="r"><span>Avg position</span><span>${r.dataset.p}</span></div>`;});
+    r.addEventListener('mouseleave',()=>tip.style.opacity='0');});
+  // takeaway text
+  const peak=Math.max(...monthly.filter(m=>m.days>20).map(m=>m.c));
+  const recent=monthly.filter(m=>m.days>20).slice(-3);
+  const recentAvg=recent.reduce((a,m)=>a+m.c,0)/recent.length;
+  $('tk_bars').innerHTML=`Peak full month was <b>${fmtF(peak)}</b> clicks (spring 2025). Recent full months average <b>${fmtF(Math.round(recentAvg))}</b> — about <b>${Math.round(100-100*recentAvg/peak)}% lower</b>. The agency-era bars (amber) are not trending up.`;
+}
+
+function hbars(el,items,valKey,color,fmtV){
+  const max=Math.max(...items.map(x=>x[valKey]));
+  el.innerHTML=items.filter(x=>x[valKey]>0).map(x=>{const w=(x[valKey]/max)*100;
+    return `<div style="margin:9px 0">
+      <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:3px">
+        <span style="color:var(--ink)">${x.k}</span><span style="color:var(--ink-2);font-variant-numeric:tabular-nums">${fmtV(x)}</span></div>
+      <div style="background:var(--surface-2);border-radius:5px;height:12px"><div style="width:${w}%;background:${color};height:12px;border-radius:5px"></div></div></div>`;}).join('');
+}
+
+const OPP=[
+ ['/denver-divorce-lawyer/',450148,239,32.7,'crit','Critical'],
+ ['/denver-child-custody-lawyer/',418094,43,54.5,'crit','Critical'],
+ ['/denver-family-law-lawyer/',270776,427,29.4,'crit','Critical'],
+ ['/denver-high-conflict-child-custody-lawyer/',246865,122,45.2,'crit','Critical'],
+ ['/denver-child-support-lawyer/',239330,18,56.7,'crit','Critical'],
+ ['/colorado-springs-family-law-lawyer/',103992,176,31.1,'warn','High'],
+ ['“child support lawyer” (query)',74937,3,60.8,'crit','Critical'],
+ ['“child custody lawyer” (query)',54576,5,50.0,'crit','Critical'],
+ ['“family lawyer” (query)',85483,12,19.9,'warn','High'],
+ ['“divorce lawyer” (query)',135640,48,9.8,'good','Push to top-5'],
+];
+
+// YoY organic new users. Fill from GA4 when available:
+//   const YOY = [{p:'Jan–Jul 2025', nu: 12345}, {p:'Jan–Jul 2026', nu: 23456}];
+const YOY = null;
+function yoyChart(el){
+  if(!YOY){
+    el.innerHTML=`<div style="padding:22px;border:1px dashed var(--axis);border-radius:10px;text-align:center;color:var(--muted);font-size:13.5px">
+      <div style="color:var(--ink);font-weight:600;margin-bottom:4px">Awaiting GA4 year-over-year new-user data</div>
+      The export provided is a single all-time total (${fmtF(channels[0].nu)} organic new users, cumulative).
+      Send organic <b>New users</b> for two matching windows (e.g. Jan–Jul 2025 vs Jan–Jul 2026) and this becomes the headline chart.</div>`;
+    return;
+  }
+  const W=720,H=210,mL=54,mR=16,mT=16,mB=30,max=Math.max(...YOY.map(y=>y.nu));
+  const bw=(W-mL-mR)/YOY.length;let g='';
+  for(let s=0;s<=4;s++){const v=max*s/4,y=mT+(1-s/4)*(H-mT-mB);
+    g+=`<line class="gl" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${y+3}" text-anchor="end">${fmt(v)}</text>`;}
+  YOY.forEach((y,i)=>{const x=mL+i*bw+bw*0.22,w=bw*0.56,hgt=(y.nu/max)*(H-mT-mB),yy=H-mB-hgt;
+    g+=`<rect x="${x.toFixed(1)}" y="${yy.toFixed(1)}" width="${w.toFixed(1)}" height="${hgt.toFixed(1)}" rx="4" fill="${i===YOY.length-1?'var(--users)':'var(--muted)'}"/>`;
+    g+=`<text x="${(x+w/2).toFixed(1)}" y="${(yy-6).toFixed(1)}" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="650">${fmtF(y.nu)}</text>`;
+    g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-8}" text-anchor="middle">${y.p}</text>`;});
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  if(YOY.length===2){const d=100*(YOY[1].nu-YOY[0].nu)/YOY[0].nu,up=d>=0;
+    el.insertAdjacentHTML('beforeend',`<div class="takeaway ${up?'good':'bad'}">Organic new users are <b>${up?'up':'down'} ${Math.abs(d).toFixed(0)}%</b> year over year (${fmtF(YOY[0].nu)} → ${fmtF(YOY[1].nu)}) — the on-site metric that matters, and it moves opposite to raw Search Console clicks.</div>`);}
+}
+// Blog content by publish year (from Pages export, top ~230 pages) — [year, pages, clicks, impressions]
+const AGE=[['2021',32,2434,1239028],['2022',35,6169,1390826],['2023',9,1172,189208],['2024',33,3875,758127],['2025',8,721,83519],['2026',4,190,38582]];
+function ageChart(el){
+  const W=720,H=200,mL=40,mR=14,mT=14,mB=30,max=Math.max(...AGE.map(a=>a[1]));
+  const bw=(W-mL-mR)/AGE.length;let g='';
+  for(let s=0;s<=4;s++){const v=max*s/4,y=mT+(1-s/4)*(H-mT-mB);
+    g+=`<line class="gl" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}"/>`;
+    g+=`<text class="tick" x="${mL-8}" y="${y+3}" text-anchor="end">${Math.round(v)}</text>`;}
+  AGE.forEach((a,i)=>{const aging=a[0]==='2021'||a[0]==='2022';
+    const x=mL+i*bw+bw*0.18,w=bw*0.64,hgt=(a[1]/max)*(H-mT-mB),y=H-mB-hgt;
+    g+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${hgt.toFixed(1)}" rx="3" fill="${aging?'var(--pos)':'var(--muted)'}" class="agebar" data-y="${a[0]}" data-pg="${a[1]}" data-cl="${a[2]}" data-im="${a[3]}"/>`;
+    g+=`<text x="${(x+w/2).toFixed(1)}" y="${(y-5).toFixed(1)}" text-anchor="middle" fill="var(--ink)" font-size="12" font-weight="600">${a[1]}</text>`;
+    g+=`<text class="tickx" x="${(x+w/2).toFixed(1)}" y="${H-10}" text-anchor="middle">${a[0]}</text>`;});
+  g+=`<line class="axis" x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}"/>`;
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  el.querySelectorAll('.agebar').forEach(r=>{
+    r.addEventListener('mousemove',ev=>{tip.style.opacity='1';tip.style.left=(ev.clientX+14)+'px';tip.style.top=(ev.clientY+14)+'px';
+      tip.innerHTML=`<b>${r.dataset.y} blog posts</b><div class="r"><span>Pages</span><span>${r.dataset.pg}</span></div>
+      <div class="r"><span>Clicks</span><span>${fmtF(+r.dataset.cl)}</span></div><div class="r"><span>Impressions</span><span>${fmtF(+r.dataset.im)}</span></div>`;});
+    r.addEventListener('mouseleave',()=>tip.style.opacity='0');});
+}
+function render(){
+  tsChart($('c_clicks'),'cR','var(--clicks)',{wisp:true,trend:true,bands:true,h:250});
+  bars($('c_mbars'));
+  yoyChart($('c_yoy'));
+  ageChart($('c_age'));
+  hbars($('c_chanUsers'),channels,'nu','var(--users)',x=>fmtF(x.nu)+' new · '+fmtF(x.ke)+' conv.');
+  hbars($('c_chanTime'),channels,'engT','var(--clicks)',x=>x.engT+'s');
+  $('oppTable').innerHTML=OPP.map(r=>`<tr><td class="u">${r[0]}</td><td>${fmtF(r[1])}</td><td>${r[2]}</td><td>${r[3]}</td><td style="text-align:right"><span class="pill ${r[4]}">${r[5]}</span></td></tr>`).join('');
+}
+render();
+$('themeBtn').addEventListener('click',()=>{const cur=document.documentElement.getAttribute('data-theme');
+  document.documentElement.setAttribute('data-theme',cur==='dark'?'light':'dark');render();});
+</script>
+</body>
+</html>
