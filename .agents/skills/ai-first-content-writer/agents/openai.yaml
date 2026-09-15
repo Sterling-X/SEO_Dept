@@ -1,0 +1,14 @@
+interface:
+  display_name: AI-First Content Writer
+  short_description: Write concise, citation-ready AI-search articles
+  default_prompt: Use $ai-first-content-writer to research and draft a concise, citation-ready
+    article for AI search.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,24 @@
+interface:
+  display_name: legal content accuracy qa
+  short_description: Final legal-accuracy gate for law-firm and legal content. Verifies
+    every material legal claim against the current text of governing primary authority
+    (statutes, court rules, official forms, regulations, case law) fetched LIVE via
+    web search during the review, never from model memory. Use whenever the user asks
+    to verify legal accuracy, fact-check legal content, check statutes, citations,
+    deadlines, waiting periods, residency rules, or thresholds, run a legal QA, or
+    live-check a page. ALSO trigger automatically as the next gate whenever family-law-red-team-qa-reviewer
+    or qa-output-checker completes on content containing legal claims (rules, deadlines,
+    eligibility, procedures, rights, remedies); those skills do not verify legal accuracy.
+    Applies to service, procedural, situational, location, and landing pages, blogs,
+    FAQs, calculators, and reports in any practice area and any U.S. jurisdiction.
+    Do NOT use for content with no legal claims, for drafting, or as a substitute
+    for strategic or mechanical QA.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,14 @@
+interface:
+  display_name: Recursive Self-Improvement
+  short_description: Turn corrections and discoveries into lasting improvements
+  default_prompt: Use $recursive-self-improvement to identify reusable lessons from
+    this work, make justified persistent improvements, and verify the changes.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: true
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas

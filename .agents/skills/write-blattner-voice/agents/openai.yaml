@@ -1,0 +1,14 @@
+interface:
+  display_name: Blattner Brand Voice
+  short_description: Write in Blattner Family Law Group’s voice
+  default_prompt: Use $write-blattner-voice to draft this content in Blattner Family
+    Law Group’s authentic voice.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

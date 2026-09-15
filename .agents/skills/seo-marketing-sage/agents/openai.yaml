@@ -1,0 +1,19 @@
+interface:
+  display_name: seo marketing sage
+  short_description: SEO Marketing Sage — unified SEO operating system with integrated
+    strategy, ranking-engine analysis, content-factory workflows, technical SEO, internal
+    linking, local SEO, reporting, and agency delivery. Use this skill whenever the
+    user needs help with SEO strategy, ranking diagnosis, keyword research, content
+    briefs, technical SEO, internal linking, link earning, local SEO, analytics, reporting,
+    or agency-style audits and execution workflows. Also trigger when the user mentions
+    Google API leak data, NavBoost, click signals, link quality tiers, or any Google-systems-level
+    ranking analysis.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,23 @@
+interface:
+  display_name: sterling voice
+  short_description: Canonical brand reference for Sterling Lawyers, LLC (sterlinglawyers.com),
+    a fixed-fee family law firm operating across Wisconsin and Illinois. Use this
+    skill whenever producing any content, copy, messaging, or strategic material for
+    Sterling Lawyers -- including but not limited to homepage copy, landing pages,
+    email sequences, ad copy, blog content, social posts, founder/executive thought
+    leadership, sales messaging, support templates, brand audits, creative briefs,
+    or brand reviews. Also trigger when the user mentions Sterling Lawyers by name,
+    references sterlinglawyers.com, or asks to write in the Sterling voice. This skill
+    is a brand intelligence reference -- it tells you WHO Sterling is, HOW they sound,
+    WHAT they sell, and WHERE the guardrails are, so that any content you produce
+    stays strategically aligned and on-brand. Do NOT auto-trigger on general family
+    law content requests unless Sterling is explicitly named.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

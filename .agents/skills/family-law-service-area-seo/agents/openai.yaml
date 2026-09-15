@@ -1,0 +1,23 @@
+interface:
+  display_name: family law service area seo
+  short_description: Analyzes family law firm service-area hubs and city/county pages
+    (hub-and-spoke) to diagnose local SEO signals, avoid practice-page cannibalization,
+    and output a reusable blueprint + templates. Also produces publication-ready service-area
+    hub and child page copy as DOCX files. Use this skill whenever the user asks to
+    audit, build, write, or produce a geographic service-area page (state hub, county
+    page, city page) for any family law firm, or when reverse-engineering competitor
+    location page strategies. Trigger on requests mentioning service area pages, location
+    pages, areas we serve, city pages, county pages, geo pages, or hub-and-spoke geographic
+    architecture. Also trigger when the user says 'build the service area hub', 'write
+    the Colorado page', 'create city pages', or any similar geographic page production
+    request. Do NOT use for practice area pages (use family-law-service-pages instead)
+    or blog content (use cluster-blog-writer instead).
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

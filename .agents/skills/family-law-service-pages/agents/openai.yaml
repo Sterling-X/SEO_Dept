@@ -1,0 +1,21 @@
+interface:
+  display_name: family law service pages
+  short_description: Produce full-copy family law service pages (Core Practice Area
+    hubs and Procedural child pages) delivered as DOCX files. Use this skill whenever
+    the user asks to write, draft, build, or produce a family law service page, practice
+    area page, or legal process page for any family law firm in any U.S. state. Trigger
+    on requests mentioning divorce pages, custody pages, child support pages, alimony
+    pages, property division pages, paternity pages, guardianship pages, or any similar
+    family law service content. Also trigger when the user says 'build the next service
+    page', 'write the core page for [topic]', 'create the procedural page for [topic]',
+    or references a family law site architecture or page hierarchy. Do NOT use for
+    blog content (use cluster-blog-writer instead) or for non-family-law verticals.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

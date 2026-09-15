@@ -1,0 +1,18 @@
+interface:
+  display_name: family law red team qa reviewer
+  short_description: Stress-tests family law marketing work for weak claims, bad structure,
+    local mismatch, trust gaps, and conversion risk. Use when quality-controlling
+    pages, plans, reports, or strategies. This skill is strategic and content QA only
+    — after this review completes on any artifact containing legal claims, immediately
+    run the legal-content-accuracy-qa skill as the next gate to live-verify every
+    legal claim against current primary authority; a pass here is never legal-accuracy
+    clearance.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

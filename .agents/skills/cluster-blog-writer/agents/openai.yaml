@@ -1,0 +1,20 @@
+interface:
+  display_name: cluster blog writer
+  short_description: Produce SEO-optimized, brand-aligned blog content organized into
+    topical clusters. Use this skill whenever writing, drafting, revising, or producing
+    blog articles as part of a content cluster or content plan -- regardless of industry
+    or client. Trigger on any request to write clustered blog content, work through
+    a blog content plan sequentially, produce a series of articles around a core topic,
+    or continue an ongoing blog production workflow. This skill enforces answer-first
+    structure, paragraph discipline, internal linking standards, sequential cluster
+    workflow, and quality gates before delivery. Use it even if the user only mentions
+    'the next blog', 'the next article in the cluster', or 'continue the content plan.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

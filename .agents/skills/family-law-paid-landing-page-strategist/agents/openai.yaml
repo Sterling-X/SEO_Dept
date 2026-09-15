@@ -1,0 +1,14 @@
+interface:
+  display_name: family law paid landing page strategist
+  short_description: Plans family law PPC landing pages around urgency, trust, objections,
+    and emotional state. Use when building or auditing service-specific pages meant
+    to convert consultations.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

@@ -1,0 +1,24 @@
+interface:
+  display_name: servicecu voice
+  short_description: Canonical brand reference for Service Credit Union (servicecu.org),
+    internally referred to as SCU, a member-owned, not-for-profit New England financial
+    cooperative with military heritage, Germany overseas operations, and first-responder
+    programs. Use this skill whenever producing any content, copy, or strategic material
+    for Service Credit Union -- product, membership, and landing pages, military/PCS/overseas
+    content, first-responder and community content, Hockey East or campus content,
+    commercial pages, email, ad copy, blogs, social posts, UX microcopy, security
+    messaging, SEO briefs, brand audits, or creative briefs. Also trigger when the
+    user mentions Service Credit Union, Service CU, or SCU by name, references servicecu.org,
+    or asks to write in the SCU voice. Tells you WHO Service Credit Union is, HOW
+    they sound, WHAT they sell, and WHERE the compliance guardrails are. Do NOT auto-trigger
+    on general banking or credit-union content unless Service Credit Union, Service
+    CU, or SCU is explicitly named.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
