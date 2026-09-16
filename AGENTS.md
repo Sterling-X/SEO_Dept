@@ -91,3 +91,14 @@ Before selecting an evaluation, identify the capability being tested, why the ex
 Follow `learning/README.md` when a user correction, observed failure, or demonstrated better method suggests a persistent workflow change. Use the reviewer before adopting a substantive change, keep evaluation criteria fixed while testing it, and limit repair to two additional rounds before reporting unresolved issues.
 
 Use `evaluations/README.md` to compare strategist-only work with strategist-plus-reviewer work. Do not claim an improvement unless a completed evaluation supports it.
+
+## Task completion and Git persistence
+
+After completing each task and passing its required checks:
+
+1. Stage the files created or changed for that task.
+2. Write a descriptive commit message.
+3. Commit and push to the current branch on the existing GitHub remote.
+4. Verify the push succeeded and report the result.
+
+Routine commits and pushes are authorized without asking again. Leave unrelated or unfinished changes untouched. Never force-push or bypass required checks or tool permissions.
