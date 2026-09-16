@@ -15,4 +15,3 @@ HARD FAIL (1):
 
 INFO:
   • "North Star" not used. Acceptable for non-JLG firms or for procedural pages where the brand anchor is not required. If this is a JLG hub page, consider one mention in the firm section.
-

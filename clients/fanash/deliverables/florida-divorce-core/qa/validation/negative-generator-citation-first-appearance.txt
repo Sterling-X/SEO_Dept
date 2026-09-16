@@ -1,0 +1,4 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/build-core-hub.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/misordered-sources.json /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/example-misordered-divorce-core.docx
+exit=1
+
+ERROR: Sources must be ordered by first in-body citation appearance.

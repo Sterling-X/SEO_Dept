@@ -1,0 +1,4 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/build-core-hub.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-kpvaq43t/wrong-v2-reference.json /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-kpvaq43t/example-wrong-v2-divorce-core.docx
+exit=1
+
+ERROR: collaborative: v2_reference_path must match V2 exactly: /divorce/collaborative-divorce/.

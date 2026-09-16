@@ -127,8 +127,8 @@ def main() -> int:
         print(f"ERROR: Cannot read manifest {manifest_path}: {error}")
         return 2
 
-    if manifest.get("workflow") != "core-hub" or manifest.get("schema_version") != 1:
-        errors.append("Manifest is not schema_version 1 for workflow core-hub.")
+    if manifest.get("workflow") != "core-hub" or manifest.get("schema_version") != 2:
+        errors.append("Manifest is not schema_version 2 for workflow core-hub.")
     meta = manifest.get("meta") or {}
     synthetic = meta.get("synthetic_fixture") is True
     filename_pattern = (
@@ -313,7 +313,25 @@ def main() -> int:
                     errors.append(f"FAQ question has no body answer: {question_text!r}.")
 
         sources = manifest.get("sources") or []
+        source_ids = [str(source.get("id") or "") for source in sources]
+        manifest_citation_ids: list[str] = []
+        for block in manifest.get("content") or []:
+            items = [{"runs": block.get("runs") or []}] if block.get("type") == "p" else block.get("items") or []
+            for item in items:
+                for run in item.get("runs") or []:
+                    citation_id = str(run.get("citation_id") or "")
+                    if citation_id and citation_id not in manifest_citation_ids:
+                        manifest_citation_ids.append(citation_id)
+        if (
+            len(source_ids) == len(set(source_ids))
+            and len(manifest_citation_ids) == len(source_ids)
+            and set(manifest_citation_ids) == set(source_ids)
+            and manifest_citation_ids != source_ids
+        ):
+            errors.append("Manifest Sources must be ordered by first in-body citation appearance.")
+
         source_start_index: int | None = None
+        source_paragraphs: list[tuple[int, ET.Element, str, str | None]] = []
         if sources:
             if not h2_texts or h2_texts[-1] != "Sources":
                 errors.append("Sources must be the final H2 when citations exist.")
@@ -450,8 +468,39 @@ def main() -> int:
                 errors.append(f"Hyperlink {relationship_id} target is not HTTP(S): {target!r}.")
             hyperlink_targets.append(target)
 
+        expected_body_citations = [
+            (f"[{number}]", str(source.get("url") or ""))
+            for number, source in enumerate(sources, start=1)
+        ]
+        actual_body_citations: list[tuple[str, str]] = []
+        for _index, paragraph, _text, _style in actual_content:
+            for hyperlink in paragraph.findall(".//w:hyperlink", NS):
+                visible = "".join(node.text or "" for node in hyperlink.findall(".//w:t", NS)).strip()
+                if not re.fullmatch(r"\[\d+\]", visible):
+                    continue
+                relationship_id = hyperlink.get(q(R_NS, "id"))
+                target = relationship_map.get(relationship_id or "", ("", None, None))[0]
+                actual_body_citations.append((visible, target))
+        if actual_body_citations != expected_body_citations:
+            errors.append(
+                "In-body citation hyperlinks must appear in [1] through [N] order and target the matching source URL."
+            )
+
+        for number, (source_paragraph, source) in enumerate(zip(source_paragraphs, sources), start=1):
+            _index, paragraph, source_text, _style = source_paragraph
+            expected_text = f"[{number}] {source.get('identifier') or ''} | {source.get('url') or ''}"
+            if source_text != expected_text:
+                errors.append(f"Sources row [{number}] does not match its manifest identifier and URL.")
+            source_hyperlinks = paragraph.findall(".//w:hyperlink", NS)
+            source_targets = []
+            for hyperlink in source_hyperlinks:
+                relationship_id = hyperlink.get(q(R_NS, "id"))
+                source_targets.append(relationship_map.get(relationship_id or "", ("", None, None))[0])
+            if source_targets != [str(source.get("url") or "")]:
+                errors.append(f"Sources row [{number}] does not link to its matching source URL.")
+
         target_counts = Counter(hyperlink_targets)
-        expected_targets = Counter(link.get("target_url") for link in manifest.get("link_manifest") or [])
+        expected_targets = Counter(link.get("client_url") for link in manifest.get("link_manifest") or [])
         for source in sources:
             expected_targets[source.get("url")] += 2
         for target, expected_count in expected_targets.items():

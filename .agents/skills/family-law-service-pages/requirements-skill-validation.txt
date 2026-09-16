@@ -1,3 +1,2 @@
 # Isolated dependency for the Codex skill-creator quick validator.
 PyYAML==6.0.3
-

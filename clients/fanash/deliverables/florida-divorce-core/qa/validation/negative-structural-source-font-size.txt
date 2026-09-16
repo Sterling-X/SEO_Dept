@@ -1,0 +1,20 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/office/validate.py /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/example-bad-divorce-core.docx --manifest /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/sourced-formatting.json
+exit=1
+
+
+=== Core Hub structural validation: example-bad-divorce-core.docx ===
+
+Inventory: words=1841 | headings=15 | lists=10 | hyperlinks=23 | manifest_links=5 | sources=9
+
+FAIL (9):
+  ✗ Sources text must use 12 pt body size; found '22' in '[1] Synthetic source-format marker 1 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[2] Synthetic source-format marker 2 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[3] Synthetic source-format marker 3 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[4] Synthetic source-format marker 4 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[5] Synthetic source-format marker 5 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[6] Synthetic source-format marker 6 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[7] Synthetic source-format marker 7 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[8] Synthetic source-format marker 8 | https://example.com/s'.
+  ✗ Sources text must use 12 pt body size; found '22' in '[9] Synthetic source-format marker 9 | https://example.com/s'.
+
+Scope: structure and manifest mechanics only; not editorial, SEO, visual, publication, or legal clearance.

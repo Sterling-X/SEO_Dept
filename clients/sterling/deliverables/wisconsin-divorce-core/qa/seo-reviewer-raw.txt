@@ -1,0 +1,57 @@
+One publication blocker found. The Core Hub role, transactional intent, metadata, geography, and four manifested V2 relationships are otherwise sound. Both validators passed; no tracked changes, comments, or placeholders were found.
+
+## Blockers
+
+1. Internal production language appears in consumer-facing copy.
+
+   - Evidence: Phrases such as “The hub should…,” “focused page owns…,” “dedicated service owners,” and “not verified for this draft” appear throughout [workflow-input.json](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/workflow-input.json:224), including lines 240, 340, 391, 418, 434, and 563, and therefore in the generated DOCX.
+   - Issue: These expose architecture and drafting instructions, break Sterling’s reader-focused voice, and make the DOCX unsuitable for client delivery or publication.
+   - Correction: Replace only those internal-facing clauses with consumer-facing guidance while preserving the same hub-versus-child scope boundaries.
+
+## Material improvements
+
+1. Sterling-specific service guidance is underdeveloped and duplicated.
+
+   - Evidence: “What Legal Representation Can Add” and “How Sterling Lawyers Helps” repeat generic attorney value at [lines 499–535](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/workflow-input.json:499). Sterling’s current [Wisconsin pricing page](https://www.sterlinglawyers.com/wisconsin/pricing/) verifies distinct Legal Coaching and Legal Team options.
+   - Issue: The draft spends scarce hub space on generic representation language while omitting the verified service ladder that helps prospective clients choose an appropriate level of help.
+   - Correction: Consolidate the two overlapping sections and use the recovered space for a concise, non-price-specific explanation of Legal Coaching versus Legal Team/full representation.
+
+2. The DOCX source list does not fully support claims recorded as verified.
+
+   - Evidence: The supporting record relies on §767.001 for custody definitions, DCF ch. 150 for specialized child-support rules, §§767.215/801.02 for filing and service, and Sterling’s About page for practice focus ([lines 47–59](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/supporting-record.md:47)). Those authorities are absent from the DOCX source inventory at [lines 67–107](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/workflow-input.json:67).
+   - Issue: Material legal and business claims are verified in the record but not citation-complete in the publisher-facing document.
+   - Correction: Add those authorities to the relevant paragraphs, or narrow the claims so the existing cited sources fully support them.
+
+3. FL-M030 has an unresolved dual-owner implementation conflict.
+
+   - Evidence: The record identifies `/wisconsin/divorce/how-to-file-for-divorce-in-wisconsin/` as the current implementation ([line 74](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/supporting-record.md:74)), while the live Wisconsin hub links to a separate live page at `/wisconsin/divorce/file-for-divorce/`. Both pages target filing intent.
+   - Issue: Treating one as the sole owner obscures a directly relevant duplication and could reinforce competing URLs.
+   - Correction: Record both URLs, choose the approved FL-M030 owner before implementation, link only that owner, and list the other URL as a consolidation/redirect dependency without claiming current performance harm.
+
+4. There is no post-publication measurement plan.
+
+   - Evidence: The record correctly says performance data is unavailable ([line 102](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/supporting-record.md:102)) but defines no test.
+   - Issue: The optimization cannot later be assessed against qualified-lead outcomes.
+   - Correction: Add a short plan covering pre-change baseline, organic landing-page consultations/qualified calls as primary outcomes, internal child-page clicks and GSC query data as diagnostics, and a defined comparison window.
+
+## Optional refinements
+
+1. Clarify the waiting-period sentence.
+
+   - Evidence: [Line 162](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/workflow-input.json:162) says “120 days after service, or after a joint petition is filed.”
+   - Issue: Grammatically, 120 days could appear to modify only service.
+   - Correction: Repeat “120 days” before the joint-petition clause.
+
+2. Make consultation actions clickable at implementation.
+
+   - Evidence: The phone and form instructions are plain text, while all 20 DOCX hyperlinks are source or V2 links.
+   - Issue: The consultation route is clear but not directly actionable within the document.
+   - Correction: Add a verified booking/form link and `tel:` phone link where the production system supports them.
+
+## Checks not performed
+
+- Current Wisconsin Legislature pages timed out. Legal claims were corroborated against current secondary codifications and official Wisconsin court/DCF materials, but I could not independently reproduce the supporting record’s live primary-source fetch; this review is not independent legal-accuracy clearance.
+- The four exact root-level V2 redirect chains could not be opened because of URL-tool restrictions; their final Wisconsin destination pages were opened successfully.
+- No rendered DOCX pages were available, and read-only constraints prevented rendering. Visual pagination, clipping, field rendering, and orphan headings remain unchecked.
+- No crawl, analytics, Search Console, form submission, intake call, publishing, or raw canonical-tag inspection was performed.
+- No Sterling client brief exists under `clients/sterling`; review relied on the task brief, Sterling voice skill, and current first-party pages.

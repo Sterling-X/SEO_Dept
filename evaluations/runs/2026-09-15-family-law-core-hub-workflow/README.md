@@ -1,6 +1,6 @@
 # Family-Law Core Hub Workflow Verification
 
-Date: 2026-09-15  
+Date: 2026-09-15
 Scope: Core Practice-Area Hub branch of `family-law-service-pages` only
 
 ## Artifacts

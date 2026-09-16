@@ -1,0 +1,13 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/office/validate.py /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-kpvaq43t/synthetic-divorce-core.docx --manifest /Users/rocketclicks_1/SEO_Dept/evaluations/runs/2026-09-15-family-law-core-hub-workflow/synthetic-divorce-core-input.json
+exit=1
+
+
+=== Core Hub structural validation: synthetic-divorce-core.docx ===
+
+Inventory: words=1832 | headings=14 | lists=10 | hyperlinks=5 | manifest_links=5 | sources=0
+
+FAIL (2):
+  ✗ Manifested hyperlink target 'https://example.com/divorce/collaborative-divorce/' expected 1 occurrence(s), found 0.
+  ✗ Unmanifested DOCX hyperlink target 'https://example.com/unmanifested/' appears 1 time(s).
+
+Scope: structure and manifest mechanics only; not editorial, SEO, visual, publication, or legal clearance.

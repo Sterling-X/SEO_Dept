@@ -163,7 +163,8 @@ Example: `Florida uses an income shares model to calculate child support. Fla. S
 
 **Rules:**
 - Each unique statute or source gets one citation number. Do not assign multiple numbers to the same statute.
-- Aim for no more than 5-8 unique citations on a Core page and 4-6 on a Procedural page. If you are citing more than that, you are over-citing.
+- Number citations by first appearance in the body, beginning with `[1]` and continuing without gaps. Declare Sources in that same order so each marker, Sources row, and hyperlink target stays bound to one authority.
+- Treat 5-8 unique citations on a Core page and 4-6 on a Procedural page as editorial targets, not mechanical caps. When a useful material claim needs another source, keep the supported information and its authority; remove only citations that are redundant, stretched, or unnecessary.
 - The Sources section appears as the last element of the document.
 
 
@@ -217,7 +218,7 @@ BAD: "For deeper guidance on individual processes, see our pages on [X](url), [Y
 - The same destination URL used as multiple distinct anchors anywhere on the page
 
 ### Core Practice Area Pages
-- **Manifested links out:** Use only exact directional relationships and paths present in V2, plus a reviewed publication inventory and a contextual inclusion reason. Parentage, topical proximity, visual grouping, or a numerical ceiling does not independently authorize a link. Each approved destination appears exactly once at its strongest placement. Held or blocked targets cannot be enabled; a target on a V2 validation gate requires explicit approval and evidence in its manifest entry.
+- **Manifested links out:** Use only exact directional relationships and reference paths present in V2, plus a reviewed publication inventory and a contextual inclusion reason. Store the V2 reference path separately from the verified client URL. The client URL may use a different pathname, but it must be a direct, same-origin, jurisdiction-matched destination with dated evidence; a path difference alone is not migration evidence. Parentage, topical proximity, visual grouping, or a numerical ceiling does not independently authorize a link. Each approved client destination appears exactly once at its strongest placement. Held or blocked targets cannot be enabled; a target on a V2 validation gate requires explicit approval and evidence in its manifest entry.
 - **Secondary contextual links:** The four-link ceiling below remains a ceiling, not permission. V2 currently contains no mapped source-derived Core-Hub-to-Core-Hub relationship; do not invent one.
 - **Inbound links:** Do not infer a reciprocal link from the Core page's outbound manifest. Use the exact V2 direction and the Procedural page's own reviewed link plan when that pending route is eventually repaired.
 
@@ -318,7 +319,7 @@ Before delivering the DOCX, verify the following. If any gate fails, fix it befo
 5. **No cannibalization risk** -- Does this page avoid competing with its parent hub (for Procedural pages) or its child pages (for Core pages) for the same keyword intent?
 6. **Paragraph discipline** -- No paragraph exceeds 3 sentences in body content?
 7. **No fabricated law** -- No invented statute numbers, case names, or filing details? Every legal reference is research-backed?
-8. **Citation discipline** -- Is each statute cited only once at first mention? Are there no more than 5-8 unique citations on a Core page or 4-6 on a Procedural page? Does the page read like a service page, not a legal brief?
+8. **Citation discipline** -- Is each statute cited only once at first mention? Does every source support useful material that earns its place? Treat 5-8 Core citations and 4-6 Procedural citations as targets, not caps, and make sure the page still reads like a service page rather than a legal brief.
 9. **Sentence length** -- Are sentences predominantly 15-25 words? Have any sentences over 30 words been split or restructured?
 10. **Readability** -- Is the page scannable? Would a stressed person in a legal crisis be able to find what they need quickly?
 

@@ -1,0 +1,31 @@
+## Blocker
+
+1. Current DOCX lacks current visual QA.
+
+- Evidence: The [DOCX](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/wisconsin-divorce-core.docx) was generated at 19:03, while the “final” [PDF](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/qa/render-final/wisconsin-divorce-core.pdf) and [page 1](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/qa/render-final/page-1.png) are from 18:02 and visibly contain earlier copy. The [supporting record](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/supporting-record.md:125) confirms final rendering remains pending.
+- Issue: The final-looking render set does not represent the revised deliverable, so layout and rendered hyperlinks are not cleared for delivery.
+- Correction: After the remaining copy edit, render the current DOCX into a new empty directory, inspect every page and PDF hyperlink, retire the stale render set, and update the supporting record.
+
+## Material improvement
+
+1. Internal QA commentary remains in the consumer CTA.
+
+- Evidence: [workflow-input.json:263](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/workflow-input.json:263) says intake can explain services “without promising an unverified fee, duration, response time, or scope.” This contradicts the supporting record’s claim that outside-observer commentary was removed at [line 93](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/supporting-record.md:93).
+- Issue: “Unverified” describes the production team’s evidence status, not the prospective client’s next step, weakening Sterling’s direct voice.
+- Correction: Replace that sentence with consumer-facing language of equal length, such as: “Our intake team can explain current consultation terms, available service options, what happens next, and which details the engagement documents confirm.”
+
+No other Blocker or Material findings were identified. The actual V2 records, classifications, relationships, gates, client-URL separation, DOCX destinations, early service guidance, mediation/collaborative distinction, filing-page uncertainty, and supplied legal support otherwise meet the fixed criteria.
+
+## Optional refinement
+
+1. Regression summary overstates source-quality coverage.
+
+- Evidence: [negative-test-summary.md:15](/Users/rocketclicks_1/SEO_Dept/evaluations/runs/2026-09-15-family-law-core-hub-workflow/validation-client-url-mapping/negative-test-summary.md:15) calls the fixture “Nine useful sources,” while the supporting record accurately describes them as claim-free at [line 108](/Users/rocketclicks_1/SEO_Dept/clients/sterling/deliverables/wisconsin-divorce-core/supporting-record.md:108).
+- Issue: The regression proves that nine sources are permitted and formatted correctly; it cannot judge usefulness.
+- Correction: Change “Nine useful sources” to “Nine sources.” Keep usefulness as an editorial review criterion.
+
+## Checks not performed
+
+- A fresh render could not be generated because the reviewer environment is read-only; temporary-directory creation was denied.
+- Exact HTTP `200` and zero-redirect chains were not independently reproduced. The listed pages opened at their intended destinations, but redirect metadata relies on the supplied record.
+- Direct Wisconsin Legislature statute endpoints timed out. Current statutory text was cross-checked through an up-to-date codified mirror; official court-rule and case PDFs were accessible.

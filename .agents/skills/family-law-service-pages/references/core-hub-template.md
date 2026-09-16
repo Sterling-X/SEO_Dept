@@ -12,20 +12,22 @@ The generator and validators establish document mechanics. They do not establish
 
 Use `scripts/build-core-hub.js` with a JSON input file. A production input must provide:
 
-- `workflow: "core-hub"` and `schema_version: 1`.
-- One exact V2 Core Practice-Area Hub node ID and its exact V2 path.
+- `workflow: "core-hub"` and `schema_version: 2`.
+- One exact V2 Core Practice-Area Hub node ID, `v2_reference_path`, role, and requiredness copied from V2.
 - Evidence that any Conditional hub has cleared its V2 service/jurisdiction gate.
-- Jurisdiction, verified firm name, verified site origin, and an explicit voice source.
+- Jurisdiction, verified firm name, a direct client URL with dated status/redirect evidence, and an explicit voice source.
 - A reviewed publication/link inventory. This is an evidence assertion, not a live URL check.
-- An explicit link manifest. Every enabled link must match a directional V2 relationship and target path, name its relationship type, state why it belongs in this page, and document publication evidence. A target on a validation gate also needs `target_gate_approval: "approved"` and `target_gate_evidence`; held or blocked targets cannot be enabled.
+- An explicit link manifest. Every enabled link must keep its V2 node ID, `v2_reference_path`, page type, role, and requiredness separate from its verified `client_url`. It must match a directional V2 relationship, state why it belongs, and record publication, direct-200, zero-redirect, verification-date, and jurisdiction evidence. A target on a validation gate also needs `target_gate_approval: "approved"` and `target_gate_evidence`; held or blocked targets cannot be enabled.
 - One H1, two opening paragraphs, broad-intent H2 sections, a firm-help/contact section, a Hub FAQ with H3 questions, and a contact CTA.
-- Sources only when the body makes claims that need authority. The generator appends Sources last and requires one body marker per source.
+- Sources only when the body makes claims that need authority. Declare them in first-appearance order; body markers must begin at `[1]`, continue without gaps, and stay bound to the matching Sources row and URL. The generator appends Sources last and requires one body marker per source. Five to eight is an editorial target, not a hard cap; do not remove useful supported information merely to hit the target.
 
 For a clearly labeled synthetic fixture, omit firm and jurisdiction facts, use the reserved `example.com` origin, set `synthetic_fixture: true`, and provide no substantive legal claims or citations. A synthetic fixture can prove only the mechanics exercised by the fixture.
 
 ## Architecture gate
 
-The accepted Core Hub set is the 11 V2 nodes whose page type is `Core Practice-Area Hub`, not the seven-item list in the original skill intake section. The generator reads the governing HTML and checks the selected node ID, page type, canonical path, node class, publishability, governance gate, and every manifested relationship.
+The accepted Core Hub set is the 11 V2 nodes whose page type is `Core Practice-Area Hub`, not the seven-item list in the original skill intake section. The generator reads the governing HTML and checks the selected node ID, page type, V2 reference path, role, requiredness, node class, publishability, governance gate, and every manifested relationship.
+
+A V2 reference path identifies the architecture node. A client URL identifies the verified live implementation and may differ. The generator keeps those fields separate, uses the direct client URL in the DOCX, and does not require Sterling or another client to change site routing to resemble V2. A difference alone does not justify a migration, consolidation, canonical, or redirect recommendation.
 
 - Required foundation hubs may proceed when their current V2 gate is `PASS — CANONICAL`.
 - Optional hubs are not automatically approved for a client production queue.

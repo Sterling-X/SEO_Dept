@@ -38,4 +38,3 @@ ditto "$mount_dir/LibreOffice.app" "$app_path.installing"
 mv "$app_path.installing" "$app_path"
 rm "$dmg_path"
 echo "Installed isolated LibreOffice: $app_path"
-

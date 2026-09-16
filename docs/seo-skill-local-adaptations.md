@@ -83,6 +83,23 @@ No genuine `core-hub-template.md`, `procedural-template.md`, or package-owned `s
 
 The skill entrypoint now routes Core work to the replacement contract, marks Procedural work pending, and applies V2 precedence to hub sets, paths, gates, link direction, Emergency Guardianship classification, and build sequence. `agents/openai.yaml` has a truthful concise interface description; its product list and `allow_implicit_invocation: true` are unchanged from the prior metadata adaptation.
 
+### Initial Core repair hash record (superseded for changed files)
+
+These were the post-repair local hashes before the later schema 2 client-URL mapping correction. They are retained as historical evidence, not presented as the current hashes of files changed later. The recovered validator is the sole unchanged source dependency in this group.
+
+| File | SHA-256 |
+|---|---|
+| `SKILL.md` | `073087be3652a03671cdae6362b0619f4f9a87e71653371acccf69b968000e9b` |
+| `agents/openai.yaml` | `0a49d9dc1b584efdc4398204be3aa60a823bd78cee9eed00b1ca2114296124fa` |
+| `references/core-hub-template.md` | `c139a726fffa79c4b44a1d7ff54a348692441ca40f45c0588aa47d011c678d97` |
+| `scripts/build-core-hub.js` | `935f0ebf4cd190d0631c2946d05429b3160943b33a3d52dd7190d0686d3ffdd9` |
+| `scripts/office/validate.py` | `928b07d4b893d090bf70d64a2afcdeb979df3527c4c828183cc05a942c375d87` |
+| `scripts/validate-page.js` (recovered unchanged) | `291452d77e3449e605a6817cdfe27392193638506d69f7430b16b6bd44908c49` |
+| `scripts/test-core-hub.py` | `319c8bf8b50e2cd451f7176909e92d47680499fce848dbff444fadbefb309003` |
+| `scripts/render-core-hub.sh` | `d45ac934f8502ba6609e019481f4b644c21224baa447daa51e954fa7b277f167` |
+| `scripts/render_support/pdf2image.py` | `9affe53e0922ebb6e5428527f17899e47f9ba2c47a070b6df535fe13f42368af` |
+| `renderer-tools.lock.json` | `8c94d7daf992ebc87cdf14480b611ac9adb0b6e97a7a59375302b80f39bd5c3a` |
+
 ### Isolated dependencies
 
 - Node packages: `docx@9.7.1` and `adm-zip@0.6.1`, pinned by the skill-local `package.json` and `package-lock.json`.
@@ -111,3 +128,79 @@ One `seo_reviewer` pass was run after the initial evidence existed. It remained 
 Evidence is under `evaluations/runs/2026-09-15-family-law-core-hub-workflow/`.
 
 The recovered validator retains Johnson Law Group-specific `North Star` logic and broader phrase matching. Those findings must be interpreted against the applicable client voice and evidence rather than treated as newly invented generic requirements. The Procedural branch remains pending and no result here establishes SEO competence, legal accuracy, editorial quality, or performance.
+
+## 2026-09-15: Core Hub V2/client URL mapping correction
+
+The Wisconsin Divorce revision demonstrated that the initial local Core contract incorrectly treated a V2 reference pathname as the required live client pathname. Sterling had direct, published Wisconsin child destinations whose paths legitimately differed from V2. Requiring the client to mirror V2 would conflate architectural identity with implementation and could manufacture an unsupported migration recommendation.
+
+### Narrow persistent correction
+
+- Advanced the Core input contract to schema 2.
+- Kept each node's exact V2 ID, reference path, page type, role, requiredness, directional relationship, and gate as architecture fields.
+- Added a separate direct `client_url` mapping with recorded status, redirect count, verification date, publication evidence, and jurisdiction evidence.
+- Changed DOCX generation and structural validation to use `client_url` as the clickable destination while continuing to validate the V2 record independently.
+- Retained same-origin, matching-jurisdiction, relationship, canonical-gate, held-target, and conditional-approval controls. The generator validates the recorded evidence shape; live verification remains a separate research gate.
+- Reclassified the existing 5-8 source target as editorial guidance rather than a mechanical maximum. This does not make source count a quality measure or relax claim-to-source relevance checks.
+- Documented that a V2/client path difference alone does not establish a migration, redirect, canonical, or consolidation need.
+
+The correction applies only to the repaired Core Hub route. It does not repair the Procedural branch or any other incomplete writing workflow, and it does not change the governing V2 architecture.
+
+### Demonstration and regression evidence
+
+- **Original case:** `FL-PA-DIV` generated and validated with seven direct Wisconsin client destinations, including V2 `/divorce/collaborative-divorce/` mapped to client `/wisconsin/divorce/collaborative/`, while retaining the exact V2 relationship and gate.
+- **Different relevant case:** an ephemeral reserved-domain Wisconsin mapping with `/wisconsin/` inserted into the client paths generated and passed both validators.
+- **Unaffected case:** the existing synthetic same-path fixture continued to pass. Existing held-target and unapproved-conditional-target cases continued to fail as required.
+- **Focused negatives:** altered V2 path, wrong same-origin jurisdiction, and wrong directional relationship each failed with the expected finding.
+- **Source guidance:** a nine-source, claim-free format fixture passed, demonstrating removal of the hard cap without asserting those sources were useful.
+
+The focused harness passed seven positive checks, and 20 intentionally altered cases produced their required failures. Evidence is preserved under `evaluations/runs/2026-09-15-family-law-core-hub-workflow/validation-client-url-mapping/`.
+
+### Historical post-mapping, pre-citation-order hashes
+
+These are local-adaptation hashes recorded after the mapping correction and before the later citation-order correction. They are not original-export hashes or current hashes.
+
+| File | SHA-256 |
+|---|---|
+| `SKILL.md` | `c5fafde2e8bd8deed826f707b5fa04146e9f9ef3c101dacc8b756917a2cc6fa0` |
+| `references/core-hub-template.md` | `ae20f1fa144a44fe739bab4a67a3e341c77eb295febc8b1bf4f594bbd40eacee` |
+| `scripts/build-core-hub.js` | `c883627083999f41c6576ca9c3aa07ebdf71bd3915058fa13319454d1003bc51` |
+| `scripts/office/validate.py` | `0457c8652cea2ae95ca80cd7bb13e85a57a338b261a537f3e1116e79dab5ff5e` |
+| `scripts/test-core-hub.py` | `01e6308dab0510f1bdf165cce234e081a5ac58803558899c0d4a87ae9b03d2b2` |
+| synthetic workflow input | `34150ec51d83181478f4f6cd0d5a75b5230aec732e7577e1cded0428955720ba` |
+| synthetic DOCX fixture | `932272fde35bd14b64b604f931d7c8b15da2977046830e755c01c7e7ec70b17f` |
+
+One read-only `seo_reviewer` pass on the Wisconsin revision confirmed the actual V2 classifications and the architecture/client separation, then identified stale render evidence and internal CTA commentary. Both material findings were corrected and the affected checks were rerun. That single result does not establish general SEO competence or performance.
+
+## 2026-09-15: Core Hub citation-order correction
+
+The Wisconsin Divorce production draft demonstrated that marker numbers and Sources rows could agree with each other while still beginning out of order in the body. The generator derived numbers from the declared Sources inventory but did not require that inventory to follow first citation appearance. The structural validator compared aggregate hyperlink counts, which could also miss two body citation targets swapped with each other.
+
+### Narrow persistent correction
+
+- Require Core Hub Sources to be declared in first-appearance order, beginning at `[1]` and continuing without gaps.
+- Have the generator compare first unique body `citation_id` appearances with the declared source IDs while retaining unique-ID, expected-marker, and exact-one-use checks.
+- Have the structural validator independently compare manifest order, visible body-marker order, each marker's hyperlink target, and each Sources row's text and URL.
+- Keep citation markers inline with their preceding text; the corrected Wisconsin input contains no breakable whitespace immediately before a marker.
+- Preserve schema 2 architecture fields, V2 gates, and client URL mappings unchanged.
+
+### Demonstration and regression evidence
+
+- **Original case:** the Wisconsin Divorce source inventory now follows its actual first appearances (`pricing`, `mediator`, `separation-status`, `separation-relief`, `residency`, `grounds`, `waiting`, `property`, `maintenance`, `custody`, `support`), producing `[1]` through `[11]`; generation and both validators pass.
+- **Different relevant case:** the existing nine-source synthetic format case passes in order. A copy with internally consistent marker numbers but a source inventory outside first-appearance order fails at generation; a DOCX with its first two citation relationship IDs swapped fails structural validation even though aggregate URL counts remain unchanged.
+- **Unaffected cases:** the no-source synthetic fixture and the divergent V2/client-path positive still pass. Wrong V2 path, wrong jurisdiction, wrong directional relationship, held target, and unapproved Conditional target still fail as required.
+
+The complete focused harness passed seven positive checks, and 22 intentionally altered cases produced their required failures. Evidence is preserved under `evaluations/runs/2026-09-15-family-law-core-hub-workflow/validation-citation-order-final/`.
+
+### Current post-correction hashes
+
+These are local-adaptation hashes, not original-export hashes.
+
+| File | SHA-256 |
+|---|---|
+| `SKILL.md` | `03976956985d4c65deaaffeacc094c0aff5c131f614df03f8755cc24c7ed2d48` |
+| `references/core-hub-template.md` | `e8d2c690eb404fc1e018eca14abfa8754105cbd599cf70e6a63f9c449dd19ff2` |
+| `scripts/build-core-hub.js` | `b3b4f92735091bace4e317f6687bb90c1a259775e31b70e1b999fdce6face85e` |
+| `scripts/office/validate.py` | `a5df84b3eb7fbc97f665f16c9dac57adc1d5dcdd99330e2388ea2094d4e33a03` |
+| `scripts/test-core-hub.py` | `cd8dc600dc2984a20b678bbd1a9fe23b6011c8aeb47214a3ec89a384b2d8df6d` |
+
+This correction addresses citation mechanics only. It does not establish source relevance, legal accuracy, editorial quality, or performance, and it does not repair the pending Procedural route or any unrelated incomplete workflow.

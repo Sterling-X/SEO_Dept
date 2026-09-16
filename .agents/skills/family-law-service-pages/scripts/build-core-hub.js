@@ -75,6 +75,7 @@ function loadArchitecture() {
     nodeClass: read("nodeClass", tuple[8]),
     publishability: read("publishability", tuple[9]),
     path: tuple[10],
+    role: read("contentRole", tuple[11]),
     requiredness: read("requiredness", tuple[13]),
     decision: read("decisionState", tuple[16]),
     gate: read("governanceGate", tuple[17]),
@@ -117,12 +118,17 @@ function validHttpUrl(value) {
   }
 }
 
+function validIsoDate(value) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(value || ""))
+    && !Number.isNaN(Date.parse(`${value}T00:00:00Z`));
+}
+
 const data = readJson(inputPath);
 const architecture = loadArchitecture();
 const nodeById = new Map(architecture.nodes.map((node) => [node.id, node]));
 const errors = [];
 
-if (data.schema_version !== 1) errors.push("schema_version must be 1.");
+if (data.schema_version !== 2) errors.push("schema_version must be 2.");
 if (data.workflow !== "core-hub") errors.push('workflow must be "core-hub".');
 if (!data.meta || typeof data.meta !== "object") errors.push("meta is required.");
 if (!Array.isArray(data.content)) errors.push("content must be an array.");
@@ -142,8 +148,14 @@ if (!hub) {
   if (hub.nodeClass !== "Canonical Page" || hub.publishability !== "Publishable") {
     errors.push(`${hub.id} is not a publishable canonical page.`);
   }
-  if (meta.canonical_path !== hub.path) {
-    errors.push(`canonical_path must match V2 exactly: ${hub.path}.`);
+  if (meta.v2_reference_path !== hub.path) {
+    errors.push(`meta.v2_reference_path must match V2 exactly: ${hub.path}.`);
+  }
+  if (meta.v2_role !== hub.role) {
+    errors.push(`meta.v2_role must match V2 exactly: ${hub.role}.`);
+  }
+  if (meta.v2_requiredness !== hub.requiredness) {
+    errors.push(`meta.v2_requiredness must match V2 exactly: ${hub.requiredness}.`);
   }
   if (hub.gate === "HOLD — ARCHITECTURE REVIEW" || hub.gate === "BLOCK — NON-PUBLISHABLE") {
     errors.push(`${hub.id} cannot proceed while its V2 gate is ${hub.gate}.`);
@@ -159,15 +171,15 @@ if (meta.page_type !== "Core Practice-Area Hub") {
   errors.push('meta.page_type must be "Core Practice-Area Hub".');
 }
 if (!String(meta.title || "").trim()) errors.push("meta.title is required.");
-const siteUrl = validHttpUrl(meta.site_origin) ? new URL(meta.site_origin) : null;
-if (!siteUrl) {
-  errors.push("meta.site_origin must be an HTTP(S) origin.");
-} else if (siteUrl.pathname !== "/" || siteUrl.search || siteUrl.hash) {
-  errors.push("meta.site_origin must contain only the scheme and host.");
+const clientPageUrl = validHttpUrl(meta.client_url) ? new URL(meta.client_url) : null;
+if (!clientPageUrl) {
+  errors.push("meta.client_url must be an HTTP(S) URL.");
+} else if (clientPageUrl.search || clientPageUrl.hash) {
+  errors.push("meta.client_url must not contain a query or fragment.");
 }
 if (synthetic) {
-  if (siteUrl && siteUrl.hostname !== "example.com") {
-    errors.push("Synthetic fixtures must use the reserved example.com origin.");
+  if (clientPageUrl && clientPageUrl.hostname !== "example.com") {
+    errors.push("Synthetic fixtures must use the reserved example.com client URL.");
   }
   if (meta.firm_name || meta.jurisdiction) {
     errors.push("Synthetic fixtures must omit firm_name and jurisdiction rather than invent facts.");
@@ -182,6 +194,12 @@ if (synthetic) {
 } else {
   for (const key of ["firm_name", "jurisdiction", "voice_source"]) {
     if (!String(meta[key] || "").trim()) errors.push(`meta.${key} is required for production output.`);
+  }
+  if (meta.client_url_status !== 200 || meta.client_url_redirects !== 0) {
+    errors.push("Production meta.client_url must record a direct 200 response with zero redirects.");
+  }
+  if (!validIsoDate(meta.client_url_verified_on) || !String(meta.client_url_evidence || "").trim()) {
+    errors.push("Production meta.client_url requires an ISO verification date and client_url_evidence.");
   }
   if (data.link_inventory?.status !== "reviewed" || !String(data.link_inventory?.evidence || "").trim()) {
     errors.push("Production output requires a reviewed link_inventory with evidence.");
@@ -201,17 +219,17 @@ if (!expectedName.test(path.basename(outputPath))) {
 }
 
 const linkById = new Map();
-const manifestedTargetUrls = new Set();
+const manifestedClientUrls = new Set();
 for (const link of data.link_manifest) {
   if (!link.id || linkById.has(link.id)) {
     errors.push(`Every link_manifest entry needs a unique id; problem at ${link.id || "(missing)"}.`);
     continue;
   }
   linkById.set(link.id, link);
-  if (manifestedTargetUrls.has(link.target_url)) {
-    errors.push(`${link.id}: target_url duplicates another manifest entry; one destination may appear only once.`);
+  if (manifestedClientUrls.has(link.client_url)) {
+    errors.push(`${link.id}: client_url duplicates another manifest entry; one destination may appear only once.`);
   }
-  manifestedTargetUrls.add(link.target_url);
+  manifestedClientUrls.add(link.client_url);
   const target = nodeById.get(link.target_node_id);
   if (!hub || link.source_node_id !== hub.id) {
     errors.push(`${link.id}: source_node_id must be the selected hub ${hub?.id || "(unknown)"}.`);
@@ -234,16 +252,30 @@ for (const link of data.link_manifest) {
     }
   }
   if (!target.path) errors.push(`${link.id}: V2 target ${target.id} has no resolved URL path.`);
-  if (link.target_path !== target.path) errors.push(`${link.id}: target_path must match V2 exactly: ${target.path}.`);
-  if (!validHttpUrl(link.target_url)) {
-    errors.push(`${link.id}: target_url must be an HTTP(S) URL.`);
+  if (link.v2_reference_path !== target.path) {
+    errors.push(`${link.id}: v2_reference_path must match V2 exactly: ${target.path}.`);
+  }
+  if (link.v2_page_type !== target.pageType) {
+    errors.push(`${link.id}: v2_page_type must match V2 exactly: ${target.pageType}.`);
+  }
+  if (link.v2_role !== target.role) {
+    errors.push(`${link.id}: v2_role must match V2 exactly: ${target.role}.`);
+  }
+  if (link.v2_requiredness !== target.requiredness) {
+    errors.push(`${link.id}: v2_requiredness must match V2 exactly: ${target.requiredness}.`);
+  }
+  if (!validHttpUrl(link.client_url)) {
+    errors.push(`${link.id}: client_url must be an HTTP(S) URL.`);
   } else {
-    const targetUrl = new URL(link.target_url);
-    if (targetUrl.pathname !== target.path || targetUrl.search || targetUrl.hash) {
-      errors.push(`${link.id}: target_url must match V2 target path ${target.path} without a query or fragment.`);
+    const targetUrl = new URL(link.client_url);
+    if (targetUrl.search || targetUrl.hash) {
+      errors.push(`${link.id}: client_url must not contain a query or fragment.`);
     }
-    if (siteUrl && targetUrl.origin !== siteUrl.origin) {
-      errors.push(`${link.id}: internal target origin must match meta.site_origin ${siteUrl.origin}.`);
+    if (clientPageUrl && targetUrl.origin !== clientPageUrl.origin) {
+      errors.push(`${link.id}: client_url origin must match the hub client URL origin ${clientPageUrl.origin}.`);
+    }
+    if (clientPageUrl && targetUrl.href === clientPageUrl.href) {
+      errors.push(`${link.id}: client_url must not map back to the hub client URL.`);
     }
   }
   const candidates = architecture.relationships.filter(
@@ -260,8 +292,19 @@ for (const link of data.link_manifest) {
     if (link.publication_state !== "synthetic-fixture") {
       errors.push(`${link.id}: synthetic links must use publication_state "synthetic-fixture".`);
     }
-  } else if (link.publication_state !== "published" || !String(link.publication_evidence || "").trim()) {
-    errors.push(`${link.id}: production links require published state and publication_evidence.`);
+  } else {
+    if (link.publication_state !== "published" || !String(link.publication_evidence || "").trim()) {
+      errors.push(`${link.id}: production links require published state and publication_evidence.`);
+    }
+    if (link.client_jurisdiction !== meta.jurisdiction || !String(link.client_jurisdiction_evidence || "").trim()) {
+      errors.push(`${link.id}: client_jurisdiction must match meta.jurisdiction with supporting evidence.`);
+    }
+    if (link.client_url_status !== 200 || link.client_url_redirects !== 0) {
+      errors.push(`${link.id}: client_url must record a direct 200 response with zero redirects.`);
+    }
+    if (!validIsoDate(link.client_url_verified_on) || !String(link.client_url_evidence || "").trim()) {
+      errors.push(`${link.id}: client_url requires an ISO verification date and client_url_evidence.`);
+    }
   }
 }
 
@@ -275,7 +318,6 @@ for (const source of data.sources) {
   if (!String(source.identifier || "").trim()) errors.push(`${source.id}: source identifier is required.`);
   if (!validHttpUrl(source.url)) errors.push(`${source.id}: source URL must be HTTP(S).`);
 }
-if (data.sources.length > 8) errors.push("Core Hub source count exceeds the imported skill's maximum of 8.");
 const sourceNumberById = new Map(data.sources.map((source, index) => [source.id, index + 1]));
 
 const allowedTypes = new Set(["h1", "h2", "h3", "p", "ul", "ol"]);
@@ -283,6 +325,7 @@ let h1Count = 0;
 let currentHeadingLevel = 0;
 const linkUse = new Map([...linkById.keys()].map((id) => [id, 0]));
 const citationUse = new Map([...sourceById.keys()].map((id) => [id, 0]));
+const firstCitationIds = [];
 const roles = new Map();
 const localDetailPattern = /\[LOCAL DETAIL:\s*[^\]\s][^\]]*\]/g;
 
@@ -325,6 +368,7 @@ for (const [index, block] of data.content.entries()) {
       if (run.citation_id) {
         if (!sourceById.has(run.citation_id)) errors.push(`content[${index}] uses unknown citation_id ${run.citation_id}.`);
         else {
+          if (citationUse.get(run.citation_id) === 0) firstCitationIds.push(run.citation_id);
           citationUse.set(run.citation_id, citationUse.get(run.citation_id) + 1);
           const expectedMarker = `[${sourceNumberById.get(run.citation_id)}]`;
           if (run.text !== expectedMarker) {
@@ -400,6 +444,14 @@ if (roles.has("faq")) {
 for (const [id, count] of linkUse) {
   if (count !== 1) errors.push(`Manifested internal link ${id} must appear exactly once; found ${count}.`);
 }
+const sourceIds = data.sources.map((source) => source.id);
+if (
+  sourceById.size === data.sources.length
+  && firstCitationIds.length === sourceById.size
+  && firstCitationIds.some((id, index) => id !== sourceIds[index])
+) {
+  errors.push("Sources must be ordered by first in-body citation appearance.");
+}
 for (const [id, count] of citationUse) {
   if (count !== 1) errors.push(`Source ${id} must have exactly one in-body citation marker; found ${count}.`);
 }
@@ -430,7 +482,7 @@ function renderRuns(runs) {
     };
     if (run.link_id) {
       return new ExternalHyperlink({
-        link: linkById.get(run.link_id).target_url,
+        link: linkById.get(run.link_id).client_url,
         children: [new TextRun({ ...options, bold: true, color: COLORS.blue, underline: { type: "single", color: COLORS.blue } })],
       });
     }
@@ -619,6 +671,7 @@ Packer.toBuffer(doc)
     fs.writeFileSync(outputPath, buffer);
     console.log(`DOCX written: ${outputPath}`);
     console.log(`V2 node: ${hub.id} (${hub.name}) • ${hub.gate}`);
+    console.log(`V2 reference: ${hub.path} • client URL: ${meta.client_url}`);
     console.log(`Content words: ${wordCount} • manifested links: ${data.link_manifest.length} • sources: ${data.sources.length}`);
     console.log(synthetic ? "Scope: synthetic mechanics only." : "Scope: generation only; editorial and legal review remain required.");
   })

@@ -1,0 +1,18 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/validate-page.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/synthetic-divorce-core.docx
+exit=1
+
+
+=== Pre-delivery validation: synthetic-divorce-core.docx ===
+
+Link inventory: 5 total (5 in body, 0 in Sources). 5 unique body destinations.
+Em dashes: 1 | En dashes: 0
+North Star count: 0
+Body cites: []  Sources entries: []
+Word count (body text): 1774
+
+HARD FAIL (1):
+  ✗ Em dashes (—) banned. Found 1. Replace with periods, commas, colons, parentheses, or restructured sentences.
+
+INFO:
+  • "North Star" not used. Acceptable for non-JLG firms or for procedural pages where the brand anchor is not required. If this is a JLG hub page, consider one mention in the firm section.
+

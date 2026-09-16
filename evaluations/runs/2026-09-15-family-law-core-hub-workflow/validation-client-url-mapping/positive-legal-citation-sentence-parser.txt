@@ -1,0 +1,6 @@
+$ internal split_sentences regression
+exit=0
+
+input=Florida uses an income shares model to calculate child support. Fla. Stat. sec. 61.30 [1]
+count=2
+parts=['Florida uses an income shares model to calculate child support.', 'Fla. Stat. sec. 61.30 [1]']

@@ -54,4 +54,3 @@ def convert_from_path(
     finally:
         document.close()
     return results
-

@@ -22,6 +22,7 @@ from xml.etree import ElementTree as ET
 
 sys.dont_write_bytecode = True
 W_NS = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+R_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 NS = {"w": W_NS}
 
 
@@ -148,6 +149,25 @@ def swap_text(payload: bytes, first: bytes, second: bytes) -> bytes:
     if first not in payload or second not in payload or marker in payload:
         raise RuntimeError("Heading swap source was not unique and available.")
     return payload.replace(first, marker, 1).replace(second, first, 1).replace(marker, second, 1)
+
+
+def swap_first_two_body_citation_targets(payload: bytes) -> bytes:
+    root = ET.fromstring(payload)
+    citation_links = [
+        hyperlink
+        for hyperlink in root.findall(".//w:hyperlink", NS)
+        if re.fullmatch(r"\[\d+\]", paragraph_text(hyperlink).strip())
+    ]
+    if len(citation_links) < 2:
+        raise RuntimeError("Fewer than two body citation hyperlinks were available for target-swap mutation.")
+    relationship_key = f"{{{R_NS}}}id"
+    first_id = citation_links[0].get(relationship_key)
+    second_id = citation_links[1].get(relationship_key)
+    if not first_id or not second_id or first_id == second_id:
+        raise RuntimeError("The first two body citations do not have distinct relationship targets.")
+    citation_links[0].set(relationship_key, second_id)
+    citation_links[1].set(relationship_key, first_id)
+    return ET.tostring(root, encoding="utf-8", xml_declaration=True)
 
 
 def run_case(name: str, command: list[str], expected_marker: str, evidence_dir: Path) -> tuple[bool, int]:
@@ -478,8 +498,11 @@ def main() -> int:
         held_manifest["link_manifest"][0].update(
             {
                 "target_node_id": "FL-M013",
-                "target_path": "/divorce/summary-dissolution/",
-                "target_url": "https://example.com/divorce/summary-dissolution/",
+                "v2_reference_path": "/divorce/summary-dissolution/",
+                "v2_page_type": "Practice-Area Procedural Page",
+                "v2_role": "Core Procedure",
+                "v2_requiredness": "Optional",
+                "client_url": "https://example.com/divorce/summary-dissolution/",
             }
         )
         held_input = temp / "held-target.json"
@@ -496,8 +519,11 @@ def main() -> int:
         conditional_manifest["link_manifest"][0].update(
             {
                 "target_node_id": "FL-M025",
-                "target_path": "/divorce/military-divorce/",
-                "target_url": "https://example.com/divorce/military-divorce/",
+                "v2_reference_path": "/divorce/military-divorce/",
+                "v2_page_type": "Practice-Area Situational Page",
+                "v2_role": "Situational",
+                "v2_requiredness": "Conditional",
+                "client_url": "https://example.com/divorce/military-divorce/",
             }
         )
         conditional_input = temp / "conditional-target.json"
@@ -532,6 +558,87 @@ def main() -> int:
         )
         positive_results.append(("Conditional child with explicit gate evidence can generate", ok, code, "DOCX written:"))
 
+        mapped_manifest = json.loads(json.dumps(base_manifest))
+        mapped_manifest["meta"].pop("synthetic_fixture", None)
+        mapped_manifest["meta"].update(
+            {
+                "firm_name": "Example Organization (mapping regression only)",
+                "jurisdiction": "Wisconsin",
+                "voice_source": "synthetic-regression-only",
+                "client_url": "https://example.com/wisconsin/divorce/",
+                "client_url_status": 200,
+                "client_url_redirects": 0,
+                "client_url_verified_on": "2026-09-15",
+                "client_url_evidence": "Ephemeral direct hub URL assertion for mapping regression only.",
+            }
+        )
+        mapped_manifest["link_inventory"] = {
+            "status": "reviewed",
+            "evidence": "Ephemeral V2-to-client mapping regression using reserved example.com URLs.",
+        }
+        for link in mapped_manifest["link_manifest"]:
+            link["client_url"] = link["client_url"].replace(
+                "https://example.com/divorce/",
+                "https://example.com/wisconsin/divorce/",
+            )
+            link["publication_state"] = "published"
+            link["publication_evidence"] = "Ephemeral publication assertion for mapping regression only."
+            link["client_jurisdiction"] = "Wisconsin"
+            link["client_jurisdiction_evidence"] = "The synthetic client path is explicitly assigned to Wisconsin."
+            link["client_url_status"] = 200
+            link["client_url_redirects"] = 0
+            link["client_url_verified_on"] = "2026-09-15"
+            link["client_url_evidence"] = "Ephemeral direct child URL assertion for mapping regression only."
+        mapped_input = temp / "mapped-client-urls.json"
+        mapped_output = temp / "example-mapped-divorce-core.docx"
+        mapped_input.write_text(json.dumps(mapped_manifest), encoding="utf-8")
+        ok, code = run_positive_pipeline(
+            "positive-client-url-mapping",
+            [
+                ["node", str(builder), str(mapped_input), str(mapped_output)],
+                [sys.executable, str(structural), str(mapped_output), "--manifest", str(mapped_input)],
+            ],
+            "PASS: Supported deterministic Core Hub checks cleared.",
+            evidence_dir,
+        )
+        positive_results.append(("A direct Wisconsin client URL may differ from its preserved V2 path", ok, code, "PASS: Supported deterministic Core Hub checks cleared."))
+
+        wrong_v2_manifest = json.loads(json.dumps(mapped_manifest))
+        wrong_v2_manifest["link_manifest"][0]["v2_reference_path"] = "/divorce/not-the-v2-path/"
+        wrong_v2_input = temp / "wrong-v2-reference.json"
+        wrong_v2_input.write_text(json.dumps(wrong_v2_manifest), encoding="utf-8")
+        ok, code = run_case(
+            "negative-generator-wrong-v2-reference",
+            ["node", str(builder), str(wrong_v2_input), str(temp / "example-wrong-v2-divorce-core.docx")],
+            "v2_reference_path must match V2 exactly",
+            evidence_dir,
+        )
+        results.append(("A client mapping cannot change the V2 reference path", ok, code, "v2_reference_path must match V2 exactly"))
+
+        wrong_jurisdiction_manifest = json.loads(json.dumps(mapped_manifest))
+        wrong_jurisdiction_manifest["link_manifest"][0]["client_jurisdiction"] = "Illinois"
+        wrong_jurisdiction_input = temp / "wrong-client-jurisdiction.json"
+        wrong_jurisdiction_input.write_text(json.dumps(wrong_jurisdiction_manifest), encoding="utf-8")
+        ok, code = run_case(
+            "negative-generator-wrong-client-jurisdiction",
+            ["node", str(builder), str(wrong_jurisdiction_input), str(temp / "example-wrong-jurisdiction-divorce-core.docx")],
+            "client_jurisdiction must match meta.jurisdiction",
+            evidence_dir,
+        )
+        results.append(("A same-origin client URL cannot be assigned to the wrong jurisdiction", ok, code, "client_jurisdiction must match meta.jurisdiction"))
+
+        wrong_relationship_manifest = json.loads(json.dumps(mapped_manifest))
+        wrong_relationship_manifest["link_manifest"][0]["relationship_type"] = "Location-hub service-list destination"
+        wrong_relationship_input = temp / "wrong-v2-relationship.json"
+        wrong_relationship_input.write_text(json.dumps(wrong_relationship_manifest), encoding="utf-8")
+        ok, code = run_case(
+            "negative-generator-wrong-v2-relationship",
+            ["node", str(builder), str(wrong_relationship_input), str(temp / "example-wrong-relationship-divorce-core.docx")],
+            "no directional V2 Location-hub service-list destination relationship",
+            evidence_dir,
+        )
+        results.append(("A client URL cannot bypass the directional V2 relationship", ok, code, "no directional V2"))
+
         four_sentence_manifest = json.loads(json.dumps(base_manifest))
         four_sentence_manifest["content"][1]["runs"][0]["text"] += " This fourth sentence is a mechanical failure example."
         four_sentence_input = temp / "four-sentence.json"
@@ -553,6 +660,10 @@ def main() -> int:
                 "firm_name": "Example Organization (synthetic regression only)",
                 "jurisdiction": "Synthetic test jurisdiction",
                 "voice_source": "synthetic-regression-only",
+                "client_url_status": 200,
+                "client_url_redirects": 0,
+                "client_url_verified_on": "2026-09-15",
+                "client_url_evidence": "Ephemeral direct-URL assertion for a claim-free regression.",
             }
         )
         sourced_manifest["link_inventory"] = {
@@ -562,22 +673,28 @@ def main() -> int:
         for link in sourced_manifest["link_manifest"]:
             link["publication_state"] = "published"
             link["publication_evidence"] = "Synthetic regression assertion only; not client or live-site evidence."
+            link["client_jurisdiction"] = "Synthetic test jurisdiction"
+            link["client_jurisdiction_evidence"] = "Ephemeral matching-market assertion for regression only."
+            link["client_url_status"] = 200
+            link["client_url_redirects"] = 0
+            link["client_url_verified_on"] = "2026-09-15"
+            link["client_url_evidence"] = "Ephemeral direct-URL assertion for regression only."
         sourced_manifest["sources"] = [
             {
-                "id": "format-source",
-                "identifier": "Synthetic source-format marker",
-                "url": "https://example.com/source-formatting/",
+                "id": f"format-source-{index}",
+                "identifier": f"Synthetic source-format marker {index}",
+                "url": f"https://example.com/source-formatting-{index}/",
             }
+            for index in range(1, 10)
         ]
         opening_run = sourced_manifest["content"][1]["runs"][0]
         opening_run["text"] = opening_run["text"].removesuffix(".")
-        sourced_manifest["content"][1]["runs"].extend(
-            [
-                {"text": " "},
-                {"text": "[1]", "citation_id": "format-source"},
-                {"text": "."},
-            ]
-        )
+        sourced_manifest["content"][1]["runs"].append({"text": " "})
+        for index in range(1, 10):
+            sourced_manifest["content"][1]["runs"].append(
+                {"text": f"[{index}]", "citation_id": f"format-source-{index}"}
+            )
+        sourced_manifest["content"][1]["runs"].append({"text": "."})
         sourced_input = temp / "sourced-formatting.json"
         sourced_output = temp / "example-test-divorce-core.docx"
         sourced_input.write_text(json.dumps(sourced_manifest), encoding="utf-8")
@@ -590,7 +707,46 @@ def main() -> int:
             "PASS: Supported deterministic Core Hub checks cleared.",
             evidence_dir,
         )
-        positive_results.append(("Ephemeral claim-free sourced output uses the 12 pt Sources contract", ok, code, "PASS: Supported deterministic Core Hub checks cleared."))
+        positive_results.append(("Nine sources remain allowed and use the 12 pt Sources contract", ok, code, "PASS: Supported deterministic Core Hub checks cleared."))
+
+        misordered_sources = json.loads(json.dumps(sourced_manifest))
+        misordered_sources["sources"][0], misordered_sources["sources"][1] = (
+            misordered_sources["sources"][1],
+            misordered_sources["sources"][0],
+        )
+        for block in misordered_sources["content"]:
+            items = [{"runs": block.get("runs") or []}] if block.get("type") == "p" else block.get("items") or []
+            for item in items:
+                for run in item.get("runs") or []:
+                    if run.get("citation_id") == "format-source-1":
+                        run["text"] = "[2]"
+                    elif run.get("citation_id") == "format-source-2":
+                        run["text"] = "[1]"
+        misordered_input = temp / "misordered-sources.json"
+        misordered_output = temp / "example-misordered-divorce-core.docx"
+        misordered_input.write_text(json.dumps(misordered_sources), encoding="utf-8")
+        ok, code = run_case(
+            "negative-generator-citation-first-appearance",
+            ["node", str(builder), str(misordered_input), str(misordered_output)],
+            "Sources must be ordered by first in-body citation appearance",
+            evidence_dir,
+        )
+        results.append(("Sources declared outside first-appearance order are rejected", ok, code, "Sources must be ordered by first in-body citation appearance"))
+
+        swapped_citation_targets = temp / "example-swapped-citation-targets-divorce-core.docx"
+        rewrite_member(
+            sourced_output,
+            swapped_citation_targets,
+            "word/document.xml",
+            swap_first_two_body_citation_targets,
+        )
+        ok, code = run_case(
+            "negative-structural-citation-target-order",
+            [sys.executable, str(structural), str(swapped_citation_targets), "--manifest", str(sourced_input)],
+            "In-body citation hyperlinks must appear in [1] through [N] order and target the matching source URL",
+            evidence_dir,
+        )
+        results.append(("Swapped citation hyperlink targets are rejected", ok, code, "In-body citation hyperlinks must appear in [1] through [N] order and target the matching source URL"))
 
         bad_source_size = temp / "example-bad-divorce-core.docx"
         rewrite_member(

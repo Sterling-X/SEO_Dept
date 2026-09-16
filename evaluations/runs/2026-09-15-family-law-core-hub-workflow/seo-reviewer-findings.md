@@ -1,6 +1,6 @@
 # SEO Reviewer Findings and Disposition
 
-Date: 2026-09-15  
+Date: 2026-09-15
 Scope: one independent pass over the Core Practice-Area Hub repair and its initial evidence
 
 ## Coordination record

@@ -1,0 +1,4 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/build-core-hub.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/wrong-v2-relationship.json /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ey27pb1p/example-wrong-relationship-divorce-core.docx
+exit=1
+
+ERROR: collaborative: no directional V2 Location-hub service-list destination relationship FL-PA-DIV → FL-M003.

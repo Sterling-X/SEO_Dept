@@ -1,0 +1,907 @@
+{
+  "schema_version": 2,
+  "workflow": "core-hub",
+  "meta": {
+    "page_type": "Core Practice-Area Hub",
+    "architecture_node_id": "FL-PA-DIV",
+    "v2_reference_path": "/divorce/",
+    "v2_role": "Hub",
+    "v2_requiredness": "Required",
+    "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/",
+    "client_url_status": 200,
+    "client_url_redirects": 0,
+    "client_url_verified_on": "2026-09-15",
+    "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects. The live page is indexable, self-canonical, and identifies Florida divorce services.",
+    "title": "Florida Divorce Lawyer: Clear Options and Practical Next Steps",
+    "proposed_title_tag": "Florida Divorce Lawyer | Fanash Family Law",
+    "proposed_meta_description": "Get clear guidance on Florida divorce, from filing and settlement options to property, alimony, parenting, and support. Call Fanash Family Law.",
+    "firm_name": "Fanash Family Law, P.A.",
+    "jurisdiction": "Florida",
+    "voice_source": "Fanash first-party divorce, attorney, contact, location, and scoped child pages accessed 2026-09-15; inferred traits are separated from verified facts in the supporting record"
+  },
+  "link_inventory": {
+    "status": "reviewed",
+    "evidence": "FL-PA-DIV has a direct V2 canonical-parent-to-child relationship to every manifested target. Each separate Fanash URL was retrieved directly on 2026-09-15 and returned 200 with zero redirects. V2 paths and client implementation URLs are recorded separately."
+  },
+  "link_manifest": [
+    {
+      "id": "contested",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M004",
+      "v2_reference_path": "/divorce/contested-divorce/",
+      "v2_page_type": "Practice-Area Procedural Page",
+      "v2_role": "Core Procedure",
+      "v2_requiredness": "Required",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/contested/",
+      "inclusion_reason": "Required V2 child and verified Fanash service destination for cases with unresolved financial, parenting, or other material issues.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash page directly offers contested-divorce representation and returned 200 without redirects on 2026-09-15.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page identifies Florida and Orlando-area contested-divorce representation.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "mediation",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M005",
+      "v2_reference_path": "/divorce/divorce-mediation/",
+      "v2_page_type": "Practice-Area Procedural Page",
+      "v2_role": "Core Procedure",
+      "v2_requiredness": "Required",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/mediation/",
+      "inclusion_reason": "Required V2 child and verified Fanash destination used for attorney preparation and representation when a divorce uses mediation.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash page discusses divorce mediation and client preparation and returned 200 without redirects on 2026-09-15.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page identifies Florida divorce mediation and Fanash client support.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "legal-separation",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M006",
+      "v2_reference_path": "/divorce/legal-separation/",
+      "v2_page_type": "Practice-Area Procedural Page",
+      "v2_role": "Core Procedure",
+      "v2_requiredness": "Required",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/legal-separation/",
+      "inclusion_reason": "Required generic V2 child mapped with a Florida-specific qualification. The link describes alternatives to formal legal separation rather than an unavailable Florida marital status.",
+      "publication_state": "published",
+      "publication_evidence": "The live page correctly states that Florida has no formal legal-separation status, explains available alternatives, and returned 200 without redirects on 2026-09-15.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page expressly addresses Florida's lack of a formal legal-separation status and related Florida remedies.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "uncontested",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M007",
+      "v2_reference_path": "/divorce/uncontested-divorce/",
+      "v2_page_type": "Practice-Area Procedural Page",
+      "v2_role": "Core Procedure",
+      "v2_requiredness": "Required",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/uncontested/",
+      "inclusion_reason": "Required V2 child and verified Fanash service destination for spouses who have resolved every divorce issue.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash page offers uncontested-divorce document and hearing support and returned 200 without redirects on 2026-09-15.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page identifies Florida uncontested-divorce services.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "gray-divorce",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M022",
+      "v2_reference_path": "/divorce/grey-divorce/",
+      "v2_page_type": "Practice-Area Situational Page",
+      "v2_role": "Situational",
+      "v2_requiredness": "Optional",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/gray-divorce/",
+      "inclusion_reason": "Optional direct V2 child and verified Fanash destination for later-life divorce issues involving retirement, long-term assets, and changing income needs.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash gray-divorce page returned 200 without redirects on 2026-09-15.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page addresses Florida later-life divorce planning.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "high-asset",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M023",
+      "v2_reference_path": "/divorce/high-net-worth-divorce/",
+      "v2_page_type": "Practice-Area Situational Page",
+      "v2_role": "Situational",
+      "v2_requiredness": "Optional",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/high-asset/",
+      "inclusion_reason": "Optional direct V2 child and verified Fanash destination for cases involving complex assets, valuations, executive compensation, or retirement interests.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash high-asset divorce page returned 200 without redirects on 2026-09-15 and describes the service issues used in the hub.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page identifies Florida high-asset divorce services.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "filing",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M030",
+      "v2_reference_path": "/divorce/how-to-file-for-divorce/",
+      "v2_page_type": "Practice-Area Educational Page",
+      "v2_role": "Educational",
+      "v2_requiredness": "Optional",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/filing-for-divorce/",
+      "inclusion_reason": "Optional direct V2 child and verified Fanash destination for readers who need a focused filing overview beyond this broad service hub.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash filing-for-divorce page returned 200 without redirects on 2026-09-15.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page presents Florida-specific divorce filing information.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-15",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    }
+  ],
+  "sources": [
+    {
+      "id": "residency",
+      "identifier": "Fla. Stat. § 61.021 (residence requirement; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.021.html"
+    },
+    {
+      "id": "grounds",
+      "identifier": "Fla. Stat. § 61.052 (dissolution grounds and residence proof; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.052.html"
+    },
+    {
+      "id": "waiting",
+      "identifier": "Fla. Stat. § 61.19 (minimum period before final judgment; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.19.html"
+    },
+    {
+      "id": "property",
+      "identifier": "Fla. Stat. § 61.075 (equitable distribution; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.075.html"
+    },
+    {
+      "id": "alimony",
+      "identifier": "Fla. Stat. § 61.08 (alimony; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.08.html"
+    },
+    {
+      "id": "parenting",
+      "identifier": "Fla. Stat. § 61.13 (parenting plans, time-sharing, and best interests; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.13.html"
+    },
+    {
+      "id": "support",
+      "identifier": "Fla. Stat. § 61.30 (child-support guidelines; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.30.html"
+    },
+    {
+      "id": "bar-profile",
+      "identifier": "The Florida Bar member profile for Zuhair Diab Fanash, member number 124679 (accessed Sept. 15, 2026)",
+      "url": "https://www.floridabar.org/directories/find-mbr/profile/?num=124679"
+    },
+    {
+      "id": "attorney",
+      "identifier": "Fanash Family Law attorney profile (accessed Sept. 15, 2026)",
+      "url": "https://fanashfamilylaw.com/attorney/"
+    },
+    {
+      "id": "support-apart",
+      "identifier": "Fla. Stat. § 61.09 (support unconnected with dissolution; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.09.html"
+    },
+    {
+      "id": "parenting-apart",
+      "identifier": "Fla. Stat. § 61.10 (support and parenting plan while spouses live apart; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.10.html"
+    }
+  ],
+  "content": [
+    {
+      "type": "h1",
+      "text": "Florida Divorce Lawyer: Clear Options and Practical Next Steps"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "If you are considering divorce in Florida, Fanash Family Law can help you understand the decisions ahead and build a practical plan. You receive guidance shaped around your goals, finances, family circumstances, and level of conflict."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A divorce can affect property, debt, support, parenting, housing, and daily routines. We help you identify urgent concerns, organize the necessary information, evaluate settlement choices, and prepare for court when agreement is not possible."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "If you need to discuss an urgent Florida divorce concern, call 800-468-0777 or email intake@fanashfamilylaw.com. You can start even if you have not gathered every record."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Start With Florida's Divorce Requirements"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "At least one spouse must have lived in Florida for six months before filing a petition for dissolution of marriage."
+        },
+        {
+          "text": "[1]",
+          "citation_id": "residency"
+        },
+        {
+          "text": " Residence eligibility is only the starting point. Venue, service, children, property, and other facts may affect where and how the case proceeds."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida permits dissolution when the marriage is irretrievably broken. A separate statutory ground applies after one spouse has been adjudged mentally incapacitated for at least three years."
+        },
+        {
+          "text": "[2]",
+          "citation_id": "grounds"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The petition still needs accurate allegations, proper filing, and legally sufficient proof."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A court generally cannot enter the final judgment until at least 20 days after the original petition is filed. The court may act sooner when delaying would cause injustice."
+        },
+        {
+          "text": "[3]",
+          "citation_id": "waiting"
+        },
+        {
+          "text": " This is a minimum period, not a promised completion date."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Choose a Path That Fits the Level of Agreement"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The right process depends on what both spouses have resolved, what remains disputed, and whether communication is safe and productive. A case can also change paths as information develops or agreements narrow the issues."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Uncontested divorce"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "An "
+        },
+        {
+          "text": "uncontested divorce",
+          "link_id": "uncontested"
+        },
+        {
+          "text": " may be available when both spouses have resolved every issue. The agreement must address property, debt, support, and all child-related terms that apply."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Agreement does not make accuracy optional. We can help translate decisions into complete documents, identify missing terms, prepare required materials, and explain what to expect at the final hearing."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Mediation and negotiated settlement"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Many spouses use "
+        },
+        {
+          "text": "mediation during divorce",
+          "link_id": "mediation"
+        },
+        {
+          "text": " to discuss disputed terms. Your attorney can prepare you, evaluate proposals, and help protect your interests during that process."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "We help you enter mediation with clear priorities, organized financial information, and a practical settlement range. We can also review proposed terms before you decide whether to sign."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Contested divorce"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A "
+        },
+        {
+          "text": "contested divorce",
+          "link_id": "contested"
+        },
+        {
+          "text": " involves one or more unresolved issues. The work may include formal information exchange, financial analysis, negotiation, hearings, expert input, or preparation for trial."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Contested does not mean every issue must reach trial. We identify the decisions that truly require court involvement while continuing to evaluate reasonable agreements on issues that can be resolved."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Cases requiring added financial or communication planning"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Long marriages may involve retirement income, insurance, complex property, and changing earning capacity. Our "
+        },
+        {
+          "text": "gray divorce guidance",
+          "link_id": "gray-divorce"
+        },
+        {
+          "text": " focuses on the decisions that often matter later in life."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "High conflict, coercive communication, hidden information, or safety concerns can require stricter boundaries and stronger evidence planning. Tell us about those concerns early so the case plan reflects them."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Plan for the Decisions Your Divorce Must Resolve"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A useful strategy separates each legal decision from the documents and facts needed to support it. That structure helps you compare settlement terms, prepare for mediation, and identify issues that may require a judge."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Property and debt"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida's equitable-distribution statute begins with the premise that marital assets and liabilities should be divided equally. A court may make an unequal distribution after considering the listed factors."
+        },
+        {
+          "text": "[4]",
+          "citation_id": "property"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Equal starting point does not mean every item is physically split in half. Classification, valuation, debt assignment, taxes, liquidity, records, and the complete proposal can affect the practical result."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A "
+        },
+        {
+          "text": "high-asset divorce",
+          "link_id": "high-asset"
+        },
+        {
+          "text": " may require business valuations, tracing, executive-compensation analysis, retirement review, or expert input. Start preserving statements, tax returns, ownership records, loan documents, and information about unusual transfers."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Alimony"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida law allows temporary, bridge-the-gap, rehabilitative, and durational alimony. The court must first make specific findings about one party's actual need and the other party's ability to pay."
+        },
+        {
+          "text": "[5]",
+          "citation_id": "alimony"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Alimony is not automatic, and one formula does not decide every case. Income history, marriage length, health, earning capacity, responsibilities, and the full financial picture can matter."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Parenting plans and time-sharing"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "When children are involved, a parenting plan addresses parental responsibility, time-sharing, communication, and related details. Florida courts determine parenting issues through the child's best interests and the statutory factors."
+        },
+        {
+          "text": "[6]",
+          "citation_id": "parenting"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A workable proposal should reflect school, health needs, transportation, routines, communication, and safety. It should also be detailed enough to reduce avoidable disputes after the divorce."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Child support"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida's child-support guideline amount is presumptive, but the statute permits adjustments under defined circumstances. The calculation begins with income and includes other legally relevant inputs."
+        },
+        {
+          "text": "[7]",
+          "citation_id": "support"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Reliable estimates require accurate income information and case-specific facts. Health insurance, child-care costs, time-sharing, prior support duties, and certain other expenses may affect the analysis."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Settlement terms and implementation"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A settlement should do more than state broad intentions. It should explain who completes each task, which deadlines apply, how documents will be exchanged, and what happens if cooperation fails."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Property terms may need transfer documents, refinancing steps, sale procedures, account division instructions, tax coordination, or security for future payments. Parenting terms need enough detail to guide everyday decisions and predictable schedule changes."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "We review proposed terms for gaps, internal conflicts, and practical consequences. When another professional's input is needed, we can identify the question so you can seek focused tax, valuation, or financial advice."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Understand the Divorce Process From Filing to Final Judgment"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Every case has its own facts, but a clear sequence can make the work more manageable. Our focused "
+        },
+        {
+          "text": "Florida divorce filing guide",
+          "link_id": "filing"
+        },
+        {
+          "text": " provides more detail on the opening steps."
+        }
+      ]
+    },
+    {
+      "type": "ol",
+      "items": [
+        {
+          "runs": [
+            {
+              "text": "Define your immediate priorities. Identify safety, housing, cash-flow, parenting, evidence, and property concerns that may need prompt attention."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Prepare and file the correct petition. The allegations and requested relief should match the facts and the decisions the court may need to make."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Plan for notice and the response. We explain how the case begins, what must reach the other spouse, and what usually happens after a response."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Organize information and investigate disputed facts. Financial records, parenting information, written communications, valuations, and other evidence may shape the available options."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Negotiate, mediate, or ask the court to decide. Some issues may settle while others remain contested, so the plan should adapt as the case develops."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Finalize the judgment and follow through. Review deadlines, transfers, refinancing, account changes, parenting obligations, and any other tasks created by the final terms."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Temporary needs may arise before final judgment. Identify concerns about support, parenting, property use, fees, or safety early so your lawyer can evaluate the available options."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Do not treat settlement as a single event. Each proposal should be evaluated against the evidence, legal framework, implementation details, taxes, future costs, and the risks of continued litigation."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Prepare Before You Sign or File"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Early preparation gives you better information and reduces avoidable surprises. Begin with records you can lawfully access, and preserve them without altering, hiding, or destroying anything."
+        }
+      ]
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "runs": [
+            {
+              "text": "List every known asset and debt, including real estate, vehicles, bank accounts, investments, retirement benefits, businesses, credit cards, loans, and valuable personal property."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Gather recent tax returns, pay records, account statements, insurance information, loan documents, deeds, titles, business records, and evidence of separate-property claims."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Write a realistic monthly budget for current needs and likely post-divorce expenses. Include housing, transportation, health care, child care, insurance, taxes, and debt payments."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Outline the children's schedules, school needs, medical care, activities, transportation, communication patterns, and any safety concerns that a parenting plan should address."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "text": "Identify your most important goals, acceptable tradeoffs, and decisions that need professional valuation, tax advice, financial planning, or other specialized input."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Be cautious with social media, account access, and major financial moves. A private conversation with your lawyer can help you evaluate an action before it creates evidence or practical problems."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "If there are threats, coercive control, domestic violence, child-safety concerns, or fear of financial retaliation, say so at the first conversation. Those facts can change priorities and communication plans."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "firm-help",
+      "text": "How Fanash Family Law Helps"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The Florida Bar lists Zuhair Diab Fanash as a member in good standing and eligible to practice in Florida."
+        },
+        {
+          "text": "[8]",
+          "citation_id": "bar-profile"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The firm's published profile identifies family law as his practice focus. Its stated approach is to build a case strategy around each client's circumstances and goals. It also describes constructive resolution and persistent advocacy when a case requires it."
+        },
+        {
+          "text": "[9]",
+          "citation_id": "attorney"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "In practical terms, that begins with a clear map of the decisions, evidence, deadlines, and available paths. We explain what needs attention now and what can wait for better information."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "When settlement is realistic, we help you evaluate terms and prepare usable documents. When litigation is necessary, we organize the facts, develop the legal position, and prepare for hearings or trial."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "No lawyer can promise a particular outcome. The goal is to give you reliable information, thoughtful preparation, and advice tied to the facts and priorities of your case."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "faq",
+      "text": "Florida Divorce Frequently Asked Questions"
+    },
+    {
+      "type": "h3",
+      "text": "How long does a Florida divorce take?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida's 20-day rule is only a minimum before final judgment. The actual timeline depends on service, required information, disputed issues, negotiation, court availability, and whether a trial is necessary."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Can I get a legal separation in Florida?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida does not create a formal legal-separation marital status. However, a spouse may seek alimony or child support without filing for dissolution when the statutory requirements are satisfied."
+        },
+        {
+          "text": "[10]",
+          "citation_id": "support-apart"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Florida law also allows support and a parenting plan when spouses live apart without dissolution."
+        },
+        {
+          "text": "[11]",
+          "citation_id": "parenting-apart"
+        },
+        {
+          "text": " Our guide to "
+        },
+        {
+          "text": "Florida alternatives to legal separation",
+          "link_id": "legal-separation"
+        },
+        {
+          "text": " explains the distinction."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "Can we settle without going to trial?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Yes. Spouses can resolve some or all issues by agreement. The court still enters the final judgment, and unresolved issues may require a hearing or trial."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "What if I do not know the full financial picture?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Do not sign a final agreement based on guesses. Gather available records, identify missing information, and discuss lawful disclosure or investigation tools before deciding what a fair resolution looks like."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "What should I bring to an initial conversation?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Bring a short timeline, key court papers, a list of urgent concerns, basic financial information, and your most important questions. Do not delay the conversation just because every document is not available."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "text": "How much will my divorce cost?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Cost depends on the work required, the issues involved, the level of agreement, and how the matter develops. Ask current intake to explain the available engagement structure and included work."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "cta",
+      "text": "Talk With Fanash Family Law About Your Next Step"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "You do not need to solve every issue before asking for legal guidance. A focused first conversation can clarify urgent concerns, likely decisions, useful records, and the next practical step."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "Call Fanash Family Law at 800-468-0777 or email intake@fanashfamilylaw.com. The firm lists its Orlando office at 111 North Orange Avenue, Suite 800, Orlando, Florida 32801."
+        }
+      ]
+    }
+  ]
+}

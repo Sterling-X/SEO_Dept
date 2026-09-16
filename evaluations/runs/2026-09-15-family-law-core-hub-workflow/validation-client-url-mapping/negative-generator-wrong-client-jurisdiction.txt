@@ -1,0 +1,4 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/build-core-hub.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-kpvaq43t/wrong-client-jurisdiction.json /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-kpvaq43t/example-wrong-jurisdiction-divorce-core.docx
+exit=1
+
+ERROR: collaborative: client_jurisdiction must match meta.jurisdiction with supporting evidence.
