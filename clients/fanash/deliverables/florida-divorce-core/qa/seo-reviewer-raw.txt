@@ -1,0 +1,62 @@
+Verdict: Substantively strong and V2-aligned, but not ready for delivery until two QA blockers are resolved.
+
+## Blockers
+
+1. Final legal verification is incomplete.
+
+   - Evidence: The supporting record labels legal QA and final verification as pending. Its log omits material procedural claims such as required information exchange, service, temporary relief, and court approval of settlement terms.
+   - Issue: The user explicitly required jurisdiction-specific verification.
+   - Correction: Run the final legal gate against the exact DOCX text, verify cited and uncited claims, and update the supporting record with page locations, live authorities, access dates, results, and final status.
+
+2. The rendered DOCX has alternating-page defects.
+
+   - Evidence: Pages 2, 4, and 6 omit the running header and clip the footer to fragments such as “2 o”; odd pages render correctly.
+   - Issue: The requested complete DOCX has not passed visual QA.
+   - Correction: Repair the even-page header/footer behavior, rerender into a fresh directory, and inspect all eight pages.
+
+## Material improvements
+
+1. Destination clearance is described too strongly.
+
+   - Evidence: The record calls Contested Divorce “clean,” but its live page uses unverified team language and claims knowledge of what local judges weigh. Mediation, Gray Divorce, and High-Asset Divorce also contain plural-team or role ambiguity.
+   - Issue: A direct `200` and on-topic service claim establish link eligibility, not full legal, voice, or publication clearance.
+   - Correction: Keep the useful links, but describe them as published, on-topic destinations. State that destination-page QA remains separate and remove “clean” from the Contested frozen case.
+
+2. Preserve an early conversion path.
+
+   - Evidence: The first explicit contact action appears near the end, while V2 specifies a consultation/contact CTA and the current page presents one immediately after its opening.
+   - Issue: Urgent prospective clients must traverse most of the page before receiving a clear action.
+   - Correction: Specify retention of the existing above-the-fold consultation component or add a concise early CTA after the opening.
+
+3. Operational availability remains distinct from first-party publication.
+
+   - Evidence: The record carefully notes this distinction initially, but later labels several services “verified availability.”
+   - Issue: A live service page does not prove current intake acceptance.
+   - Correction: Use “verified first-party service claim” and retain intake confirmation as the implementation check.
+
+## Optional refinements
+
+- Define “qualified divorce inquiry,” the comparison window, and conversion source in the measurement test.
+- After confirming the intended market, decide whether the title should remain statewide or include Orlando. The current draft appropriately avoids claiming statewide physical offices.
+
+No material architecture error, ownership leakage, or Sterling-language contamination was found. The seven enabled links are exact direct `FL-PA-DIV → child` relationships, and the legal-separation qualification is appropriately explicit.
+
+## Checks not performed
+
+- No GSC, GA4, CRM, call-tracking, keyword, SERP, or conversion evidence was available.
+- Operational service acceptance, preferred intake number, collaborative training, neutral-mediator role, and military-demand evidence remain unconfirmed.
+- Linked destinations did not receive full legal QA.
+- The DOCX was not tested in Microsoft Word; review used the provided LibreOffice render and OOXML.
+- I independently confirmed §§ 61.021, 61.052, and 61.075. The remaining cited authorities still require the planned final legal gate.
+
+## Reusable-lesson verdict
+
+Persist only after revising the convention. As written, it applies to “excluded Required” children, but the original case, `FL-M006`, is qualified and linked rather than excluded.
+
+Recommended convention: For every Required child that is qualified, excluded, or mapped to a client-specific destination, record V2 status, jurisdiction/client evidence, the decision, and any repair or reactivation condition.
+
+- `FL-M006`: Demonstrates jurisdiction-qualified implementation despite `PASS — CANONICAL`.
+- `FL-M008`: Demonstrates that a `200` response does not establish publication safety.
+- `FL-M004`: Remains eligible because it is direct, on-topic, and published, but should not be labeled fully clean without destination QA.
+
+This is a useful documentation-only addition and should not alter V2 or automatically block otherwise valid links.

@@ -1,0 +1,12 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/office/validate.py /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/example-swapped-citation-targets-divorce-core.docx --manifest /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/sourced-formatting.json
+exit=1
+
+
+=== Core Hub structural validation: example-swapped-citation-targets-divorce-core.docx ===
+
+Inventory: words=1841 | headings=15 | lists=10 | hyperlinks=23 | manifest_links=5 | sources=9
+
+FAIL (1):
+  ✗ In-body citation hyperlinks must appear in [1] through [N] order and target the matching source URL.
+
+Scope: structure and manifest mechanics only; not editorial, SEO, visual, publication, or legal clearance.

@@ -1,0 +1,25 @@
+## Blockers
+
+None. The eight URLs, V2 roles, and route-specific dispositions are otherwise supported and proportionate.
+
+## Material improvements
+
+1. **Preserve the unresolved intake question.**
+   Evidence: the supporting record's Question 7 and the completed plan's Action 1 say current intake acceptance remains unconfirmed for each published service.
+   Issue: the report currently says only mediation remains unresolved, which understates a known implementation question.
+   Correction: note that current acceptance for the seven service destinations remains an unresolved pre-activation check, without changing their primary `Needs correction` dispositions or blocking Hub preparation.
+
+2. **Narrow two unsupported-claim corrections.**
+   Evidence: “our team” can include non-attorney staff; firm size `1` supports questioning plural “attorneys,” but does not disprove a general team. The annulment promise to provide “realistic expectations” about chances and outcomes is qualified advice language, not an outcome guarantee.
+   Issue: the proposed corrections exceed the evidence.
+   Correction: on Contested, target plural-attorney and local-judge-insight wording, not generic “team.” On Annulment, retain `Needs correction` for the unsupported “hundreds,” local-judge experience, and weak legal sourcing, but remove or relabel the “realistic expectations” sentence as a compliance question rather than a confirmed defect.
+
+## Optional refinement
+
+Quote the malformed Legal Separation fragment directly, such as “Where a written agreement is the anSeparation…,” so the affected-route repair is immediately actionable.
+
+The Uncontested disposition is justified: its categorical opening expectation and confirmed redirect-to-`404` rules link warrant a small route-specific correction. The mediator database inference is properly qualified. The filing venue finding accurately says §47.011 supplies general venue bases and does not overstate the replacement rule. No finding justifies a blanket Hub hold, although the linked draft should not be released unchanged while all eight link dispositions remain open.
+
+## Checks not performed
+
+No intake confirmation, full destination legal/voice/conversion audit, form submission, analytics review, or complete annulment case-law validation was performed. The Florida Bar profile blocked automated retrieval during this review, so its firm-size evidence relies on the preserved prior verification.

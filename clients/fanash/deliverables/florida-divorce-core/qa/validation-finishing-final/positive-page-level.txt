@@ -1,0 +1,13 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/validate-page.js /Users/rocketclicks_1/SEO_Dept/evaluations/runs/2026-09-15-family-law-core-hub-workflow/synthetic-divorce-core.docx
+exit=0
+
+
+=== Pre-delivery validation: synthetic-divorce-core.docx ===
+
+Link inventory: 5 total (5 in body, 0 in Sources). 5 unique body destinations.
+Em dashes: 0 | En dashes: 0
+North Star count: 0
+Body cites: []  Sources entries: []
+Word count (body text): 1775
+
+PASS: All hard rules cleared. No warnings.

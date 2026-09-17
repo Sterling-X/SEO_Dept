@@ -1,0 +1,16 @@
+Fanash Florida Divorce Core Hub finishing revision
+Final local SHA-256 manifest, 2026-09-16
+
+5374a5ecd2f040c87417afe9e9b9c3de5d02c14ade98e71000582bac12b204d9  florida-divorce-core.docx
+0521e29d9faf2e95e5d39b920cb8d578560c5784713a6ff97270acd95538f05a  workflow-input.json
+8154c7a5fbb8041fc1b9f0dbb2e2500b24d39f60635f28af802397254f74db60  supporting-record.md
+0c6b63445b19335c2bb8093b3faee2521e5d7b9fda18b8c6c1e3c0563eeb1733  qa/render-finishing-final/florida-divorce-core.pdf
+eec11555c70d047a664c568961206f79ff2105d5ed4a9a5013e2eca5f6f16a80  qa/seo-reviewer-raw.txt
+eec11555c70d047a664c568961206f79ff2105d5ed4a9a5013e2eca5f6f16a80  fanash-reviewer-notes.txt
+818556d78c87b5f2f5b4c2d609477f8da42dbd734548f74a9edeb0ad836b6cb1  qa/finishing-revision-seo-reviewer-prompt.md
+8ff7cf381d7c3d3f7bd990620721b48d675afcaef335a76e9e5c5f43866fb140  qa/finishing-revision-seo-reviewer-raw.txt
+dc07bf685661cdbb5a32527a0de14725f2ae255eb2a4d49bbe7ecb84131414f5  qa/validation-finishing-final/negative-test-summary.md
+24ec28705e09239ec929147e2d59a87177f2eb9d3c2846c0a5e552e7d30e2d51  ../../../../docs/seo-skill-local-adaptations.md
+
+Paths except the final line are relative to clients/fanash/deliverables/florida-divorce-core/.
+The manifest intentionally omits its own hash.

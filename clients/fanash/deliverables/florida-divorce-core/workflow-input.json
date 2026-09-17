@@ -10,7 +10,7 @@
     "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/",
     "client_url_status": 200,
     "client_url_redirects": 0,
-    "client_url_verified_on": "2026-09-15",
+    "client_url_verified_on": "2026-09-16",
     "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects. The live page is indexable, self-canonical, and identifies Florida divorce services.",
     "title": "Florida Divorce Lawyer: Clear Options and Practical Next Steps",
     "proposed_title_tag": "Florida Divorce Lawyer | Fanash Family Law",
@@ -21,7 +21,7 @@
   },
   "link_inventory": {
     "status": "reviewed",
-    "evidence": "FL-PA-DIV has a direct V2 canonical-parent-to-child relationship to every manifested target. Each separate Fanash URL was retrieved directly on 2026-09-15 and returned 200 with zero redirects. V2 paths and client implementation URLs are recorded separately."
+    "evidence": "FL-PA-DIV has a direct V2 canonical-parent-to-child relationship to every manifested target. Each separate Fanash URL was retrieved directly on 2026-09-16 and returned 200 with zero redirects. V2 paths and client implementation URLs are recorded separately."
   },
   "link_manifest": [
     {
@@ -41,7 +41,7 @@
       "client_jurisdiction_evidence": "The page identifies Florida and Orlando-area contested-divorce representation.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     },
     {
@@ -61,7 +61,7 @@
       "client_jurisdiction_evidence": "The page identifies Florida divorce mediation and Fanash client support.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     },
     {
@@ -81,7 +81,7 @@
       "client_jurisdiction_evidence": "The page expressly addresses Florida's lack of a formal legal-separation status and related Florida remedies.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     },
     {
@@ -101,7 +101,27 @@
       "client_jurisdiction_evidence": "The page identifies Florida uncontested-divorce services.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
+      "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
+    },
+    {
+      "id": "annulment",
+      "source_node_id": "FL-PA-DIV",
+      "target_node_id": "FL-M009",
+      "v2_reference_path": "/divorce/annulment/",
+      "v2_page_type": "Practice-Area Procedural Page",
+      "v2_role": "Procedure",
+      "v2_requiredness": "Optional",
+      "relationship_type": "Canonical parent → child",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/annulments/",
+      "inclusion_reason": "Direct V2 child and verified Fanash destination that helps a reader distinguish annulment from divorce before choosing a filing path.",
+      "publication_state": "published",
+      "publication_evidence": "The live Fanash page identifies Florida annulment services, compares annulment with divorce, and returned 200 without redirects on 2026-09-16.",
+      "client_jurisdiction": "Florida",
+      "client_jurisdiction_evidence": "The page identifies Florida annulment services and Florida-specific annulment considerations.",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     },
     {
@@ -121,7 +141,7 @@
       "client_jurisdiction_evidence": "The page addresses Florida later-life divorce planning.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     },
     {
@@ -141,7 +161,7 @@
       "client_jurisdiction_evidence": "The page identifies Florida high-asset divorce services.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     },
     {
@@ -161,7 +181,7 @@
       "client_jurisdiction_evidence": "The page presents Florida-specific divorce filing information.",
       "client_url_status": 200,
       "client_url_redirects": 0,
-      "client_url_verified_on": "2026-09-15",
+      "client_url_verified_on": "2026-09-16",
       "client_url_evidence": "Direct HTTPS retrieval returned 200 with zero redirects."
     }
   ],
@@ -193,7 +213,7 @@
     },
     {
       "id": "parenting",
-      "identifier": "Fla. Stat. § 61.13 (parenting plans, time-sharing, and best interests; current 2026 text)",
+      "identifier": "Fla. Stat. § 61.13(2)(c)1 and (3) (equal time-sharing presumption, parenting plans, best interests, and safety; current 2026 text)",
       "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.13.html"
     },
     {
@@ -210,6 +230,11 @@
       "id": "attorney",
       "identifier": "Fanash Family Law attorney profile (accessed Sept. 15, 2026)",
       "url": "https://fanashfamilylaw.com/attorney/"
+    },
+    {
+      "id": "separation-status",
+      "identifier": "Fla. Stat. § 61.031 (dissolution from bonds of matrimony, not bed and board; current 2026 text)",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.031.html"
     },
     {
       "id": "support-apart",
@@ -314,6 +339,21 @@
       "runs": [
         {
           "text": "The right process depends on what both spouses have resolved, what remains disputed, and whether communication is safe and productive. A case can also change paths as information develops or agreements narrow the issues."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "If you are unsure whether divorce is the right legal path, our "
+        },
+        {
+          "text": "Florida annulment guidance",
+          "link_id": "annulment"
+        },
+        {
+          "text": " explains how that separate option differs from divorce and what to consider before filing."
         }
       ]
     },
@@ -508,11 +548,19 @@
       "type": "p",
       "runs": [
         {
-          "text": "When children are involved, a parenting plan addresses parental responsibility, time-sharing, communication, and related details. Florida courts determine parenting issues through the child's best interests and the statutory factors."
+          "text": "When children are involved, a parenting plan addresses parental responsibility, time-sharing, communication, and related details. Unless another provision of § 61.13 applies or the parents agree to a schedule, Florida law presumes equal time-sharing is in the child's best interests."
         },
         {
           "text": "[6]",
           "citation_id": "parenting"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "The presumption is rebuttable. A parent challenging it must prove by a preponderance of the evidence that equal time-sharing is not in the child's best interests. Without a schedule agreed to by the parents and approved by the court, the court evaluates all statutory best-interests factors and makes specific written findings."
         }
       ]
     },
@@ -747,7 +795,7 @@
       "type": "p",
       "runs": [
         {
-          "text": "The firm's published profile identifies family law as his practice focus. Its stated approach is to build a case strategy around each client's circumstances and goals. It also describes constructive resolution and persistent advocacy when a case requires it."
+          "text": "Zuhair Fanash focuses his practice on family law. We build your case strategy around your circumstances and goals. We pursue constructive resolution when possible and advocate persistently when court action is necessary."
         },
         {
           "text": "[9]",
@@ -804,10 +852,22 @@
       "type": "p",
       "runs": [
         {
-          "text": "Florida does not create a formal legal-separation marital status. However, a spouse may seek alimony or child support without filing for dissolution when the statutory requirements are satisfied."
+          "text": "Florida does not create a formal legal-separation marital status."
         },
         {
           "text": "[10]",
+          "citation_id": "separation-status"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "text": "A spouse may seek alimony or child support without filing for dissolution when the statutory requirements are satisfied."
+        },
+        {
+          "text": "[11]",
           "citation_id": "support-apart"
         }
       ]
@@ -819,7 +879,7 @@
           "text": "Florida law also allows support and a parenting plan when spouses live apart without dissolution."
         },
         {
-          "text": "[11]",
+          "text": "[12]",
           "citation_id": "parenting-apart"
         },
         {
@@ -878,7 +938,7 @@
       "type": "p",
       "runs": [
         {
-          "text": "Cost depends on the work required, the issues involved, the level of agreement, and how the matter develops. Ask current intake to explain the available engagement structure and included work."
+          "text": "Cost depends on the work required, the issues involved, the level of agreement, and how the matter develops. Discuss the proposed engagement structure and included work before you decide how to proceed."
         }
       ]
     },
@@ -899,7 +959,7 @@
       "type": "p",
       "runs": [
         {
-          "text": "Call Fanash Family Law at 800-468-0777 or email intake@fanashfamilylaw.com. The firm lists its Orlando office at 111 North Orange Avenue, Suite 800, Orlando, Florida 32801."
+          "text": "Call Fanash Family Law at 800-468-0777 or email intake@fanashfamilylaw.com. Our Orlando office is at 111 North Orange Avenue, Suite 800, Orlando, Florida 32801."
         }
       ]
     }

@@ -1,0 +1,704 @@
+{
+  "schema_version": 2,
+  "workflow": "situational-fl-m008-local-replacement",
+  "meta": {
+    "architecture_node_id": "FL-M008",
+    "v2_reference_path": "/divorce/high-conflict-divorce/",
+    "v2_page_type": "Practice-Area Situational Page",
+    "v2_role": "Situational",
+    "v2_brief_type": "Situation / Use-Case Brief",
+    "v2_word_count_target": "1,100–1,700",
+    "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/high-conflict-divorce/",
+    "canonical_url": "https://fanashfamilylaw.com/practice-areas/divorce/high-conflict-divorce/",
+    "url_retention_decision": "retain-existing",
+    "client_url_status": 200,
+    "client_url_redirects": 0,
+    "client_url_verified_on": "2026-09-16",
+    "client_url_evidence": "Direct live request returned HTTP 200 with no redirect, a self-referencing canonical, and index/follow HTML robots; WordPress REST post 5602 was published and last modified 2026-08-31.",
+    "firm_name": "Fanash Family Law, P.A.",
+    "jurisdiction": "Florida",
+    "voice_source": "clients/fanash/deliverables/florida-divorce-core/supporting-record.md (verified first-party facts and explicitly inferred editorial characteristics)",
+    "title_tag": "Florida High-Conflict Divorce Lawyer | Fanash Family Law",
+    "meta_description": "High-conflict divorce requires a focused plan. Learn how Florida handles parenting, financial, and safety disputes, and how Fanash Family Law can help.",
+    "cms_title": "High-Conflict Divorce in Florida",
+    "social_title": "Florida High-Conflict Divorce Lawyer | Fanash Family Law",
+    "social_description": "High-conflict divorce requires a focused plan. Learn how Florida handles parenting, financial, and safety disputes, and how Fanash Family Law can help.",
+    "h1": "High-Conflict Divorce in Florida",
+    "robots": "Retain index, follow.",
+    "media_note": "Replace the current collaborative-law asset and write accurate alt text for the selected replacement image.",
+    "situational_purpose": "Help a Florida reader recognize repeated escalation, parenting, financial, information, or safety patterns and understand how those circumstances change case strategy without recreating a general Divorce or Contested Divorce page.",
+    "excluded_intents": [
+      "general-divorce-hub",
+      "contested-divorce-procedure"
+    ]
+  },
+  "link_inventory": {
+    "status": "reviewed",
+    "reviewed_on": "2026-09-16",
+    "evidence": "Each of FL-M008's eight exact outgoing V2 candidate paths was tested on the Fanash domain. All returned a direct 404 with the generic not-found title and H1 and exposed no candidate-specific alternate; FL-M013 is also on Hold, so all eight remain unlinked. A separate focused screen found the parent Divorce Hub, the Contested Divorce process page, and the Contact page at direct HTTP 200 with zero redirects, exact self-canonicals, and correct destination fit. The Hub and Contested links activate under the Situational skill's navigation requirements, not as claimed outgoing V2 edges; the Contact link activates as the consultation CTA."
+  },
+  "link_manifest": [
+    {
+      "id": "parent-divorce-hub",
+      "supporting_authority": "skill-parent-navigation",
+      "source_node_id": "FL-M008",
+      "target_node_id": "FL-PA-DIV",
+      "v2_reference_path": "/divorce/",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-16",
+      "client_url_evidence": "Direct live request returned HTTP 200 with zero redirects and an exact self-canonical. The title and page content identify the broad Florida Divorce Hub.",
+      "destination_fit": "verified",
+      "anchor": "Florida divorce",
+      "placement": "Opening answer-first paragraph"
+    },
+    {
+      "id": "contested-process-bridge",
+      "supporting_authority": "skill-process-bridge",
+      "source_node_id": "FL-M008",
+      "target_node_id": "FL-M004",
+      "v2_reference_path": "/divorce/contested-divorce/",
+      "client_url": "https://fanashfamilylaw.com/practice-areas/divorce/contested/",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-16",
+      "client_url_evidence": "Direct live request returned HTTP 200 with zero redirects and an exact self-canonical. The title and page content identify the Contested Divorce process page.",
+      "destination_fit": "verified",
+      "anchor": "contested divorce",
+      "placement": "Existing distinction between high-conflict circumstances and contested proceedings"
+    },
+    {
+      "id": "consultation-contact",
+      "supporting_authority": "consultation-cta",
+      "source_node_id": "FL-M008",
+      "destination_kind": "consultation-contact",
+      "client_url": "https://fanashfamilylaw.com/contact-us/",
+      "client_url_status": 200,
+      "client_url_redirects": 0,
+      "client_url_verified_on": "2026-09-16",
+      "client_url_evidence": "Direct live request returned HTTP 200 with zero redirects and an exact self-canonical. The title and page content identify Fanash Family Law's contact and consultation route.",
+      "destination_fit": "verified",
+      "anchor": "Contact Fanash Family Law",
+      "placement": "Final consultation invitation"
+    }
+  ],
+  "quality_contract": {
+    "forbidden_terms": [
+      "collaborative divorce",
+      "team process",
+      "participation agreement",
+      "free consultation",
+      "fixed fee",
+      "17+ years"
+    ]
+  },
+  "content": [
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "If repeated disputes over parenting, money, information, or safety keep ordinary decisions from moving forward, start with structure rather than reacting to every accusation. A "
+        },
+        {
+          "type": "internal_link",
+          "link_id": "parent-divorce-hub",
+          "text": "Florida divorce"
+        },
+        {
+          "type": "text",
+          "text": " involving high-conflict circumstances is still a dissolution of marriage under section 61.052, but those circumstances often demand tighter boundaries, better documentation, and a focused strategy. Florida Statutes section 61.052 "
+        },
+        {
+          "type": "citation",
+          "source_id": 1,
+          "text": "[1]"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Even when the other spouse escalates, the objective is not to answer every accusation. It is to protect what matters, reduce avoidable conflict, and build a reliable record if settlement does not resolve the dispute. The right plan depends on what is driving the conflict and whether anyone's safety is at risk."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "strong",
+          "text": "Schedule a consultation with Fanash Family Law to discuss a focused plan for your situation."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "scenario",
+      "text": "When repeated conflict changes the divorce strategy"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "The label matters less than the pattern: important decisions repeatedly stall, communication breaks down, or one person uses the conflict to create pressure. Common signs include:"
+        }
+      ]
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Communication becomes a battleground. "
+            },
+            {
+              "type": "text",
+              "text": "Routine questions produce accusations, threats, long message chains, or no useful answer."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Parenting decisions do not stay child-focused. "
+            },
+            {
+              "type": "text",
+              "text": "Exchanges, schedules, school choices, or medical decisions repeatedly become leverage in the adult dispute."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Financial information is incomplete or inconsistent. "
+            },
+            {
+              "type": "text",
+              "text": "Accounts, income, debts, business records, or spending require careful review before meaningful negotiation can occur."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "The case keeps escalating. "
+            },
+            {
+              "type": "text",
+              "text": "After filing, ordinary requests may lead to repeated disputes, delayed responses, or avoidable court intervention."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Safety concerns change the response. "
+            },
+            {
+              "type": "text",
+              "text": "Threats, violence, or immediate danger require a safety plan, not ordinary bargaining."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "A "
+        },
+        {
+          "type": "internal_link",
+          "link_id": "contested-process-bridge",
+          "text": "contested divorce"
+        },
+        {
+          "type": "text",
+          "text": " and a high-conflict divorce are not identical ideas. A contested case has unresolved legal issues for the court, while high conflict describes the conduct and circumstances that make resolution harder. Some contested cases remain businesslike, and some high-conflict cases settle once structure and accountability are in place."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "stakes",
+      "text": "Turn broad conflict into issues the court can address"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "A useful legal strategy connects specific facts to parenting, property, support, disclosure, or safety. Calling a spouse “difficult” says much less than showing what happened, when it happened, and why it matters to a decision before the court."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "role": "selective-legal-focus",
+      "text": "Parenting and time-sharing"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Florida's time-sharing rule starts with important qualifications. Unless another provision of section 61.13 applies or the parents agree otherwise, equal time-sharing is rebuttably presumed to be in a child's best interests. Florida Statutes section 61.13(2)(c) and (3) "
+        },
+        {
+          "type": "citation",
+          "source_id": 2,
+          "text": "[2]"
+        },
+        {
+          "type": "text",
+          "text": " A parent seeking a different schedule must rebut that presumption by a preponderance of the evidence."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "When the parents have not agreed to a schedule that the court approves, the court must evaluate all statutory best-interest factors and make specific written findings."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "The factors include each parent's ability to encourage the child's relationship with the other parent, honor the schedule, communicate, and protect the child from the litigation. The statute also separately addresses domestic violence, child abuse, neglect, imminent danger, and other evidence of detriment. The equal-time-sharing presumption does not erase those safety provisions."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "role": "selective-legal-focus",
+      "text": "Property and financial conduct"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Florida equitable distribution begins with the premise that marital assets and liabilities should be divided equally, unless relevant statutory factors justify an unequal distribution. One factor is the intentional dissipation, waste, depletion, or destruction of marital assets after filing or within the two years before filing. Florida Statutes section 61.075(1) "
+        },
+        {
+          "type": "citation",
+          "source_id": 3,
+          "text": "[3]"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "High conflict by itself does not determine how property will be divided. Account statements, tax returns, debt records, business documents, and a clear spending timeline can help turn a suspicion into a fact that can be evaluated. Preserve existing records and discuss missing information with counsel before drawing conclusions."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "role": "selective-legal-focus",
+      "text": "Safety requires its own response"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "High conflict and domestic violence are not synonyms. If you or a child is in immediate danger, call 911 and prioritize a safety plan."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "After domestic violence, a qualifying family or household member may seek a Florida injunction. The same may be true when there is reasonable cause to believe domestic violence is imminent, whether or not another case is pending. Florida Statutes section 741.30(1) "
+        },
+        {
+          "type": "citation",
+          "source_id": 4,
+          "text": "[4]"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Ask a Florida lawyer how an existing or requested protection order could interact with divorce and parenting issues. Do not use routine negotiation as a substitute for immediate safety steps."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "strategy",
+      "text": "Use structure without feeding the conflict"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "You cannot control the other person's choices, but you can make your own information and responses more deliberate. A practical plan may include:"
+        }
+      ]
+    },
+    {
+      "type": "ul",
+      "items": [
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Choose a workable communication method. "
+            },
+            {
+              "type": "text",
+              "text": "Keep necessary messages brief, factual, and focused on one decision at a time."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Build a dated record. "
+            },
+            {
+              "type": "text",
+              "text": "Preserve relevant messages, parenting calendars, financial requests, responses, and existing orders in an organized form."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Organize financial information early. "
+            },
+            {
+              "type": "text",
+              "text": "Gather current account, income, debt, property, insurance, tax, and business records that are already available to you."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Follow current orders. "
+            },
+            {
+              "type": "text",
+              "text": "Ask for legal advice before changing exchanges, withholding payments, moving assets, or taking another step that could create a separate dispute."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Keep children outside the case. "
+            },
+            {
+              "type": "text",
+              "text": "Do not use a child to carry messages, share litigation materials, or gather information about the other parent."
+            }
+          ]
+        },
+        {
+          "runs": [
+            {
+              "type": "strong",
+              "text": "Separate urgent issues from irritating ones. "
+            },
+            {
+              "type": "text",
+              "text": "Safety, child stability, asset preservation, and enforceable deadlines usually deserve attention before arguments that do not change a legal decision."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Documentation should be lawful and selective. A large volume of messages is not automatically a useful record. Focus on material that helps explain a disputed event, financial question, parenting issue, or safety concern."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "resolution-tools",
+      "text": "Settlement tools can still work in a high-conflict case"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "High conflict does not automatically mean every issue will go to trial. The right tool depends on the dispute, the quality of available information, and whether the process can be used safely."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "strong",
+          "text": "Mediation can narrow defined issues. "
+        },
+        {
+          "type": "text",
+          "text": "Florida courts may refer filed disputes to mediation."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "On a party's motion or request, however, a court must not refer the case if it finds that a history of domestic violence would compromise the process. Florida Statutes section 44.102(2)(b)-(c) "
+        },
+        {
+          "type": "citation",
+          "source_id": 5,
+          "text": "[5]"
+        },
+        {
+          "type": "text",
+          "text": " A lawyer can help you decide what information and boundaries are needed before a meaningful session."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "strong",
+          "text": "Parenting coordination may help with a parenting plan. "
+        },
+        {
+          "type": "text",
+          "text": "Outside a Chapter 741 domestic-violence proceeding, a court may appoint a coordinator in a case seeking or involving a parenting-plan order."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "If there has been a history of domestic violence, both parents must consent and the court must find that each consent was freely and voluntarily given. Any referral must include statutory safety restrictions. Florida Statutes section 61.125(2)-(4) "
+        },
+        {
+          "type": "citation",
+          "source_id": 6,
+          "text": "[6]"
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "strong",
+          "text": "Court preparation remains important when agreement fails. "
+        },
+        {
+          "type": "text",
+          "text": "A focused presentation identifies the decision the court must make and the evidence tied to that decision. It does not require turning every painful part of the marriage into a litigated issue."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "firm-help",
+      "text": "How Fanash Family Law can help"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Fanash Family Law represents people facing high-conflict divorce in Orlando and Central Florida. Attorney Zuhair D. Fanash focuses his practice on family law and approaches difficult disputes with sensitivity and persistent advocacy when necessary."
+        }
+      ]
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "A consultation can focus on what is driving the conflict, which records may matter, and whether the immediate need is negotiation, court preparation, or safety-focused advice. No lawyer can promise a particular result, but a focused plan can make the next decision clearer."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "faq",
+      "text": "Frequently asked questions about high-conflict divorce"
+    },
+    {
+      "type": "h3",
+      "role": "faq-question",
+      "text": "Does high conflict automatically mean my divorce will go to trial?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "No. Structured negotiation, mediation, or parenting coordination may resolve or narrow some disputes. A judge may need to decide issues that remain unresolved or cannot be addressed safely through agreement."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "role": "faq-question",
+      "text": "What should I bring to a first meeting?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Bring any current court papers or orders, a short timeline of major events, and the records most closely tied to the dispute. Useful materials may include parenting calendars, key messages, recent tax returns, account statements, debt records, and property information."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "role": "faq-question",
+      "text": "Can conflict affect a Florida time-sharing decision?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "The label “high conflict” does not decide the schedule. Unless another provision applies or the parents agree otherwise, Florida law starts with a rebuttable equal-time-sharing presumption. Without an approved agreement, the court evaluates all best-interest factors, and the statute's safety provisions remain relevant."
+        }
+      ]
+    },
+    {
+      "type": "h3",
+      "role": "faq-question",
+      "text": "What if the conflict includes threats or violence?"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "Treat immediate danger as a safety issue first and call 911. A Florida lawyer can discuss whether a protection order, temporary request, or other case-specific step should be evaluated alongside the divorce."
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "role": "cta",
+      "text": "Schedule a consultation"
+    },
+    {
+      "type": "p",
+      "runs": [
+        {
+          "type": "text",
+          "text": "You do not have to solve every dispute before asking for legal advice. "
+        },
+        {
+          "type": "internal_link",
+          "link_id": "consultation-contact",
+          "text": "Contact Fanash Family Law"
+        },
+        {
+          "type": "text",
+          "text": " to discuss the conflict, the decisions that cannot wait, and a practical plan for moving forward."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": 1,
+      "label": "Fla. Stat. § 61.052, Dissolution of marriage",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.052.html",
+      "authority": "official-primary",
+      "status": 200,
+      "verified_on": "2026-09-16",
+      "verification_evidence": "Florida Legislature 2026 statute page opened live; the section governs dissolution of marriage."
+    },
+    {
+      "id": 2,
+      "label": "Fla. Stat. § 61.13(2)(c) and (3), Support of children; parenting and time-sharing; powers of court",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.13.html",
+      "authority": "official-primary",
+      "status": 200,
+      "verified_on": "2026-09-16",
+      "verification_evidence": "Florida Legislature 2026 text was checked live for the statutory exceptions and parental-agreement qualifications, rebuttable equal-time-sharing presumption, preponderance standard, written findings, best-interest factors, and safety provisions."
+    },
+    {
+      "id": 3,
+      "label": "Fla. Stat. § 61.075(1), Equitable distribution of marital assets and liabilities",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.075.html",
+      "authority": "official-primary",
+      "status": 200,
+      "verified_on": "2026-09-16",
+      "verification_evidence": "Florida Legislature 2026 text was checked live for the equal-division premise, statutory factors, and intentional dissipation provision and lookback period."
+    },
+    {
+      "id": 4,
+      "label": "Fla. Stat. § 741.30(1), Domestic violence; injunction; powers and duties of court and clerk",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0741/Sections/0741.30.html",
+      "authority": "official-primary",
+      "status": 200,
+      "verified_on": "2026-09-16",
+      "verification_evidence": "Florida Legislature 2026 text was checked live for qualifying family or household members, completed or reasonably imminent domestic violence, and availability whether or not another action is pending. Relevant 2026 amendments were reviewed."
+    },
+    {
+      "id": 5,
+      "label": "Fla. Stat. § 44.102(2)(b)-(c), Court-ordered mediation",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0044/Sections/0044.102.html",
+      "authority": "official-primary",
+      "status": 200,
+      "verified_on": "2026-09-16",
+      "verification_evidence": "Florida Legislature 2026 text was checked live for court referral and the party-motion or request exception when domestic violence history would compromise mediation. The 2026 reenactment affected subsection (2)(d), not the cited language."
+    },
+    {
+      "id": 6,
+      "label": "Fla. Stat. § 61.125(2)-(4), Parenting coordination",
+      "url": "https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.125.html",
+      "authority": "official-primary",
+      "status": 200,
+      "verified_on": "2026-09-16",
+      "verification_evidence": "Florida Legislature 2026 text was checked live for parenting-plan cases, the Chapter 741 exclusion, voluntary consent following domestic violence history, and required safety restrictions."
+    }
+  ]
+}

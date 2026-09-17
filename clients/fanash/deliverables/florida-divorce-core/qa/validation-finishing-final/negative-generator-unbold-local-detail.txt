@@ -1,0 +1,4 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/build-core-hub.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/unbold-local-detail.json /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/synthetic-unbold-local-detail-core.docx
+exit=1
+
+ERROR: content[1] local-detail markers must be bold runs.

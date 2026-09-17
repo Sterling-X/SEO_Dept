@@ -204,3 +204,113 @@ These are local-adaptation hashes, not original-export hashes.
 | `scripts/test-core-hub.py` | `cd8dc600dc2984a20b678bbd1a9fe23b6011c8aeb47214a3ec89a384b2d8df6d` |
 
 This correction addresses citation mechanics only. It does not establish source relevance, legal accuracy, editorial quality, or performance, and it does not repair the pending Procedural route or any unrelated incomplete workflow.
+
+## 2026-09-15: Required Core-child applicability record
+
+The Fanash Florida Divorce production draft demonstrated that V2 Required status and a technically live client destination do not, by themselves, establish jurisdiction fit, current service acceptance, or publication safety. It also demonstrated that a Required child may remain linked only after the generic label is qualified for the governing jurisdiction.
+
+### Documentation convention
+
+For every Required direct Core child that is qualified, excluded, or mapped to a client-specific destination, record the exact V2 status, jurisdiction and client evidence, implementation decision, and any repair or reactivation condition. Treat a direct `200` and an on-topic first-party service claim as link-eligibility evidence, not full destination QA or operational-intake confirmation.
+
+- `FL-M006` Legal Separation is linked with an explicit Florida-alternatives qualification because Florida does not create the generic marital status implied by the node label.
+- `FL-M008` High-Conflict Divorce is excluded despite a `200` because cross-topic metadata and copy make the destination publication-unsafe until repaired.
+- `FL-M004` Contested Divorce remains eligible because it is a direct, on-topic, published child destination; full destination-page QA remains separate.
+
+This is a documentation-only convention. It does not change V2, the generator, validators, link direction, or activation gates, and it must not automatically block an otherwise valid link. The independent reviewer approved the convention after expanding it beyond excluded children. Client-specific evidence and decisions are preserved in `clients/fanash/deliverables/florida-divorce-core/supporting-record.md`.
+
+## 2026-09-16: Core link-decision documentation clarification
+
+The Fanash finishing revision demonstrated three distinctions that the Required-child convention did not state explicitly:
+
+- A relationship missing from V2 is unspecified by that source. The current Core manifest must not invent or activate an absent edge, but the absence is not a universal prohibition on a future architecture decision supported by governing evidence.
+- A repair requirement for an excluded destination governs later activation of that specific link. It does not block a draft that omits the destination.
+- `Optional` status alone neither requires nor prevents a link. An Optional child still needs the exact V2 direction, reviewed publication and jurisdiction evidence, and a contextual reason under the local Core rule.
+
+Reviewed frozen checks:
+
+1. **Original case — `FL-M009` Annulment:** V2 classifies it as Procedural / Procedure / Optional with `PASS — CANONICAL` and the exact contextual `FL-PA-DIV → FL-M009` parent-child edge. A live, relevant Fanash destination and one strong process-choice placement support activation; Optional status is preserved but is not the activation reason.
+2. **Different relevant case — `FL-M008` High-Conflict Divorce:** A direct `200` does not cure its cross-topic metadata and copy defects. Exclusion remains justified, but repair is a future activation condition rather than a blocker for the current draft.
+3. **Unaffected case — cross-hub relationships:** The Fanash draft activates only resolved parent-child edges. Missing cross-hub edges remain unspecified by V2 and are not described as universally prohibited; no new relationship is invented or activated.
+
+The independent reviewer approved this narrow documentation clarification. It changes no V2 relationship, generator rule, validator, link direction, activation gate, or automatic activation behavior.
+
+## 2026-09-16: `family-law-situational-pages` bounded `FL-M008` workflow
+
+The first authorized production use of the imported Situational skill confirmed that its named template and validators were absent. No genuine original was recovered. This adaptation supplies a transparent local replacement for `FL-M008` High-Conflict Divorce only; it does not claim that the source package or other Situational routes are complete.
+
+### Replacement components and provenance
+
+Every new component is labeled **LOCAL REPLACEMENT / NOT RECOVERED ORIGINAL**.
+
+| Component | Provenance and boundary |
+|---|---|
+| `references/situational-template.md` | New content contract derived from the imported Situational instructions and governing V2 `FL-M008` record; not derived from the Core Hub template. |
+| `scripts/build-situational.js` | New manifest-driven generator using pinned `docx` mechanics and runtime V2 parsing; it contains a separate Situational structure, metadata contract, and link contract. |
+| `scripts/office/validate.py` | New FL-M008 structural validator using generic OOXML integrity concepts; it does not import the Core page schema. |
+| `scripts/validate-page.js` | New FL-M008 page/link validator using `adm-zip`; schema version 2 distinguishes explicit V2 relationships, skill-required navigation, and the consultation CTA. |
+| `scripts/render-situational.sh` | Thin wrapper that delegates only generic DOCX rendering to the pinned Core renderer; no Core content template, generator, validator, or link rule is invoked. |
+| `scripts/test-situational.py` | New positive and negative route regression suite. |
+| `LOCAL-REPLACEMENT.md` | Scope, commands, manifest shape, component provenance, and readiness limits. |
+| `package.json` / `package-lock.json` | Isolated `docx@9.7.1` and `adm-zip@0.6.1` dependency boundary. |
+
+The skill entrypoint and interface metadata state that executable local readiness is limited to `FL-M008`. For this route, V2 remains authoritative for classification, hierarchy, and every explicit V2 relationship. The separate Situational requirements for a parent-Hub navigation link and the bounded `FL-M004` process bridge remain active even though neither direction is recorded as an outgoing V2 edge. A final consultation CTA is also required. Held targets and unverified destinations still fail.
+
+### Demonstrated contract and verification
+
+- The manifest separates V2 identity and reference path from the retained client URL and proposed metadata.
+- Production inputs require dated direct-200 retained-URL evidence, explicit client/voice/jurisdiction evidence, a dated destination inventory, and live-verified official sources. The shape checks do not independently prove those assertions.
+- The consumer-copy contract requires 1,100–1,700 words, two answer-first opening paragraphs, scenario ownership, selective stakes/legal context, practical strategy, verified firm-help language, optional scenario FAQ, a final CTA, and Sources last.
+- The DOCX and validators enforce Letter geometry, one-inch margins, Arial 12 pt body and Sources, 18/15/13 pt headings, real lists, one body marker plus one Sources hyperlink per source, manifested internal links, paragraph limits, placeholders, comments/revisions, and metadata.
+- The final focused harness passes 21 cases covering the three required navigation/CTA authorities, one additional exact V2 edge, false edge claims, missing or wrong authority, wrong targets, invented V2 fields, CTA placement, an empty manifest, Hold and destination-screen failures, contamination, missing styles, duplicate links, and 9 pt Sources.
+- Codex skill-creator quick validation passes using the existing isolated PyYAML environment.
+- The assignment-specific draft passed generation, both validators, source/link reconciliation, and fresh render inspection. Its client facts, legal conclusions, provisional SEO hypothesis, and reviewer decisions remain in the client supporting record rather than this workflow log.
+
+### Independent review correction
+
+The read-only `seo_reviewer` found that the initial generator emitted 9 pt Sources while the contract required 12 pt. The generator and structural validator now require 12 pt Sources, and a 9 pt negative regression passes. It also required the compatibility and adaptation records to distinguish the still-incomplete source package from bounded local readiness; those records now do so.
+
+The reviewer's optional suggestion to reject `Draft` in every metadata field was not adopted in this bounded repair. The current output fields are clean, the generator already rejects `Draft` in the title tag, and broader preventive hardening was not necessary to complete the demonstrated `FL-M008` assignment. Revisit that proposal only with a fixed evaluation and route-relevant regression evidence.
+
+### 2026-09-16 targeted navigation-authority correction
+
+The completed `FL-M008` draft exposed an exclusive-edge restriction in the local replacement: it treated the absence of an outgoing V2 edge as sufficient to cancel the Situational skill's separate parent-navigation and process-bridge requirements. That route-specific behavior was incorrect. The schema is now version 2 and requires the actual authority for each link instead of inventing a V2 relationship.
+
+- **Original demonstrated case:** One `skill-parent-navigation` link to the actual V2 parent, one `skill-process-bridge` link to `FL-M004`, and one `consultation-cta` pass without a `v2_edge_id`. Falsely presenting either navigation link as an outgoing V2 edge fails.
+- **Different relevant case:** An additional `v2-explicit-relationship` link to `FL-M010` still requires and passes only with exact edge `CL-00068`, the exact V2 path, a publishable target, a passing gate, and destination evidence.
+- **Unaffected safeguards:** Empty required navigation, missing or unknown authority, wrong targets, invented V2 fields, a Hold target, unverified or duplicate destinations, duplicate rendered placement, content contamination, and invalid document styles still fail.
+
+This is a demonstrated correction to the bounded `FL-M008` local workflow, not a general SEO principle and not evidence of readiness for another Situational node. Earlier statements in this record that limited every link to an outgoing V2 edge or allowed an empty manifest are superseded by this subsection.
+
+### Current local hashes
+
+These are local-replacement hashes, not original-export hashes.
+
+| File | SHA-256 |
+|---|---|
+| `SKILL.md` | `f84b557140f5dce3a254ed41aba3e605111c9fab63d518992c1517156a8ee653` |
+| `agents/openai.yaml` | `23ba1d9d0848e04170ea99ac30444afb88306fa34a0a1e6b4aca4a24bef59cb6` |
+| `LOCAL-REPLACEMENT.md` | `70cd713c2813880a64ac1c1b2c8540268c2f5369dfd69f604683e5a0c1f0de08` |
+| `references/situational-template.md` | `261d3601eecfd58219b439cf5f7da93699fd306b3a04f932b69b9391236dae16` |
+| `scripts/build-situational.js` | `eff6d635ae1609723814faec5301ee16ed2e6fb5bd439a96f7cea8a90c7ad037` |
+| `scripts/office/validate.py` | `aecc448d4acf44f5b2a007ca00913f757887ae70ca802833c9ff466b22744212` |
+| `scripts/validate-page.js` | `22321c232fc991604a285085f1ec05cd881b191d9e0aa0b8f40fdb70761450d9` |
+| `scripts/render-situational.sh` | `943325f45c33ca57a93beb256cd17a7ec4989892ee0c70b9e15a7167a4a8a959` |
+| `scripts/test-situational.py` | `c45ad571da176010409daf9261e7e888a8fb5bc5f1ad68bb6c7138d620d55a1b` |
+| `package.json` | `fe05954c68d855027db3ff5c82360ab7b464a14d584e5ae90e84dd701047a7b9` |
+| `package-lock.json` | `574066f2ffdb4b809891d2cfafa7e847b26d7e57f7bdc97fb81e450d01eec193` |
+
+This adaptation establishes tested mechanics, not editorial quality, legal accuracy, client truth, link-destination quality, service availability, Microsoft Word fidelity, or SEO performance. Other Situational nodes remain pending separate adaptation and evidence.
+
+## 2026-09-16: Automatic strategist/reviewer learning-loop retrieval
+
+The repository already instructed substantive use of the read-only `seo_reviewer`, evidence-based reconciliation, bounded repair, and evidence-based persistence. The demonstrated gap was retrieval: fresh prompt inspection exposed `AGENTS.md` and recursive-skill metadata but not retained lesson bodies, and no executable lifecycle hook existed.
+
+The smallest retained correction has two layers:
+
+- `AGENTS.md` now requires targeted retrieval of scoped, adopted prior lessons before substantive decisions and proactive reviewer use without a user reminder. `learning/README.md` now distinguishes substantive reusable changes from simple preferences and no-op task completion.
+- `.codex/hooks.json` adds a separately trusted `UserPromptSubmit` candidate router. Its versioned helper reads only allowlisted shared record headings, never client files or transcripts, and emits no lesson body. It cannot select the reviewer, adjudicate evidence, or save a lesson because those decisions remain instruction-driven and this Codex version skips `agent` hook handlers.
+
+An initial independent `seo_reviewer` pass required the trust, authority, privacy, scoping, and evidence distinctions implemented above; its final read-only recheck found no remaining blocker or material issue. The focused helper suite passes eight original, different, minor, unrelated, malformed, client-safety, matching, and no-match cases. A clean read-only agent session retrieved the relevant Core path-mapping and bounded `FL-M008` navigation corrections, invoked the project reviewer without being prompted to do so, and incorporated its material qualifications without creating a new lesson. Structured `hooks/list` reports the project hook enabled with no hook warnings or errors, but `trustStatus="untrusted"`; lifecycle execution remains pending Casey's review in `/hooks`, and no bypass was used.
+
+The retained learning-record reference changed from SHA-256 `627d9c23cadef1dc256a920bdafd01b62dee88220465ab86c292ab16e6249b6c` to `4846c51d12b236fbd6a5966035efb5e9a1c169fb69746bf5aaeb8fb583442193`. This is a local operational record, not model training, native memory, a guarantee of future reviewer selection, or proof of SEO impact.

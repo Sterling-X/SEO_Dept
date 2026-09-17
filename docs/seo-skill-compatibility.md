@@ -1,13 +1,13 @@
 # SEO Skill Compatibility
 
-Status: 2026-09-15 on `seo-agent-foundation`
+Status: 2026-09-16 on `seo-agent-foundation`
 
 This document is the local compatibility contract for skills imported from `SEO_Skills_Transfer.json`. Baseline commit `9d8e07f` preserves the unchanged export. Read this document and [SEO Skill Local Adaptations](seo-skill-local-adaptations.md) before relying on an imported skill. File presence or Codex discovery does not mean that a workflow's dependencies, execution, factual accuracy, or performance have been validated.
 
 ## Precedence and boundaries
 
 - Current user, runtime, and repository instructions take precedence over imported skill or voice text.
-- The transfer is a data export, not an executable installer. Baseline commit `9d8e07f` preserves all 67 payload files byte-for-byte; the working tree now has 14 explicitly logged metadata adaptations, while the other 53 payload files remain identical to the export.
+- The transfer is a data export, not an executable installer. Baseline commit `9d8e07f` preserves all 67 payload files byte-for-byte. Subsequent metadata and bounded workflow changes are recorded in [SEO Skill Local Adaptations](seo-skill-local-adaptations.md); use that log rather than assuming current byte identity.
 - Imported files do not supply credentials, connectors, account access, packages, live research, document rendering, or background services.
 - Repository files and Git history provide local persistence. They are not ChatGPT memory and do not synchronize the source export.
 - Changing facts, legal claims, financial claims, office details, products, rates, policies, and live search behavior still require current authoritative sources.
@@ -31,20 +31,20 @@ Do not infer a client voice from the vertical alone. Reverify changing client fa
 |---|---:|---|---|
 | `seo-marketing-sage` | 17 | Capability verification pending | All 13 references are present. Its inherited README mentions Claude and a `Skill.md` alias; the actual entrypoint is `SKILL.md`. Current claims still need verification. |
 | `family-law-service-pages` | 3 | **Source package incomplete; Core route locally repaired** | The original transfer remains incomplete. The Core Practice-Area Hub route now has a documented local template/generator/structural validator, a genuine separately recovered page validator, isolated dependencies, positive and negative tests, and six-page render inspection. The Procedural route remains pending. |
-| `family-law-situational-pages` | 3 | **Source package incomplete** | Missing template and validators. User/runtime instructions resolve the source's conflicting hierarchy and missing-voice language; choose voice explicitly. |
+| `family-law-situational-pages` | 3 | **Source package incomplete; FL-M008 route locally repaired** | The missing originals remain unavailable. A labeled local template, generator, validators, tests, and render wrapper are demonstrated only for `FL-M008` High-Conflict Divorce. Other Situational routes remain pending; choose client voice explicitly. |
 | `family-law-service-area-seo` | 3 | **Source package incomplete** | Missing validator. DOCX production, live research, and sometimes map creation require real local capabilities; literal tool names in source prose are not capability proof. |
 | `family-law-paid-landing-page-strategist` | 3 | Capability verification pending | No bundled-file gap found. Client claims and geography still require evidence. |
 | `family-law-red-team-qa-reviewer` | 3 | Capability verification pending | Route the client voice explicitly. Legal claims require `legal-content-accuracy-qa` plus actual live primary-source research. |
 | `legal-content-accuracy-qa` | 5 | Capability verification pending | Both references are present. An offline pass is not a completed legal-accuracy pass. |
 | `qa-output-checker` | 5 | Capability verification pending | Both references are present. `extract-text`, Pandoc, `openpyxl`, and `python-pptx` need separately verified local tools or equivalents; report unavailable checks. |
-| `recursive-self-improvement` | 4 | Capability verification pending | The learning record is present. Use the local skill-authoring workflow; no memory sync or background service was installed. |
+| `recursive-self-improvement` | 4 | Capability verification pending | The instruction-driven persistence workflow and a bounded local candidate-routing helper have been checked. The project hook runs only after separate hook trust; reviewer selection, relevance, reconciliation, and lesson adoption remain instruction-dependent. No memory sync or background service is installed. |
 | `ai-first-content-writer` | 9 | Capability verification pending | All referenced scripts and references are present. Node `docx` is not bundled, the named runtime modules path cannot be assumed, and document rendering remains unverified. Run helpers in an isolated task directory because they use and may overwrite working-directory `content.json`. |
 | `cluster-blog-writer` | 3 | **Source package incomplete** | Missing validator. `/mnt/skills/public/docx/SKILL.md` is not an assumed-valid path on this Mac. |
 | `sterling-voice` | 3 | Capability verification pending | Route only for `sterlinglawyers.com`; reverify changing office, staff, fee, and service facts. |
 | `write-blattner-voice` | 3 | Capability verification pending | Route explicitly for `jmblattner.com`; reverify changing firm facts. |
 | `servicecu-voice` | 3 | Capability verification pending | Route for `servicecu.org`; reverify rates, eligibility, products, and other changing facts. |
 
-The original import classified ten skills as `local-capability-verification-pending` and four as `source-package-incomplete`. The Core branch repair below changes local branch readiness, not the original transfer's completeness or any other skill's status. These labels do not describe Codex discovery.
+The original import classified ten skills as `local-capability-verification-pending` and four as `source-package-incomplete`. The Core branch and bounded `FL-M008` repairs below change only their documented local route readiness, not the original transfer's completeness or any other skill's status. These labels do not describe Codex discovery.
 
 ## Incomplete source workflows
 
@@ -70,6 +70,13 @@ Current local disposition:
 - `.agents/skills/family-law-situational-pages/scripts/office/validate.py`
 - `.agents/skills/family-law-situational-pages/scripts/validate-page.js`
 
+Current local disposition:
+
+- No genuine original was recovered for any of the three named dependencies.
+- Each named path now contains a **LOCAL REPLACEMENT / NOT RECOVERED ORIGINAL** scoped to the demonstrated `FL-M008` High-Conflict Divorce route.
+- `scripts/build-situational.js`, `scripts/render-situational.sh`, `scripts/test-situational.py`, isolated Node dependencies, and `LOCAL-REPLACEMENT.md` supply the bounded executable contract and provenance.
+- These additions do not establish readiness for another Situational node and do not use the Core Hub content template.
+
 ### `family-law-service-area-seo`
 
 - `.agents/skills/family-law-service-area-seo/scripts/validate-page.js`
@@ -80,7 +87,7 @@ Current local disposition:
 
 The initial exact repository path/name search found no genuine originals. A later authorized search of Downloads, archives, local skill snapshots, and Git histories recovered only the service-page JavaScript validator above. The paired archive also contains a byte-identical copy of the imported service-page `SKILL.md`, establishing companion provenance. Its README has a future-dated heading inconsistent with its file timestamps, so provenance rests on the byte-level pairing and instructions rather than that heading. No genuine Core template, Procedural template, or package-owned structural validator was found. Repeated filenames in other packages remain distinct dependencies.
 
-The service-page **Core Hub branch** may now be used within the verified commands and limits below. Do not extend that result to its Procedural branch or to the other three source-incomplete workflows. Those pending routes may inform analysis but are not validated finished-document workflows.
+The service-page **Core Hub branch** and the separate `FL-M008` Situational route may now be used only within their respective verified commands and limits below. Do not extend the Core result to its Procedural branch or the `FL-M008` result to other Situational nodes. Other pending routes may inform analysis but are not validated finished-document workflows.
 
 ## Verified local Core Practice-Area Hub route
 
@@ -135,7 +142,47 @@ The Node dependencies are isolated by the skill's `package.json` and lockfile. V
 - A manifest records publication and gate evidence; the generator does not crawl or independently prove those assertions. V2 hierarchy and visual grouping never substitute for the exact directional relationship check.
 - The synthetic fixture contains no substantive legal claim, so legal QA was not applicable. Any production legal claim still requires live primary-authority verification through `legal-content-accuracy-qa`; a structural or mechanical PASS is not legal clearance.
 - Human inspection is still required for every render. LibreOffice output can differ slightly from Microsoft Word. This machine's PDF substituted Liberation Sans for the requested Arial, although the DOCX OOXML retains Arial; Word-specific font/layout fidelity remains unverified.
-- The Procedural template, generator contract, branch-specific tests, and end-to-end validation remain pending. No readiness is claimed for `family-law-situational-pages`, `family-law-service-area-seo`, or `cluster-blog-writer`.
+- The Procedural template, generator contract, branch-specific tests, and end-to-end validation remain pending. Situational readiness is limited to the separately documented `FL-M008` route; no readiness is claimed for any other Situational node, `family-law-service-area-seo`, or `cluster-blog-writer`.
+
+## Verified local `FL-M008` Situational route
+
+Verified on 2026-09-16 through the Fanash High-Conflict Divorce replacement assignment. The source package remains incomplete; this is a labeled, bounded local replacement.
+
+### Working commands
+
+From the repository root:
+
+```bash
+npm ci --prefix .agents/skills/family-law-situational-pages
+
+node .agents/skills/family-law-situational-pages/scripts/build-situational.js \
+  path/to/workflow-input.json path/to/florida-high-conflict-divorce-situational.docx
+
+python3 .agents/skills/family-law-situational-pages/scripts/office/validate.py \
+  path/to/florida-high-conflict-divorce-situational.docx --manifest path/to/workflow-input.json
+
+node .agents/skills/family-law-situational-pages/scripts/validate-page.js \
+  path/to/florida-high-conflict-divorce-situational.docx --manifest path/to/workflow-input.json
+
+.agents/skills/family-law-situational-pages/scripts/render-situational.sh \
+  path/to/florida-high-conflict-divorce-situational.docx --output_dir path/to/new-or-empty-render-directory \
+  --dpi 144 --emit_pdf --verbose
+
+python3 .agents/skills/family-law-situational-pages/scripts/test-situational.py
+```
+
+### Verified capabilities and limits
+
+- The generator reads the governing V2 HTML at runtime and requires the exact `FL-M008` page type, role, reference path, brief type, and word target while keeping the retained client URL separate.
+- The Situational contract requires two answer-first opening paragraphs, scenario ownership, selective legal/stakes context, practical strategy, verified firm-help language, a final CTA, optional scenario FAQ, Sources last, and 1,100–1,700 consumer-copy words. It rejects general-Divorce-Hub and Contested-procedure intent substitution.
+- Schema version 2 separates four link authorities. V2 remains authoritative for classification, hierarchy, and `v2-explicit-relationship` links, which still require exact outgoing `FL-M008` edges. Separately, this bounded route requires one `skill-parent-navigation` link to the actual V2 parent, one `skill-process-bridge` link to `FL-M004`, and one final `consultation-cta`; none may be mislabeled as an outgoing V2 edge. Every destination still requires dated, direct-200, zero-redirect, right-service evidence, and held V2 targets fail.
+- DOCX output and validation cover Letter geometry, one-inch margins, Arial 12 pt body and Sources, styled 18/15/13 pt headings, real lists, metadata, comments/revisions, link and citation binding, placeholders, paragraph limits, and the Situational sequence.
+- Twenty-one focused regression cases pass. They cover the three required non-edge authorities, an additional exact `FL-M010` edge, false V2 labels for the Hub and Contested links, missing or wrong authority, wrong V2 targets, invented edge fields, CTA field and placement failures, an empty manifest, Hold status, unverified and duplicate destinations, contamination, missing styles, duplicate rendered links, and 9 pt Sources.
+- Rendering delegates only generic DOCX rendering to the pinned Core renderer wrapper. The Situational template, content structure, manifest, and link contract remain separate and are explicitly labeled.
+- Mechanical PASS does not establish legal accuracy, client truth, voice quality, service acceptance, intent quality, destination quality, visual quality, or performance. Each production draft still requires current primary authority, client evidence, independent review, mechanical QA, fresh render inspection, and human approval.
+- No readiness is claimed for another Situational node. Adapting one requires its own V2 contract, tested branch behavior, and evidence.
+
+The read-only `seo_reviewer` identified a missing mediation qualification, a definition-first opening, 9 pt Sources, stale compatibility records, and incomplete destination-screen reproduction. The production draft, Source style and validator, negative regression, and records were corrected; exact reconciliation remains with the Fanash deliverable. The reviewer’s optional broader `Draft`-field hardening was deferred because the current fields are clean and this repair is limited to components necessary for `FL-M008`.
 
 ## Actual Codex discovery
 
@@ -146,7 +193,9 @@ With `codex-cli 0.154.0-alpha.6.2` in this repository on 2026-09-15, the unchang
 - all 14 files retain `allow_implicit_invocation: true`; and
 - repository `invalid openai.yaml` warnings fell to zero.
 
-The exact metadata changes and before/after hashes are recorded separately in the adaptation log. The other 53 imported files still match their export hashes. Discovery establishes resolver, interface, and model visibility only; it is not proof that scripts run, dependencies exist, outputs are correct, or SEO performance improves.
+The product-policy metadata changes and their then-current hashes are recorded separately in the adaptation log. Later Core and bounded Situational repairs create additional documented divergences from the preserved export. Discovery establishes resolver, interface, and model visibility only; it is not proof that scripts run, dependencies exist, outputs are correct, or SEO performance improves.
+
+The installed `codex-cli 0.154.0-alpha.6.2` also reports the `hooks` feature as stable and enabled. The project now defines one read-only `UserPromptSubmit` candidate router in `.codex/hooks.json`. Codex supports command hooks that add context, but it currently parses and skips `agent` hook handlers, so the hook cannot invoke `seo_reviewer`. Project trust and hook-definition trust are separate: the helper's direct tests do not establish lifecycle activation, which remains pending until the exact non-managed definition is reviewed in `/hooks` and exercised in a new session.
 
 ## Remaining repair order
 

@@ -1,0 +1,20 @@
+$ node /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/build-core-hub.js /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/mapped-client-urls.json /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/example-mapped-divorce-core.docx
+exit=0
+
+DOCX written: /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/example-mapped-divorce-core.docx
+V2 node: FL-PA-DIV (Divorce) • PASS — CANONICAL
+V2 reference: /divorce/ • client URL: https://example.com/wisconsin/divorce/
+Content words: 1832 • manifested links: 5 • sources: 0
+Scope: generation only; editorial and legal review remain required.
+
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/office/validate.py /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/example-mapped-divorce-core.docx --manifest /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/mapped-client-urls.json
+exit=0
+
+
+=== Core Hub structural validation: example-mapped-divorce-core.docx ===
+
+Inventory: words=1832 | headings=14 | lists=10 | hyperlinks=5 | manifest_links=5 | sources=0
+
+PASS: Supported deterministic Core Hub checks cleared.
+
+Scope: structure and manifest mechanics only; not editorial, SEO, visual, publication, or legal clearance.

@@ -1,0 +1,45 @@
+## Verdict
+
+Ready with two small record corrections. The route dispositions are evidence-based and proportionately scoped:
+
+- Cleared: Contested, Mediation counsel, Legal Separation alternatives, Gray Divorce.
+- Route-specific holds: Uncontested, High Asset, Filing.
+- Unresolved hold: Annulment.
+
+No Hub-wide blocker is justified.
+
+## Blockers
+
+None.
+
+## Material improvements
+
+1. **Make the Annulment classification explicit.**
+
+   - Evidence: The row calls the central legal content a “significant unresolved legal-evidence risk” but does not expressly classify it as **unverified**.
+   - Issue: The user required one of the stated evidence classifications for every condition.
+   - Correction: Label the grounds and consequences **unverified within this screen**. Preserve the route hold because these claims determine eligibility and consequences—the page’s central purpose.
+
+2. **Add authority supporting the High-Asset hold’s materiality.**
+
+   - Evidence: The closing calls Fanash “one of Orlando’s top high-asset divorce attorneys.” Current Florida Bar Rule 4-7.13(b)(3) requires characterizations or comparisons of skill, experience, reputation, or record to be objectively verifiable.
+   - Issue: The disposition is reasonable, but the record currently supports materiality mainly by assertion.
+   - Correction: Cite the current Florida Bar advertising rule or handbook. Keep the hold until Fanash supplies objective support or removes “top.” No other High-Asset claim independently justifies withholding the link.
+
+## Confirmed distinctions
+
+- Mediation expressly describes counsel and preparation; neutral-mediator services remain a separate unresolved question.
+- SmartStep, hourly retainers, and hybrid arrangements coexist on Fanash’s pricing page. Their coexistence is not contradictory; only matter-specific applicability remains ambiguous.
+- Generic “team” language does not claim multiple attorneys. The firm-size evidence supports checking explicit “attorneys/Lawyers” wording but does not disprove experience.
+- The filing-venue hold is correct. Section 47.011, *Goedmakers*, and official *Huber* authority show that “where at least one spouse resides” is incorrect as a universal dissolution-venue rule.
+- The rules-link evidence is accurately characterized: a successful HTTP exchange returned `307`, followed by an actual `404`; this was not a transport or retrieval failure.
+- The Uncontested hold is proportionate because the categorical opening materially frames cost, timing, and hearing expectations. Its dead outbound source is backlog work, not an independent Hub-link blocker.
+- Current intake confirmation is correctly scoped to each service route and does not block Hub preparation or unrelated links.
+
+## Optional refinement
+
+Describe the Legal Separation fragment as requiring an “editorial correction” to match the user’s requested classification vocabulary.
+
+## Checks not performed
+
+No intake confirmation, complete Annulment case-law review, comprehensive destination audit, analytics review, or Florida-attorney approval was performed. The external-correction record did not yet exist when reviewed and remains a completion item. No authoritative Fanash voice skill exists.

@@ -1,0 +1,14 @@
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/rocketclicks_1/SEO_Dept/.agents/skills/family-law-service-pages/scripts/office/validate.py /var/folders/jz/_p5xyhqj24bfg6ml62jjxbym0000gp/T/core-hub-negative-ib2wz8q5/synthetic-divorce-core.docx --manifest /Users/rocketclicks_1/SEO_Dept/evaluations/runs/2026-09-15-family-law-core-hub-workflow/synthetic-divorce-core-input.json
+exit=1
+
+
+=== Core Hub structural validation: synthetic-divorce-core.docx ===
+
+Inventory: words=1832 | headings=16 | lists=10 | hyperlinks=5 | manifest_links=5 | sources=0
+
+FAIL (3):
+  ✗ Required cta section has no body content in the DOCX.
+  ✗ DOCX/manifest structure differs at content paragraph 56: expected paragraph, found Heading3.
+  ✗ DOCX/manifest structure differs at content paragraph 57: expected paragraph, found Heading3.
+
+Scope: structure and manifest mechanics only; not editorial, SEO, visual, publication, or legal clearance.

@@ -1,0 +1,46 @@
+## Blockers
+
+None.
+
+The Annulment link matches the exact `FL-PA-DIV → FL-M009` canonical edge, appears once at a contextually strong process-choice placement, and preserves Core intent separation. The Fanash destination returned direct `200`.
+
+The parenting copy accurately reflects current [Fla. Stat. § 61.13](https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0061/Sections/0061.13.html): statutory exceptions and party agreement qualify the presumption, rebuttal requires a preponderance of evidence, and best-interests findings and safety remain addressed.
+
+All requested phrases are absent. Their replacements are direct, first-party-supported, and add no credentials, pricing, or outcome promises.
+
+## Material improvements
+
+1. **Evidence:** [supporting-record.md](</Users/rocketclicks_1/SEO_Dept/clients/fanash/deliverables/florida-divorce-core/supporting-record.md:204>) says the targeted review is recorded below, but no finishing-review disposition or raw response is present. Line 208 promises final hashes without listing them.
+   **Issue:** The record currently claims completion evidence that has not yet been appended.
+   **Correction:** Preserve this response under a distinct finishing-review filename, add the strategist’s reconciliation, then record hashes for the final DOCX, input, record, and copied notes.
+
+## Optional refinements
+
+None necessary.
+
+## Checks not performed
+
+- No Microsoft Word render; LibreOffice/PDF/PNG evidence was reviewed.
+- No form submission, intake call, or operational service-acceptance confirmation.
+- No analytics, conversion, ranking, or search-query analysis.
+- No full legal/content QA of linked destination pages.
+- No broad crawl.
+
+Independent checks completed:
+
+- Reviewer notes and original raw response have identical SHA-256 hashes.
+- Structural validation passed: 1,928 words, 25 headings, 11 list items, 32 hyperlinks, eight manifested links, 12 sources.
+- Page validation passed without warnings.
+- The fresh PDF has eight US Letter pages, 44 clickable rectangles, and exactly 20 expected unique URLs.
+- All nine scoped Fanash URLs returned direct `200`.
+- The dead Florida Courts compilation URL returned `404`; the record accurately identifies the [Florida Bar Chapter 12 compilation](https://www.floridabar.org/rules/ctproc/) as updated October 1, 2025 and separately qualifies the October 1, 2026 amendments.
+
+## Learning-record verdict
+
+Approved as a narrow documentation-only clarification.
+
+- **Original — `FL-M009`:** V2 classifies Annulment as Procedural / Procedure / Optional, `/divorce/annulment/`, `PASS — CANONICAL`, with a direct contextual parent-child edge. The live, relevant Fanash destination and single strong placement support inclusion. Optional status neither requires nor independently prevents a link.
+- **Different relevant — `FL-M008`:** Its `200` response does not cure cross-topic metadata and copy defects. Exclusion remains justified, but repair governs only later activation of that link and does not block this draft.
+- **Unaffected — cross-hub links:** The draft activates only eight resolved parent-child edges. Missing cross-hub edges remain unspecified by V2 and are not described as universally prohibited; the clarification does not invent or activate them.
+
+The lesson should explicitly state that it changes no V2 relationship, generator rule, validator, or automatic activation behavior.

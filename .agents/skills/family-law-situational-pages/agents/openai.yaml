@@ -12,6 +12,8 @@ interface:
     lives under a core hub but is not a process page. Do NOT use for Core Practice
     Area pages or Procedural pages (use family-law-service-pages instead). Do NOT
     use for blog content (use cluster-blog-writer instead) or for non-family-law verticals.
+    Local executable readiness is demonstrated only for FL-M008 High-Conflict Divorce;
+    other Situational routes remain dependency-incomplete.
   icon_small: assets/icon.svg
   icon_large: assets/icon.svg
 policy:

@@ -5,6 +5,14 @@ description: "Produce full-copy family law situational pages delivered as DOCX f
 
 # Family Law Situational Page Writer
 
+## Local repository status
+
+> **LOCAL REPLACEMENT / NOT RECOVERED ORIGINAL**
+
+The imported transfer omitted the template and executable validation workflow named below. This repository now has a bounded local replacement for the demonstrated `FL-M008` High-Conflict Divorce route only. Read `LOCAL-REPLACEMENT.md` before use. Other Situational nodes remain dependency-incomplete and must be reported as pending rather than routed through this workflow.
+
+For `FL-M008`, the governing Family Law V2 HTML remains authoritative for classification, hierarchy, and its explicitly recorded relationships. The local schema distinguishes that authority from three separate requirements: one skill-required parent-Hub navigation link to the actual V2 parent, one skill-required process bridge to `FL-M004` Contested Divorce under that parent, and one consultation CTA. The parent and process links are not claimed as outgoing V2 edges and must omit `v2_edge_id`; additional architecture links still require exact outgoing V2 edges. Every destination requires a documented direct-200, zero-redirect, right-service screen. This replacement does not use the Core Hub content template.
+
 ## Purpose
 
 This skill produces publication-ready family law situational pages as DOCX files. It covers one page type within a defined site architecture:
@@ -266,7 +274,7 @@ Example: `Illinois courts evaluate the child's best interests using statutory fa
 
 ## Internal Linking Rules
 
-These are non-negotiable. They come from the site architecture and exist to prevent cannibalization, consolidate authority, and guide user journeys.
+The generic defaults in this imported section remain advisory outside a governing client architecture. For the demonstrated local `FL-M008` route, V2 controls classification, hierarchy, and any link asserted as an explicit V2 relationship. A missing V2 edge does not cancel the skill's separate parent-navigation or process-bridge requirements. Schema version 2 records each link's actual `supporting_authority`: `skill-parent-navigation` for the actual V2 parent Hub, `skill-process-bridge` for bounded `FL-M004`, `consultation-cta` for the final contact invitation, or `v2-explicit-relationship` for an additional exact outgoing V2 edge. Do not assign a `v2_edge_id` to the two skill-required links or the CTA.
 
 ### Single-Placement Rule (Hard Requirement)
 
@@ -387,8 +395,10 @@ Examples: `illinois-relocation-disputes-situational.docx`, `florida-high-conflic
 
 After generating the DOCX, run two scans before presenting it to the user:
 
-1. `python scripts/office/validate.py` for structural validation.
-2. `node scripts/validate-page.js path/to/page.docx` for the page-level pre-delivery scan: duplicate-URL detection, banned linking patterns, em-dash detection, banned-phrase detection, and "North Star" usage count. The script exits non-zero if any hard rule fails. Do not present the file until the validator passes.
+1. `python3 scripts/office/validate.py path/to/page.docx --manifest path/to/workflow-input.json` for structural validation.
+2. `node scripts/validate-page.js path/to/page.docx --manifest path/to/workflow-input.json` for the page-level pre-delivery scan.
+
+For the locally demonstrated route, generate with `node scripts/build-situational.js path/to/workflow-input.json path/to/florida-high-conflict-divorce-situational.docx` and render with `scripts/render-situational.sh ... --output_dir path/to/empty-directory`. Run `python3 scripts/test-situational.py` before relying on the workflow. The scripts exit non-zero if any tested hard rule fails.
 
 ---
 
@@ -400,12 +410,14 @@ Before delivering the DOCX, verify the following. If any gate fails, fix it befo
 2. **Intent separation** -- Does this page serve scenario-specific service intent without drifting into broad hub copy or a full process guide?
 3. **Answer-first** -- Do the first two paragraphs directly address the primary situational search intent?
 4. **Structural links** --
-   a. Is the required backlink to the parent hub present?
-   b. Is the required bridge to the closest Procedural page present where it exists?
-   c. Does each unique destination URL appear EXACTLY ONCE? Run a duplicate-URL scan before delivery. (Statute body+Sources pairs are exempt.)
-   d. Is each link embedded as a lead-in (surrounding prose is *about* the linked topic), NOT as a tag-on "See our X page"?
-   e. Are any links clustered in a multi-link sentence outside the Related Issues / Next Steps module? If yes, redistribute them to their strongest individual placements.
-   f. Are secondary contextual links within the allowed maximums?
+   a. Does the local `FL-M008` manifest contain exactly one `skill-parent-navigation` link to its actual V2 parent, exactly one `skill-process-bridge` link to `FL-M004`, and exactly one `consultation-cta` after the final CTA heading?
+   b. Do the parent and process links omit `v2_edge_id` and remain described as skill-required navigation, not outgoing V2 edges? Does the CTA omit every V2 target/path/edge field?
+   c. Does every additional `v2-explicit-relationship` link identify an exact outgoing V2 edge and pass the V2 target gate?
+   d. Does every destination have dated direct-200, zero-redirect, right-service evidence?
+   e. Does each unique destination URL appear EXACTLY ONCE? Run a duplicate-URL scan before delivery. (Statute body+Sources pairs are exempt.)
+   f. Is each link embedded as a lead-in (surrounding prose is *about* the linked topic), NOT as a tag-on "See our X page"?
+   g. Are any links clustered in a multi-link sentence outside the Related Issues / Next Steps module? If yes, redistribute them to their strongest individual placements.
+   h. Are secondary contextual links within the allowed maximums?
 5. **Selective process explanation** -- Does the page explain only as much procedure as the reader needs before routing them to the Procedural page?
 6. **Not blog-like** -- Does the page avoid listicle framing, article-style sprawl, and loose educational tone?
 7. **State-specific verification** -- Have all state-specific legal claims been researched and verified? Are statutes cited with proper footnote references?

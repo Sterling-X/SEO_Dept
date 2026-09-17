@@ -1,0 +1,53 @@
+## Overall conclusion
+
+One bounded legal blocker remains. Otherwise, the draft correctly preserves `FL-M008`’s Situational role, removes collaborative-divorce contamination, uses supported Fanash claims, and follows exact V2 link direction.
+
+I independently reran all nine workflow tests and both validators; they passed. I also inspected all six rendered pages.
+
+## Blocker
+
+### Missing court-finding qualification in mediation rule
+
+1. **Evidence:** `workflow-input.json` says a court must not refer the case if domestic-violence history would compromise mediation. [Fla. Stat. §44.102(2)(c)](https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0044/Sections/0044.102.html) requires that the court *find* such a history would compromise mediation.
+2. **Issue:** Omitting the court-finding condition could imply a party’s request alone prevents referral.
+3. **Correction:** State that, upon a party’s motion or request, the court must not refer the case if it finds the qualifying domestic-violence history would compromise mediation. Update the manifest, DOCX, and legal-verification table, then rerun legal QA and render. This blocks approval of that passage only, not the architecture or remaining draft.
+
+## Material improvements
+
+### 1. Make the opening answer-first
+
+1. **Evidence:** The first sentence is definitional: “A high-conflict divorce is one in which….” The Situational skill expressly says to answer before defining and not open with a textbook definition.
+2. **Issue:** This weakens the intended decision-focused opening.
+3. **Correction:** Lead with what the reader should prioritize when repeated conflict stalls decisions, then explain that the matter remains a Florida dissolution.
+
+### 2. Restore the required source-text size
+
+1. **Evidence:** The skill requires 12-point body text. The generator explicitly sets Sources entries to `size: 18`, meaning 9 points. Page 6 is legible but undersized.
+2. **Issue:** The DOCX does not fully follow its stated formatting contract, and the validator does not detect this.
+3. **Correction:** Set Sources labels and URLs to 12 points, enforce that size in structural validation, add a negative test, regenerate, and inspect the fresh render.
+
+### 3. Reconcile the workflow records
+
+1. **Evidence:** The supporting record says the correction is recorded in compatibility and local-adaptation records. `docs/seo-skill-compatibility.md` still says the Situational template and validators are missing and claims no readiness for the skill; no corresponding local-adaptation entry exists.
+2. **Issue:** Future users would receive contradictory readiness guidance.
+3. **Correction:** Record that the source package remains incomplete but the bounded `FL-M008` route now has labeled local replacements and demonstrated readiness. Preserve all other Situational routes as pending.
+
+### 4. Preserve the exact destination-screen evidence
+
+1. **Evidence:** The supporting table records node names and `404` results but not the actual client URLs tested. V2 reference paths and client implementations are intentionally separate.
+2. **Issue:** The empty-link decision is not fully reproducible from the record.
+3. **Correction:** Add the exact eight attempted Fanash URLs, verification date, direct `404`, and zero-redirect result. Qualify the check as the obvious client-prefix mapping, not a broad alternate-route search. The empty link manifest remains supported.
+
+## Optional refinement
+
+Extend the route validator’s `Draft` check beyond the title tag to CMS title, social title, social description, meta description, and H1, with a negative regression case. The current fields are clean, so this is preventive hardening.
+
+## Checks not performed
+
+- Desktop Microsoft Word rendering.
+- Intake confirmation that Fanash currently accepts new high-conflict matters.
+- Form submission or consultation-path testing.
+- Analytics, Search Console, CRM, call, inquiry, or keyword-demand analysis.
+- Broad crawl or exhaustive alternate-route discovery.
+- Review of an implementation image or alt text because no replacement asset was selected.
+- Client or Florida-attorney approval.

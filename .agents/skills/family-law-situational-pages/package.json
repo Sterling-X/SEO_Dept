@@ -1,0 +1,14 @@
+{
+  "name": "family-law-situational-pages-local-tooling",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scoped local replacement tooling for the demonstrated FL-M008 Situational-page workflow.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "adm-zip": "0.6.1",
+    "docx": "9.7.1"
+  },
+  "scripts": {
+    "test:fl-m008": "python3 scripts/test-situational.py"
+  }
+}
