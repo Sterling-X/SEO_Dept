@@ -204,3 +204,141 @@ for family law enquiries, and the feed begins 2026-01-01 so no prior year exists
 Feb-Apr vs May-Jul windows used instead. Colorado total: impressions 14,306 -> 17,227
 (+20%), actions 1,619 -> 1,323 (-18%), action rate 11.32% -> 7.68% (-32%), same direction
 at all five locations.
+
+---
+
+# Review round 2 corrections applied 2026-09-18
+
+Second `seo-reviewer` pass on the Colorado owner brief: 4 blockers, 14 material findings.
+Repair cap under AGENTS.md now reached (2 rounds). Each adopted item was re-verified
+against BigQuery; the reviewer had no database access and took all new evidence as given.
+
+## Confirmed and corrected
+
+1. **Service Area Business mechanism was factually wrong (B2) — CONFIRMED, corrected.**
+   The brief claimed an SAB "covers a broad radius instead." An SAB's distance is still
+   computed from the hidden physical address, and declaring a service area does not confer
+   rankings there. This was the load-bearing premise of the Denver section and the
+   justification for the top recommendation. Replaced with the duplicate-listing-filter
+   mechanism, explicitly labelled speculation, and the "leading explanation" framing
+   downgraded.
+
+2. **Denver's decline is not a one-week event (N6) — CONFIRMED, corrected.** Footprint ran
+   ~25% (Feb-Mar), 18.5% (Apr), ~15% (Jun-13 Jul), then 7.1% (20 Jul onward). About 40% of
+   the fall preceded the SAB event. "Halved in a single week" replaced with the full series.
+
+3. **Cross-location July check (N7) — RUN, and it favours the hypothesis.** Reviewer
+   correctly identified this as the highest-value missing check and raised documented
+   Google volatility on 11-12 July 2026 as a confound. Result: between 13 and 20 July
+   Denver's footprint fell **7.9pp** while all seven other locations moved **0.6pp or
+   less** (Fort Collins +0.6, Englewood -0.6, Colorado Springs -0.2, Commerce City -0.1,
+   Cheyenne/Chicago/Boca Raton 0.0). A market-wide update would have moved more than one
+   location, so the volatility confound is ruled out as the explanation. Added to the brief
+   along with the confound itself.
+
+4. **Denver's own listing was never checked (N8) — CHECKED, stable.** One `business_place_id`
+   (ChIJQ1eQhKV7bIcRhBPiabLRgT0), one address, one store code (70215), one name across all
+   89 scans 2026-02-11 to 2026-09-14. Rules out a Denver-side address edit or relisting.
+   Untracked GBP fields (categories, hours, services, website URL) remain unchecked and are
+   now disclosed as such.
+
+5. **"Calls are down" was asserted but never measured (B4) — CONFIRMED, corrected.** Calls
+   now broken out: Feb-Apr 193 -> May-Jul 166 (**-14%**), website clicks 584 -> 452 (-23%),
+   direction requests 842 -> 705 (-16%). The heading is supportable but the composite is
+   **52% direction requests**, which are not contacts; disclosed in the brief.
+
+6. **The dilution story could not explain the absolute loss (N1) — CONFIRMED, corrected.**
+   Holding the original 14,306 impressions at 11.32% predicts 1,619 actions against 1,323
+   observed. Even assigning zero actions to all 2,921 incremental impressions, the
+   pre-existing base must have underperformed. ~296 actions are unexplained by impression
+   quality. The brief no longer presents the dilution reading as a resolution.
+
+7. **Action rate is a STEP, not a slide — new finding, materially changes the read.**
+   Monthly Colorado action rate: Jan 11.49, Feb 10.02, Mar 12.52, Apr 11.33, May **7.03**,
+   Jun 8.73, Jul 7.60. Break falls at the April-May boundary, where impressions also rose
+   41% in one month. That shape indicates a change in what Google counts as an impression
+   rather than gradual performance decline, which makes the -32% action-rate figure
+   unsafe to report as a result. Two consequences: (a) it **rebuts reviewer N2's** concern
+   that the table supports "action rate fell after the agency arrived" — March (12.52%) and
+   April (11.33%) were both above January, so the engagement's first two months were the
+   year's strongest on this measure, and the break is two months later; (b) the unexplained
+   absolute action decline is now reported separately from the rate.
+
+8. **July did not partially degrade (reviewer optional item) — CHECKED, clean.**
+   Per-location zero-search-impression days: 0 of 155 in July (0 of 150 Jan-May, 1 of 150
+   June), against 34 of 155 in August and 32 of 70 in September. The May-Jul window is not
+   understated, so the decline is not an artifact of partial truncation.
+
+9. **Attribution boundary moved into the summary and the table structure (B3) — CONFIRMED.**
+   The headline claimed three improvements while the limits section supported two. The
+   location table now has separate pre-engagement (11 Feb - 2 Mar) and during-engagement
+   (2 Mar - 14 Sep) columns, and the takeover date appears in the header. Colorado Springs
+   was corrected from "flat since March" to peaked in March (month mean 9.1%, best scan
+   10.8% on 2 Mar) and drifting down to 7.6% — a mild decline during the engagement, not
+   flatness. Fort Collins is now led with the 2 March baseline (51.3% -> 71.2%).
+
+10. **Prioritization error (B5) — CONFIRMED, corrected.** The brief established that
+    footprint at position ~15 does not convert to top-three share, then made restoring
+    Denver's footprint the top priority. Denver held 25% footprint in February with **0%**
+    top-three share at the same position, so recovery restores presence, not placement.
+    Fort Collins is now #1; the Englewood listing check is #2 on listing-integrity grounds
+    with its expected effect stated plainly.
+
+11. **Footprint instability disclosed (N14) — CONFIRMED.** `(21-atgr)/(21-agr)` has
+    denominator `21-agr`, so at Fort Collins' February agr of 17.52 the denominator is 3.48
+    and ±0.5 in atgr moves footprint ±14pp — on a single unreplicated scan. Denver's July
+    step corresponds to ~13 grid-point appearances of 169. Both now stated.
+
+12. **Review claim softened (N11) — CONFIRMED.** "A review drive will not fix Denver" was an
+    invalid step from cross-sectional non-correlation at n=5 to a within-location causal
+    claim, and it contradicted the adjacent ratings recommendation. Reframed as "not the
+    binding constraint," with Denver's February 25% footprint on the same review count
+    noted, and the ratings recommendation explicitly reconciled.
+
+13. **"Largest market" contradiction (N12) — CONFIRMED.** Commerce City generates more
+    impressions (5,981) than Denver (3,751). Now stated as largest by population and search
+    demand but not by profile views, with the demand basis labelled un-re-verified.
+
+14. **Colorado Springs footprint appeared as three figures (N13) — CONFIRMED.** 45%, 47%
+    and 44% appeared in different sections. Standardised to 44% (August basis) throughout,
+    with the per-term-scan computation level stated.
+
+15. **Seasonality wording (N5) — CONFIRMED.** Excluding January does not remove the normal
+    Q1-to-summer decline in family-law demand. Corrected next to the conclusion rather than
+    only in limits.
+
+16. **Englewood reversal risk (N10) — ADOPTED.** Its best reading was measured under the SAB
+    configuration; reversing may not preserve it. Added, with the counter-evidence that
+    July and August fell after the conversion and only September rose.
+
+## Not adopted, with reasons
+
+17. **Reviewer N3's regression-to-mean reading of the rate spread.** The reviewer noted the
+    -17% to -59% spread and argued the two largest declines are the two smallest bases with
+    anomalous starting rates. That is a fair alternative, but finding 7 supersedes the whole
+    rate framing: if the denominator changed on 1 May, neither the spread nor its uniformity
+    supports any inference. The rate table was removed from the brief rather than
+    re-litigated, so the exemplar objection is moot.
+
+18. **Grid overlap measurement (N9).** No radius or point-spacing field exists in the
+    schema (`grid_size` = 13 and `grid_distance_measure` = "miles" are the only geometry
+    fields), so this cannot be settled from the source. The brief now states the overlap is
+    unverified rather than asserting it.
+
+## Unresolved, carried forward
+
+- **The Denver mechanism is not established.** Timing plus the single-location July move is
+  circumstantial. Only a listing change and re-scan will settle it.
+- **Whether Google changed impression counting on 1 May 2026** is inferred from the step
+  shape, not confirmed. Requires Google or vendor confirmation.
+- **The unexplained ~296-action / -14% call decline** on pre-existing impression volume.
+  Seasonality covers an unknown share; no prior year exists to size it.
+- **Per-location term sets for Chicago, Cheyenne and Boca Raton** remain unverified
+  (original blocker B1), so the 8-location comparison is still unconfirmed. Colorado is
+  verified equivalent and is what the brief covers.
+- **The exact SoLV formula** cannot be recovered from this table because raw values are
+  rounded to 1pp. Vendor support only.
+- **Untracked Denver GBP fields** (categories, services, hours, website URL) and competitor
+  movement across the Denver grid were not checked.
+- **`consistent_terms` fragility and the hardcoded `terms = 4`** (original O1) still stand
+  as a reuse risk in `solv_monthly.sql`.
