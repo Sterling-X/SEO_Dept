@@ -11,11 +11,77 @@
 "lon": -74.111645,
 "state": "NJ"
 },
+"201565": {
+"city": "Jersey City",
+"lat": 40.714809,
+"lon": -74.038292,
+"state": "NJ"
+},
+"201899": {
+"city": "Closter",
+"lat": 40.969643,
+"lon": -73.964621,
+"state": "NJ"
+},
+"202276": {
+"city": "Washington Zone 1",
+"lat": 38.899904,
+"lon": -77.031636,
+"state": "DC"
+},
+"202460": {
+"city": "Washington Zone 1",
+"lat": 38.899904,
+"lon": -77.031636,
+"state": "DC"
+},
 "202664": {
 "city": "Washington Zone 1",
 "lat": 38.899904,
 "lon": -77.031636,
 "state": "DC"
+},
+"202807": {
+"city": "Washington Zone 1",
+"lat": 38.899904,
+"lon": -77.031636,
+"state": "DC"
+},
+"203210": {
+"city": "Wilton",
+"lat": 41.193262,
+"lon": -73.432241,
+"state": "CT"
+},
+"203343": {
+"city": "Ansonia-Derby",
+"lat": 41.324226,
+"lon": -73.089746,
+"state": "CT"
+},
+"203676": {
+"city": "New Haven",
+"lat": 41.30436,
+"lon": -72.925389,
+"state": "CT"
+},
+"203725": {
+"city": "Waterbury",
+"lat": 41.551994,
+"lon": -73.045803,
+"state": "CT"
+},
+"205778": {
+"city": "Birmingham",
+"lat": 33.516853,
+"lon": -86.81076,
+"state": "AL"
+},
+"206235": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
 },
 "206388": {
 "city": "Seattle",
@@ -46,6 +112,42 @@
 "lat": 47.610144,
 "lon": -122.332791,
 "state": "WA"
+},
+"206954": {
+"city": "Seattle",
+"lat": 47.610144,
+"lon": -122.332791,
+"state": "WA"
+},
+"207208": {
+"city": "Brunswick",
+"lat": 43.914244,
+"lon": -69.964305,
+"state": "ME"
+},
+"207300": {
+"city": "Bangor",
+"lat": 44.803086,
+"lon": -68.767589,
+"state": "ME"
+},
+"207553": {
+"city": "Portland",
+"lat": 43.654696,
+"lon": -70.263156,
+"state": "ME"
+},
+"207888": {
+"city": "Portland",
+"lat": 43.654696,
+"lon": -70.263156,
+"state": "ME"
+},
+"208353": {
+"city": "Boise",
+"lat": 43.609412,
+"lon": -116.300572,
+"state": "ID"
 },
 "208421": {
 "city": "Twin Falls",
@@ -78,7 +180,37 @@
 "state": "CA"
 },
 "210123": null,
+"210200": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210202": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210207": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210218": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210224": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210232": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -96,6 +228,18 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210251": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210262": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210264": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -108,13 +252,37 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210268": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210269": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210274": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"210275": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210279": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210288": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -138,13 +306,49 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210300": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210307": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"210310": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210314": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210315": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210316": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210317": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210318": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -162,6 +366,12 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210327": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210330": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -174,7 +384,19 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210338": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210340": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210352": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -199,6 +421,12 @@
 "state": "TX"
 },
 "210372": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210373": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -288,13 +516,31 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210416": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210421": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"210422": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210425": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210426": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -324,6 +570,18 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210445": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210454": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210462": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -331,6 +589,18 @@
 "state": "TX"
 },
 "210464": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210465": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210473": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -372,6 +642,12 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210512": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210518": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -379,6 +655,12 @@
 "state": "TX"
 },
 "210519": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210537": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -414,6 +696,30 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210563": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210568": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210570": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210576": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210577": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -432,7 +738,43 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210598": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210600": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210601": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210602": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210605": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210618": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210621": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -444,13 +786,37 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210637": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210643": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"210665": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210667": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210668": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210672": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -498,13 +864,67 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210721": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210723": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"210724": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210725": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210726": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210740": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210741": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210749": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210753": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210756": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210761": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -540,6 +960,12 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210778": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210782": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -564,6 +990,18 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210802": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210803": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210807": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -571,6 +1009,12 @@
 "state": "TX"
 },
 "210819": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210823": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -601,6 +1045,12 @@
 "state": "TX"
 },
 "210837": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210838": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -642,6 +1092,12 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210852": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210859": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -660,7 +1116,25 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210865": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210867": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210875": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210879": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -672,7 +1146,37 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210905": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210906": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210914": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210918": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210919": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210929": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -684,13 +1188,55 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210931": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210937": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210939": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210941": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210943": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"210951": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210952": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210962": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"210964": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -714,6 +1260,12 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"210992": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "210993": {
 "city": "San Antonio",
 "lat": 29.42697,
@@ -732,6 +1284,18 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"213708": {
+"city": "Los Angeles: DA 09",
+"lat": 34.050281,
+"lon": -118.250995,
+"state": "CA"
+},
+"214585": {
+"city": "McKinney",
+"lat": 33.200634,
+"lon": -96.616101,
+"state": "TX"
+},
 "214771": {
 "city": "Rockwall",
 "lat": 32.926164,
@@ -744,17 +1308,180 @@
 "lon": -75.152066,
 "state": "PA"
 },
+"215388": {
+"city": "Philadelphia Zone 1",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
 "215666": {
 "city": "Morrisville",
 "lat": 40.209574,
 "lon": -74.775959,
 "state": "PA"
 },
+"215687": {
+"city": "Philadelphia Zone 1",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
+"215970": {
+"city": "Philadelphia Suburban Zone 43",
+"lat": 40.173889,
+"lon": -74.91473,
+"state": "PA"
+},
+"216355": {
+"city": "Independence (Cuyahoga)",
+"lat": 41.383365,
+"lon": -81.640613,
+"state": "OH"
+},
+"217210": {
+"city": "Springfield",
+"lat": 39.798683,
+"lon": -89.647538,
+"state": "IL"
+},
+"217318": {
+"city": "Champaign-Urbana",
+"lat": 40.117839,
+"lon": -88.247626,
+"state": "IL"
+},
+"217772": {
+"city": "Hoopeston",
+"lat": 40.470344,
+"lon": -87.672964,
+"state": "IL"
+},
+"218209": {
+"city": "Bemidji",
+"lat": 47.464538,
+"lon": -94.883867,
+"state": "MN"
+},
+"221946": null,
+"223848": {
+"city": "York",
+"lat": 39.962493,
+"lon": -76.727592,
+"state": "PA"
+},
+"224523": {
+"city": "Elgin",
+"lat": 42.040209,
+"lon": -88.282866,
+"state": "IL"
+},
+"224688": {
+"city": "Northbrook",
+"lat": 42.128375,
+"lon": -87.830075,
+"state": "IL"
+},
 "224805": {
 "city": "Arlington Heights",
 "lat": 42.089588,
 "lon": -87.983307,
 "state": "IL"
+},
+"229345": {
+"city": "Fitzgerald",
+"lat": 31.718214,
+"lon": -83.24811,
+"state": "GA"
+},
+"229546": {
+"city": "Lenox",
+"lat": 31.276167,
+"lon": -83.46889,
+"state": "GA"
+},
+"231334": {
+"city": "Glen Lake",
+"lat": 44.847663,
+"lon": -85.949847,
+"state": "MI"
+},
+"231598": {
+"city": "Big Rapids",
+"lat": 43.69902,
+"lon": -85.485521,
+"state": "MI"
+},
+"234699": {
+"city": "Warren",
+"lat": 41.231921,
+"lon": -80.816882,
+"state": "OH"
+},
+"239202": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
+},
+"239285": {
+"city": "Naples",
+"lat": 26.142837,
+"lon": -81.797573,
+"state": "FL"
+},
+"239298": {
+"city": "Naples",
+"lat": 26.142837,
+"lon": -81.797573,
+"state": "FL"
+},
+"239322": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
+},
+"239327": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
+},
+"239483": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
+},
+"239571": {
+"city": "North Naples",
+"lat": 26.26519,
+"lon": -81.807791,
+"state": "FL"
+},
+"239744": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
+},
+"239777": {
+"city": "North Naples",
+"lat": 26.26519,
+"lon": -81.807791,
+"state": "FL"
+},
+"239821": {
+"city": "Naples",
+"lat": 26.142837,
+"lon": -81.797573,
+"state": "FL"
+},
+"239878": {
+"city": "Fort Myers",
+"lat": 26.641662,
+"lon": -81.855951,
+"state": "FL"
 },
 "239896": {
 "city": "Fort Myers",
@@ -768,11 +1495,41 @@
 "lon": -77.567077,
 "state": "MD"
 },
+"240794": {
+"city": "Lexington Park-Great Mills",
+"lat": 38.239616,
+"lon": -76.492433,
+"state": "MD"
+},
+"240850": {
+"city": "Hagerstown",
+"lat": 39.64219,
+"lon": -77.728048,
+"state": "MD"
+},
+"240878": {
+"city": "Hagerstown",
+"lat": 39.64219,
+"lon": -77.728048,
+"state": "MD"
+},
 "251231": {
 "city": "Jackson",
 "lat": 31.509105,
 "lon": -87.890538,
 "state": "AL"
+},
+"252369": {
+"city": "Swansboro-West Carteret",
+"lat": 34.693698,
+"lon": -77.124933,
+"state": "NC"
+},
+"252712": {
+"city": "Ayden",
+"lat": 35.466187,
+"lon": -77.414725,
+"state": "NC"
 },
 "253279": {
 "city": "Tacoma",
@@ -815,6 +1572,18 @@
 "lat": 31.539905,
 "lon": -96.83344,
 "state": "TX"
+},
+"256692": {
+"city": "Huntsville",
+"lat": 34.732054,
+"lon": -86.590827,
+"state": "AL"
+},
+"260201": {
+"city": "Pennville",
+"lat": 40.492565,
+"lon": -85.143242,
+"state": "IN"
 },
 "262307": {
 "city": "Milwaukee Zone 2",
@@ -864,10 +1633,40 @@
 "lon": -75.152066,
 "state": "PA"
 },
+"267346": {
+"city": "Philadelphia Suburban Zone 33",
+"lat": 40.150921,
+"lon": -75.219042,
+"state": "PA"
+},
 "267498": {
 "city": "Lansdale",
 "lat": 40.243113,
 "lon": -75.293899,
+"state": "PA"
+},
+"267648": {
+"city": "Philadelphia Zone 2",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
+"267738": {
+"city": "Philadelphia Zone 1",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
+"267902": {
+"city": "Philadelphia Zone 1",
+"lat": 39.950092,
+"lon": -75.152066,
+"state": "PA"
+},
+"267912": {
+"city": "Philadelphia Suburban Zone 40",
+"lat": 40.175808,
+"lon": -75.00953,
 "state": "PA"
 },
 "267992": {
@@ -875,6 +1674,12 @@
 "lat": 40.150921,
 "lon": -75.219042,
 "state": "PA"
+},
+"269449": {
+"city": "Benton Harbor",
+"lat": 42.117537,
+"lon": -86.449148,
+"state": "MI"
 },
 "270312": {
 "city": "Elizabethtown",
@@ -906,10 +1711,28 @@
 "lon": -95.368499,
 "state": "TX"
 },
+"281686": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
 "281705": {
 "city": "Langham Creek",
 "lat": 29.876975,
 "lon": -95.679259,
+"state": "TX"
+},
+"281758": {
+"city": "Cypress",
+"lat": 29.976106,
+"lon": -95.689144,
+"state": "TX"
+},
+"281773": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
 "state": "TX"
 },
 "301276": {
@@ -918,10 +1741,22 @@
 "lon": -76.950382,
 "state": "MD"
 },
+"301500": {
+"city": "Washington Zone 2",
+"lat": 38.984625,
+"lon": -77.106526,
+"state": "MD"
+},
 "301535": {
 "city": "Waldorf",
 "lat": 38.625456,
 "lon": -76.904365,
+"state": "MD"
+},
+"301742": {
+"city": "Washington Zone 2",
+"lat": 38.984625,
+"lon": -77.106526,
 "state": "MD"
 },
 "301997": {
@@ -931,6 +1766,12 @@
 "state": "MD"
 },
 "303210": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303241": {
 "city": "Denver",
 "lat": 39.745902,
 "lon": -105.051526,
@@ -1170,6 +2011,12 @@
 "lon": -105.10673,
 "state": "CO"
 },
+"303710": {
+"city": "Fort Lupton",
+"lat": 40.084441,
+"lon": -104.806429,
+"state": "CO"
+},
 "303725": {
 "city": "Denver",
 "lat": 39.745902,
@@ -1183,6 +2030,12 @@
 "state": "CO"
 },
 "303807": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"303815": {
 "city": "Denver",
 "lat": 39.745902,
 "lon": -105.051526,
@@ -1314,10 +2167,70 @@
 "lon": -105.051526,
 "state": "CO"
 },
+"304559": {
+"city": "Wheeling Zone 1",
+"lat": 40.058667,
+"lon": -80.721767,
+"state": "WV"
+},
+"305206": {
+"city": "North Dade",
+"lat": 25.92243,
+"lon": -80.158141,
+"state": "FL"
+},
+"305240": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305247": {
+"city": "Homestead",
+"lat": 25.468394,
+"lon": -80.484789,
+"state": "FL"
+},
+"305281": {
+"city": "Perrine",
+"lat": 25.602047,
+"lon": -80.350605,
+"state": "FL"
+},
+"305315": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
 "305335": {
 "city": "North Dade",
 "lat": 25.92243,
 "lon": -80.158141,
+"state": "FL"
+},
+"305339": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305343": {
+"city": "North Dade",
+"lat": 25.92243,
+"lon": -80.158141,
+"state": "FL"
+},
+"305391": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305393": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
 "state": "FL"
 },
 "305504": {
@@ -1326,10 +2239,94 @@
 "lon": -81.084084,
 "state": "FL"
 },
+"305508": {
+"city": "Homestead",
+"lat": 25.468394,
+"lon": -80.484789,
+"state": "FL"
+},
+"305561": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"305588": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
 "305606": {
 "city": "Miami",
 "lat": 25.774612,
 "lon": -80.190315,
+"state": "FL"
+},
+"305720": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"305763": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"305785": {
+"city": "North Dade",
+"lat": 25.92243,
+"lon": -80.158141,
+"state": "FL"
+},
+"305849": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305896": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305909": {
+"city": "Perrine",
+"lat": 25.602047,
+"lon": -80.350605,
+"state": "FL"
+},
+"305922": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305930": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
+"state": "FL"
+},
+"305939": {
+"city": "Perrine",
+"lat": 25.602047,
+"lon": -80.350605,
+"state": "FL"
+},
+"305989": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"305990": {
+"city": "Keys",
+"lat": 24.70767,
+"lon": -81.084084,
 "state": "FL"
 },
 "307214": {
@@ -1710,11 +2707,36 @@
 "lon": -118.416444,
 "state": "CA"
 },
+"310592": {
+"city": "West Los Angeles",
+"lat": 34.052394,
+"lon": -118.451302,
+"state": "CA"
+},
 "310658": {
 "city": "El Segundo",
 "lat": 33.918345,
 "lon": -118.416444,
 "state": "CA"
+},
+"310770": {
+"city": "Beverly Hills",
+"lat": 34.072683,
+"lon": -118.391545,
+"state": "CA"
+},
+"310920": {
+"city": "Compton: Gardena DA",
+"lat": 33.883771,
+"lon": -118.289726,
+"state": "CA"
+},
+"312166": null,
+"312451": {
+"city": "Chicago Zone 01-Calumet",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
 },
 "312965": {
 "city": "Chicago Zone 01-Wabash",
@@ -1734,11 +2756,53 @@
 "lon": -83.05027,
 "state": "MI"
 },
+"313706": {
+"city": "Detroit Zone 5",
+"lat": 42.331653,
+"lon": -83.05027,
+"state": "MI"
+},
+"313753": {
+"city": "Detroit Zone 5",
+"lat": 42.331653,
+"lon": -83.05027,
+"state": "MI"
+},
+"314249": {
+"city": "Ladue",
+"lat": 38.657869,
+"lon": -90.380484,
+"state": "MO"
+},
 "314315": {
 "city": "Kirkwood",
 "lat": 38.583234,
 "lon": -90.413957,
 "state": "MO"
+},
+"314384": {
+"city": "Creve Coeur",
+"lat": 38.663608,
+"lon": -90.448746,
+"state": "MO"
+},
+"314546": {
+"city": "St Louis",
+"lat": 38.625867,
+"lon": -90.191421,
+"state": "MO"
+},
+"314891": {
+"city": "Ladue",
+"lat": 38.657869,
+"lon": -90.380484,
+"state": "MO"
+},
+"315232": {
+"city": "Adams",
+"lat": 43.80929,
+"lon": -76.021461,
+"state": "NY"
 },
 "315243": {
 "city": "Syracuse",
@@ -1752,11 +2816,53 @@
 "lon": -76.150846,
 "state": "NY"
 },
+"315664": {
+"city": "Auburn",
+"lat": 42.929811,
+"lon": -76.57418,
+"state": "NY"
+},
+"315965": {
+"city": "Watertown",
+"lat": 43.974779,
+"lon": -75.915592,
+"state": "NY"
+},
+"316249": {
+"city": "Wichita",
+"lat": 37.69023,
+"lon": -97.333917,
+"state": "KS"
+},
 "317505": {
 "city": "Fortville",
 "lat": 39.934491,
 "lon": -85.848875,
 "state": "IN"
+},
+"317529": {
+"city": "Indianapolis",
+"lat": 39.771071,
+"lon": -86.157414,
+"state": "IN"
+},
+"317766": {
+"city": "Indianapolis",
+"lat": 39.771071,
+"lon": -86.157414,
+"state": "IN"
+},
+"318206": {
+"city": "Alexandria",
+"lat": 31.307193,
+"lon": -92.450908,
+"state": "LA"
+},
+"318217": {
+"city": "Waterproof",
+"lat": 31.807471,
+"lon": -91.383954,
+"state": "LA"
 },
 "318272": {
 "city": "Shreveport",
@@ -1770,16 +2876,738 @@
 "lon": -93.091899,
 "state": "LA"
 },
+"318470": {
+"city": "Shreveport",
+"lat": 32.507738,
+"lon": -93.752651,
+"state": "LA"
+},
 "318489": {
 "city": "Blanchard",
 "lat": 32.585049,
 "lon": -93.890444,
 "state": "LA"
 },
+"321202": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321203": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321216": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321223": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321225": {
+"city": "Titusville",
+"lat": 28.616367,
+"lon": -80.806458,
+"state": "FL"
+},
+"321239": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321240": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321243": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321245": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321261": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321263": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321265": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321266": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321269": {
+"city": "Titusville",
+"lat": 28.616367,
+"lon": -80.806458,
+"state": "FL"
+},
+"321271": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321276": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321278": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321287": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321298": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321302": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321304": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321305": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321307": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321313": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321314": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321315": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321317": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321318": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321320": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321334": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321337": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"321346": {
+"city": "Titusville",
+"lat": 28.616367,
+"lon": -80.806458,
+"state": "FL"
+},
+"321350": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321353": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321356": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321362": {
+"city": "Titusville",
+"lat": 28.616367,
+"lon": -80.806458,
+"state": "FL"
+},
+"321367": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321368": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321370": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321376": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321377": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"321378": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321381": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321388": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321389": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321391": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321398": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321405": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321408": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321419": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321420": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"321424": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321431": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321432": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
 "321437": {
 "city": "Kissimmee",
 "lat": 28.299404,
 "lon": -81.400774,
+"state": "FL"
+},
+"321439": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321440": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321442": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"321444": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321446": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321451": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321458": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321459": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321474": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321479": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321482": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321488": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321492": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321499": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321506": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321507": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321514": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321518": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321522": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321526": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321536": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321537": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321541": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321543": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321550": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321557": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321576": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321578": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"321589": null,
+"321591": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321593": {
+"city": "Titusville",
+"lat": 28.616367,
+"lon": -80.806458,
+"state": "FL"
+},
+"321594": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"321604": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321614": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321616": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321634": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321652": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321693": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321695": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321696": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"321697": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"321704": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321720": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321745": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321746": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"321747": {
+"city": "Titusville",
+"lat": 28.616367,
+"lon": -80.806458,
+"state": "FL"
+},
+"321749": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321750": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321754": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321758": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321794": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321800": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321806": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321830": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321831": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321890": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321895": {
+"city": "St Cloud",
+"lat": 28.251701,
+"lon": -81.281618,
+"state": "FL"
+},
+"321917": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321946": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321947": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321948": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"321970": null,
+"321977": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321978": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321987": {
+"city": "Cocoa",
+"lat": 28.348393,
+"lon": -80.726666,
+"state": "FL"
+},
+"321989": {
+"city": "Melbourne",
+"lat": 28.081619,
+"lon": -80.609998,
+"state": "FL"
+},
+"321999": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
 "state": "FL"
 },
 "323570": {
@@ -1812,6 +3640,18 @@
 "lon": -99.731009,
 "state": "TX"
 },
+"325575": {
+"city": "Snyder",
+"lat": 32.714968,
+"lon": -100.909132,
+"state": "TX"
+},
+"325661": {
+"city": "Putnam",
+"lat": 32.365822,
+"lon": -99.190121,
+"state": "TX"
+},
 "325899": {
 "city": "Abilene",
 "lat": 32.449199,
@@ -1824,10 +3664,22 @@
 "lon": -100.408683,
 "state": "TX"
 },
+"330323": {
+"city": "Canton",
+"lat": 40.800965,
+"lon": -81.372116,
+"state": "OH"
+},
 "330691": {
 "city": "New Philadelphia",
 "lat": 40.508428,
 "lon": -81.464097,
+"state": "OH"
+},
+"330732": {
+"city": "Mantua",
+"lat": 41.284034,
+"lon": -81.234309,
 "state": "OH"
 },
 "330931": {
@@ -1836,10 +3688,82 @@
 "lon": -81.348312,
 "state": "OH"
 },
+"332208": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"332217": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"334314": {
+"city": "Montgomery",
+"lat": 32.374229,
+"lon": -86.300866,
+"state": "AL"
+},
+"334360": {
+"city": "Geneva",
+"lat": 31.033554,
+"lon": -85.863895,
+"state": "AL"
+},
+"334723": {
+"city": "Hartford",
+"lat": 31.098278,
+"lon": -85.689885,
+"state": "AL"
+},
+"334931": {
+"city": "Montgomery",
+"lat": 32.374229,
+"lon": -86.300866,
+"state": "AL"
+},
+"336346": {
+"city": "Greensboro",
+"lat": 36.075431,
+"lon": -79.78209,
+"state": "NC"
+},
+"336604": {
+"city": "Greensboro",
+"lat": 36.075431,
+"lon": -79.78209,
+"state": "NC"
+},
+"336709": {
+"city": "Greensboro",
+"lat": 36.075431,
+"lon": -79.78209,
+"state": "NC"
+},
+"336999": {
+"city": "Winston-Salem",
+"lat": 36.098527,
+"lon": -80.247879,
+"state": "NC"
+},
+"337424": {
+"city": "Leesville (Vernon)",
+"lat": 31.139307,
+"lon": -93.265351,
+"state": "LA"
+},
 "337428": {
 "city": "Jeanerette",
 "lat": 29.918694,
 "lon": -91.666042,
+"state": "LA"
+},
+"337446": {
+"city": "Lafayette",
+"lat": 30.22507,
+"lon": -92.015818,
 "state": "LA"
 },
 "339345": {
@@ -1848,6 +3772,7 @@
 "lon": -70.865562,
 "state": "MA"
 },
+"341879": null,
 "346228": {
 "city": "Houston",
 "lat": 29.750008,
@@ -1866,7 +3791,500 @@
 "lon": -95.689144,
 "state": "TX"
 },
+"346522": {
+"city": "Humble",
+"lat": 29.998798,
+"lon": -95.26134,
+"state": "TX"
+},
+"346714": {
+"city": "Bammel",
+"lat": 29.973263,
+"lon": -95.490724,
+"state": "TX"
+},
+"347217": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347254": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347313": {
+"city": "New York City Zone 03",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347366": {
+"city": "New York City Zone 03",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347424": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347553": {
+"city": "New York City Zone 10",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347555": null,
+"347634": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347691": {
+"city": "New York City Zone 04",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347728": {
+"city": "New York City Zone 05",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347813": {
+"city": "New York City Zone 08",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347822": {
+"city": "New York City Zone 09",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"347844": {
+"city": "New York City Zone 06",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"352209": {
+"city": "Ocala",
+"lat": 29.186235,
+"lon": -82.131579,
+"state": "FL"
+},
+"352217": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352223": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"352227": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"352269": {
+"city": "Weirsdale",
+"lat": 28.989464,
+"lon": -81.867781,
+"state": "FL"
+},
+"352270": {
+"city": "Beverly Hills",
+"lat": 28.928004,
+"lon": -82.453057,
+"state": "FL"
+},
+"352272": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352276": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352279": {
+"city": "Brooksville",
+"lat": 28.556462,
+"lon": -82.382445,
+"state": "FL"
+},
+"352284": {
+"city": "Gainesville",
+"lat": 29.658416,
+"lon": -82.323088,
+"state": "FL"
+},
+"352286": {
+"city": "Ocala",
+"lat": 29.186235,
+"lon": -82.131579,
+"state": "FL"
+},
+"352288": {
+"city": "Ocklawaha",
+"lat": 29.043057,
+"lon": -81.92923,
+"state": "FL"
+},
+"352293": {
+"city": "Weekiwachee Springs",
+"lat": 28.533668,
+"lon": -82.583651,
+"state": "FL"
+},
+"352317": {
+"city": "Gainesville",
+"lat": 29.658416,
+"lon": -82.323088,
+"state": "FL"
+},
+"352400": {
+"city": "Inverness",
+"lat": 28.83234,
+"lon": -82.34064,
+"state": "FL"
+},
+"352406": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352408": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352425": {
+"city": "Ocala",
+"lat": 29.186235,
+"lon": -82.131579,
+"state": "FL"
+},
+"352426": {
+"city": "Ocala",
+"lat": 29.186235,
+"lon": -82.131579,
+"state": "FL"
+},
+"352428": {
+"city": "Brooksville",
+"lat": 28.556462,
+"lon": -82.382445,
+"state": "FL"
+},
+"352431": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352433": {
+"city": "Ocala",
+"lat": 29.186235,
+"lon": -82.131579,
+"state": "FL"
+},
+"352434": {
+"city": "Eustis",
+"lat": 28.856923,
+"lon": -81.677019,
+"state": "FL"
+},
+"352442": {
+"city": "Brooksville",
+"lat": 28.556462,
+"lon": -82.382445,
+"state": "FL"
+},
+"352449": {
+"city": "Groveland",
+"lat": 28.557715,
+"lon": -81.857338,
+"state": "FL"
+},
+"352454": {
+"city": "Belleview",
+"lat": 29.064082,
+"lon": -82.060848,
+"state": "FL"
+},
+"352455": {
+"city": "Eustis",
+"lat": 28.856923,
+"lon": -81.677019,
+"state": "FL"
+},
+"352457": {
+"city": "Bushnell",
+"lat": 28.666819,
+"lon": -82.105301,
+"state": "FL"
+},
+"352467": {
+"city": "Dade City",
+"lat": 28.367189,
+"lon": -82.193289,
+"state": "FL"
+},
+"352476": {
+"city": "Inverness",
+"lat": 28.83234,
+"lon": -82.34064,
+"state": "FL"
+},
+"352496": {
+"city": "Dunnellon",
+"lat": 29.048015,
+"lon": -82.458996,
+"state": "FL"
+},
+"352501": {
+"city": "Crystal River",
+"lat": 28.900982,
+"lon": -82.585411,
+"state": "FL"
+},
+"352516": {
+"city": "Eustis",
+"lat": 28.856923,
+"lon": -81.677019,
+"state": "FL"
+},
+"352531": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352571": {
+"city": "Wildwood",
+"lat": 28.868374,
+"lon": -82.032852,
+"state": "FL"
+},
+"352585": {
+"city": "Brooksville",
+"lat": 28.556462,
+"lon": -82.382445,
+"state": "FL"
+},
+"352586": {
+"city": "Crystal River",
+"lat": 28.900982,
+"lon": -82.585411,
+"state": "FL"
+},
+"352602": {
+"city": "Eustis",
+"lat": 28.856923,
+"lon": -81.677019,
+"state": "FL"
+},
+"352630": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352634": {
+"city": "Inverness",
+"lat": 28.83234,
+"lon": -82.34064,
+"state": "FL"
+},
+"352638": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352679": {
+"city": "Brooksville",
+"lat": 28.556462,
+"lon": -82.382445,
+"state": "FL"
+},
+"352699": {
+"city": "Crystal River",
+"lat": 28.900982,
+"lon": -82.585411,
+"state": "FL"
+},
+"352702": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352705": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352708": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"352710": {
+"city": "Brooksville",
+"lat": 28.556462,
+"lon": -82.382445,
+"state": "FL"
+},
+"352721": {
+"city": "Gainesville",
+"lat": 29.658416,
+"lon": -82.323088,
+"state": "FL"
+},
+"352769": {
+"city": "Dade City",
+"lat": 28.367189,
+"lon": -82.193289,
+"state": "FL"
+},
+"352782": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352800": {
+"city": "Eustis",
+"lat": 28.856923,
+"lon": -81.677019,
+"state": "FL"
+},
+"352808": {
+"city": "Wildwood",
+"lat": 28.868374,
+"lon": -82.032852,
+"state": "FL"
+},
+"352809": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352815": {
+"city": "Bushnell",
+"lat": 28.666819,
+"lon": -82.105301,
+"state": "FL"
+},
+"352818": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352826": {
+"city": "Bushnell",
+"lat": 28.666819,
+"lon": -82.105301,
+"state": "FL"
+},
+"352871": {
+"city": "Gainesville",
+"lat": 29.658416,
+"lon": -82.323088,
+"state": "FL"
+},
+"352874": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352901": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352913": {
+"city": "Wildwood",
+"lat": 28.868374,
+"lon": -82.032852,
+"state": "FL"
+},
+"352933": {
+"city": "Leesburg",
+"lat": 28.806335,
+"lon": -81.8742,
+"state": "FL"
+},
+"352978": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"352988": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"352989": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"352995": {
+"city": "Clermont",
+"lat": 28.557808,
+"lon": -81.766711,
+"state": "FL"
+},
+"360270": {
+"city": "Longview",
+"lat": 46.133157,
+"lon": -122.943807,
+"state": "WA"
+},
 "360286": {
+"city": "Silverdale",
+"lat": 47.64247,
+"lon": -122.696999,
+"state": "WA"
+},
+"360402": {
+"city": "Olympia",
+"lat": 47.0347,
+"lon": -122.897066,
+"state": "WA"
+},
+"360434": {
 "city": "Silverdale",
 "lat": 47.64247,
 "lon": -122.696999,
@@ -1878,10 +4296,22 @@
 "lon": -123.096674,
 "state": "WA"
 },
+"360972": {
+"city": "Olympia",
+"lat": 47.0347,
+"lon": -122.897066,
+"state": "WA"
+},
 "361208": {
 "city": "Yoakum",
 "lat": 29.30072,
 "lon": -97.147481,
+"state": "TX"
+},
+"361212": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
 "state": "TX"
 },
 "361218": {
@@ -1920,7 +4350,37 @@
 "lon": -97.000039,
 "state": "TX"
 },
+"361246": {
+"city": "Kingsville",
+"lat": 27.515229,
+"lon": -97.868915,
+"state": "TX"
+},
+"361308": {
+"city": "Edna",
+"lat": 28.974936,
+"lon": -96.643503,
+"state": "TX"
+},
+"361319": {
+"city": "Beeville",
+"lat": 28.409757,
+"lon": -97.747539,
+"state": "TX"
+},
+"361401": {
+"city": "Shiner",
+"lat": 29.432437,
+"lon": -97.166591,
+"state": "TX"
+},
 "361412": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361433": {
 "city": "Victoria",
 "lat": 28.80815,
 "lon": -97.000039,
@@ -1932,10 +4392,22 @@
 "lon": -97.40043,
 "state": "TX"
 },
+"361482": {
+"city": "Port Lavaca",
+"lat": 28.608075,
+"lon": -96.626145,
+"state": "TX"
+},
 "361484": {
 "city": "Victoria",
 "lat": 28.80815,
 "lon": -97.000039,
+"state": "TX"
+},
+"361491": {
+"city": "Yorktown",
+"lat": 28.980786,
+"lon": -97.499312,
 "state": "TX"
 },
 "361524": {
@@ -1954,6 +4426,12 @@
 "city": "Victoria",
 "lat": 28.80815,
 "lon": -97.000039,
+"state": "TX"
+},
+"361543": {
+"city": "Woodsboro",
+"lat": 28.232116,
+"lon": -97.331429,
 "state": "TX"
 },
 "361550": {
@@ -1975,6 +4453,12 @@
 "state": "TX"
 },
 "361648": {
+"city": "Victoria",
+"lat": 28.80815,
+"lon": -97.000039,
+"state": "TX"
+},
+"361649": {
 "city": "Victoria",
 "lat": 28.80815,
 "lon": -97.000039,
@@ -2010,6 +4494,12 @@
 "lon": -97.40043,
 "state": "TX"
 },
+"361737": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
 "361741": {
 "city": "Yoakum EACS",
 "lat": 29.30072,
@@ -2034,6 +4524,12 @@
 "lon": -97.40043,
 "state": "TX"
 },
+"361876": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
 "361894": {
 "city": "Victoria",
 "lat": 28.80815,
@@ -2052,11 +4548,348 @@
 "lon": -97.40043,
 "state": "TX"
 },
+"361960": {
+"city": "Corpus Christi",
+"lat": 27.802308,
+"lon": -97.40043,
+"state": "TX"
+},
+"362602": null,
+"385207": {
+"city": "Provo",
+"lat": 40.232953,
+"lon": -111.669843,
+"state": "UT"
+},
+"385220": {
+"city": "Farmington",
+"lat": 40.984658,
+"lon": -111.885708,
+"state": "UT"
+},
+"385259": {
+"city": "Salt Lake City",
+"lat": 40.758158,
+"lon": -111.882412,
+"state": "UT"
+},
+"385308": {
+"city": "Midvale",
+"lat": 40.616926,
+"lon": -111.910462,
+"state": "UT"
+},
+"386204": {
+"city": "DeBary",
+"lat": 28.875771,
+"lon": -81.300127,
+"state": "FL"
+},
+"386215": {
+"city": "DeBary",
+"lat": 28.875771,
+"lon": -81.300127,
+"state": "FL"
+},
+"386230": {
+"city": "Dowling Park",
+"lat": 30.252578,
+"lon": -83.236016,
+"state": "FL"
+},
+"386235": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386265": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386275": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386279": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386285": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386293": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386295": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386297": {
+"city": "Alachua",
+"lat": 29.792562,
+"lon": -82.490107,
+"state": "FL"
+},
+"386299": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386315": {
+"city": "Alachua",
+"lat": 29.792562,
+"lon": -82.490107,
+"state": "FL"
+},
+"386318": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386320": {
+"city": "DeBary",
+"lat": 28.875771,
+"lon": -81.300127,
+"state": "FL"
+},
+"386337": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386344": {
+"city": "Lake City",
+"lat": 30.191242,
+"lon": -82.634671,
+"state": "FL"
+},
+"386347": {
+"city": "Alachua",
+"lat": 29.792562,
+"lon": -82.490107,
+"state": "FL"
+},
+"386349": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386378": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386396": {
+"city": "Alachua",
+"lat": 29.792562,
+"lon": -82.490107,
+"state": "FL"
+},
+"386397": {
+"city": "White Springs",
+"lat": 30.334852,
+"lon": -82.759669,
+"state": "FL"
+},
+"386402": {
+"city": "New Smyrna Beach",
+"lat": 29.023408,
+"lon": -80.926187,
+"state": "FL"
+},
+"386405": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386416": {
+"city": "New Smyrna Beach",
+"lat": 29.023408,
+"lon": -80.926187,
+"state": "FL"
+},
+"386444": {
+"city": "New Smyrna Beach",
+"lat": 29.023408,
+"lon": -80.926187,
+"state": "FL"
+},
+"386450": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386451": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386457": {
+"city": "Orange City",
+"lat": 28.951464,
+"lon": -81.291768,
+"state": "FL"
+},
+"386467": {
+"city": "Welaka",
+"lat": 29.481104,
+"lon": -81.666758,
+"state": "FL"
+},
+"386479": {
+"city": "Orange City",
+"lat": 28.951464,
+"lon": -81.291768,
+"state": "FL"
+},
+"386507": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386627": {
+"city": "Palm Coast",
+"lat": 29.574154,
+"lon": -81.205935,
+"state": "FL"
+},
+"386676": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386679": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386682": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386690": {
+"city": "New Smyrna Beach",
+"lat": 29.023408,
+"lon": -80.926187,
+"state": "FL"
+},
 "386695": {
 "city": "Palatka",
 "lat": 29.644401,
 "lon": -81.64227,
 "state": "FL"
+},
+"386717": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386748": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386837": {
+"city": "Orange City",
+"lat": 28.951464,
+"lon": -81.291768,
+"state": "FL"
+},
+"386848": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386852": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386871": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386882": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386886": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386898": {
+"city": "Daytona Beach",
+"lat": 29.231596,
+"lon": -81.035058,
+"state": "FL"
+},
+"386956": {
+"city": "DeLand",
+"lat": 29.031926,
+"lon": -81.292343,
+"state": "FL"
+},
+"386957": {
+"city": "New Smyrna Beach",
+"lat": 29.023408,
+"lon": -80.926187,
+"state": "FL"
+},
+"386960": {
+"city": "Orange City",
+"lat": 28.951464,
+"lon": -81.291768,
+"state": "FL"
+},
+"386984": {
+"city": "Lake City",
+"lat": 30.191242,
+"lon": -82.634671,
+"state": "FL"
+},
+"401280": {
+"city": "Providence",
+"lat": 41.82125,
+"lon": -71.414117,
+"state": "RI"
 },
 "401359": {
 "city": "Pawtucket",
@@ -2070,7 +4903,25 @@
 "lon": -95.944152,
 "state": "NE"
 },
+"402215": {
+"city": "Omaha",
+"lat": 41.259376,
+"lon": -95.944152,
+"state": "NE"
+},
 "402378": {
+"city": "Omaha",
+"lat": 41.259376,
+"lon": -95.944152,
+"state": "NE"
+},
+"402719": {
+"city": "Fremont",
+"lat": 41.440707,
+"lon": -96.491696,
+"state": "NE"
+},
+"402836": {
 "city": "Omaha",
 "lat": 41.259376,
 "lon": -95.944152,
@@ -2094,6 +4945,30 @@
 "lon": -84.381423,
 "state": "GA"
 },
+"404667": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"405535": {
+"city": "Oklahoma City",
+"lat": 35.470514,
+"lon": -97.5156,
+"state": "OK"
+},
+"406540": {
+"city": "Missoula",
+"lat": 46.868366,
+"lon": -114.002012,
+"state": "MT"
+},
+"406546": {
+"city": "Missoula",
+"lat": 46.868366,
+"lon": -114.002012,
+"state": "MT"
+},
 "406661": {
 "city": "Billings",
 "lat": 45.777426,
@@ -2106,13 +4981,1255 @@
 "lon": -104.769343,
 "state": "MT"
 },
+"407201": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407202": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407203": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407205": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407219": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407221": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407225": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407227": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407230": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407233": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407235": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407236": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407242": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407252": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407257": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407259": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407267": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407271": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407272": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407274": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407276": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407280": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407284": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407285": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407288": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407300": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407301": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407309": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407312": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407318": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407319": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407325": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407334": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407335": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407338": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407340": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407342": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407346": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407350": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407353": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407360": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407361": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407364": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407367": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407371": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407373": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407374": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407375": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407383": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407385": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407394": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407398": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407401": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407402": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407403": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407405": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407406": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407408": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407412": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407414": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407415": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407421": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407431": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407435": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407437": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407440": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407443": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407446": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407448": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407449": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407450": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407451": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407452": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407454": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407456": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407457": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407458": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407460": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407462": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407463": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407468": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407470": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407476": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407480": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407485": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407486": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407487": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407488": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407489": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407491": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407492": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407493": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407495": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407496": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407497": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407501": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407504": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407505": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407506": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407508": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407520": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407530": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407534": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407535": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407536": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407539": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407542": {
+"city": "Oviedo",
+"lat": 28.666279,
+"lon": -81.197974,
+"state": "FL"
+},
+"407558": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407561": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407567": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407572": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407573": {
+"city": "Winter Garden",
+"lat": 28.56802,
+"lon": -81.584687,
+"state": "FL"
+},
+"407575": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407577": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407590": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407592": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407595": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407598": {
+"city": "Apopka",
+"lat": 28.683884,
+"lon": -81.501474,
+"state": "FL"
+},
+"407600": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407604": {
+"city": "Oviedo",
+"lat": 28.666279,
+"lon": -81.197974,
+"state": "FL"
+},
+"407613": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407615": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407616": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407617": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407624": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407625": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407627": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407630": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407640": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407663": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407666": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407668": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407683": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407684": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407686": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407687": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407692": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407693": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407694": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407702": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407704": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407708": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407716": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407718": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407721": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407724": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407726": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407729": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407731": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407733": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407738": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407739": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
 "407744": {
 "city": "Kissimmee",
 "lat": 28.299404,
 "lon": -81.400774,
 "state": "FL"
 },
+"407745": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407747": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407749": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407750": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407754": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407756": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407757": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407758": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407761": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407765": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407766": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407773": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407775": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407780": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407784": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407790": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407791": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407795": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407797": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407799": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407800": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407807": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407818": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407819": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407840": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407844": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407848": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407857": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407864": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407866": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407868": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407874": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407879": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407881": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407883": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407902": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407907": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407910": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407912": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407913": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407914": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407916": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407920": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407921": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
 "407923": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407925": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407927": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407928": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407929": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407931": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407936": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"407937": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407946": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407947": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407948": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407949": {
 "city": "Winter Park",
 "lat": 28.599066,
 "lon": -81.352157,
@@ -2124,11 +6241,245 @@
 "lon": -81.372955,
 "state": "FL"
 },
+"407953": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407955": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407960": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407961": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"407965": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407967": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407968": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407969": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407970": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407973": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407979": {
+"city": "St Cloud",
+"lat": 28.251701,
+"lon": -81.281618,
+"state": "FL"
+},
+"407984": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407985": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407987": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"407989": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"407990": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"408206": {
+"city": "San Jose: North DA",
+"lat": 37.332603,
+"lon": -121.890442,
+"state": "CA"
+},
+"408310": {
+"city": "Morgan Hill",
+"lat": 37.124545,
+"lon": -121.649337,
+"state": "CA"
+},
+"408569": {
+"city": "San Jose: West DA",
+"lat": 37.332603,
+"lon": -121.890442,
+"state": "CA"
+},
+"408609": {
+"city": "San Jose: North DA",
+"lat": 37.332603,
+"lon": -121.890442,
+"state": "CA"
+},
+"409692": {
+"city": "Galveston",
+"lat": 29.297418,
+"lon": -94.790201,
+"state": "TX"
+},
+"410499": {
+"city": "Baltimore",
+"lat": 39.298857,
+"lon": -76.614736,
+"state": "MD"
+},
+"412398": {
+"city": "Pittsburgh Zone 1",
+"lat": 40.437663,
+"lon": -80.003422,
+"state": "PA"
+},
+"412999": {
+"city": "Pittsburgh Zone 1",
+"lat": 40.437663,
+"lon": -80.003422,
+"state": "PA"
+},
+"413335": {
+"city": "Holyoke",
+"lat": 42.203707,
+"lon": -72.61433,
+"state": "MA"
+},
+"413563": {
+"city": "Springfield",
+"lat": 42.105278,
+"lon": -72.594007,
+"state": "MA"
+},
+"414323": {
+"city": "Milwaukee Zone 1",
+"lat": 43.042456,
+"lon": -87.947166,
+"state": "WI"
+},
+"414841": {
+"city": "Milwaukee Zone 1",
+"lat": 43.042456,
+"lon": -87.947166,
+"state": "WI"
+},
+"415656": {
+"city": "San Francisco: Juniper DA",
+"lat": 37.789974,
+"lon": -122.406446,
+"state": "CA"
+},
+"415792": {
+"city": "San Francisco: Central DA",
+"lat": 37.789974,
+"lon": -122.406446,
+"state": "CA"
+},
 "417349": {
 "city": "Mountain Grove",
 "lat": 37.133869,
 "lon": -92.265998,
 "state": "MO"
+},
+"419262": {
+"city": "Toledo",
+"lat": 41.649461,
+"lon": -83.542987,
+"state": "OH"
+},
+"419630": {
+"city": "Bryan",
+"lat": 41.47431,
+"lon": -84.552593,
+"state": "OH"
+},
+"423504": {
+"city": "Chattanooga",
+"lat": 35.040869,
+"lon": -85.311536,
+"state": "TN"
+},
+"423549": {
+"city": "Johnson City",
+"lat": 36.314884,
+"lon": -82.351755,
+"state": "TN"
+},
+"423682": {
+"city": "Chattanooga",
+"lat": 35.040869,
+"lon": -85.311536,
+"state": "TN"
+},
+"424222": {
+"city": "Lomita",
+"lat": 33.793392,
+"lon": -118.307711,
+"state": "CA"
+},
+"424332": {
+"city": "Beverly Hills",
+"lat": 34.072683,
+"lon": -118.391545,
+"state": "CA"
+},
+"424365": {
+"city": "West Los Angeles",
+"lat": 34.052394,
+"lon": -118.451302,
+"state": "CA"
+},
+"424426": {
+"city": "Hawthorne",
+"lat": 33.914635,
+"lon": -118.350384,
+"state": "CA"
 },
 "431354": {
 "city": "Thompson",
@@ -2142,6 +6493,7 @@
 "lon": -103.24759,
 "state": "TX"
 },
+"432717": null,
 "435406": {
 "city": "Delta",
 "lat": 39.349062,
@@ -2172,10 +6524,46 @@
 "lon": -111.632075,
 "state": "UT"
 },
+"440212": {
+"city": "Strongsville",
+"lat": 41.316206,
+"lon": -81.832839,
+"state": "OH"
+},
+"443210": {
+"city": "Salisbury",
+"lat": 38.359037,
+"lon": -75.597524,
+"state": "MD"
+},
+"443610": {
+"city": "Baltimore",
+"lat": 39.298857,
+"lon": -76.614736,
+"state": "MD"
+},
+"443791": {
+"city": "Towson",
+"lat": 39.402515,
+"lon": -76.600008,
+"state": "MD"
+},
+"443816": {
+"city": "Severna Park",
+"lat": 39.068266,
+"lon": -76.54965,
+"state": "MD"
+},
 "443845": {
 "city": "Baltimore",
 "lat": 39.298857,
 "lon": -76.614736,
+"state": "MD"
+},
+"443878": {
+"city": "Columbia",
+"lat": 39.216759,
+"lon": -76.855146,
 "state": "MD"
 },
 "448207": {
@@ -2188,6 +6576,12 @@
 "city": "Frisco",
 "lat": 33.151543,
 "lon": -96.822376,
+"state": "TX"
+},
+"469426": {
+"city": "Irving",
+"lat": 32.816308,
+"lon": -96.952769,
 "state": "TX"
 },
 "469468": {
@@ -2208,10 +6602,64 @@
 "lon": -96.697691,
 "state": "TX"
 },
+"470257": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"470455": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"470509": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
 "470717": {
 "city": "Atlanta",
 "lat": 33.74978,
 "lon": -84.381423,
+"state": "GA"
+},
+"470814": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"472255": {
+"city": "Castle Hayne",
+"lat": 34.354718,
+"lon": -77.902095,
+"state": "NC"
+},
+"478234": {
+"city": "Lake Sinclair",
+"lat": 33.166656,
+"lon": -83.361545,
+"state": "GA"
+},
+"478318": {
+"city": "Macon",
+"lat": 32.834052,
+"lon": -83.626132,
+"state": "GA"
+},
+"478343": {
+"city": "Marshallville",
+"lat": 32.45787,
+"lon": -83.941934,
+"state": "GA"
+},
+"478654": {
+"city": "Byron",
+"lat": 32.644882,
+"lon": -83.760198,
 "state": "GA"
 },
 "479276": {
@@ -2220,11 +6668,29 @@
 "lon": -94.225435,
 "state": "AR"
 },
+"479316": {
+"city": "Fayetteville",
+"lat": 36.059163,
+"lon": -94.159753,
+"state": "AR"
+},
 "479747": {
 "city": "Russellville",
 "lat": 35.282945,
 "lon": -93.131859,
 "state": "AR"
+},
+"480334": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
+},
+"480414": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
 },
 "480979": {
 "city": "Phoenix",
@@ -2250,6 +6716,18 @@
 "lon": -75.342027,
 "state": "PA"
 },
+"484641": {
+"city": "Kutztown (Berks)",
+"lat": 40.517705,
+"lon": -75.773902,
+"state": "PA"
+},
+"484797": {
+"city": "Reading",
+"lat": 40.335453,
+"lon": -75.924559,
+"state": "PA"
+},
 "501655": {
 "city": "Hot Springs",
 "lat": 34.500401,
@@ -2262,11 +6740,35 @@
 "lon": -85.380622,
 "state": "KY"
 },
+"502259": {
+"city": "Louisville",
+"lat": 38.243429,
+"lon": -85.759036,
+"state": "KY"
+},
+"502322": {
+"city": "Louisville",
+"lat": 38.243429,
+"lon": -85.759036,
+"state": "KY"
+},
 "502541": {
 "city": "Louisville",
 "lat": 38.243429,
 "lon": -85.759036,
 "state": "KY"
+},
+"503701": {
+"city": "Portland",
+"lat": 45.586971,
+"lon": -122.754859,
+"state": "OR"
+},
+"503943": {
+"city": "Portland",
+"lat": 45.586971,
+"lon": -122.754859,
+"state": "OR"
 },
 "504275": {
 "city": "Kenner",
@@ -2274,7 +6776,19 @@
 "lon": -90.243206,
 "state": "LA"
 },
+"504289": {
+"city": "New Orleans",
+"lat": 29.947792,
+"lon": -90.075694,
+"state": "LA"
+},
 "504335": {
+"city": "New Orleans",
+"lat": 29.947792,
+"lon": -90.075694,
+"state": "LA"
+},
+"504799": {
 "city": "New Orleans",
 "lat": 29.947792,
 "lon": -90.075694,
@@ -2298,16 +6812,70 @@
 "lon": -106.648367,
 "state": "NM"
 },
+"505974": {
+"city": "Albuquerque",
+"lat": 35.081432,
+"lon": -106.648367,
+"state": "NM"
+},
 "507828": {
 "city": "Marshall",
 "lat": 44.447083,
 "lon": -95.790182,
 "state": "MN"
 },
+"508499": {
+"city": "Oxford",
+"lat": 42.113103,
+"lon": -71.869345,
+"state": "MA"
+},
+"508654": {
+"city": "Natick",
+"lat": 42.284822,
+"lon": -71.339761,
+"state": "MA"
+},
+"508776": {
+"city": "Hyannis",
+"lat": 41.651635,
+"lon": -70.28649,
+"state": "MA"
+},
+"509393": {
+"city": "Wenatchee",
+"lat": 47.426603,
+"lon": -120.315691,
+"state": "WA"
+},
+"510698": {
+"city": "Oakland: Fruitvale DA",
+"lat": 37.806378,
+"lon": -122.26458,
+"state": "CA"
+},
+"512296": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
 "512297": {
 "city": "Austin",
 "lat": 30.272761,
 "lon": -97.742366,
+"state": "TX"
+},
+"512373": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512393": {
+"city": "San Marcos",
+"lat": 29.882448,
+"lon": -97.939992,
 "state": "TX"
 },
 "512507": {
@@ -2328,6 +6896,24 @@
 "lon": -97.742366,
 "state": "TX"
 },
+"512627": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512636": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512667": {
+"city": "San Marcos",
+"lat": 29.882448,
+"lon": -97.939992,
+"state": "TX"
+},
 "512679": {
 "city": "Austin",
 "lat": 30.272761,
@@ -2335,6 +6921,12 @@
 "state": "TX"
 },
 "512680": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512710": {
 "city": "Austin",
 "lat": 30.272761,
 "lon": -97.742366,
@@ -2358,6 +6950,24 @@
 "lon": -97.939992,
 "state": "TX"
 },
+"512739": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512743": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512758": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
 "512810": {
 "city": "Austin",
 "lat": 30.272761,
@@ -2370,7 +6980,25 @@
 "lon": -97.742366,
 "state": "TX"
 },
+"512885": {
+"city": "Lockhart",
+"lat": 29.884891,
+"lon": -97.673395,
+"state": "TX"
+},
 "512924": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512927": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512937": {
 "city": "Austin",
 "lat": 30.272761,
 "lon": -97.742366,
@@ -2388,6 +7016,18 @@
 "lon": -97.410012,
 "state": "TX"
 },
+"512960": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"512963": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
 "513289": {
 "city": "Cincinnati",
 "lat": 39.100166,
@@ -2395,6 +7035,12 @@
 "state": "OH"
 },
 "513509": {
+"city": "Cincinnati",
+"lat": 39.100166,
+"lon": -84.514815,
+"state": "OH"
+},
+"513578": {
 "city": "Cincinnati",
 "lat": 39.100166,
 "lon": -84.514815,
@@ -2418,6 +7064,18 @@
 "lon": -73.246435,
 "state": "NY"
 },
+"516473": {
+"city": "Farmingdale",
+"lat": 40.733995,
+"lon": -73.450316,
+"state": "NY"
+},
+"516510": {
+"city": "Nassau Zone 5",
+"lat": 40.73024,
+"lon": -73.613665,
+"state": "NY"
+},
 "516549": {
 "city": "Nassau Zone 2",
 "lat": 40.717831,
@@ -2430,11 +7088,41 @@
 "lon": -73.613665,
 "state": "NY"
 },
+"516884": {
+"city": "Nassau Zone 9",
+"lat": 40.68057,
+"lon": -73.496864,
+"state": "NY"
+},
 "517420": {
 "city": "Lansing",
 "lat": 42.732656,
 "lon": -84.553588,
 "state": "MI"
+},
+"518225": {
+"city": "Albany",
+"lat": 42.650647,
+"lon": -73.748503,
+"state": "NY"
+},
+"518256": {
+"city": "Albany",
+"lat": 42.650647,
+"lon": -73.748503,
+"state": "NY"
+},
+"518883": {
+"city": "Broadalbin",
+"lat": 43.060003,
+"lon": -74.197849,
+"state": "NY"
+},
+"518986": {
+"city": "Schenectady",
+"lat": 42.813496,
+"lon": -73.938143,
+"state": "NY"
 },
 "520275": {
 "city": "Tucson",
@@ -2466,6 +7154,30 @@
 "lon": -121.740232,
 "state": "CA"
 },
+"540322": {
+"city": "Fredericksburg",
+"lat": 38.301318,
+"lon": -77.467169,
+"state": "VA"
+},
+"540326": {
+"city": "Middleburg",
+"lat": 38.96718,
+"lon": -77.729695,
+"state": "VA"
+},
+"540385": {
+"city": "Christiansburg",
+"lat": 37.135172,
+"lon": -80.40611,
+"state": "VA"
+},
+"540386": {
+"city": "Hartwood",
+"lat": 38.40998,
+"lon": -77.556409,
+"state": "VA"
+},
 "540497": {
 "city": "Culpeper",
 "lat": 38.468883,
@@ -2484,6 +7196,18 @@
 "lon": -123.313983,
 "state": "OR"
 },
+"541268": {
+"city": "Mapleton",
+"lat": 44.03544,
+"lon": -123.856166,
+"state": "OR"
+},
+"541391": {
+"city": "Roseburg",
+"lat": 43.200966,
+"lon": -123.347244,
+"state": "OR"
+},
 "541513": {
 "city": "Eugene",
 "lat": 44.050074,
@@ -2497,11 +7221,107 @@
 "lon": -120.183278,
 "state": "CA"
 },
+"559309": {
+"city": "Hanford",
+"lat": 36.334818,
+"lon": -119.65117,
+"state": "CA"
+},
+"559430": {
+"city": "Fresno",
+"lat": 36.74123,
+"lon": -119.792199,
+"state": "CA"
+},
 "559909": {
 "city": "Visalia",
 "lat": 36.332534,
 "lon": -119.290709,
 "state": "CA"
+},
+"561225": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561275": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561293": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561332": {
+"city": "Delray Beach",
+"lat": 26.458773,
+"lon": -80.064287,
+"state": "FL"
+},
+"561350": {
+"city": "Delray Beach",
+"lat": 26.458773,
+"lon": -80.064287,
+"state": "FL"
+},
+"561379": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561441": {
+"city": "Delray Beach",
+"lat": 26.458773,
+"lon": -80.064287,
+"state": "FL"
+},
+"561480": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561502": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561516": {
+"city": "Belle Glade",
+"lat": 26.682646,
+"lon": -80.672667,
+"state": "FL"
+},
+"561528": {
+"city": "Delray Beach",
+"lat": 26.458773,
+"lon": -80.064287,
+"state": "FL"
+},
+"561676": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561801": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"561827": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
 },
 "562380": {
 "city": "Long Beach",
@@ -2521,6 +7341,60 @@
 "lon": -76.791064,
 "state": "PA"
 },
+"570624": {
+"city": "Pottsville",
+"lat": 40.693,
+"lon": -76.201332,
+"state": "PA"
+},
+"570817": {
+"city": "Wilkes-Barre",
+"lat": 41.242497,
+"lon": -75.88568,
+"state": "PA"
+},
+"571249": {
+"city": "Washington Zone 17",
+"lat": 38.891499,
+"lon": -77.160829,
+"state": "VA"
+},
+"571353": {
+"city": "Herndon",
+"lat": 38.96516,
+"lon": -77.38157,
+"state": "VA"
+},
+"571379": {
+"city": "Manassas",
+"lat": 38.750522,
+"lon": -77.478259,
+"state": "VA"
+},
+"571567": {
+"city": "Washington Zone 19",
+"lat": 38.899176,
+"lon": -77.26845,
+"state": "VA"
+},
+"571583": {
+"city": "Braddock",
+"lat": 38.840077,
+"lon": -77.427866,
+"state": "VA"
+},
+"571982": {
+"city": "Washington Zone 8",
+"lat": 38.880541,
+"lon": -77.099019,
+"state": "VA"
+},
+"573208": {
+"city": "Marble Hill",
+"lat": 37.299823,
+"lon": -89.967003,
+"state": "MO"
+},
 "573507": {
 "city": "Columbia",
 "lat": 38.949276,
@@ -2532,6 +7406,18 @@
 "lat": 38.949276,
 "lon": -92.332434,
 "state": "MO"
+},
+"573986": {
+"city": "Cape Girardeau",
+"lat": 37.298443,
+"lon": -89.524135,
+"state": "MO"
+},
+"574607": {
+"city": "Osceola",
+"lat": 41.656443,
+"lon": -86.074621,
+"state": "IN"
 },
 "575621": {
 "city": "Las Cruces",
@@ -2545,10 +7431,52 @@
 "lon": -98.41594,
 "state": "OK"
 },
+"585944": {
+"city": "Rochester",
+"lat": 43.15705,
+"lon": -77.617185,
+"state": "NY"
+},
+"586405": {
+"city": "Mount Clemens",
+"lat": 42.589969,
+"lon": -82.881601,
+"state": "MI"
+},
+"601227": {
+"city": "Meridian",
+"lat": 32.368045,
+"lon": -88.698991,
+"state": "MS"
+},
+"602540": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
+},
+"602615": {
+"city": "Phoenix",
+"lat": 33.544358,
+"lon": -112.048962,
+"state": "AZ"
+},
+"603616": {
+"city": "Littleton",
+"lat": 44.307537,
+"lon": -71.769645,
+"state": "NH"
+},
 "603770": {
 "city": "Exeter",
 "lat": 42.980572,
 "lon": -70.952387,
+"state": "NH"
+},
+"603818": {
+"city": "Derry",
+"lat": 42.882246,
+"lon": -71.321746,
 "state": "NH"
 },
 "603847": {
@@ -2557,11 +7485,23 @@
 "lon": -72.193159,
 "state": "NH"
 },
+"605607": {
+"city": "Sioux Falls",
+"lat": 43.541109,
+"lon": -96.725723,
+"state": "SD"
+},
 "605981": {
 "city": "Rapid City",
 "lat": 44.08438,
 "lon": -103.221628,
 "state": "SD"
+},
+"607731": {
+"city": "Elmira",
+"lat": 42.089304,
+"lon": -76.803371,
+"state": "NY"
 },
 "608436": {
 "city": "Janesville",
@@ -2569,7 +7509,73 @@
 "lon": -89.018768,
 "state": "WI"
 },
+"609515": {
+"city": "Atlantic City",
+"lat": 39.359576,
+"lon": -74.433454,
+"state": "NJ"
+},
+"609578": {
+"city": "Cranbury",
+"lat": 40.314013,
+"lon": -74.517399,
+"state": "NJ"
+},
+"609635": {
+"city": "Lawrenceville",
+"lat": 40.296468,
+"lon": -74.728802,
+"state": "NJ"
+},
+"609721": {
+"city": "Plainsboro",
+"lat": 40.3346,
+"lon": -74.594489,
+"state": "NJ"
+},
+"609933": {
+"city": "Princeton",
+"lat": 40.349726,
+"lon": -74.661955,
+"state": "NJ"
+},
+"609947": {
+"city": "Trenton",
+"lat": 40.221552,
+"lon": -74.756879,
+"state": "NJ"
+},
+"609972": {
+"city": "Wildwood",
+"lat": 38.985972,
+"lon": -74.811628,
+"state": "NJ"
+},
 "612240": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"612393": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"612447": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"612709": {
+"city": "Twin Cities",
+"lat": 45.043456,
+"lon": -93.290898,
+"state": "MN"
+},
+"612806": {
 "city": "Twin Cities",
 "lat": 45.043456,
 "lon": -93.290898,
@@ -2581,11 +7587,47 @@
 "lon": -93.290898,
 "state": "MN"
 },
+"614515": {
+"city": "Worthington",
+"lat": 40.091453,
+"lon": -83.016624,
+"state": "OH"
+},
 "614632": {
 "city": "Columbus",
 "lat": 39.966856,
 "lon": -83.002499,
 "state": "OH"
+},
+"614787": {
+"city": "Dublin",
+"lat": 40.099211,
+"lon": -83.115228,
+"state": "OH"
+},
+"615481": {
+"city": "Nashville",
+"lat": 36.159315,
+"lon": -86.773425,
+"state": "TN"
+},
+"615601": {
+"city": "Nashville",
+"lat": 36.159315,
+"lon": -86.773425,
+"state": "TN"
+},
+"615785": {
+"city": "Murfreesboro",
+"lat": 35.851884,
+"lon": -86.385194,
+"state": "TN"
+},
+"615977": {
+"city": "Nashville",
+"lat": 36.159315,
+"lon": -86.773425,
+"state": "TN"
 },
 "616485": {
 "city": "Grand Rapids",
@@ -2593,11 +7635,71 @@
 "lon": -85.664843,
 "state": "MI"
 },
+"617650": {
+"city": "Boston",
+"lat": 42.357889,
+"lon": -71.058993,
+"state": "MA"
+},
+"617717": {
+"city": "Boston",
+"lat": 42.357889,
+"lon": -71.058993,
+"state": "MA"
+},
+"618638": {
+"city": "Metropolis",
+"lat": 37.156918,
+"lon": -88.730299,
+"state": "IL"
+},
 "618645": {
 "city": "Metropolis",
 "lat": 37.156918,
 "lon": -88.730299,
 "state": "IL"
+},
+"618722": {
+"city": "Belleville-Adams",
+"lat": 38.515116,
+"lon": -89.973507,
+"state": "IL"
+},
+"618737": {
+"city": "Belleville-Adams",
+"lat": 38.515116,
+"lon": -89.973507,
+"state": "IL"
+},
+"619292": {
+"city": "National City",
+"lat": 32.674944,
+"lon": -117.107798,
+"state": "CA"
+},
+"619316": {
+"city": "San Diego: San Diego DA",
+"lat": 32.717896,
+"lon": -117.14805,
+"state": "CA"
+},
+"619763": {
+"city": "Chula Vista",
+"lat": 32.642527,
+"lon": -117.076307,
+"state": "CA"
+},
+"619947": {
+"city": "Chula Vista",
+"lat": 32.642527,
+"lon": -117.076307,
+"state": "CA"
+},
+"620210": {
+"city": "Baxter Springs",
+"lat": 37.024998,
+"lon": -94.734829,
+"state": "KS"
 },
 "620260": {
 "city": "Garden City",
@@ -2629,10 +7731,53 @@
 "lon": -112.048962,
 "state": "AZ"
 },
+"625250": null,
+"626484": {
+"city": "Covina-Baldwin Park",
+"lat": 34.076056,
+"lon": -117.911048,
+"state": "CA"
+},
+"628250": {
+"city": "San Francisco: Juniper DA",
+"lat": 37.789974,
+"lon": -122.406446,
+"state": "CA"
+},
+"631338": {
+"city": "Brentwood",
+"lat": 40.777234,
+"lon": -73.246435,
+"state": "NY"
+},
+"631448": {
+"city": "Yaphank",
+"lat": 40.83883,
+"lon": -72.915913,
+"state": "NY"
+},
 "631590": {
 "city": "Ronkonkoma",
 "lat": 40.823397,
 "lon": -73.107637,
+"state": "NY"
+},
+"631747": {
+"city": "Brentwood",
+"lat": 40.777234,
+"lon": -73.246435,
+"state": "NY"
+},
+"631839": {
+"city": "Brentwood",
+"lat": 40.777234,
+"lon": -73.246435,
+"state": "NY"
+},
+"631902": {
+"city": "Riverhead",
+"lat": 40.917723,
+"lon": -72.665578,
 "state": "NY"
 },
 "631987": {
@@ -2640,6 +7785,18 @@
 "lat": 40.777234,
 "lon": -73.246435,
 "state": "NY"
+},
+"631988": {
+"city": "Huntington",
+"lat": 40.8694,
+"lon": -73.426873,
+"state": "NY"
+},
+"636584": {
+"city": "Union",
+"lat": 38.451501,
+"lon": -91.009281,
+"state": "MO"
 },
 "646226": {
 "city": "New York City Zone 01",
@@ -2653,11 +7810,71 @@
 "lon": -73.991043,
 "state": "NY"
 },
+"646353": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646427": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646479": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
 "646531": {
 "city": "New York City Zone 01",
 "lat": 40.739362,
 "lon": -73.991043,
 "state": "NY"
+},
+"646660": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646696": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646777": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"646894": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"650260": {
+"city": "Redwood City",
+"lat": 37.48398,
+"lon": -122.233696,
+"state": "CA"
+},
+"650426": {
+"city": "Mountain View",
+"lat": 37.389725,
+"lon": -122.084783,
+"state": "CA"
+},
+"650546": {
+"city": "Palo Alto",
+"lat": 37.450449,
+"lon": -122.157284,
+"state": "CA"
 },
 "651303": {
 "city": "Stillwater",
@@ -2677,7 +7894,31 @@
 "lon": -92.819369,
 "state": "MN"
 },
+"656347": {
+"city": "Tampa East",
+"lat": 27.965605,
+"lon": -82.268713,
+"state": "FL"
+},
+"656756": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"657462": {
+"city": "Silverado",
+"lat": 33.746809,
+"lon": -117.666605,
+"state": "CA"
+},
 "660221": {
+"city": "Sedalia",
+"lat": 38.709285,
+"lon": -93.235478,
+"state": "MO"
+},
+"660473": {
 "city": "Sedalia",
 "lat": 38.709285,
 "lon": -93.235478,
@@ -2689,7 +7930,73 @@
 "lon": -118.525616,
 "state": "CA"
 },
+"661558": {
+"city": "Bakersfield: Main DA",
+"lat": 35.373939,
+"lon": -119.017698,
+"state": "CA"
+},
+"662403": {
+"city": "Coldwater",
+"lat": 34.684367,
+"lon": -89.964846,
+"state": "MS"
+},
+"662497": {
+"city": "Columbus",
+"lat": 33.500967,
+"lon": -88.417777,
+"state": "MS"
+},
+"662782": {
+"city": "Olive Branch",
+"lat": 34.968279,
+"lon": -89.814524,
+"state": "MS"
+},
+"678231": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"678301": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
 "678361": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"678591": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"678634": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"678640": {
+"city": "Atlanta",
+"lat": 33.74978,
+"lon": -84.381423,
+"state": "GA"
+},
+"678777": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"678896": {
 "city": "Atlanta Northeast",
 "lat": 33.890464,
 "lon": -84.165642,
@@ -2701,7 +8008,217 @@
 "lon": -97.329486,
 "state": "TX"
 },
+"689202": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689204": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689207": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689209": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689212": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689223": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689224": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689226": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689228": {
+"city": "Reedy Creek",
+"lat": 28.347083,
+"lon": -81.610468,
+"state": "FL"
+},
+"689229": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689231": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689239": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689242": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689249": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689252": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689254": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689255": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689272": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689278": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689287": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689290": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689291": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689296": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689298": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689307": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689312": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689317": {
+"city": "Lake Buena Vista",
+"lat": 28.391195,
+"lon": -81.532959,
+"state": "FL"
+},
+"689318": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689322": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689325": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689327": {
+"city": "Winter Park",
+"lat": 28.599066,
+"lon": -81.352157,
+"state": "FL"
+},
+"689329": {
+"city": "Sanford",
+"lat": 28.81091,
+"lon": -81.258651,
+"state": "FL"
+},
+"689333": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
+"689342": {
+"city": "Kissimmee",
+"lat": 28.299404,
+"lon": -81.400774,
+"state": "FL"
+},
 "689353": {
+"city": "Orlando",
+"lat": 28.540751,
+"lon": -81.372955,
+"state": "FL"
+},
+"689688": {
 "city": "Orlando",
 "lat": 28.540751,
 "lon": -81.372955,
@@ -2731,7 +8248,19 @@
 "lon": -115.142596,
 "state": "NV"
 },
+"702606": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
 "702771": {
+"city": "Las Vegas",
+"lat": 36.168333,
+"lon": -115.142596,
+"state": "NV"
+},
+"702906": {
 "city": "Las Vegas",
 "lat": 36.168333,
 "lon": -115.142596,
@@ -2747,6 +8276,12 @@
 "city": "Washington Zone 8",
 "lat": 38.880541,
 "lon": -77.099019,
+"state": "VA"
+},
+"703296": {
+"city": "Occoquan",
+"lat": 38.683457,
+"lon": -77.259538,
 "state": "VA"
 },
 "703559": {
@@ -2785,6 +8320,18 @@
 "lon": -81.968107,
 "state": "GA"
 },
+"706773": {
+"city": "West Point",
+"lat": 32.874521,
+"lon": -85.17577,
+"state": "GA"
+},
+"707362": {
+"city": "Eureka",
+"lat": 40.800762,
+"lon": -124.164002,
+"state": "CA"
+},
 "708506": {
 "city": "Chicago Heights",
 "lat": 41.505751,
@@ -2795,6 +8342,12 @@
 "city": "La Grange",
 "lat": 41.815363,
 "lon": -87.871448,
+"state": "IL"
+},
+"708979": {
+"city": "Tinley Park",
+"lat": 41.57654,
+"lon": -87.78377,
 "state": "IL"
 },
 "713319": {
@@ -2821,6 +8374,12 @@
 "lon": -95.363662,
 "state": "TX"
 },
+"713724": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
 "714272": {
 "city": "Anaheim",
 "lat": 33.823556,
@@ -2832,6 +8391,84 @@
 "lat": 33.823556,
 "lon": -117.895625,
 "state": "CA"
+},
+"714658": {
+"city": "Santa Ana",
+"lat": 33.706333,
+"lon": -117.886197,
+"state": "CA"
+},
+"714696": {
+"city": "Yorba Linda",
+"lat": 33.878473,
+"lon": -117.784169,
+"state": "CA"
+},
+"716904": {
+"city": "Olean",
+"lat": 42.0784,
+"lon": -78.434235,
+"state": "NY"
+},
+"717421": {
+"city": "Harrisburg City Zone-1",
+"lat": 40.26304,
+"lon": -76.882657,
+"state": "PA"
+},
+"717515": {
+"city": "York",
+"lat": 39.962493,
+"lon": -76.727592,
+"state": "PA"
+},
+"717829": {
+"city": "Harrisburg City Zone-1",
+"lat": 40.26304,
+"lon": -76.882657,
+"state": "PA"
+},
+"718235": {
+"city": "New York City Zone 06",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"718440": {
+"city": "New York City Zone 08",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"718451": {
+"city": "New York City Zone 06",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"718473": {
+"city": "New York City Zone 06",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"718578": {
+"city": "New York City Zone 08",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"718787": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"718864": {
+"city": "New York City Zone 06",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
 },
 "719201": {
 "city": "Colorado Springs-Main",
@@ -2977,6 +8614,12 @@
 "lon": -104.817061,
 "state": "CO"
 },
+"719354": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
 "719359": {
 "city": "Colorado Springs-Main",
 "lat": 38.840471,
@@ -3015,6 +8658,12 @@
 },
 "719381": {
 "city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719393": {
+"city": "Colorado Springs-Security",
 "lat": 38.840471,
 "lon": -104.817061,
 "state": "CO"
@@ -3121,6 +8770,12 @@
 "lon": -104.817061,
 "state": "CO"
 },
+"719466": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
 "719491": {
 "city": "Colorado Springs-Main",
 "lat": 38.840471,
@@ -3206,6 +8861,12 @@
 "state": "CO"
 },
 "719641": {
+"city": "Colorado Springs-Main",
+"lat": 38.840471,
+"lon": -104.817061,
+"state": "CO"
+},
+"719645": {
 "city": "Colorado Springs-Main",
 "lat": 38.840471,
 "lon": -104.817061,
@@ -3398,6 +9059,12 @@
 "state": "CO"
 },
 "720215": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720226": {
 "city": "Denver",
 "lat": 39.745902,
 "lon": -105.051526,
@@ -3746,6 +9413,12 @@
 "state": "CO"
 },
 "720431": {
+"city": "Denver",
+"lat": 39.745902,
+"lon": -105.051526,
+"state": "CO"
+},
+"720434": {
 "city": "Denver",
 "lat": 39.745902,
 "lon": -105.051526,
@@ -4573,7 +10246,25 @@
 "lon": -79.548076,
 "state": "PA"
 },
+"726210": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "726214": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"726217": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
+"726243": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
@@ -4591,17 +10282,137 @@
 "lon": -98.484285,
 "state": "TX"
 },
+"726256": {
+"city": "San Antonio",
+"lat": 29.42697,
+"lon": -98.484285,
+"state": "TX"
+},
 "726259": {
 "city": "San Antonio",
 "lat": 29.42697,
 "lon": -98.484285,
 "state": "TX"
 },
+"727200": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727272": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727313": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727417": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727423": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727452": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727487": {
+"city": "Tarpon Springs",
+"lat": 28.143395,
+"lon": -82.751785,
+"state": "FL"
+},
+"727495": {
+"city": "Hudson",
+"lat": 28.364478,
+"lon": -82.687172,
+"state": "FL"
+},
+"727580": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727599": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727603": {
+"city": "Clearwater",
+"lat": 27.966674,
+"lon": -82.799465,
+"state": "FL"
+},
+"727810": {
+"city": "New Port Richey",
+"lat": 28.241827,
+"lon": -82.706396,
+"state": "FL"
+},
+"728444": {
+"city": "West Palm Beach",
+"lat": 26.69117,
+"lon": -80.058465,
+"state": "FL"
+},
+"732580": {
+"city": "Freehold",
+"lat": 40.260195,
+"lon": -74.270817,
+"state": "NJ"
+},
+"732801": {
+"city": "New Brunswick",
+"lat": 40.494684,
+"lon": -74.444958,
+"state": "NJ"
+},
 "732910": {
 "city": "Metuchen",
 "lat": 40.539577,
 "lon": -74.363137,
 "state": "NJ"
+},
+"734346": {
+"city": "Trenton",
+"lat": 42.14322,
+"lon": -83.182075,
+"state": "MI"
+},
+"734478": {
+"city": "Ann Arbor",
+"lat": 42.282752,
+"lon": -83.738761,
+"state": "MI"
+},
+"737281": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
+},
+"737400": {
+"city": "Austin",
+"lat": 30.272761,
+"lon": -97.742366,
+"state": "TX"
 },
 "737423": {
 "city": "Austin",
@@ -4614,6 +10425,24 @@
 "lat": 30.272761,
 "lon": -97.742366,
 "state": "TX"
+},
+"740338": {
+"city": "St Clairsville",
+"lat": 40.084752,
+"lon": -80.89858,
+"state": "OH"
+},
+"740602": {
+"city": "Delaware",
+"lat": 40.302765,
+"lon": -83.067651,
+"state": "OH"
+},
+"740751": {
+"city": "Marion",
+"lat": 40.585025,
+"lon": -83.133227,
+"state": "OH"
 },
 "747243": {
 "city": "Van Nuys",
@@ -4633,6 +10462,12 @@
 "lon": -80.142417,
 "state": "FL"
 },
+"754423": {
+"city": "Hollywood",
+"lat": 26.008235,
+"lon": -80.148961,
+"state": "FL"
+},
 "757389": {
 "city": "Norfolk Zone 1",
 "lat": 36.716602,
@@ -4645,11 +10480,53 @@
 "lon": -76.51684,
 "state": "VA"
 },
+"757553": {
+"city": "Norfolk Zone 1",
+"lat": 36.716602,
+"lon": -76.23601,
+"state": "VA"
+},
+"757575": {
+"city": "Norfolk Zone 2",
+"lat": 36.849497,
+"lon": -76.294617,
+"state": "VA"
+},
+"757651": {
+"city": "Norfolk Zone 2",
+"lat": 36.849497,
+"lon": -76.294617,
+"state": "VA"
+},
 "757726": {
 "city": "Newport News Zone 2",
 "lat": 37.026542,
 "lon": -76.342748,
 "state": "VA"
+},
+"757803": {
+"city": "Norfolk Zone 2",
+"lat": 36.849497,
+"lon": -76.294617,
+"state": "VA"
+},
+"757945": {
+"city": "Newport News Zone 3",
+"lat": 37.139872,
+"lon": -76.51684,
+"state": "VA"
+},
+"757969": {
+"city": "Newport News Zone 3",
+"lat": 37.139872,
+"lon": -76.51684,
+"state": "VA"
+},
+"760390": {
+"city": "Vista",
+"lat": 33.168767,
+"lon": -117.211435,
+"state": "CA"
 },
 "760402": {
 "city": "Encinitas",
@@ -4657,14 +10534,164 @@
 "lon": -117.297375,
 "state": "CA"
 },
+"760696": {
+"city": "Oceanside: Oceanside DA",
+"lat": 33.158868,
+"lon": -117.340672,
+"state": "CA"
+},
+"765491": {
+"city": "Lafayette",
+"lat": 40.424766,
+"lon": -86.885662,
+"state": "IN"
+},
+"769777": {
+"city": "Jackson",
+"lat": 32.301934,
+"lon": -90.193294,
+"state": "MS"
+},
+"770203": {
+"city": "Cumming",
+"lat": 34.207066,
+"lon": -84.140435,
+"state": "GA"
+},
+"770558": {
+"city": "Atlanta Northeast",
+"lat": 33.890464,
+"lon": -84.165642,
+"state": "GA"
+},
+"772214": {
+"city": "Stuart",
+"lat": 27.193258,
+"lon": -80.249404,
+"state": "FL"
+},
+"772226": {
+"city": "Vero Beach",
+"lat": 27.640345,
+"lon": -80.400125,
+"state": "FL"
+},
+"772228": {
+"city": "Sebastian",
+"lat": 27.816872,
+"lon": -80.468219,
+"state": "FL"
+},
+"772278": {
+"city": "Hobe Sound",
+"lat": 27.060197,
+"lon": -80.134641,
+"state": "FL"
+},
+"772300": {
+"city": "Sebastian",
+"lat": 27.816872,
+"lon": -80.468219,
+"state": "FL"
+},
+"772302": {
+"city": "Fort Pierce",
+"lat": 27.443324,
+"lon": -80.333918,
+"state": "FL"
+},
+"772332": {
+"city": "Fort Pierce",
+"lat": 27.443324,
+"lon": -80.333918,
+"state": "FL"
+},
+"772333": {
+"city": "Port St Lucie",
+"lat": 27.266191,
+"lon": -80.284545,
+"state": "FL"
+},
+"772348": {
+"city": "Port St Lucie",
+"lat": 27.266191,
+"lon": -80.284545,
+"state": "FL"
+},
+"772370": {
+"city": "Port St Lucie",
+"lat": 27.266191,
+"lon": -80.284545,
+"state": "FL"
+},
+"772380": {
+"city": "Port St Lucie",
+"lat": 27.266191,
+"lon": -80.284545,
+"state": "FL"
+},
+"772446": {
+"city": "Port St Lucie",
+"lat": 27.266191,
+"lon": -80.284545,
+"state": "FL"
+},
 "772485": {
 "city": "Stuart",
 "lat": 27.193258,
 "lon": -80.249404,
 "state": "FL"
 },
+"772584": {
+"city": "Vero Beach",
+"lat": 27.640345,
+"lon": -80.400125,
+"state": "FL"
+},
+"772631": {
+"city": "Stuart",
+"lat": 27.193258,
+"lon": -80.249404,
+"state": "FL"
+},
+"772666": {
+"city": "Fort Pierce",
+"lat": 27.443324,
+"lon": -80.333918,
+"state": "FL"
+},
+"772766": {
+"city": "Vero Beach",
+"lat": 27.640345,
+"lon": -80.400125,
+"state": "FL"
+},
+"772834": {
+"city": "Port St Lucie",
+"lat": 27.266191,
+"lon": -80.284545,
+"state": "FL"
+},
+"772913": {
+"city": "Sebastian",
+"lat": 27.816872,
+"lon": -80.468219,
+"state": "FL"
+},
+"772999": {
+"city": "Vero Beach",
+"lat": 27.640345,
+"lon": -80.400125,
+"state": "FL"
+},
 "773354": {
 "city": "Chicago Zone 01-Calumet",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"773494": {
+"city": "Chicago Zone 03-Kildare",
 "lat": 41.883465,
 "lon": -87.635162,
 "state": "IL"
@@ -4699,11 +10726,47 @@
 "lon": -87.635162,
 "state": "IL"
 },
+"774269": {
+"city": "Sagamore",
+"lat": 41.769461,
+"lon": -70.52848,
+"state": "MA"
+},
+"774319": {
+"city": "Fall River",
+"lat": 41.706503,
+"lon": -71.153069,
+"state": "MA"
+},
+"774487": {
+"city": "Hyannis",
+"lat": 41.651635,
+"lon": -70.28649,
+"state": "MA"
+},
+"774559": {
+"city": "Barnstable",
+"lat": 41.702007,
+"lon": -70.301605,
+"state": "MA"
+},
+"778918": {
+"city": "Richmond",
+"lat": 49.164954,
+"lon": -123.134975,
+"state": "BC"
+},
 "779357": {
 "city": "Leaf River",
 "lat": 42.123787,
 "lon": -89.404398,
 "state": "IL"
+},
+"781535": {
+"city": "Braintree",
+"lat": 42.217425,
+"lon": -71.000185,
+"state": "MA"
 },
 "785576": {
 "city": "Abilene",
@@ -4723,7 +10786,19 @@
 "lon": -98.952613,
 "state": "KS"
 },
+"786214": {
+"city": "Perrine",
+"lat": 25.602047,
+"lon": -80.350605,
+"state": "FL"
+},
 "786269": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786271": {
 "city": "Miami",
 "lat": 25.774612,
 "lon": -80.190315,
@@ -4735,11 +10810,137 @@
 "lon": -80.190315,
 "state": "FL"
 },
+"786314": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786351": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786376": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786400": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786417": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786434": {
+"city": "Homestead",
+"lat": 25.468394,
+"lon": -80.484789,
+"state": "FL"
+},
+"786482": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786525": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786604": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786617": {
+"city": "North Dade",
+"lat": 25.92243,
+"lon": -80.158141,
+"state": "FL"
+},
 "786620": {
 "city": "Miami",
 "lat": 25.774612,
 "lon": -80.190315,
 "state": "FL"
+},
+"786678": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786715": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786778": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786781": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"786815": {
+"city": "Miami",
+"lat": 25.774612,
+"lon": -80.190315,
+"state": "FL"
+},
+"787594": {
+"city": "Santurce",
+"lat": 18.452721,
+"lon": -66.079394,
+"state": "PR"
+},
+"787597": {
+"city": "Arecibo",
+"lat": 18.467061,
+"lon": -66.732053,
+"state": "PR"
+},
+"787689": {
+"city": "Levittown",
+"lat": 18.439512,
+"lon": -66.180539,
+"state": "PR"
+},
+"787988": {
+"city": "Fajardo",
+"lat": 18.336224,
+"lon": -65.65085,
+"state": "PR"
+},
+"787996": {
+"city": "Santurce",
+"lat": 18.452721,
+"lon": -66.079394,
+"state": "PR"
+},
+"801325": {
+"city": "Salt Lake City",
+"lat": 40.758158,
+"lon": -111.882412,
+"state": "UT"
 },
 "801369": {
 "city": "Provo",
@@ -4765,16 +10966,76 @@
 "lon": -111.882412,
 "state": "UT"
 },
+"801691": {
+"city": "Provo",
+"lat": 40.232953,
+"lon": -111.669843,
+"state": "UT"
+},
+"802343": {
+"city": "Burlington",
+"lat": 44.476448,
+"lon": -73.206355,
+"state": "VT"
+},
+"802904": {
+"city": "Stowe",
+"lat": 44.466226,
+"lon": -72.687815,
+"state": "VT"
+},
 "803316": {
 "city": "North Sumter",
 "lat": 33.959819,
 "lon": -80.374785,
 "state": "SC"
 },
+"804309": {
+"city": "Richmond",
+"lat": 37.542335,
+"lon": -77.435111,
+"state": "VA"
+},
+"804605": {
+"city": "Petersburg",
+"lat": 37.223639,
+"lon": -77.408298,
+"state": "VA"
+},
+"804638": {
+"city": "Chester",
+"lat": 37.358341,
+"lon": -77.432386,
+"state": "VA"
+},
+"804869": {
+"city": "Richmond",
+"lat": 37.542335,
+"lon": -77.435111,
+"state": "VA"
+},
+"804873": {
+"city": "Richmond",
+"lat": 37.542335,
+"lon": -77.435111,
+"state": "VA"
+},
 "805252": {
 "city": "Santa Barbara",
 "lat": 34.417726,
 "lon": -119.699571,
+"state": "CA"
+},
+"805400": {
+"city": "Paso Robles",
+"lat": 35.632898,
+"lon": -120.699449,
+"state": "CA"
+},
+"805407": {
+"city": "Oxnard",
+"lat": 34.196012,
+"lon": -119.176487,
 "state": "CA"
 },
 "805698": {
@@ -4795,6 +11056,30 @@
 "lon": -101.407322,
 "state": "TX"
 },
+"806477": {
+"city": "Amarillo",
+"lat": 35.206343,
+"lon": -101.838228,
+"state": "TX"
+},
+"806494": {
+"city": "Plainview",
+"lat": 34.193743,
+"lon": -101.70741,
+"state": "TX"
+},
+"806731": {
+"city": "Amarillo",
+"lat": 35.206343,
+"lon": -101.838228,
+"state": "TX"
+},
+"808223": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
 "808302": {
 "city": "Honolulu",
 "lat": 21.314267,
@@ -4813,7 +11098,19 @@
 "lon": -157.863494,
 "state": "HI"
 },
+"808450": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
 "808561": {
+"city": "Honolulu",
+"lat": 21.314267,
+"lon": -157.863494,
+"state": "HI"
+},
+"808728": {
 "city": "Honolulu",
 "lat": 21.314267,
 "lon": -157.863494,
@@ -4825,13 +11122,139 @@
 "lon": -157.863494,
 "state": "HI"
 },
+"812350": {
+"city": "Columbus",
+"lat": 39.208273,
+"lon": -85.915062,
+"state": "IN"
+},
 "812882": {
 "city": "Vincennes",
 "lat": 38.685907,
 "lon": -87.517131,
 "state": "IN"
 },
+"813205": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813330": {
+"city": "Tampa East",
+"lat": 27.965605,
+"lon": -82.268713,
+"state": "FL"
+},
+"813351": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813384": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813392": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813399": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813408": {
+"city": "Tampa West",
+"lat": 28.11167,
+"lon": -82.59887,
+"state": "FL"
+},
+"813418": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813419": {
+"city": "Tampa South",
+"lat": 27.714011,
+"lon": -82.335781,
+"state": "FL"
+},
+"813447": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813458": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
 "813465": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813482": {
+"city": "Tampa North",
+"lat": 28.274227,
+"lon": -82.421902,
+"state": "FL"
+},
+"813507": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813526": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813536": {
+"city": "Tampa North",
+"lat": 28.274227,
+"lon": -82.421902,
+"state": "FL"
+},
+"813553": {
+"city": "Tampa North",
+"lat": 28.274227,
+"lon": -82.421902,
+"state": "FL"
+},
+"813577": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813578": {
+"city": "Plant City",
+"lat": 28.01847,
+"lon": -82.126651,
+"state": "FL"
+},
+"813600": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813610": {
 "city": "Tampa Central",
 "lat": 27.948508,
 "lon": -82.45907,
@@ -4842,6 +11265,126 @@
 "lat": 27.948508,
 "lon": -82.45907,
 "state": "FL"
+},
+"813648": {
+"city": "Tampa East",
+"lat": 27.965605,
+"lon": -82.268713,
+"state": "FL"
+},
+"813652": {
+"city": "Plant City",
+"lat": 28.01847,
+"lon": -82.126651,
+"state": "FL"
+},
+"813690": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813703": {
+"city": "Plant City",
+"lat": 28.01847,
+"lon": -82.126651,
+"state": "FL"
+},
+"813707": {
+"city": "Plant City",
+"lat": 28.01847,
+"lon": -82.126651,
+"state": "FL"
+},
+"813727": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813765": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813766": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813770": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813777": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813781": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813786": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813808": {
+"city": "Tampa East",
+"lat": 27.965605,
+"lon": -82.268713,
+"state": "FL"
+},
+"813829": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813834": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813863": {
+"city": "Tampa West",
+"lat": 28.11167,
+"lon": -82.59887,
+"state": "FL"
+},
+"813893": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813955": {
+"city": "Tampa Central",
+"lat": 27.948508,
+"lon": -82.45907,
+"state": "FL"
+},
+"813997": {
+"city": "Tampa North",
+"lat": 28.274227,
+"lon": -82.421902,
+"state": "FL"
+},
+"814460": {
+"city": "Erie",
+"lat": 42.120475,
+"lon": -80.085276,
+"state": "PA"
 },
 "814777": {
 "city": "Boalsburg",
@@ -4867,11 +11410,35 @@
 "lon": -88.081078,
 "state": "IL"
 },
+"815859": {
+"city": "Rochelle",
+"lat": 41.926043,
+"lon": -89.076296,
+"state": "IL"
+},
+"816248": {
+"city": "St Joseph",
+"lat": 39.766456,
+"lon": -94.847501,
+"state": "MO"
+},
 "816392": {
 "city": "Kansas City",
 "lat": 39.102432,
 "lon": -94.583699,
 "state": "MO"
+},
+"816885": {
+"city": "Kansas City",
+"lat": 39.102432,
+"lon": -94.583699,
+"state": "MO"
+},
+"817456": {
+"city": "Arlington EMS",
+"lat": 32.734744,
+"lon": -97.108536,
+"state": "TX"
 },
 "817528": {
 "city": "Arlington EMS",
@@ -4897,10 +11464,58 @@
 "lon": -81.340966,
 "state": "NC"
 },
+"828406": {
+"city": "Boone",
+"lat": 36.216344,
+"lon": -81.681243,
+"state": "NC"
+},
+"828550": {
+"city": "Waynesville",
+"lat": 35.491009,
+"lon": -82.980762,
+"state": "NC"
+},
+"828772": {
+"city": "Asheville",
+"lat": 35.591609,
+"lon": -82.56087,
+"state": "NC"
+},
+"830202": {
+"city": "Cotulla",
+"lat": 28.434625,
+"lon": -99.234158,
+"state": "TX"
+},
+"830216": {
+"city": "Floresville PPCP",
+"lat": 29.132656,
+"lon": -98.148507,
+"state": "TX"
+},
+"830221": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
 "830245": {
 "city": "Del Rio",
 "lat": 29.358855,
 "lon": -100.900045,
+"state": "TX"
+},
+"830255": {
+"city": "Carrizo Springs",
+"lat": 28.524234,
+"lon": -99.859678,
+"state": "TX"
+},
+"830259": {
+"city": "Floresville",
+"lat": 29.132656,
+"lon": -98.148507,
 "state": "TX"
 },
 "830267": {
@@ -4909,10 +11524,34 @@
 "lon": -99.08955,
 "state": "TX"
 },
+"830273": {
+"city": "Del Rio",
+"lat": 29.358855,
+"lon": -100.900045,
+"state": "TX"
+},
+"830290": {
+"city": "Del Rio",
+"lat": 29.358855,
+"lon": -100.900045,
+"state": "TX"
+},
+"830296": {
+"city": "Sabinal",
+"lat": 29.315069,
+"lon": -99.466237,
+"state": "TX"
+},
 "830299": {
 "city": "Kenedy",
 "lat": 28.81553,
 "lon": -97.852419,
+"state": "TX"
+},
+"830302": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
 "state": "TX"
 },
 "830317": {
@@ -4921,10 +11560,28 @@
 "lon": -99.08955,
 "state": "TX"
 },
+"830327": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
 "830357": {
 "city": "Boerne",
 "lat": 29.791394,
 "lon": -98.723842,
+"state": "TX"
+},
+"830358": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
+"state": "TX"
+},
+"830360": {
+"city": "New Braunfels",
+"lat": 29.699401,
+"lon": -98.117214,
 "state": "TX"
 },
 "830402": {
@@ -4939,6 +11596,18 @@
 "lon": -99.143682,
 "state": "TX"
 },
+"830443": {
+"city": "Boerne",
+"lat": 29.791394,
+"lon": -98.723842,
+"state": "TX"
+},
+"830444": {
+"city": "Hondo",
+"lat": 29.351543,
+"lon": -99.143682,
+"state": "TX"
+},
 "830446": {
 "city": "Boerne",
 "lat": 29.791394,
@@ -4947,6 +11616,12 @@
 },
 "830463": {
 "city": "Seguin EMS",
+"lat": 29.568042,
+"lon": -97.967244,
+"state": "TX"
+},
+"830475": {
+"city": "Seguin",
 "lat": 29.568042,
 "lon": -97.967244,
 "state": "TX"
@@ -4969,6 +11644,12 @@
 "lon": -98.072531,
 "state": "TX"
 },
+"830499": {
+"city": "Asherton",
+"lat": 28.440637,
+"lon": -99.756498,
+"state": "TX"
+},
 "830556": {
 "city": "Seguin",
 "lat": 29.568042,
@@ -4979,6 +11660,12 @@
 "city": "Seguin EMS",
 "lat": 29.568042,
 "lon": -97.967244,
+"state": "TX"
+},
+"830570": {
+"city": "Pleasanton EMS",
+"lat": 28.957656,
+"lon": -98.493198,
 "state": "TX"
 },
 "830643": {
@@ -4993,10 +11680,22 @@
 "lon": -97.967244,
 "state": "TX"
 },
+"830688": {
+"city": "Bandera",
+"lat": 29.724717,
+"lon": -99.07288,
+"state": "TX"
+},
 "830708": {
 "city": "New Braunfels",
 "lat": 29.699401,
 "lon": -98.117214,
+"state": "TX"
+},
+"830714": {
+"city": "Bulverde",
+"lat": 29.725519,
+"lon": -98.426479,
 "state": "TX"
 },
 "830730": {
@@ -5041,13 +11740,43 @@
 "lon": -100.501199,
 "state": "TX"
 },
+"830998": {
+"city": "Fredericksburg",
+"lat": 30.280805,
+"lon": -98.865558,
+"state": "TX"
+},
+"830999": {
+"city": "Catarina",
+"lat": 28.351121,
+"lon": -99.606283,
+"state": "TX"
+},
 "832448": {
 "city": "Houston Suburban",
 "lat": 29.751809,
 "lon": -95.368499,
 "state": "TX"
 },
+"832488": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
 "832564": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"832576": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
+"state": "TX"
+},
+"832633": {
 "city": "Houston",
 "lat": 29.750008,
 "lon": -95.363662,
@@ -5057,6 +11786,12 @@
 "city": "Spring",
 "lat": 30.085026,
 "lon": -95.425753,
+"state": "TX"
+},
+"832715": {
+"city": "Houston",
+"lat": 29.750008,
+"lon": -95.363662,
 "state": "TX"
 },
 "832731": {
@@ -5077,10 +11812,34 @@
 "lon": -95.363662,
 "state": "TX"
 },
+"843304": {
+"city": "Bluffton",
+"lat": 32.232755,
+"lon": -80.856296,
+"state": "SC"
+},
+"843864": {
+"city": "Charleston",
+"lat": 32.791636,
+"lon": -79.943789,
+"state": "SC"
+},
 "845394": {
 "city": "Middletown",
 "lat": 41.447507,
 "lon": -74.42029,
+"state": "NY"
+},
+"845505": {
+"city": "Poughkeepsie",
+"lat": 41.70774,
+"lon": -73.926448,
+"state": "NY"
+},
+"845653": {
+"city": "Pearl River",
+"lat": 41.060742,
+"lon": -74.024933,
 "state": "NY"
 },
 "845729": {
@@ -5095,6 +11854,12 @@
 "lon": -73.941726,
 "state": "NY"
 },
+"847508": {
+"city": "Northbrook West",
+"lat": 42.128375,
+"lon": -87.830075,
+"state": "IL"
+},
 "847530": {
 "city": "Northbrook",
 "lat": 42.128375,
@@ -5107,10 +11872,64 @@
 "lon": -88.086059,
 "state": "IL"
 },
+"848223": {
+"city": "Toms River",
+"lat": 39.952522,
+"lon": -74.199146,
+"state": "NJ"
+},
+"850288": {
+"city": "Pensacola",
+"lat": 30.417849,
+"lon": -87.214854,
+"state": "FL"
+},
+"850356": {
+"city": "Pensacola",
+"lat": 30.417849,
+"lon": -87.214854,
+"state": "FL"
+},
+"850398": {
+"city": "Crestview",
+"lat": 30.759785,
+"lon": -86.576596,
+"state": "FL"
+},
+"850408": {
+"city": "Tallahassee",
+"lat": 30.442716,
+"lon": -84.27613,
+"state": "FL"
+},
 "850417": {
 "city": "Pensacola",
 "lat": 30.417849,
 "lon": -87.214854,
+"state": "FL"
+},
+"850443": {
+"city": "Tallahassee",
+"lat": 30.442716,
+"lon": -84.27613,
+"state": "FL"
+},
+"850485": {
+"city": "Pensacola",
+"lat": 30.417849,
+"lon": -87.214854,
+"state": "FL"
+},
+"850586": {
+"city": "Fort Walton Beach",
+"lat": 30.41124,
+"lon": -86.602176,
+"state": "FL"
+},
+"850631": {
+"city": "Tallahassee",
+"lat": 30.442716,
+"lon": -84.27613,
 "state": "FL"
 },
 "850693": {
@@ -5119,11 +11938,53 @@
 "lon": -85.23118,
 "state": "FL"
 },
+"850703": {
+"city": "Chipley",
+"lat": 30.783404,
+"lon": -85.535078,
+"state": "FL"
+},
+"850812": {
+"city": "Fort Walton Beach",
+"lat": 30.41124,
+"lon": -86.602176,
+"state": "FL"
+},
+"850848": {
+"city": "Tallahassee",
+"lat": 30.442716,
+"lon": -84.27613,
+"state": "FL"
+},
+"856631": {
+"city": "Haddon Heights",
+"lat": 39.88263,
+"lon": -75.061295,
+"state": "NJ"
+},
 "856979": {
 "city": "Collingswood",
 "lat": 39.917169,
 "lon": -75.072613,
 "state": "NJ"
+},
+"858203": {
+"city": "La Jolla",
+"lat": 32.839113,
+"lon": -117.215636,
+"state": "CA"
+},
+"859241": {
+"city": "Nicholasville",
+"lat": 37.885082,
+"lon": -84.565193,
+"state": "KY"
+},
+"859314": {
+"city": "Richmond",
+"lat": 37.749314,
+"lon": -84.302361,
+"state": "KY"
 },
 "860480": {
 "city": "Torrington",
@@ -5137,13 +11998,445 @@
 "lon": -72.679511,
 "state": "CT"
 },
+"860906": {
+"city": "Hartford",
+"lat": 41.767575,
+"lon": -72.679511,
+"state": "CT"
+},
+"860908": {
+"city": "Norwich",
+"lat": 41.527092,
+"lon": -72.077561,
+"state": "CT"
+},
+"860917": {
+"city": "Norwich",
+"lat": 41.527092,
+"lon": -72.077561,
+"state": "CT"
+},
+"862268": {
+"city": "Newton",
+"lat": 41.055406,
+"lon": -74.757977,
+"state": "NJ"
+},
+"862296": {
+"city": "Succasunna",
+"lat": 40.867426,
+"lon": -74.63421,
+"state": "NJ"
+},
 "862436": {
 "city": "Newark",
 "lat": 40.739362,
 "lon": -74.172513,
 "state": "NJ"
 },
+"862588": {
+"city": "Newark",
+"lat": 40.739362,
+"lon": -74.172513,
+"state": "NJ"
+},
+"863205": {
+"city": "Bartow",
+"lat": 27.889937,
+"lon": -81.833094,
+"state": "FL"
+},
+"863206": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863215": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863220": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863224": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863232": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863242": {
+"city": "Haines City",
+"lat": 28.11033,
+"lon": -81.616333,
+"state": "FL"
+},
+"863255": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863258": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863259": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863269": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863270": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863272": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863273": {
+"city": "Sebring",
+"lat": 27.501731,
+"lon": -81.434892,
+"state": "FL"
+},
+"863274": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863276": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863279": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863303": {
+"city": "Arcadia",
+"lat": 27.217245,
+"lon": -81.858722,
+"state": "FL"
+},
+"863307": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863308": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863325": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863333": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863337": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863347": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863349": {
+"city": "Bartow",
+"lat": 27.889937,
+"lon": -81.833094,
+"state": "FL"
+},
+"863359": {
+"city": "Avon Park",
+"lat": 27.613867,
+"lon": -81.50491,
+"state": "FL"
+},
+"863360": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863364": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863378": {
+"city": "Bartow",
+"lat": 27.889937,
+"lon": -81.833094,
+"state": "FL"
+},
+"863379": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863390": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863393": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863397": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863398": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863399": {
+"city": "Avon Park",
+"lat": 27.613867,
+"lon": -81.50491,
+"state": "FL"
+},
+"863412": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863430": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863440": {
+"city": "Bartow",
+"lat": 27.889937,
+"lon": -81.833094,
+"state": "FL"
+},
+"863452": {
+"city": "Avon Park",
+"lat": 27.613867,
+"lon": -81.50491,
+"state": "FL"
+},
+"863458": {
+"city": "Sebring",
+"lat": 27.501731,
+"lon": -81.434892,
+"state": "FL"
+},
+"863486": {
+"city": "Bowling Green",
+"lat": 27.631038,
+"lon": -81.816603,
+"state": "FL"
+},
+"863488": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863508": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863514": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863529": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863537": {
+"city": "Bartow",
+"lat": 27.889937,
+"lon": -81.833094,
+"state": "FL"
+},
+"863547": {
+"city": "Haines City",
+"lat": 28.11033,
+"lon": -81.616333,
+"state": "FL"
+},
+"863585": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863588": {
+"city": "Haines City",
+"lat": 28.11033,
+"lon": -81.616333,
+"state": "FL"
+},
+"863589": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863594": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863602": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863604": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863605": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863614": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863622": {
+"city": "Fort Meade",
+"lat": 27.751076,
+"lon": -81.792113,
+"state": "FL"
+},
+"863632": {
+"city": "Lake Wales",
+"lat": 27.905914,
+"lon": -81.582747,
+"state": "FL"
+},
+"863651": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863660": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
 "863662": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863712": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863732": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863777": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863797": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863799": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863800": {
+"city": "Bartow",
+"lat": 27.889937,
+"lon": -81.833094,
+"state": "FL"
+},
+"863837": {
 "city": "Winter Haven",
 "lat": 28.035326,
 "lon": -81.725801,
@@ -5155,11 +12448,77 @@
 "lon": -81.50491,
 "state": "FL"
 },
+"863877": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863934": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
+"863969": {
+"city": "Winter Haven",
+"lat": 28.035326,
+"lon": -81.725801,
+"state": "FL"
+},
+"863999": {
+"city": "Lakeland",
+"lat": 28.031758,
+"lon": -81.950178,
+"state": "FL"
+},
 "864356": {
 "city": "Anderson",
 "lat": 34.501738,
 "lon": -82.650872,
 "state": "SC"
+},
+"864466": {
+"city": "Union",
+"lat": 34.716494,
+"lon": -81.618817,
+"state": "SC"
+},
+"864490": {
+"city": "Blacksburg",
+"lat": 35.128031,
+"lon": -81.517515,
+"state": "SC"
+},
+"864787": {
+"city": "Greenville",
+"lat": 34.849275,
+"lon": -82.401164,
+"state": "SC"
+},
+"864933": {
+"city": "Anderson",
+"lat": 34.501738,
+"lon": -82.650872,
+"state": "SC"
+},
+"864934": {
+"city": "Anderson",
+"lat": 34.501738,
+"lon": -82.650872,
+"state": "SC"
+},
+"864990": {
+"city": "Greenville",
+"lat": 34.849275,
+"lon": -82.401164,
+"state": "SC"
+},
+"865347": {
+"city": "Knoxville",
+"lat": 35.969138,
+"lon": -83.926252,
+"state": "TN"
 },
 "865548": {
 "city": "Knoxville",
@@ -5167,11 +12526,42 @@
 "lon": -83.926252,
 "state": "TN"
 },
+"865737": {
+"city": "Norris",
+"lat": 36.190792,
+"lon": -84.070012,
+"state": "TN"
+},
 "870250": {
 "city": "Fordyce",
 "lat": 33.810897,
 "lon": -92.417801,
 "state": "AR"
+},
+"870806": {
+"city": "Batesville",
+"lat": 35.766903,
+"lon": -91.64003,
+"state": "AR"
+},
+"872888": {
+"city": "Chicago Zone 02-Edgewater",
+"lat": 41.883465,
+"lon": -87.635162,
+"state": "IL"
+},
+"888528": null,
+"901517": {
+"city": "Memphis",
+"lat": 35.143081,
+"lon": -90.040658,
+"state": "TN"
+},
+"901674": {
+"city": "Memphis",
+"lat": 35.143081,
+"lon": -90.040658,
+"state": "TN"
 },
 "903335": {
 "city": "Sulphur Springs",
@@ -5191,17 +12581,167 @@
 "lon": -95.285915,
 "state": "TX"
 },
+"903949": {
+"city": "Texarkana",
+"lat": 33.434768,
+"lon": -94.051468,
+"state": "TX"
+},
+"904352": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904405": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904418": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
 "904423": {
 "city": "Jacksonville",
 "lat": 30.324565,
 "lon": -81.666047,
 "state": "FL"
 },
+"904429": {
+"city": "St Johns",
+"lat": 29.962692,
+"lon": -81.475457,
+"state": "FL"
+},
+"904439": {
+"city": "St Johns",
+"lat": 29.962692,
+"lon": -81.475457,
+"state": "FL"
+},
+"904442": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904509": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904517": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904521": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904525": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904703": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904729": {
+"city": "Fernandina Beach",
+"lat": 30.664657,
+"lon": -81.457533,
+"state": "FL"
+},
+"904760": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904789": {
+"city": "St Johns",
+"lat": 29.962692,
+"lon": -81.475457,
+"state": "FL"
+},
+"904874": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"904916": {
+"city": "Jacksonville",
+"lat": 30.324565,
+"lon": -81.666047,
+"state": "FL"
+},
+"906281": {
+"city": "Houghton",
+"lat": 47.117498,
+"lon": -88.557442,
+"state": "MI"
+},
 "907370": {
 "city": "Fort Wainwright",
 "lat": 64.848174,
 "lon": -147.598757,
 "state": "AK"
+},
+"907982": {
+"city": "Palmer",
+"lat": 61.606419,
+"lon": -149.107533,
+"state": "AK"
+},
+"908288": {
+"city": "Fanwood",
+"lat": 40.641536,
+"lon": -74.382755,
+"state": "NJ"
+},
+"908319": {
+"city": "Phillipsburg",
+"lat": 40.699309,
+"lon": -75.189381,
+"state": "NJ"
+},
+"908423": {
+"city": "Whitehouse",
+"lat": 40.614266,
+"lon": -74.770291,
+"state": "NJ"
+},
+"909213": {
+"city": "Colton",
+"lat": 34.06636,
+"lon": -117.31549,
+"state": "CA"
+},
+"909264": {
+"city": "Colton",
+"lat": 34.06636,
+"lon": -117.31549,
+"state": "CA"
+},
+"909319": {
+"city": "Ontario",
+"lat": 34.053099,
+"lon": -117.631048,
+"state": "CA"
 },
 "909531": {
 "city": "San Bernardino",
@@ -5233,10 +12773,40 @@
 "lon": -77.43501,
 "state": "NC"
 },
+"910381": {
+"city": "Jacksonville",
+"lat": 34.750505,
+"lon": -77.43501,
+"state": "NC"
+},
+"910382": {
+"city": "Jacksonville",
+"lat": 34.750505,
+"lon": -77.43501,
+"state": "NC"
+},
+"910527": {
+"city": "Fayetteville",
+"lat": 35.055724,
+"lon": -78.891649,
+"state": "NC"
+},
 "910546": {
 "city": "Jacksonville",
 "lat": 34.750505,
 "lon": -77.43501,
+"state": "NC"
+},
+"910847": {
+"city": "Fayetteville",
+"lat": 35.055724,
+"lon": -78.891649,
+"state": "NC"
+},
+"910882": {
+"city": "Fayetteville",
+"lat": 35.055724,
+"lon": -78.891649,
 "state": "NC"
 },
 "910885": {
@@ -5245,10 +12815,34 @@
 "lon": -78.980153,
 "state": "NC"
 },
+"912463": {
+"city": "Hinesville",
+"lat": 31.847569,
+"lon": -81.590727,
+"state": "GA"
+},
 "912536": {
 "city": "Statesboro",
 "lat": 32.444605,
 "lon": -81.783005,
+"state": "GA"
+},
+"912547": {
+"city": "Savannah",
+"lat": 32.075173,
+"lon": -81.089378,
+"state": "GA"
+},
+"912601": {
+"city": "Statesboro",
+"lat": 32.444605,
+"lon": -81.783005,
+"state": "GA"
+},
+"912977": {
+"city": "Hinesville",
+"lat": 31.847569,
+"lon": -81.590727,
 "state": "GA"
 },
 "913645": {
@@ -5256,6 +12850,30 @@
 "lat": 39.114735,
 "lon": -94.634764,
 "state": "KS"
+},
+"913954": {
+"city": "Kansas City",
+"lat": 39.114735,
+"lon": -94.634764,
+"state": "KS"
+},
+"914213": {
+"city": "Newburgh",
+"lat": 41.501301,
+"lon": -74.006566,
+"state": "NY"
+},
+"914325": {
+"city": "Westchester Zone 8",
+"lat": 41.042899,
+"lon": -73.761271,
+"state": "NY"
+},
+"914406": {
+"city": "Westchester Zone 8",
+"lat": 41.042899,
+"lon": -73.761271,
+"state": "NY"
 },
 "915246": {
 "city": "El Paso",
@@ -5270,6 +12888,12 @@
 "state": "TX"
 },
 "915491": {
+"city": "El Paso",
+"lat": 31.756416,
+"lon": -106.48355,
+"state": "TX"
+},
+"915503": {
 "city": "El Paso",
 "lat": 31.756416,
 "lon": -106.48355,
@@ -5299,6 +12923,7 @@
 "lon": -106.48355,
 "state": "TX"
 },
+"915954": null,
 "916397": {
 "city": "Sacramento: Main DA",
 "lat": 38.575598,
@@ -5311,10 +12936,76 @@
 "lon": -121.482308,
 "state": "CA"
 },
+"916768": {
+"city": "Fair Oaks (Sacramento)",
+"lat": 38.639826,
+"lon": -121.266634,
+"state": "CA"
+},
+"917324": {
+"city": "New York City Zone 10",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917375": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917391": {
+"city": "New York City Zone 08",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917438": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917442": {
+"city": "New York City Zone 01",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917485": {
+"city": "New York City Zone 11",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917589": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"917936": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"918232": {
+"city": "Tulsa",
+"lat": 36.151312,
+"lon": -95.984191,
+"state": "OK"
+},
 "918281": {
 "city": "Tulsa",
 "lat": 36.151312,
 "lon": -95.984191,
+"state": "OK"
+},
+"918617": {
+"city": "Eufaula",
+"lat": 35.285535,
+"lon": -95.582776,
 "state": "OK"
 },
 "918886": {
@@ -5333,6 +13024,24 @@
 "city": "Sanford",
 "lat": 35.472975,
 "lon": -79.183561,
+"state": "NC"
+},
+"919601": {
+"city": "Raleigh",
+"lat": 35.78544,
+"lon": -78.651062,
+"state": "NC"
+},
+"919610": {
+"city": "Raleigh",
+"lat": 35.78544,
+"lon": -78.651062,
+"state": "NC"
+},
+"919903": {
+"city": "Chapel Hill",
+"lat": 35.908931,
+"lon": -79.058374,
 "state": "NC"
 },
 "919920": {
@@ -5358,6 +13067,30 @@
 "lat": 34.460302,
 "lon": -114.365467,
 "state": "AZ"
+},
+"929231": {
+"city": "New York City Zone 10",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"929253": {
+"city": "New York City Zone 07",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"929538": {
+"city": "New York City Zone 12",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
+},
+"929841": {
+"city": "New York City Zone 11",
+"lat": 40.739362,
+"lon": -73.991043,
+"state": "NY"
 },
 "931223": {
 "city": "Columbia",
@@ -5389,11 +13122,41 @@
 "lon": -94.173782,
 "state": "TX"
 },
+"936588": {
+"city": "Lake Conroe",
+"lat": 30.317941,
+"lon": -95.457039,
+"state": "TX"
+},
+"937207": {
+"city": "Springfield",
+"lat": 39.922281,
+"lon": -83.807941,
+"state": "OH"
+},
 "937224": {
 "city": "Dayton",
 "lat": 39.758195,
 "lon": -84.201865,
 "state": "OH"
+},
+"937503": {
+"city": "Dayton",
+"lat": 39.758195,
+"lon": -84.201865,
+"state": "OH"
+},
+"939349": {
+"city": "Aguadilla",
+"lat": 18.344569,
+"lon": -67.151433,
+"state": "PR"
+},
+"939488": {
+"city": "Bayam\u00f3n Norte",
+"lat": 18.393588,
+"lon": -66.1563,
+"state": "PR"
 },
 "940594": {
 "city": "Denton",
@@ -5407,16 +13170,70 @@
 "lon": -97.132475,
 "state": "TX"
 },
+"941298": {
+"city": "Sarasota",
+"lat": 27.340347,
+"lon": -82.533769,
+"state": "FL"
+},
+"941361": {
+"city": "Sarasota",
+"lat": 27.340347,
+"lon": -82.533769,
+"state": "FL"
+},
+"941545": {
+"city": "Bradenton",
+"lat": 27.490942,
+"lon": -82.56818,
+"state": "FL"
+},
 "941548": {
 "city": "Englewood",
 "lat": 26.956292,
 "lon": -82.3582,
 "state": "FL"
 },
+"941812": {
+"city": "Bradenton",
+"lat": 27.490942,
+"lon": -82.56818,
+"state": "FL"
+},
+"941914": {
+"city": "Sarasota",
+"lat": 27.340347,
+"lon": -82.533769,
+"state": "FL"
+},
+"949664": {
+"city": "Irvine",
+"lat": 33.683705,
+"lon": -117.785255,
+"state": "CA"
+},
 "949715": {
 "city": "Laguna Beach",
 "lat": 33.549099,
 "lon": -117.785187,
+"state": "CA"
+},
+"951452": {
+"city": "Riverside",
+"lat": 33.984971,
+"lon": -117.366153,
+"state": "CA"
+},
+"951760": {
+"city": "Temecula",
+"lat": 33.498431,
+"lon": -117.140997,
+"state": "CA"
+},
+"951809": {
+"city": "Riverside",
+"lat": 33.984971,
+"lon": -117.366153,
 "state": "CA"
 },
 "952201": {
@@ -5425,10 +13242,142 @@
 "lon": -93.290898,
 "state": "MN"
 },
+"954226": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954253": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954347": {
+"city": "Hollywood",
+"lat": 26.008235,
+"lon": -80.148961,
+"state": "FL"
+},
+"954395": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954439": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954479": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954529": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954531": {
+"city": "Deerfield Beach",
+"lat": 26.311964,
+"lon": -80.108295,
+"state": "FL"
+},
+"954588": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954595": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954600": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954609": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954650": {
+"city": "Deerfield Beach",
+"lat": 26.311964,
+"lon": -80.108295,
+"state": "FL"
+},
+"954675": {
+"city": "Deerfield Beach",
+"lat": 26.311964,
+"lon": -80.108295,
+"state": "FL"
+},
+"954701": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954729": {
+"city": "Deerfield Beach",
+"lat": 26.311964,
+"lon": -80.108295,
+"state": "FL"
+},
+"954732": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"954773": {
+"city": "Pompano Beach",
+"lat": 26.232501,
+"lon": -80.119368,
+"state": "FL"
+},
+"954803": {
+"city": "Deerfield Beach",
+"lat": 26.311964,
+"lon": -80.108295,
+"state": "FL"
+},
+"954864": {
+"city": "Fort Lauderdale",
+"lat": 26.116924,
+"lon": -80.142417,
+"state": "FL"
+},
+"956212": {
+"city": "McAllen",
+"lat": 26.199713,
+"lon": -98.233793,
+"state": "TX"
+},
 "956249": {
 "city": "McAllen",
 "lat": 26.199713,
 "lon": -98.233793,
+"state": "TX"
+},
+"956330": {
+"city": "Edinburg",
+"lat": 26.302077,
+"lon": -98.15751,
 "state": "TX"
 },
 "956334": {
@@ -5461,10 +13410,22 @@
 "lon": -99.506902,
 "state": "TX"
 },
+"956523": {
+"city": "Laredo",
+"lat": 27.510265,
+"lon": -99.506902,
+"state": "TX"
+},
 "956593": {
 "city": "Weslaco",
 "lat": 26.157919,
 "lon": -97.991093,
+"state": "TX"
+},
+"956645": {
+"city": "Laredo",
+"lat": 27.510265,
+"lon": -99.506902,
 "state": "TX"
 },
 "956659": {
@@ -5477,6 +13438,12 @@
 "city": "Brownsville",
 "lat": 25.91078,
 "lon": -97.500505,
+"state": "TX"
+},
+"956778": {
+"city": "Harlingen",
+"lat": 26.184779,
+"lon": -97.691524,
 "state": "TX"
 },
 "956888": {
@@ -5893,6 +13860,12 @@
 "lon": -104.701934,
 "state": "CO"
 },
+"970819": {
+"city": "Steamboat Springs",
+"lat": 40.49063,
+"lon": -106.834399,
+"state": "CO"
+},
 "970820": {
 "city": "Loveland",
 "lat": 40.39852,
@@ -5935,10 +13908,52 @@
 "lon": -108.558926,
 "state": "CO"
 },
+"971227": {
+"city": "Portland",
+"lat": 45.586971,
+"lon": -122.754859,
+"state": "OR"
+},
 "972333": {
 "city": "Grand Prairie",
 "lat": 32.742388,
 "lon": -96.999539,
+"state": "TX"
+},
+"972800": {
+"city": "Grand Prairie EMS",
+"lat": 32.742388,
+"lon": -96.999539,
+"state": "TX"
+},
+"972975": {
+"city": "Grand Prairie EMS",
+"lat": 32.742388,
+"lon": -96.999539,
+"state": "TX"
+},
+"973464": {
+"city": "Caldwell",
+"lat": 40.842141,
+"lon": -74.274194,
+"state": "NJ"
+},
+"978846": {
+"city": "Westford",
+"lat": 42.586715,
+"lon": -71.435527,
+"state": "MA"
+},
+"978876": {
+"city": "Lawrence",
+"lat": 42.707375,
+"lon": -71.164341,
+"state": "MA"
+},
+"979479": {
+"city": "Bay City",
+"lat": 28.982529,
+"lon": -95.964516,
 "state": "TX"
 },
 "979743": {
@@ -6001,10 +14016,40 @@
 "lon": -78.651062,
 "state": "NC"
 },
+"984400": {
+"city": "Clayton",
+"lat": 35.648821,
+"lon": -78.457377,
+"state": "NC"
+},
 "985662": {
 "city": "Hammond",
 "lat": 30.500811,
 "lon": -90.457523,
 "state": "LA"
+},
+"989287": {
+"city": "Lakeview",
+"lat": 43.43114,
+"lon": -85.27481,
+"state": "MI"
+},
+"989351": {
+"city": "Rogers City",
+"lat": 45.42668,
+"lon": -83.826289,
+"state": "MI"
+},
+"989400": {
+"city": "Mount Pleasant",
+"lat": 43.602225,
+"lon": -84.768127,
+"state": "MI"
+},
+"989513": {
+"city": "Midland",
+"lat": 43.615688,
+"lon": -84.245498,
+"state": "MI"
 }
 }

@@ -16,7 +16,7 @@ hand-author SQL** unless the pipeline genuinely cannot express what was asked.
 
 ```bash
 python3 analysis/leadmap/leadmap.py --client "<name>" --days <N> [--to YYYY-MM-DD] \
-  [--offices analysis/leadmap/offices_<slug>.json] --outdir analysis/out
+  [--offices analysis/leadmap/offices_<slug>.json] [--zip-dataset <dataset>] --outdir analysis/out
 ```
 
 - `--client` takes a partial name (`"Michael Ireland"`) or a SterlingX_Client_ID. On an
@@ -27,7 +27,9 @@ python3 analysis/leadmap/leadmap.py --client "<name>" --days <N> [--to YYYY-MM-D
 - `--state XX` forces the home state. Default is the modal state of geocoded leads, which
   is right nearly always; override only if the client is genuinely multi-state.
 
-Outputs land in `--outdir` as `<slug>-lead-origin-map-<N>d-<date>.{html,csv,json}` —
+Outputs land in `--outdir` as `<slug>-lead-origin-map-<N>d-<date>.{html,csv,json}`. The
+`.csv` is lead-level PII and is git-ignored in `analysis/out/`; commit the `.html` and `.json`
+only —
 the window length is in the filename, so a 60-day and a 90-day run ending the same day
 no longer overwrite each other. When you copy to `~/Downloads`, carry the window into
 the name too (`..._90d_<date>.html`) so you never clobber a sheet the user still wants.
@@ -66,7 +68,20 @@ Stage 2 prints what the client actually tracks. Read it; it changes what the she
 - **Lead-level zip.** 18 clients carry zip in `<dataset>.call_data`
   (`zip_code`/`postal_code`). The pipeline geocodes by phone exchange regardless, but it
   flags when zip exists — surface that, because zip is strictly more precise and is a
-  worthwhile upgrade for that client.
+  worthwhile upgrade for that client. The probe matches dataset names on the firm's
+  distinctive name words only and ignores a zip column that is empty; a misspelled dataset
+  (`fanishe_family_law` for Fanash) will not match, so read the `zip probe:` log line and pass
+  `--zip-dataset` when you know the dataset.
+- **Origin platform mix.** The sheet's Source note lists leads and conversions by platform
+  family (`Clio Grow`, `Manual Intake`, ...). Read it before quoting a blended conversion
+  rate or a month-over-month change: for Fanash (2026-09-23) Manual Intake began 2026-01,
+  was 46% of leads and hired at 2.4% against Clio Grow's 14.8%, which explained both the
+  January step-up and the September dip better than any demand story. Ask what a platform
+  label means before treating its rows as prospects.
+- **CallRail location fields are number-derived.** `customer_city` and `customer_state` in
+  `<dataset>.call_data` come from the phone number's assigned location, not the caller's
+  address (CallRail API docs, checked 2026-09-23). They are the same geography as the
+  exchange lookup and are never residency evidence.
 - **Date coverage.** The script refuses a window that starts after the client's last
   recorded event. Some clients' feeds are stale; say so rather than shipping an empty map.
 
@@ -82,7 +97,13 @@ Never hand over an unrendered sheet.
 ```
 
 Read the PNG and check: state shape correct, county lines visible, bubbles inside the
-state, labels not colliding, tables populated, KPIs sane. Headless Chrome defaults to
+state, labels not colliding, tables populated, KPIs sane. Then dump the rendered DOM
+(`--dump-dom` instead of `--screenshot`) and confirm the `#notes` block contains the
+expected sentences: a JavaScript error blanks it silently. Repeat both checks after **any**
+template or pipeline edit, on the exact file you deliver, and keep the dump and screenshots
+in the deliverable's `qa/` folder; a screenshot of an earlier build is not evidence for the
+delivered one. The layer switches can be driven headlessly with
+`window.setLayers(leads, hires)` appended in a `<script>` before `</body>`. Headless Chrome defaults to
 **dark** mode here; pass `preferredColorScheme=1` for light. To inspect a zoomed state,
 append `<script>window.mapFlyTo(<lon>,<lat>,6);</script>` before `</body>` in a temp copy.
 
@@ -97,8 +118,14 @@ The data has real gaps. The sheet's job is to be useful without overstating what
 2. **Never imply precision that isn't there.** Origins are rate-center cities derived from
    the phone exchange — where the *number* was issued, not where the person lives. Mobile
    numbers travel. Zoom reveals more labels, not more precision.
-3. **Withhold rates under 3 leads.** The template already prints a dash; don't quote those
-   percentages in your summary either. "100% off one lead" is noise.
+3. **Withhold rates under 5 leads, and quote whole percents under 50.** The template prints
+   a dash below 5 leads and whole percents below 50; don't quote finer figures in your
+   summary either. "67% off three leads" is noise. Rates are hired-to-date: recent leads
+   have had less time to sign, so recent-heavy cities read low.
+   - **Out-of-state exchanges that still convert.** The sheet states how many excluded
+     out-of-state numbers reached the metric. When that rate is comparable to the in-state
+     rate, they are probably residents with imported mobile numbers and the plotted total
+     understates the state book; say so as an inference, not a fact.
 4. **Report the dedupe.** Phone systems write a second caller-ID row per call
    (`WIRELESS CALLER`, `SAN ANTONIO TX`, ALL-CAPS names) and firms' own WordPress
    notifications land as leads. The pipeline strips both — state the counts.

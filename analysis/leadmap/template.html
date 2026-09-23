@@ -66,7 +66,22 @@ tr.clickable{cursor:pointer}
 .state{fill:none;stroke:var(--stateline);stroke-width:1.7;stroke-linejoin:round}
 .oc{fill:var(--lead);fill-opacity:.5;stroke:var(--leadline);stroke-width:.9}
 .oc-k{fill-opacity:.24;stroke-dasharray:3 2}
-.ic{fill:var(--consult);fill-opacity:.95;pointer-events:none}
+.ic{fill:var(--consult);fill-opacity:1;stroke:var(--sheet);stroke-width:.9;pointer-events:none}
+.hi{color:var(--consult);font-weight:600}
+.kpi .val.hi{color:var(--consult)}
+.legend label.tg{display:inline-flex;align-items:center;gap:7px;cursor:pointer;padding:3px 10px 3px 6px;
+  border:1px solid var(--hair);border-radius:999px;user-select:none;color:var(--ink)}
+.legend label.tg.off{opacity:.5}
+.legend label.tg input{appearance:none;-webkit-appearance:none;width:26px;height:14px;border-radius:999px;
+  background:var(--hair);position:relative;margin:0;cursor:pointer;transition:background .15s}
+.legend label.tg input::after{content:"";position:absolute;top:2px;left:2px;width:10px;height:10px;border-radius:50%;
+  background:var(--sheet);transition:left .15s}
+.legend label.tg input:checked{background:var(--ink)}
+.legend label.tg input:checked::after{left:14px}
+.legend label.tg input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.legend .tghint{font-size:11px}
+.ic.solo{fill-opacity:.82;stroke-width:1}
+#tbl.nohire th:nth-child(4),#tbl.nohire td:nth-child(4),#tbl.nohire th:nth-child(5),#tbl.nohire td:nth-child(5){display:none}
 .pt{cursor:default}
 .pt:hover .oc,.pt:focus .oc{stroke-width:2}
 .gridlab{font:10px var(--mono);fill:var(--muted)}
@@ -75,6 +90,7 @@ tr.clickable{cursor:pointer}
 .citylab{font:11px var(--sans);fill:var(--muted);pointer-events:none;
          paint-order:stroke;stroke:var(--sheet);stroke-width:3.5px;stroke-linejoin:round}
 .citynum{font-family:var(--mono);font-weight:600;fill:var(--ink)}
+.cityhire{font-family:var(--mono);font-weight:700;fill:var(--consult)}
 .offlab{font:600 11px var(--sans);fill:var(--office);pointer-events:none;
         paint-order:stroke;stroke:var(--sheet);stroke-width:3.5px;stroke-linejoin:round}
 .ctylab{font:9.5px var(--sans);fill:var(--muted);opacity:.9;pointer-events:none;
@@ -335,9 +351,21 @@ const pts = D.points.slice().sort((a, b) => b.t - a.t);
 const maxT = Math.max.apply(null, pts.map(p => p.t));
 const kR = 20 / Math.sqrt(maxT);
 const R = t => Math.max(3, kR * Math.sqrt(t));
-const MIN_N = 3;
-const rateCell = (c, t) => t >= MIN_N ? (c / t * 100).toFixed(1) + "%" : "—";
+// Inner conversion dot: area proportional to conversions, floored so one hire stays visible.
+const icR = d => Math.min(R(d.t) - .4, Math.max(2.2, R(d.t) * Math.sqrt(d.c / d.t)));
+// Hires-only view uses its own scale: the largest hire count gets the 20px bubble.
+const maxC = Math.max(1, Math.max.apply(null, pts.map(p => p.c)));
+const kH = 20 / Math.sqrt(maxC);
+const RH = c => Math.max(3, kH * Math.sqrt(c));
+const MIN_N = 5;
+// Whole percents below 50 leads: one hire moves a 20-lead rate by five points.
+const rateCell = (c, t) => t >= MIN_N ? (c / t * 100).toFixed(t >= 50 ? 1 : 0) + "%" : "—";
 const METRIC = M.metric_label.toLowerCase();
+// Short form for map labels: "Orlando 224 · 21 hired"
+const SHORT = ({"Hired": "hired", "Consults booked": "consults", "Consults completed": "consults",
+                "Qualified": "qualified"})[M.metric_label] || "conv.";
+const NOUN = ({"Hired": "hires", "Consults booked": "consults", "Consults completed": "consults",
+               "Qualified": "qualified leads"})[M.metric_label] || "conversions";
 
 const gPts = E("g", {}, gVP);
 pts.forEach(d => {
@@ -345,10 +373,13 @@ pts.forEach(d => {
   const g = cg(xy[0], xy[1], gPts);
   g.setAttribute("class", "pt"); g.setAttribute("tabindex", "-1");
   const r = R(d.t);
-  E("circle", {class: d.k ? "oc oc-k" : "oc", cx: 0, cy: 0, r: r,
+  d._g = g;
+  d._oc = E("circle", {class: d.k ? "oc oc-k" : "oc", cx: 0, cy: 0, r: r,
                "vector-effect": "non-scaling-stroke"}, g);
-  if (d.c > 0) E("circle", {class: "ic", cx: 0, cy: 0, r: r * Math.sqrt(d.c / d.t)}, g);
-  E("circle", {cx: 0, cy: 0, r: Math.max(r, 11), fill: "transparent"}, g);
+  // Area stays proportional to conversions, but a single hire must still be visible at
+  // state zoom, so the dot has a floor and a sheet-coloured ring separating it from the bubble.
+  d._ic = d.c > 0 ? E("circle", {class: "ic", cx: 0, cy: 0, r: icR(d)}, g) : null;
+  d._hit = E("circle", {cx: 0, cy: 0, r: Math.max(r, 11), fill: "transparent"}, g);
   g.addEventListener("pointerenter", () => {
     if (dragging) return;
     const pct = rateCell(d.c, d.t);
@@ -378,8 +409,12 @@ pts.forEach(d => {
   const g = cg(p[0], p[1], gLab);
   const t = E("text", {class: "citylab", x: 0, y: 0}, g);
   t.textContent = d.n + " ";
-  E("tspan", {class: "citynum"}, t).textContent = d.t;
-  CITY.push({el: g, txt: t, px: p[0], py: p[1], r: R(d.t), t: d.t, w: 0});
+  d._num = E("tspan", {class: "citynum"}, t); d._num.textContent = d.t;
+  d._sep = E("tspan", {}, t);
+  d._hire = E("tspan", {class: "cityhire"}, t);
+  if (d.c > 0){ d._sep.textContent = " \u00b7 "; d._hire.textContent = d.c + " " + SHORT; }
+  d._city = {el: g, txt: t, px: p[0], py: p[1], r: R(d.t), t: d.t, c: d.c, w: 0, hide: false};
+  CITY.push(d._city);
 });
 
 /* Offices: two-thirds of the time an office sits on top of its own city's bubble, so it
@@ -463,7 +498,7 @@ function place(){
   };
   // offices first (they are the annotation the reader is looking for), then by volume
   OFF.forEach(o => put(o, true));
-  CITY.forEach(o => put(o, false));
+  CITY.forEach(o => o.hide ? o.el.setAttribute("display", "none") : put(o, false));
   if (k >= 3){ CTY.forEach(o => { measure([o]); put(o, false); }); }
   else CTY.forEach(o => o.el.setAttribute("display", "none"));
 }
@@ -550,6 +585,7 @@ document.getElementById("m-snap").textContent = M.snapshot;
 document.getElementById("k-tot").textContent = M.plotted;
 document.getElementById("k-mlab").textContent = M.metric_label;
 document.getElementById("k-con").innerHTML = M.conversions + ' <small>' + rate + '%</small>';
+document.getElementById("k-con").classList.add("hi");
 document.getElementById("k-pts").innerHTML = M.origin_points + ' <small>cities</small>';
 document.getElementById("th-metric").textContent = M.metric_label;
 document.getElementById("h-tx").textContent = M.plotted + " leads · " + M.origin_points + " origins";
@@ -561,31 +597,36 @@ document.getElementById("hint-precision").textContent =
 if (M.hired_tracked) document.getElementById("k-hbox").remove();
 
 document.getElementById("legend").innerHTML =
-  '<span><span class="sw sw-lead"></span>Lead volume (bubble area)</span>' +
-  '<span><span class="sw sw-con"></span>' + M.metric_label + ' (inner dot)</span>' +
+  '<label class="tg" id="tg-leads-lab" title="Show or hide the lead layer"><input type="checkbox" id="tg-leads" checked>' +
+    '<span class="sw sw-lead"></span><span id="tg-leads-txt">Leads (bubble area)</span></label>' +
+  '<label class="tg" id="tg-hires-lab" title="Show or hide the ' + METRIC + ' layer"><input type="checkbox" id="tg-hires" checked>' +
+    '<span class="sw sw-con"></span><span id="tg-hires-txt">' + M.metric_label + ' (inner dot; count in label)</span></label>' +
   ((D.offices || []).length ? '<span><span class="sw sw-off"></span>Office location</span>' : '') +
-  '<span><span class="sw sw-cty"></span>County boundaries</span>';
+  '<span><span class="sw sw-cty"></span>County boundaries</span>' +
+  '<span class="tghint">Switches show or hide a layer; the table follows.</span>';
 
 document.getElementById("map-desc").textContent =
   "Map of " + M.state + " with all " + GEO.counties.features.length + " county boundaries. " +
   "Proportional bubbles mark each of the " + M.origin_points + " cities where leads " +
-  "originated in the last " + M.window_days + " days; the inner dot shows how many reached " +
+  "originated in the last " + M.window_days + " days; the inner dot and the count in each label show how many reached " +
   METRIC + ". " + (pts.length ? pts[0].n + " leads with " + pts[0].t + " of " + M.plotted +
   " leads. " : "") + "The map can be zoomed and panned.";
 
-const rows = pts.map(d => ({n: d.n, lvl: d.k ? "Area approx." : "City", t: d.t, c: d.c,
+const rows = pts.map(d => ({n: d.n, lvl: d.k ? "Area approx." : "City (exchange)", t: d.t, c: d.c,
                             r: d.t >= MIN_N ? d.c / d.t : -1, lon: d.lon, lat: d.lat}));
 let sortK = "t", sortDir = -1;
+let layerMode = "both";
 const tbody = document.querySelector("#tbl tbody");
 function render(){
   rows.sort((a, b) => {
     const va = a[sortK], vb = b[sortK];
     return (typeof va === "string" ? va.localeCompare(vb) : va - vb) * sortDir || b.t - a.t;
   });
-  tbody.innerHTML = rows.map(r =>
+  const list = layerMode === "hires" ? rows.filter(r => r.c > 0) : rows;
+  tbody.innerHTML = list.map(r =>
     "<tr class='clickable' data-lon='" + r.lon + "' data-lat='" + r.lat + "' title='Zoom to " +
     r.n + "'><td>" + r.n + "</td><td>" + r.lvl + "</td><td class='num'>" + r.t +
-    "</td><td class='num'>" + r.c + "</td><td class='num'>" + rateCell(r.c, r.t) +
+    "</td><td class='num" + (r.c > 0 ? " hi" : "") + "'>" + r.c + "</td><td class='num'>" + rateCell(r.c, r.t) +
     "</td></tr>").join("");
 }
 tbody.addEventListener("click", ev => {
@@ -594,7 +635,7 @@ tbody.addEventListener("click", ev => {
 });
 document.querySelector("#tbl tfoot").innerHTML =
   "<tr><td>" + M.state + " total</td><td></td><td class='num'>" + M.plotted +
-  "</td><td class='num'>" + M.conversions + "</td><td class='num'>" + rate + "%</td></tr>";
+  "</td><td class='num hi'>" + M.conversions + "</td><td class='num'>" + rate + "%</td></tr>";
 document.querySelectorAll("#tbl th button").forEach(b => {
   b.addEventListener("click", () => {
     const kk = b.dataset.k;
@@ -603,6 +644,59 @@ document.querySelectorAll("#tbl th button").forEach(b => {
   });
 });
 render();
+
+/* ---- Layer switches: leads and conversions can each be shown alone ------------------- */
+function applyLayers(){
+  const showL = document.getElementById("tg-leads").checked;
+  const showH = document.getElementById("tg-hires").checked;
+  layerMode = showL && showH ? "both" : showL ? "leads" : showH ? "hires" : "none";
+  document.getElementById("tg-leads-lab").classList.toggle("off", !showL);
+  document.getElementById("tg-hires-lab").classList.toggle("off", !showH);
+  document.getElementById("tg-hires-txt").textContent = M.metric_label +
+    (layerMode === "hires" ? " (bubble area)" : " (inner dot; count in label)");
+  pts.forEach(d => {
+    const vis = layerMode === "both" || layerMode === "leads" || (layerMode === "hires" && d.c > 0);
+    d._g.setAttribute("display", vis ? "inline" : "none");
+    d._city.hide = !vis;
+    d._city.w = 0;
+    d._city.el.setAttribute("display", vis ? "inline" : "none");
+    if (!vis) return;
+    if (layerMode === "hires"){
+      d._oc.setAttribute("display", "none");
+      d._ic.setAttribute("display", "inline"); d._ic.setAttribute("r", RH(d.c)); d._ic.classList.add("solo");
+      d._hit.setAttribute("r", Math.max(RH(d.c), 11));
+      d._city.r = RH(d.c);
+      d._num.textContent = d.c + " " + SHORT; d._num.setAttribute("class", "citynum cityhire");
+      d._sep.textContent = ""; d._hire.textContent = "";
+    } else {
+      d._oc.setAttribute("display", "inline");
+      if (d._ic){ d._ic.setAttribute("display", layerMode === "both" ? "inline" : "none");
+                  d._ic.setAttribute("r", icR(d)); d._ic.classList.remove("solo"); }
+      d._hit.setAttribute("r", Math.max(R(d.t), 11));
+      d._city.r = R(d.t);
+      d._num.textContent = d.t; d._num.setAttribute("class", "citynum");
+      const both = layerMode === "both" && d.c > 0;
+      d._sep.textContent = both ? " \u00b7 " : ""; d._hire.textContent = both ? d.c + " " + SHORT : "";
+    }
+  });
+  CITY.sort((a, b) => layerMode === "hires" ? (b.c - a.c || b.t - a.t) : (b.t - a.t));
+  place();
+  document.getElementById("tbl").classList.toggle("nohire", !showH);
+  if (layerMode === "hires"){ sortK = "c"; sortDir = -1; }
+  else if (sortK === "c"){ sortK = "t"; sortDir = -1; }
+  render();
+  const withC = pts.filter(p => p.c > 0).length;
+  document.getElementById("h-tx").textContent = layerMode === "hires"
+    ? M.conversions + " " + NOUN + " \u00b7 " + withC + " origins with " + NOUN
+    : M.plotted + " leads \u00b7 " + M.origin_points + " origins";
+}
+document.getElementById("tg-leads").addEventListener("change", applyLayers);
+document.getElementById("tg-hires").addEventListener("change", applyLayers);
+if (!M.metric_status) document.getElementById("tg-hires-lab").hidden = true;
+window.setLayers = (leads, hires) => {   // for scripted checks
+  document.getElementById("tg-leads").checked = !!leads;
+  document.getElementById("tg-hires").checked = !!hires; applyLayers();
+};
 
 if ((D.offices || []).length){
   document.getElementById("offblock").hidden = false;
@@ -620,11 +714,25 @@ N.push("<b>Window.</b> The last " + M.window_days + " days, " + M.period +
 N.push("<b>" + M.state + " only.</b> " + M.plotted + " of " + M.in_window +
   " leads carry a " + M.state_ab + " number and are plotted. Excluded: " + M.dropped_oos +
   " out-of-state, " + M.dropped_nophone + " with no usable phone, " + M.dropped_unresolved +
-  " whose exchange could not be resolved. Totals describe the " + M.state +
-  " book, not the whole pipeline.");
+  " whose exchange could not be resolved. Totals describe leads carrying a " + M.state_ab +
+  " number, not the whole pipeline." +
+  // Out-of-state numbers that still converted. Only draw the "they are really in-state
+  // clients" conclusion when the out-of-state rate is comparable to the in-state rate on at
+  // least MIN_N conversions; one hire off 62 numbers (Ireland, 2026-09-23) proves nothing.
+  (M.dropped_oos_conv > 0 && M.metric_status
+    ? " " + M.dropped_oos_conv + " of the " + M.dropped_oos + " out-of-state leads still reached " +
+      METRIC + (M.dropped_oos_conv >= MIN_N ? " (" + rateCell(M.dropped_oos_conv, M.dropped_oos) + ")" : "") + "." +
+      (M.dropped_oos_conv >= MIN_N && M.plotted > 0 && M.conversions > 0 &&
+       M.dropped_oos_conv / M.dropped_oos >= 0.75 * (M.conversions / M.plotted)
+        ? " That is comparable to the " + M.state_ab + " rate, which suggests many of them are " + M.state +
+          " residents whose mobile number was issued elsewhere; the " + M.state +
+          " book is probably larger than the plotted total."
+        : "")
+    : ""));
 N.push("<b>Geocoding.</b> Each lead's telephone exchange (NPA-NXX) was resolved to its telco " +
   "rate-center city and coordinates via the public localcallingguide.com prefix registry. " +
-  "Billing-zone suffixes that are not places were folded into their city, so " +
+  "Billing-zone suffixes that are not places were folded into their city, and directional zones " +
+  "such as \"Tampa North\" into their city, so " +
   "\"Houston Suburban\" counts as Houston. A rate center is where the <i>number</i> was " +
   "issued, not where the person lives: a mobile line follows its owner, so a share of these " +
   "points are approximately rather than exactly right." +
@@ -633,11 +741,13 @@ N.push("<b>Geocoding.</b> Each lead's telephone exchange (NPA-NXX) was resolved 
    M.zip_source.column + "), which would geocode more precisely than the exchange." : ""));
 N.push("<b>Rates below " + MIN_N + " leads are withheld.</b> " +
   pts.filter(p => p.t < MIN_N).length + " of the " + M.origin_points +
-  " origins hold one or two leads; they show counts but a dash for rate, because " +
-  "\"100%\" off a single lead invites exactly the wrong read.");
+  " origins hold fewer than " + MIN_N + " leads; they show counts but a dash for rate, because " +
+  "\"67%\" off three leads invites exactly the wrong read. Rates on fewer than 50 leads are " +
+  "shown as whole percents.");
 if (M.hired_tracked){
   N.push("<b>" + M.metric_label + ".</b> " + M.conversions + " of " + M.plotted + " leads (" +
-    rate + "%) reached " + METRIC + ", the deepest stage this client records.");
+    rate + "%) reached " + METRIC + ", the deepest stage this client records. Counts are to date: " +
+    "leads from the most recent months have had less time to sign, so recent-heavy origins read low.");
 } else {
   N.push("<b>Hired is not tracked.</b> This client has no Funded Agreement records at any " +
     "point, so no hire rate can be computed and the inner dot shows " + METRIC +
@@ -648,7 +758,16 @@ N.push("<b>Source.</b> <span style='font-family:var(--mono)'>all_clients_offline
   "all_firms_offline_conversion</span>, SterlingX_Client_ID <span style='font-family:var(--mono)'>" +
   M.client_id.slice(0, 8) + "…</span>, refreshed daily; snapshot " + M.snapshot +
   ". Deduplicated on normalized phone and email with firm-internal notification records " +
-  "removed. County geometry from the US Census county file, state outline dissolved from it.");
+  "removed. County geometry from the US Census county file, state outline dissolved from it." +
+  // Origin-platform mix over the whole in-window cohort. A source that begins mid-window or
+  // converts at a very different rate can dominate a blended rate or a month-over-month change.
+  ((M.platforms || []).length > 1
+    ? " Leads in the window by origin platform: " + M.platforms.map(p =>
+        p.name + " " + p.t + (M.metric_status ? " (" + p.c + " " + METRIC +
+        (p.t >= MIN_N ? ", " + rateCell(p.c, p.t) : "") + ")" : "") +
+        (p.first && M.date_from && p.first > M.date_from.slice(0, 7) ? ", first seen " + p.first : "")
+      ).join("; ") + ". A blended " + METRIC + " rate mixes these populations; read city rates with that in mind."
+    : ""));
 document.getElementById("notes").innerHTML = N.map(p => "<p>" + p + "</p>").join("");
 
 apply();

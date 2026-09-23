@@ -1,0 +1,763 @@
+{
+ "meta": {
+  "client": "Fanash Family Law",
+  "client_id": "8a4bb5d3-2988-4b58-901a-d7ebdb015a10",
+  "state_ab": "FL",
+  "state": "Florida",
+  "period": "September 24, 2025 to September 23, 2026",
+  "window_days": 365,
+  "date_from": "2025-09-24",
+  "date_to": "2026-09-23",
+  "snapshot": "September 23, 2026",
+  "in_window": 1392,
+  "plotted": 946,
+  "conversions": 83,
+  "origin_points": 88,
+  "cities": 88,
+  "dropped_oos": 405,
+  "dropped_oos_conv": 36,
+  "dropped_nophone": 30,
+  "dropped_unresolved": 11,
+  "metric_status": "Funded Agreement",
+  "metric_label": "Hired",
+  "hired_tracked": true,
+  "zip_source": null,
+  "platforms": [
+   {
+    "name": "Clio Grow",
+    "t": 756,
+    "c": 112,
+    "first": "2025-09"
+   },
+   {
+    "name": "Manual Intake",
+    "t": 636,
+    "c": 15,
+    "first": "2026-01"
+   }
+  ],
+  "last_event": "2026-09-22",
+  "stages": {
+   "Funded Agreement": 260,
+   "New Leads": 2465,
+   "Qualified Potential Clients": 732,
+   "Consults Scheduled": 257
+  }
+ },
+ "points": [
+  {
+   "n": "Orlando",
+   "k": false,
+   "lat": 28.540751,
+   "lon": -81.372955,
+   "t": 224,
+   "c": 21
+  },
+  {
+   "n": "Cocoa",
+   "k": false,
+   "lat": 28.348393,
+   "lon": -80.726666,
+   "t": 87,
+   "c": 5
+  },
+  {
+   "n": "Kissimmee",
+   "k": false,
+   "lat": 28.299404,
+   "lon": -81.400774,
+   "t": 85,
+   "c": 6
+  },
+  {
+   "n": "Winter Park",
+   "k": false,
+   "lat": 28.599066,
+   "lon": -81.352157,
+   "t": 81,
+   "c": 6
+  },
+  {
+   "n": "Tampa",
+   "k": false,
+   "lat": 27.987010394736846,
+   "lon": -82.43923344736842,
+   "t": 38,
+   "c": 4
+  },
+  {
+   "n": "Lakeland",
+   "k": false,
+   "lat": 28.031758,
+   "lon": -81.950178,
+   "t": 33,
+   "c": 4
+  },
+  {
+   "n": "Winter Haven",
+   "k": false,
+   "lat": 28.035326,
+   "lon": -81.725801,
+   "t": 28,
+   "c": 0
+  },
+  {
+   "n": "Leesburg",
+   "k": false,
+   "lat": 28.806335,
+   "lon": -81.8742,
+   "t": 22,
+   "c": 3
+  },
+  {
+   "n": "Daytona Beach",
+   "k": false,
+   "lat": 29.231596,
+   "lon": -81.035058,
+   "t": 19,
+   "c": 1
+  },
+  {
+   "n": "Miami",
+   "k": false,
+   "lat": 25.774612,
+   "lon": -80.190315,
+   "t": 19,
+   "c": 4
+  },
+  {
+   "n": "Melbourne",
+   "k": false,
+   "lat": 28.081619,
+   "lon": -80.609998,
+   "t": 17,
+   "c": 1
+  },
+  {
+   "n": "Sanford",
+   "k": false,
+   "lat": 28.81091,
+   "lon": -81.258651,
+   "t": 17,
+   "c": 3
+  },
+  {
+   "n": "DeLand",
+   "k": false,
+   "lat": 29.031926,
+   "lon": -81.292343,
+   "t": 14,
+   "c": 2
+  },
+  {
+   "n": "Fort Lauderdale",
+   "k": false,
+   "lat": 26.116924,
+   "lon": -80.142417,
+   "t": 13,
+   "c": 0
+  },
+  {
+   "n": "Jacksonville",
+   "k": false,
+   "lat": 30.324565,
+   "lon": -81.666047,
+   "t": 12,
+   "c": 1
+  },
+  {
+   "n": "Keys",
+   "k": false,
+   "lat": 24.70767,
+   "lon": -81.084084,
+   "t": 10,
+   "c": 1
+  },
+  {
+   "n": "West Palm Beach",
+   "k": false,
+   "lat": 26.69117,
+   "lon": -80.058465,
+   "t": 10,
+   "c": 1
+  },
+  {
+   "n": "Clearwater",
+   "k": false,
+   "lat": 27.966674,
+   "lon": -82.799465,
+   "t": 9,
+   "c": 0
+  },
+  {
+   "n": "Clermont",
+   "k": false,
+   "lat": 28.557808,
+   "lon": -81.766711,
+   "t": 9,
+   "c": 1
+  },
+  {
+   "n": "Lake Wales",
+   "k": false,
+   "lat": 27.905914,
+   "lon": -81.582747,
+   "t": 9,
+   "c": 0
+  },
+  {
+   "n": "New Smyrna Beach",
+   "k": false,
+   "lat": 29.023408,
+   "lon": -80.926187,
+   "t": 7,
+   "c": 0
+  },
+  {
+   "n": "Titusville",
+   "k": false,
+   "lat": 28.616367,
+   "lon": -80.806458,
+   "t": 7,
+   "c": 0
+  },
+  {
+   "n": "Alachua",
+   "k": false,
+   "lat": 29.792562,
+   "lon": -82.490107,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "Bartow",
+   "k": false,
+   "lat": 27.889937,
+   "lon": -81.833094,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "Brooksville",
+   "k": false,
+   "lat": 28.556462,
+   "lon": -82.382445,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "Fort Myers",
+   "k": false,
+   "lat": 26.641662,
+   "lon": -81.855951,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "North Dade",
+   "k": false,
+   "lat": 25.92243,
+   "lon": -80.158141,
+   "t": 6,
+   "c": 1
+  },
+  {
+   "n": "Orange City",
+   "k": false,
+   "lat": 28.951464,
+   "lon": -81.291768,
+   "t": 6,
+   "c": 2
+  },
+  {
+   "n": "Port St Lucie",
+   "k": false,
+   "lat": 27.266191,
+   "lon": -80.284545,
+   "t": 6,
+   "c": 0
+  },
+  {
+   "n": "Deerfield Beach",
+   "k": false,
+   "lat": 26.311964,
+   "lon": -80.108295,
+   "t": 5,
+   "c": 1
+  },
+  {
+   "n": "Eustis",
+   "k": false,
+   "lat": 28.856923,
+   "lon": -81.677019,
+   "t": 5,
+   "c": 0
+  },
+  {
+   "n": "Ocala",
+   "k": false,
+   "lat": 29.186235,
+   "lon": -82.131579,
+   "t": 5,
+   "c": 0
+  },
+  {
+   "n": "Tallahassee",
+   "k": false,
+   "lat": 30.442716,
+   "lon": -84.27613,
+   "t": 5,
+   "c": 1
+  },
+  {
+   "n": "DeBary",
+   "k": false,
+   "lat": 28.875771,
+   "lon": -81.300127,
+   "t": 4,
+   "c": 0
+  },
+  {
+   "n": "Delray Beach",
+   "k": false,
+   "lat": 26.458773,
+   "lon": -80.064287,
+   "t": 4,
+   "c": 0
+  },
+  {
+   "n": "Gainesville",
+   "k": false,
+   "lat": 29.658416,
+   "lon": -82.323088,
+   "t": 4,
+   "c": 1
+  },
+  {
+   "n": "Haines City",
+   "k": false,
+   "lat": 28.11033,
+   "lon": -81.616333,
+   "t": 4,
+   "c": 2
+  },
+  {
+   "n": "Inverness",
+   "k": false,
+   "lat": 28.83234,
+   "lon": -82.34064,
+   "t": 4,
+   "c": 1
+  },
+  {
+   "n": "Perrine",
+   "k": false,
+   "lat": 25.602047,
+   "lon": -80.350605,
+   "t": 4,
+   "c": 0
+  },
+  {
+   "n": "Plant City",
+   "k": false,
+   "lat": 28.01847,
+   "lon": -82.126651,
+   "t": 4,
+   "c": 0
+  },
+  {
+   "n": "St Cloud",
+   "k": false,
+   "lat": 28.251701,
+   "lon": -81.281618,
+   "t": 4,
+   "c": 0
+  },
+  {
+   "n": "Vero Beach",
+   "k": false,
+   "lat": 27.640345,
+   "lon": -80.400125,
+   "t": 4,
+   "c": 1
+  },
+  {
+   "n": "Avon Park",
+   "k": false,
+   "lat": 27.613867,
+   "lon": -81.50491,
+   "t": 3,
+   "c": 1
+  },
+  {
+   "n": "Bushnell",
+   "k": false,
+   "lat": 28.666819,
+   "lon": -82.105301,
+   "t": 3,
+   "c": 1
+  },
+  {
+   "n": "Crystal River",
+   "k": false,
+   "lat": 28.900982,
+   "lon": -82.585411,
+   "t": 3,
+   "c": 0
+  },
+  {
+   "n": "Fort Pierce",
+   "k": false,
+   "lat": 27.443324,
+   "lon": -80.333918,
+   "t": 3,
+   "c": 1
+  },
+  {
+   "n": "Homestead",
+   "k": false,
+   "lat": 25.468394,
+   "lon": -80.484789,
+   "t": 3,
+   "c": 0
+  },
+  {
+   "n": "Naples",
+   "k": false,
+   "lat": 26.142837,
+   "lon": -81.797573,
+   "t": 3,
+   "c": 2
+  },
+  {
+   "n": "Sarasota",
+   "k": false,
+   "lat": 27.340347,
+   "lon": -82.533769,
+   "t": 3,
+   "c": 0
+  },
+  {
+   "n": "Sebastian",
+   "k": false,
+   "lat": 27.816872,
+   "lon": -80.468219,
+   "t": 3,
+   "c": 0
+  },
+  {
+   "n": "St Johns",
+   "k": false,
+   "lat": 29.962692,
+   "lon": -81.475457,
+   "t": 3,
+   "c": 0
+  },
+  {
+   "n": "Wildwood",
+   "k": false,
+   "lat": 28.868374,
+   "lon": -82.032852,
+   "t": 3,
+   "c": 0
+  },
+  {
+   "n": "Arcadia",
+   "k": false,
+   "lat": 27.217245,
+   "lon": -81.858722,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Bradenton",
+   "k": false,
+   "lat": 27.490942,
+   "lon": -82.56818,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Dade City",
+   "k": false,
+   "lat": 28.367189,
+   "lon": -82.193289,
+   "t": 2,
+   "c": 1
+  },
+  {
+   "n": "Fort Walton Beach",
+   "k": false,
+   "lat": 30.41124,
+   "lon": -86.602176,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Hollywood",
+   "k": false,
+   "lat": 26.008235,
+   "lon": -80.148961,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Lake City",
+   "k": false,
+   "lat": 30.191242,
+   "lon": -82.634671,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "North Naples",
+   "k": false,
+   "lat": 26.26519,
+   "lon": -81.807791,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Oviedo",
+   "k": false,
+   "lat": 28.666279,
+   "lon": -81.197974,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Pensacola",
+   "k": false,
+   "lat": 30.417849,
+   "lon": -87.214854,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Reedy Creek",
+   "k": false,
+   "lat": 28.347083,
+   "lon": -81.610468,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Sebring",
+   "k": false,
+   "lat": 27.501731,
+   "lon": -81.434892,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Stuart",
+   "k": false,
+   "lat": 27.193258,
+   "lon": -80.249404,
+   "t": 2,
+   "c": 0
+  },
+  {
+   "n": "Apopka",
+   "k": false,
+   "lat": 28.683884,
+   "lon": -81.501474,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Belle Glade",
+   "k": false,
+   "lat": 26.682646,
+   "lon": -80.672667,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Belleview",
+   "k": false,
+   "lat": 29.064082,
+   "lon": -82.060848,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Beverly Hills",
+   "k": false,
+   "lat": 28.928004,
+   "lon": -82.453057,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Bowling Green",
+   "k": false,
+   "lat": 27.631038,
+   "lon": -81.816603,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Chipley",
+   "k": false,
+   "lat": 30.783404,
+   "lon": -85.535078,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Dowling Park",
+   "k": false,
+   "lat": 30.252578,
+   "lon": -83.236016,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Dunnellon",
+   "k": false,
+   "lat": 29.048015,
+   "lon": -82.458996,
+   "t": 1,
+   "c": 1
+  },
+  {
+   "n": "Fernandina Beach",
+   "k": false,
+   "lat": 30.664657,
+   "lon": -81.457533,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Fort Meade",
+   "k": false,
+   "lat": 27.751076,
+   "lon": -81.792113,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Groveland",
+   "k": false,
+   "lat": 28.557715,
+   "lon": -81.857338,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Hobe Sound",
+   "k": false,
+   "lat": 27.060197,
+   "lon": -80.134641,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Hudson",
+   "k": false,
+   "lat": 28.364478,
+   "lon": -82.687172,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Lake Buena Vista",
+   "k": false,
+   "lat": 28.391195,
+   "lon": -81.532959,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "New Port Richey",
+   "k": false,
+   "lat": 28.241827,
+   "lon": -82.706396,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Ocklawaha",
+   "k": false,
+   "lat": 29.043057,
+   "lon": -81.92923,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Palm Coast",
+   "k": false,
+   "lat": 29.574154,
+   "lon": -81.205935,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Pompano Beach",
+   "k": false,
+   "lat": 26.232501,
+   "lon": -80.119368,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Tarpon Springs",
+   "k": false,
+   "lat": 28.143395,
+   "lon": -82.751785,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Weekiwachee Springs",
+   "k": false,
+   "lat": 28.533668,
+   "lon": -82.583651,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Weirsdale",
+   "k": false,
+   "lat": 28.989464,
+   "lon": -81.867781,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Welaka",
+   "k": false,
+   "lat": 29.481104,
+   "lon": -81.666758,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "White Springs",
+   "k": false,
+   "lat": 30.334852,
+   "lon": -82.759669,
+   "t": 1,
+   "c": 0
+  },
+  {
+   "n": "Winter Garden",
+   "k": false,
+   "lat": 28.56802,
+   "lon": -81.584687,
+   "t": 1,
+   "c": 0
+  }
+ ],
+ "offices": [
+  {
+   "name": "Orlando",
+   "addr": "111 N Orange Ave, Suite 800, Orlando FL 32801",
+   "zip": "32801",
+   "county": "Orange",
+   "lat": 28.5438004,
+   "lon": -81.3787676
+  }
+ ]
+}

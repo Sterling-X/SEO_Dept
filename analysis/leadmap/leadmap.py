@@ -42,6 +42,11 @@ UA = "RocketClicks-SEO-Analysis/1.0 (cshea@rocketclicks.com)"
 FUNNEL = ["New Leads", "Qualified Potential Clients", "Consults Scheduled",
           "Consults Complete", "Funded Agreement"]
 HIRED = "Funded Agreement"
+# Words in a firm name that also appear in other firms' dataset names. Excluded from the
+# dataset-name probe so "Fanash Family Law" does not match arizona_family_law.
+GENERIC_NAME_WORDS = {"family", "legal", "group", "associates", "attorneys", "attorney",
+                      "lawyers", "lawyer", "firm", "office", "offices", "pllc", "llc",
+                      "llp", "mediation", "divorce", "partners", "counsel", "solutions"}
 
 STATE_FIPS = {
  "AL":"01","AK":"02","AZ":"04","AR":"05","CA":"06","CO":"08","CT":"09","DE":"10","DC":"11",
@@ -118,7 +123,7 @@ def resolve_client(q):
 
 
 # ---------------------------------------------------------------- 2. probe capabilities
-def probe(cid, name):
+def probe(cid, name, zip_dataset=None):
     """Establish what this client tracks before pulling anything."""
     caps = {}
     rows = bq(f"""
@@ -137,17 +142,37 @@ def probe(cid, name):
 
     # Does a per-client dataset carry lead-level zip? (18 clients do; it is a better
     # geocode than the phone exchange, and worth surfacing even if unused here.)
+    # Match only on the client's distinctive name words. Generic words such as
+    # "family" match other firms' datasets (Fanash Family Law matched
+    # arizona_family_law on 2026-09-23), and a zip column that exists but is empty is
+    # not a zip source, so each candidate is checked for populated rows before it is
+    # reported on the sheet.
     slug = re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
-    words = [w for w in slug.split("_") if len(w) > 3]
-    like = " OR ".join(f"LOWER(table_schema) LIKE '%{w}%'" for w in words) or "FALSE"
+    words = [w for w in slug.split("_") if len(w) > 3 and w not in GENERIC_NAME_WORDS]
+    if zip_dataset:
+        like = f"table_schema='{zip_dataset}'"
+    else:
+        like = " OR ".join(f"LOWER(table_schema) LIKE '%{w}%'" for w in words) or "FALSE"
     zrows = bq(f"""
       SELECT table_schema, table_name, column_name
       FROM `region-us`.INFORMATION_SCHEMA.COLUMNS
       WHERE table_name='call_data'
         AND (LOWER(column_name)='zip_code' OR LOWER(column_name)='postal_code')
         AND ({like})""")
-    caps["zip_source"] = ({"dataset": zrows[0]["table_schema"],
-                           "column": zrows[0]["column_name"]} if zrows else None)
+    log(f"      zip probe: {'dataset ' + zip_dataset if zip_dataset else 'name words ' + (', '.join(words) or 'none')}"
+        f" -> candidates {[z['table_schema'] for z in zrows] or 'none'}"
+        + ("" if zrows or zip_dataset else " (a misspelled dataset name will not match; use --zip-dataset)"))
+    caps["zip_source"] = None
+    for z in zrows:
+        ds, col = z["table_schema"], z["column_name"]
+        filled = bq(f"""
+          SELECT COUNTIF(TRIM(CAST({col} AS STRING)) != '') AS n
+          FROM `{ds}.call_data`""")
+        n = int(filled[0]["n"]) if filled else 0
+        if n > 0:
+            caps["zip_source"] = {"dataset": ds, "column": col, "filled": n}
+            break
+        log(f"      {ds}.call_data.{col} exists but is empty; ignored as a zip source")
     return caps
 
 
@@ -299,6 +324,9 @@ def geocode(rows):
 # Telco billing-zone decorations that are not place names: "Colorado Springs-Main" is
 # Colorado Springs, "Houston Suburban" is Houston, "Seguin EMS" is Seguin.
 SUFFIX_RE = re.compile(r"([\s-]+(Suburban|EMS|EACS|Main|Metro|Zone\s*\d+|Zone\s*[A-Z]))\s*$", re.I)
+
+
+ZONE_RE = re.compile(r"^(.+?)[\s-]+(Central|North|South|East|West)$", re.I)
 
 
 def norm_city(n):
@@ -454,9 +482,13 @@ def build(rows, cache, caps, client, frm, to, days, offices, force_state=None):
     home = force_state or st_count.most_common(1)[0][0]
 
     n_oos = 0
+    n_oos_conv = 0   # out-of-state exchanges that still reached the metric: an out-of-state
+                     # number is not an out-of-state client (Fanash: 36 of 405 hired, 2026-09-23)
     for r, hit in resolved:
         if hit["state"] != home:
             n_oos += 1
+            if metric and metric in (r.get("statuses") or ""):
+                n_oos_conv += 1
             continue
         p = places[norm_city(hit["city"])]
         p["t"] += 1
@@ -464,9 +496,51 @@ def build(rows, cache, caps, client, frm, to, days, offices, force_state=None):
         if metric and metric in (r.get("statuses") or ""):
             p["c"] += 1
 
+    # Telco billing zones come in families: "Tampa Central", "Tampa North", "Tampa East",
+    # "Tampa West" and "Tampa South" are one city split by the carrier, not five cities
+    # (Fanash Family Law, 2026-09-23). Merge a directional family only when at least two
+    # variants share the base name or the base is already a point, so a lone rate center
+    # whose name merely ends in a direction is left alone. The merged point keeps the
+    # base city's coordinates when it exists, otherwise a lead-weighted mean.
+    fam = defaultdict(list)
+    for k in list(places):
+        m = ZONE_RE.match(k)
+        if m:
+            fam[m.group(1)].append(k)
+    for base, ks in fam.items():
+        if len(ks) < 2 and base not in places:
+            continue
+        had_base = base in places
+        tgt = places[base]
+        wlat, wlon, wt = tgt["lat"] * tgt["t"], tgt["lon"] * tgt["t"], tgt["t"]
+        for k in ks:
+            v = places.pop(k)
+            tgt["t"] += v["t"]
+            tgt["c"] += v["c"]
+            wlat, wlon, wt = wlat + v["lat"] * v["t"], wlon + v["lon"] * v["t"], wt + v["t"]
+        if not had_base and wt:
+            tgt["lat"], tgt["lon"] = wlat / wt, wlon / wt
+        log(f"      merged {len(ks)} {base} billing zones into {base} ({tgt['t']} leads)")
+
     pts = sorted(({"n": k, "k": False, "lat": v["lat"], "lon": v["lon"], "t": v["t"], "c": v["c"]}
                   for k, v in places.items()), key=lambda d: (-d["t"], d["n"]))
     plotted = sum(p["t"] for p in pts)
+
+    # Origin platform families over the whole in-window cohort ("Clio Grow+call" -> "Clio Grow").
+    # A source that starts mid-window or converts at a very different rate can dominate a
+    # month-over-month change or a blended rate (Fanash: Manual Intake began 2026-01, 46% of
+    # leads, 2.4% hired vs Clio Grow 14.8%; seo-reviewer finding, 2026-09-23).
+    fams = defaultdict(lambda: {"t": 0, "c": 0, "first": None})
+    for r in rows:
+        fam = (r.get("platform") or "unknown").split("+")[0].strip() or "unknown"
+        f = fams[fam]
+        f["t"] += 1
+        if metric and metric in (r.get("statuses") or ""):
+            f["c"] += 1
+        mo = str(r.get("created_date") or "")[:7]
+        if mo and (f["first"] is None or mo < f["first"]):
+            f["first"] = mo
+    platforms = sorted(({"name": k, **v} for k, v in fams.items()), key=lambda x: -x["t"])
     convs = sum(p["c"] for p in pts)
     n_unres = len(rows) - n_nophone - len(resolved)
 
@@ -479,15 +553,18 @@ def build(rows, cache, caps, client, frm, to, days, offices, force_state=None):
         "meta": {
             "client": client["name"], "client_id": client["id"],
             "state_ab": home, "state": STATE_NAME[home],
-            "period": f"{fmt(frm)} to {fmt(to)}, {to[:4]}", "window_days": days,
+            "period": (f"{fmt(frm)}, {frm[:4]} to {fmt(to)}, {to[:4]}" if frm[:4] != to[:4]
+                       else f"{fmt(frm)} to {fmt(to)}, {to[:4]}"), "window_days": days,
             "date_from": frm, "date_to": to,
             "snapshot": fmt_today(),
             "in_window": len(rows), "plotted": plotted, "conversions": convs,
             "origin_points": len(pts), "cities": len(pts),
-            "dropped_oos": n_oos, "dropped_nophone": n_nophone, "dropped_unresolved": n_unres,
+            "dropped_oos": n_oos, "dropped_oos_conv": n_oos_conv,
+            "dropped_nophone": n_nophone, "dropped_unresolved": n_unres,
             "metric_status": metric, "metric_label": metric_label,
             "hired_tracked": caps["hired_tracked"],
             "zip_source": caps["zip_source"],
+            "platforms": platforms,
             "last_event": caps["last_event"],
             "stages": caps["stages"],
         },
@@ -525,6 +602,9 @@ def main():
     ap.add_argument("--to", dest="to", help="YYYY-MM-DD (defaults to today)")
     ap.add_argument("--state", help="force home state, 2-letter (default: modal state)")
     ap.add_argument("--offices", help="JSON file: [{name,addr,zip,county,lat,lon}]")
+    ap.add_argument("--zip-dataset", dest="zip_dataset",
+                    help="dataset whose call_data carries lead-level zip, for when the name probe "
+                         "cannot find it (e.g. the misspelled fanishe_family_law)")
     ap.add_argument("--outdir", default="analysis", help="output directory")
     a = ap.parse_args()
 
@@ -543,7 +623,7 @@ def main():
     log(f"      {client['name']}  ({client['id']})")
 
     log("[2/8] probing what this client tracks")
-    caps = probe(client["id"], client["name"])
+    caps = probe(client["id"], client["name"], a.zip_dataset)
     log(f"      stages: {', '.join(f'{k}={v}' for k, v in caps['stages'].items()) or 'none'}")
     log(f"      hired tracked: {caps['hired_tracked']}  |  metric: {caps['metric_status']}")
     log(f"      lead-level zip: {caps['zip_source'] or 'none'}")

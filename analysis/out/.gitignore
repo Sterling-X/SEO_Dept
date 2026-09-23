@@ -1,0 +1,2 @@
+# Lead-level pipeline extracts carry names, emails and phone numbers. Never commit them.
+*.csv

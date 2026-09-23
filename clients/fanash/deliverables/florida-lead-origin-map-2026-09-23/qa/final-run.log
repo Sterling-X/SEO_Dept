@@ -1,0 +1,24 @@
+[1/8] resolving client 'Fanash'
+      Fanash Family Law  (8a4bb5d3-2988-4b58-901a-d7ebdb015a10)
+[2/8] probing what this client tracks
+      zip probe: name words fanash -> candidates none (a misspelled dataset name will not match; use --zip-dataset)
+      stages: Funded Agreement=260, New Leads=2465, Qualified Potential Clients=732, Consults Scheduled=257
+      hired tracked: True  |  metric: Funded Agreement
+      lead-level zip: none
+      data coverage: 2024-03-20 .. 2026-09-22
+[3/8] pulling 2025-09-24 .. 2026-09-23 (365 days)
+      1404 raw lead records
+[4/8] deduplicating
+      1404 raw -0 internal -12 phone -0 email = 1392 leads
+[5/8] geocoding phone exchanges
+[6/8] building origin points
+      merged 5 Tampa billing zones into Tampa (38 leads)
+      home state Florida (FL) — 946 leads, 88 cities, 83 hired
+      excluded: 405 out-of-state, 30 no phone, 11 unresolved exchange
+[7/8] county geometry for Florida
+      67 counties
+[8/8] rendering
+
+wrote analysis/out/fanash-family-law-lead-origin-map-365d-2026-09-23.html  (113 KB)
+      analysis/out/fanash-family-law-lead-origin-map-365d-2026-09-23.csv   (1392 leads)
+      analysis/out/fanash-family-law-lead-origin-map-365d-2026-09-23.json
