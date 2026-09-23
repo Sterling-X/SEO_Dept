@@ -42,3 +42,25 @@ prisma/dev.db-journal
 prisma/*.db
 .env*
 !.env.example
+
+# Claude Code: machine-specific MCP server definition (absolute local paths)
+/.mcp.json
+# Claude Code: machine-local settings (MCP server approval, local overrides)
+/.claude/settings.local.json
+
+# Content-workflow pilot: run directories, generated deliveries, and pilot node_modules
+# hold client source material and generated outputs. Fixtures under tests/ stay tracked.
+/pilot/content-workflow/runs/
+/pilot/content-workflow/deliveries/
+/pilot/content-workflow/candidates/skills/*/node_modules/
+/pilot/content-workflow/**/__pycache__/
+# Content-workflow pilot activation symlinks are local, explicit state (scripts/activate.sh);
+# they are never committed so that checking out the pilot branch does not activate it.
+/.claude/agents/content-writer.md
+/.claude/agents/legal-reviewer.md
+/.claude/agents/editorial-reviewer.md
+/.codex/agents/content_writer.toml
+/.codex/agents/legal_reviewer.toml
+/.codex/agents/editorial_reviewer.toml
+/.claude/skills/content-workflow
+/.agents/skills/content-workflow

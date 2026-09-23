@@ -1,0 +1,17 @@
+{
+  "fixture": true,
+  "role": "legal-reviewer", "stage": "final", "round": 0, "verdict": "not-ready",
+  "findings": [
+    {"id": "L1", "severity": "blocking",
+     "passage": {"location": "H2 'What is at stake', paragraph 1", "quote": "Courts in Exampleland must always order equal parenting time, so the schedule is not something you can influence."},
+     "issue": "Absolute claim not supported by the cited section (rebuttable presumption with written findings).",
+     "evidence": {"authority": "Exampleland Stat. § 12.350", "url": "https://legislature.exampleland.example/statutes/12.350", "accessed": "2026-09-23", "note": "FIXTURE"},
+     "requested_correction": "State the presumption, the parent's ability to rebut it with evidence, and the written-findings requirement.",
+     "resolution": {"status": "open", "verified_against_draft_sha256": null, "verified_by": null, "note": null}}
+  ],
+  "verification_log": [
+    {"claim": "courts must always order equal parenting time", "location": "What is at stake", "authority": "Exampleland Stat. § 12.350", "url": "https://legislature.exampleland.example/statutes/12.350", "accessed": "2026-09-23", "result": "Correction-needed", "notes": "FIXTURE"}
+  ],
+  "checks_not_performed": ["FIXTURE: no live fetch was performed"],
+  "learning_contribution": {"result_and_evidence": "fixture", "corrections_or_methods": "none", "lesson_candidate": "none", "uncertainty_or_disagreement": "none"}
+}

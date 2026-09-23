@@ -1,0 +1,27 @@
+{
+  "schema": "content-workflow-skill-candidate/v1",
+  "name": "legal-content-accuracy-qa-pilot-v1",
+  "status": "candidate; not production default",
+  "created": "2026-09-23",
+  "baseline": {
+    "path": ".agents/skills/legal-content-accuracy-qa",
+    "recorded_on": "2026-09-23",
+    "files": {
+      "SKILL.md": "fd39a8e9665b33b6f886266e35379153aedaf7f6488157c6e96458c3475a433b",
+      "agents/openai.yaml": "ce01929ce6094696848ba7c427b8d46cd2810f9b15b7b8bd4dabeb2f8d03335d",
+      "assets/icon.svg": "e9301497fa98ef56aaca7ede0857b9a18dc06c34040f0679c609a6bf49b1d38b",
+      "references/practice-area-checklists.md": "4866ee87e5b8444add624938a9ca1c32cf16ecea082247fa37b015e0d71f762e",
+      "references/verification-protocol.md": "6d1b6181483703b26198c3b3b549a0658926e73715e5fafd4773eb70f2457252"
+    }
+  },
+  "required_files": [
+    "SKILL.md",
+    "references/verification-protocol.md",
+    "references/practice-area-checklists.md"
+  ],
+  "external_dependencies": [
+    "live web fetch and search during every review"
+  ],
+  "changes": "CHANGES.md",
+  "discovery": "Outside .agents/skills and .claude/skills by design; runs pin this directory's SKILL.md by path and SHA-256."
+}

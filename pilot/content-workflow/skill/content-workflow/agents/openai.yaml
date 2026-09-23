@@ -1,0 +1,11 @@
+interface:
+  display_name: content workflow (pilot)
+  short_description: Pilot coordinator for the content-production workflow. Runs the intake
+    gate, dispatches the content_writer, legal_reviewer, and editorial_reviewer custom
+    agents, records hash-bound structured reviews, enforces at most two repair rounds,
+    and delivers only when the deterministic readiness check passes. Explicit
+    invocation only ($content-workflow); not the production default.
+policy:
+  products:
+  - codex
+  allow_implicit_invocation: false

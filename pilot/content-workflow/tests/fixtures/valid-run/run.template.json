@@ -1,0 +1,135 @@
+{
+  "schema": "content-workflow-run/v1",
+  "run_id": "fixture-gomez-nunez-high-conflict",
+  "fixture": true,
+  "client": {
+    "name": "Gómez & Núñez Family Law, P.A.",
+    "domain": "gomez-nunez-law.example",
+    "slug": "gomez-nunez"
+  },
+  "jurisdiction": "Exampleland",
+  "page_type": {
+    "kind": "situational",
+    "architecture_node_id": "FL-M008",
+    "purpose": "Synthetic fixture: high-conflict divorce situational page",
+    "excluded_intents": [
+      "general-divorce-hub",
+      "contested-divorce-procedure"
+    ],
+    "word_target": "1,100–1,700"
+  },
+  "voice": {
+    "skill": null,
+    "approved_brief_source_id": "voice-brief"
+  },
+  "skills": [],
+  "sources": [
+    {
+      "id": "client-facts",
+      "path": "sources/client-facts.md",
+      "sha256": "",
+      "kind": "client-facts",
+      "verified_on": "2026-09-23"
+    },
+    {
+      "id": "voice-brief",
+      "path": "sources/voice-brief.md",
+      "sha256": "",
+      "kind": "voice-brief",
+      "verified_on": "2026-09-23"
+    },
+    {
+      "id": "S1",
+      "path": "sources/legal-exampleland-stat-12-345.md",
+      "sha256": "",
+      "kind": "legal-authority",
+      "url": "https://legislature.exampleland.example/statutes/12.345",
+      "label": "Exampleland Stat. § 12.345, Dissolution of marriage",
+      "verified_on": "2026-09-23"
+    },
+    {
+      "id": "S2",
+      "path": "sources/legal-exampleland-stat-12-350.md",
+      "sha256": "",
+      "kind": "legal-authority",
+      "url": "https://legislature.exampleland.example/statutes/12.350",
+      "label": "Exampleland Stat. § 12.350, Parenting time",
+      "verified_on": "2026-09-23"
+    },
+    {
+      "id": "S3",
+      "path": "sources/legal-exampleland-rule-7.md",
+      "sha256": "",
+      "kind": "legal-authority",
+      "url": "https://courts.exampleland.example/rules/family/7",
+      "label": "Exampleland Family Court Rule 7, Case management",
+      "verified_on": "2026-09-23"
+    }
+  ],
+  "draft": {
+    "path": "draft.md"
+  },
+  "export": {
+    "path": "export/exampleland-high-conflict-divorce-situational.docx",
+    "validators": [
+      {
+        "name": "structural",
+        "command": [
+          "python3",
+          "{repo_root}/pilot/content-workflow/candidates/skills/family-law-situational-pages-pilot-v1/scripts/office/validate.py",
+          "{run_dir}/export/exampleland-high-conflict-divorce-situational.docx",
+          "--manifest",
+          "{run_dir}/manifest.json"
+        ]
+      },
+      {
+        "name": "page",
+        "command": [
+          "node",
+          "{repo_root}/pilot/content-workflow/candidates/skills/family-law-situational-pages-pilot-v1/scripts/validate-page.js",
+          "{run_dir}/export/exampleland-high-conflict-divorce-situational.docx",
+          "--manifest",
+          "{run_dir}/manifest.json"
+        ]
+      }
+    ]
+  },
+  "citations": [
+    {
+      "id": 1,
+      "source_id": "S1",
+      "label": "Exampleland Stat. § 12.345, Dissolution of marriage",
+      "url": "https://legislature.exampleland.example/statutes/12.345"
+    },
+    {
+      "id": 2,
+      "source_id": "S2",
+      "label": "Exampleland Stat. § 12.350, Parenting time",
+      "url": "https://legislature.exampleland.example/statutes/12.350"
+    },
+    {
+      "id": 3,
+      "source_id": "S3",
+      "label": "Exampleland Family Court Rule 7, Case management",
+      "url": "https://courts.exampleland.example/rules/family/7"
+    }
+  ],
+  "reviews": {
+    "required": [
+      "legal-final",
+      "editorial-final",
+      "mechanical-final"
+    ]
+  },
+  "rounds": {
+    "max_repair_rounds": 2
+  },
+  "forbidden_terms": [
+    "collaborative divorce",
+    "Sterling Lawyers"
+  ],
+  "parity": {
+    "word_count_tolerance": 0.02,
+    "compare_headings": true
+  }
+}

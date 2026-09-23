@@ -1,0 +1,23 @@
+interface:
+  display_name: qa output checker
+  short_description: 'QA client-facing deliverables for mechanical and operational
+    errors before they go out. Use whenever a user asks to QA, proof, review, check,
+    or verify a deliverable — reports, proposals, audits, scorecards, strategy docs,
+    or any client-facing document for digital marketing or lead funnel work. Also
+    trigger on ''check this before I send it,'' ''proof this report,'' ''make sure
+    there are no errors,'' or ''review this output.'' Catches the human errors strategic
+    review misses: wrong client names, stale dates, broken numbers, placeholder text,
+    internal notes left in, formatting inconsistencies, mismatched data across sections,
+    and unprofessional production quality. Complements family-law-red-team-qa-reviewer
+    (strategic and content quality); this skill handles mechanical and production
+    quality. After this skill completes on any deliverable containing legal claims
+    (statutes, deadlines, procedures, eligibility, rights), immediately run legal-content-accuracy-qa
+    as the next gate — mechanical QA never clears legal accuracy.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - atlas
+  allow_implicit_invocation: true

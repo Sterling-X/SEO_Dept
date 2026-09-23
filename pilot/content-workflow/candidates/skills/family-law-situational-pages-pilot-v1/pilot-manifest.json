@@ -1,0 +1,70 @@
+{
+  "schema": "content-workflow-skill-candidate/v1",
+  "name": "family-law-situational-pages-pilot-v1",
+  "status": "candidate; not production default",
+  "created": "2026-09-23",
+  "baseline": {
+    "path": ".agents/skills/family-law-situational-pages",
+    "recorded_on": "2026-09-23",
+    "files": {
+      ".gitignore": "280c97002872bb3022e101f34f71b129f59290da8e6f59c343316a6be508af8c",
+      "LOCAL-REPLACEMENT.md": "70cd713c2813880a64ac1c1b2c8540268c2f5369dfd69f604683e5a0c1f0de08",
+      "SKILL.md": "f84b557140f5dce3a254ed41aba3e605111c9fab63d518992c1517156a8ee653",
+      "agents/openai.yaml": "23ba1d9d0848e04170ea99ac30444afb88306fa34a0a1e6b4aca4a24bef59cb6",
+      "assets/icon.svg": "49315dda7125ec5fc77ef5f2b96126d8b2121c6e72944b4702972e90f321d3ee",
+      "package-lock.json": "574066f2ffdb4b809891d2cfafa7e847b26d7e57f7bdc97fb81e450d01eec193",
+      "package.json": "fe05954c68d855027db3ff5c82360ab7b464a14d584e5ae90e84dd701047a7b9",
+      "references/situational-template.md": "261d3601eecfd58219b439cf5f7da93699fd306b3a04f932b69b9391236dae16",
+      "scripts/build-situational.js": "eff6d635ae1609723814faec5301ee16ed2e6fb5bd439a96f7cea8a90c7ad037",
+      "scripts/office/validate.py": "aecc448d4acf44f5b2a007ca00913f757887ae70ca802833c9ff466b22744212",
+      "scripts/render-situational.sh": "943325f45c33ca57a93beb256cd17a7ec4989892ee0c70b9e15a7167a4a8a959",
+      "scripts/test-situational.py": "c45ad571da176010409daf9261e7e888a8fb5bc5f1ad68bb6c7138d620d55a1b",
+      "scripts/validate-page.js": "22321c232fc991604a285085f1ec05cd881b191d9e0aa0b8f40fdb70761450d9"
+    }
+  },
+  "required_files": [
+    "SKILL.md",
+    "LOCAL-REPLACEMENT.md",
+    "references/situational-template.md",
+    "scripts/build-situational.js",
+    "scripts/validate-page.js",
+    "scripts/office/validate.py",
+    "scripts/render-situational.sh",
+    "scripts/test-situational.py",
+    "package.json",
+    "package-lock.json",
+    "node_modules/docx/package.json",
+    "node_modules/adm-zip/package.json"
+  ],
+  "external_dependencies": [
+    "context/architecture/Family_Law_StructureV2.html (governing V2 HTML, read at generation time)",
+    ".agents/skills/family-law-service-pages/scripts/render-core-hub.sh (render step; currently fails closed on both hosts, see CLAUDE.md)"
+  ],
+  "changes": "CHANGES.md",
+  "discovery": "Outside .agents/skills and .claude/skills by design; runs pin this directory's SKILL.md by path and SHA-256.",
+  "validators": [
+    {
+      "name": "structural",
+      "command_template": [
+        "python3",
+        "{skill_dir}/scripts/office/validate.py",
+        "{export}",
+        "--manifest",
+        "{manifest}"
+      ],
+      "purpose": "OOXML structure, geometry, styles, citation markers, Sources rows, placeholders"
+    },
+    {
+      "name": "page",
+      "command_template": [
+        "node",
+        "{skill_dir}/scripts/validate-page.js",
+        "{export}",
+        "--manifest",
+        "{manifest}"
+      ],
+      "purpose": "link authorities, single placement, anchors, citation pairing, placeholders, banned phrases"
+    }
+  ],
+  "validators_note": "A content-workflow run that pins this skill must declare validators with these names under run.json export.validators; readiness_check.py reports VALIDATORS_UNDECLARED otherwise and runs them at delivery."
+}

@@ -1,0 +1,36 @@
+{
+  "fixture": true,
+  "role": "editorial-reviewer",
+  "stage": "checkpoint",
+  "round": 0,
+  "verdict": "ready-with-revisions",
+  "findings": [
+    {
+      "id": "E1",
+      "severity": "minor",
+      "passage": {
+        "location": "H2 'Recognizing the high-conflict situation', paragraph 1",
+        "quote": "This synthetic paragraph tests situational document structure, readable spacing, manifest fidelity, and validation without making any client or legal claim."
+      },
+      "issue": "Repeated filler sentence in the fixture body; optional wording note for the approved voice brief (calm, plain-language).",
+      "evidence": {
+        "source": "sources/voice-brief.md",
+        "element": "calm, plain-language"
+      },
+      "requested_correction": "Optional: replace 'can mean anything' with 'is meaningful'.",
+      "resolution": {
+        "status": "open",
+        "verified_against_draft_sha256": null,
+        "verified_by": null,
+        "note": null
+      }
+    }
+  ],
+  "checks_not_performed": [],
+  "learning_contribution": {
+    "result_and_evidence": "fixture",
+    "corrections_or_methods": "none",
+    "lesson_candidate": "none",
+    "uncertainty_or_disagreement": "none"
+  }
+}

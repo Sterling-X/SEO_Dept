@@ -1,0 +1,24 @@
+interface:
+  display_name: family law situational pages
+  short_description: Produce full-copy family law situational pages delivered as DOCX
+    files. Use this skill whenever the user asks to write, draft, build, or produce
+    a family law situational page, scenario page, fact-pattern page, or issue-specific
+    service page for any family law firm in any U.S. state. Trigger on requests mentioning
+    high-conflict divorce, relocation disputes, move-away custody, hidden assets,
+    business-ownership divorce, back child support, fathers' rights, supervised visitation,
+    grandparents guardianship, or any similar family law scenario page. Also trigger
+    when the user says 'build the situational page for [topic]', 'write the scenario
+    page for [topic]', or references a family law site architecture where the page
+    lives under a core hub but is not a process page. Do NOT use for Core Practice
+    Area pages or Procedural pages (use family-law-service-pages instead). Do NOT
+    use for blog content (use cluster-blog-writer instead) or for non-family-law verticals.
+    Local executable readiness is demonstrated only for FL-M008 High-Conflict Divorce;
+    other Situational routes remain dependency-incomplete.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - atlas
+  allow_implicit_invocation: true

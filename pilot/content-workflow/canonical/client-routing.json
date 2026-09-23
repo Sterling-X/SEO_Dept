@@ -1,0 +1,11 @@
+{
+  "schema": "content-workflow-client-routing/v1",
+  "authority": "AGENTS.md section 'Client voice routing' (mirrored here so scripts can read it; a test asserts the two agree)",
+  "rule": "Exact domain match only. Never infer a voice skill from the vertical or from a name pattern. An unrouted domain requires an approved, dated voice brief pinned as a run source; otherwise the run is INCOMPLETE on voice.",
+  "voice_skill_root": ".agents/skills",
+  "routes": {
+    "sterlinglawyers.com": "sterling-voice",
+    "jmblattner.com": "write-blattner-voice",
+    "servicecu.org": "servicecu-voice"
+  }
+}

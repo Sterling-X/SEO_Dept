@@ -1,0 +1,25 @@
+{
+  "schema": "content-workflow-skill-candidate/v1",
+  "name": "family-law-red-team-qa-reviewer-pilot-v1",
+  "status": "candidate; not production default",
+  "created": "2026-09-23",
+  "baseline": {
+    "path": ".agents/skills/family-law-red-team-qa-reviewer",
+    "recorded_on": "2026-09-23",
+    "files": {
+      "SKILL.md": "bd8d9d8c43b7f0bdc121b86f90cd488b7df53d5f415cc5ff18e9a85237bf7b18",
+      "agents/openai.yaml": "760bd8690eee388836490bffb471932efa765fd5de664ab30ef5216cd697f7b0",
+      "assets/icon.svg": "d80a4c3e0fd2efa7af88433a53b25a92c78a644175c6669dd78fee50fb53acf6"
+    }
+  },
+  "required_files": [
+    "SKILL.md",
+    "../../../canonical/link-and-cta-limits.md",
+    "../../../canonical/client-routing.json"
+  ],
+  "external_dependencies": [
+    "the voice source pinned in run.json"
+  ],
+  "changes": "CHANGES.md",
+  "discovery": "Outside .agents/skills and .claude/skills by design; runs pin this directory's SKILL.md by path and SHA-256."
+}

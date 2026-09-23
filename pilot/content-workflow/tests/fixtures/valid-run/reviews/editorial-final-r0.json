@@ -1,0 +1,56 @@
+{
+  "fixture": true,
+  "role": "editorial-reviewer",
+  "stage": "final",
+  "round": 0,
+  "verdict": "ready-with-revisions",
+  "findings": [
+    {
+      "id": "E1",
+      "severity": "minor",
+      "passage": {
+        "location": "H2 'Recognizing the high-conflict situation', paragraph 1",
+        "quote": "This synthetic paragraph tests situational document structure, readable spacing, manifest fidelity, and validation without making any client or legal claim."
+      },
+      "issue": "Repeated filler sentence in the fixture body; optional wording note for the approved voice brief (calm, plain-language).",
+      "evidence": {
+        "source": "sources/voice-brief.md",
+        "element": "calm, plain-language"
+      },
+      "requested_correction": "Optional wording change.",
+      "resolution": {
+        "status": "open",
+        "verified_against_draft_sha256": null,
+        "verified_by": null,
+        "note": null
+      }
+    },
+    {
+      "id": "E2",
+      "severity": "major",
+      "passage": {
+        "location": "H2 'How Gómez & Núñez Family Law, P.A. can help', paragraph 1",
+        "quote": "María Gómez-Núñez builds a plan around the pattern in your case"
+      },
+      "issue": "The attorney is named without the approved role; client facts approve 'founder and managing attorney'. Client specificity requires the approved descriptor.",
+      "evidence": {
+        "source": "sources/client-facts.md",
+        "element": "Founder and managing attorney: María Gómez-Núñez."
+      },
+      "requested_correction": "Add the approved role descriptor.",
+      "resolution": {
+        "status": "open",
+        "verified_against_draft_sha256": null,
+        "verified_by": null,
+        "note": null
+      }
+    }
+  ],
+  "checks_not_performed": [],
+  "learning_contribution": {
+    "result_and_evidence": "fixture",
+    "corrections_or_methods": "none",
+    "lesson_candidate": "none",
+    "uncertainty_or_disagreement": "none"
+  }
+}

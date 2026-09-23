@@ -1,0 +1,36 @@
+{
+  "schema": "content-workflow-placeholder-patterns/v1",
+  "note": "Single source for the placeholder grammar. scripts/cw_common.py loads this file; the candidate validators carry the same list inline and tests/test_readiness.py fails if they drift. Numeric citation markers [n] and Markdown links are not placeholders; accented or non-ASCII names are not placeholders. [LOCAL DETAIL: ...] is matched by bracket-token.",
+  "patterns": [
+    {
+      "kind": "bracket-token",
+      "regex": "\\[(?!\\d+\\])[^\\]\\n]{1,120}\\]",
+      "ignore_case": false
+    },
+    {
+      "kind": "mustache",
+      "regex": "\\{\\{[^}\\n]{0,120}\\}\\}",
+      "ignore_case": false
+    },
+    {
+      "kind": "angle-token",
+      "regex": "<<[^>\\n]{0,120}>>",
+      "ignore_case": false
+    },
+    {
+      "kind": "marker-word",
+      "regex": "\\b(?:TODO|TBD|FIXME|XXX|PLACEHOLDER)\\b",
+      "ignore_case": false
+    },
+    {
+      "kind": "tk",
+      "regex": "\\bTK\\b",
+      "ignore_case": false
+    },
+    {
+      "kind": "lorem",
+      "regex": "lorem ipsum",
+      "ignore_case": true
+    }
+  ]
+}

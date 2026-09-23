@@ -1,0 +1,28 @@
+{
+  "schema": "content-workflow-skill-candidate/v1",
+  "name": "qa-output-checker-pilot-v1",
+  "status": "candidate; not production default",
+  "created": "2026-09-23",
+  "baseline": {
+    "path": ".agents/skills/qa-output-checker",
+    "recorded_on": "2026-09-23",
+    "files": {
+      "SKILL.md": "bca84347a5caa5fea9992daa53e97ff7b85478b67fe26bca29623b254dfe6c53",
+      "agents/openai.yaml": "d8323fbc3de28ad9fbc535a7ac0df0f3134b9949d9e96ec8eabf0143f7211195",
+      "assets/icon.svg": "fbb6c7314886573cd56c3f86884a65afe3b5f4ce4bf1ee6baeeeb1fa50aea7a4",
+      "references/checklists.md": "06654f64ada56f808ee8d8050b239a280c8708691fe9bdaa8b42d5e9a2f54daa",
+      "references/error-patterns.md": "9998117b9a69d736109a0149e222db22a9bc3db3d25e95e9836e12feb9fa93f7"
+    }
+  },
+  "required_files": [
+    "SKILL.md",
+    "references/checklists.md",
+    "references/error-patterns.md",
+    "../../../scripts/mechanical_qa.py"
+  ],
+  "external_dependencies": [
+    "none beyond Python 3 standard library for mechanical_qa.py"
+  ],
+  "changes": "CHANGES.md",
+  "discovery": "Outside .agents/skills and .claude/skills by design; runs pin this directory's SKILL.md by path and SHA-256."
+}
