@@ -67,14 +67,16 @@ promise findings close only when the raising reviewer re-reads the corrected tex
 Every run opens research once (`research_fetch.py --init`, a per-run nonce and opening time in
 `run.json`). Every legal authority, citation, and client-facts page must then be retrieved
 *during the run* with `research_fetch.py`, which writes `research/EV<n>.json` and the extracted
-page text only after a live HTTP 200 fetch in which the named verbatim excerpt (40+ characters)
-and the page's currency marker are present. Records carry the nonce, retrieval time, content
-hash, jurisdiction, and for legal authorities the legislation status, effective date, and
-amendments note. The legal reviewer's Verification Log rows must name a record (`evidence_id`)
+page text only after a live HTTP 200 fetch in which the named verbatim excerpt (40+ characters),
+a section identifier of the cited authority, and the page's currency marker are present (or the
+marker's absence is declared with a reason). Records carry the nonce, retrieval time, content
+hash, declared jurisdiction, and for legal authorities the declared legislation status, the
+compilation's current-through date, the provision's own effective date only when the page states
+one, and the section's own History line. The legal reviewer's Verification Log rows must name a record (`evidence_id`)
 and quote its text (`excerpt`); the recorder and the gate refuse rows that do not. The gate
 (`--stage research` and delivery) refuses missing, reused (other nonce, other run, or retrieved
-before the run opened), stale (older than `max_age_days`), malformed, wrong-jurisdiction, and
-not-yet-effective evidence, and re-fetches every record live: an unreachable page is
+before the run opened), stale (older than `max_age_days`), malformed, declared-wrong-jurisdiction,
+and declared-not-effective evidence, and re-fetches every record live: an unreachable page is
 `RESEARCH_UNAVAILABLE`, a page that no longer contains the excerpt is `RESEARCH_EXCERPT_DRIFT`.
 There is no offline delivery. `deliver.py` writes `research-ledger.md` (source, retrieval time,
 currency, live re-check, claims supported) into the delivery. Prior runs' `sources/` notes, prior
@@ -187,7 +189,7 @@ of the four baseline skills the pilot candidate-copied.
 python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --init
 python3 pilot/content-workflow/scripts/pin.py <run-dir> --skills <SKILL.md path>... --sources <run-relative path>...
 python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage intake
-python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --id EV<n> --url <url> --kind <kind> --excerpt "..." [legal: --jurisdiction --authority --legislation-status --effective-date --currency-marker --amendments]
+python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --id EV<n> --url <url> --kind <kind> --excerpt "..." [legal: --jurisdiction --authority --legislation-status --current-through-date (--currency-marker | --no-currency-marker "<reason>") --amendments "<the section's own History line>" (--effective-date only for the provision's own date)]
 python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage research
 python3 pilot/content-workflow/scripts/record_review.py <run-dir> --input <findings.json> --runtime claude|codex --agent <agent> --stage predraft|checkpoint|final --round N
 python3 pilot/content-workflow/scripts/mechanical_qa.py <run-dir> --round N
@@ -200,7 +202,7 @@ python3 pilot/content-workflow/scripts/deliver.py <run-dir>
 ## Tests
 
 ```bash
-python3 pilot/content-workflow/tests/test_readiness.py          # 74 tests; needs Node, the candidate node_modules, the renderer installs, and no network (a local fixture server serves synthetic authorities)
+python3 pilot/content-workflow/tests/test_readiness.py          # 76 tests; needs Node, the candidate node_modules, the renderer installs, and no network (a local fixture server serves synthetic authorities)
 python3 pilot/content-workflow/candidates/skills/family-law-situational-pages-pilot-v1/scripts/test-situational.py
 python3 pilot/content-workflow/scripts/build_adapters.py --check
 ```
@@ -212,8 +214,8 @@ below and in `docs/CHANGES-AND-OPEN-QUESTIONS.md`.
 
 | Component | Test | Result | Evidence |
 |---|---|---|---|
-| Research layer (`research_fetch.py`, `cw_research.py`) | 19 new unit tests plus live retrieval of 15 real pages | PASS | `tests/test_readiness.py` 74/74; `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/research-report.json` |
-| Readiness gate, recorder, delivery | 74 tests (55 prior, 19 new), fresh refusal run with the real legal reviewer | PASS | `docs/CHANGES-AND-OPEN-QUESTIONS.md`, "Full-system audit" |
+| Research layer (`research_fetch.py`, `cw_research.py`) | 21 new unit tests plus live retrieval of 15 real pages | PASS | `tests/test_readiness.py` 76/76; `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/research-report.json` |
+| Readiness gate, recorder, delivery | 76 tests (55 prior, 21 new), fresh refusal run with the real legal reviewer | PASS | `docs/CHANGES-AND-OPEN-QUESTIONS.md`, "Full-system audit" |
 | Adapters and activation/rollback | `build_adapters.py --check`; disposable checkout install, foreign-file refusal, rollback | PASS | same record, "Disposable checkout" |
 | Claude agents (content-writer, legal-reviewer, editorial-reviewer) | live dispatch from this session on the fresh run | see the record | `runs/...-integration/coordinator-log.md` |
 | Codex agents headless | read-only editorial handoff, write-scoped writer handoff, legal live fetch | PASS, PASS, BLOCKED (live fetch denied under the read-only sandbox; correct `Unverifiable`) | `runs/...-integration/smoke-logs/codex-*` |
@@ -231,7 +233,7 @@ below and in `docs/CHANGES-AND-OPEN-QUESTIONS.md`.
 | Recorder, mechanical QA, delivery on real agent output | verified on the smoke run: reviews recorded, mechanical pass, delivery refused with nine reasons | same scripts (host-independent) |
 | Generator-built export through validators and gate | verified in the test suite: every fixture run builds its DOCX with the candidate generator and executes both candidate validators | same (Node and Python only) |
 | End-to-end client run | verified 2026-09-23 on Sterling FL-M008 (Wisconsin): pre-draft legal verification, draft, checkpoints, two repair rounds, finals and rechecks, mechanical QA, three render inspections, READY, delivered to the ignored delivery directory; not published. Record: `docs/CHANGES-AND-OPEN-QUESTIONS.md` | not exercised (Codex agents verified by headless smoke tests only) |
-| Unit tests | 55/55 `tests/test_readiness.py` on 2026-09-23 (74/74 after the 2026-09-24 research layer; generator-backed, renders every READY fixture through the pinned renderer); 38/38 candidate suite; adapters in sync | same (Python, Node, and the pinned renderer tooling) |
+| Unit tests | 55/55 `tests/test_readiness.py` on 2026-09-23 (76/76 after the 2026-09-24 research layer; generator-backed, renders every READY fixture through the pinned renderer); 38/38 candidate suite; adapters in sync | same (Python, Node, and the pinned renderer tooling) |
 
 Codex live delegation is verified for all three pilot agents in headless mode; the interactive
 session remains to be exercised. Details and raw evidence locations:

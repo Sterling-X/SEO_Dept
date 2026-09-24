@@ -177,7 +177,7 @@
             "string",
             "null"
           ],
-          "description": "ISO date the compilation on the page is current through (bound to the marker); not the provision's own effective date"
+          "description": "ISO date the compilation on the page is current through (declared alongside the marker; not checked against the marker text); not the provision's own effective date"
         },
         "marker_absent_reason": {
           "type": [

@@ -461,15 +461,15 @@ instructions ("leave a placeholder rather than guessing").
 
 ### Verification
 
-- `pilot/content-workflow/tests/test_readiness.py`: 74 of 74 pass (55 pre-existing unchanged in
-  intent, 19 new: research stage and offline refusal; missing, reused, stale, and timestamp-only
+- `pilot/content-workflow/tests/test_readiness.py`: 76 of 76 pass (55 pre-existing unchanged in
+  intent, 21 new: research stage and offline refusal; missing, reused, stale, and timestamp-only
   evidence; fetch-tool refusals; unavailable authority at live check; changed law and marker-only
   drift at live check; wrong jurisdiction and neutral-label bypass; future-effective and proposed
   legislation; legal rows without evidence; unsupported client claims; incorrect citation URL;
   page-bound currency or declared reason; excerpt must be operative text of the cited section;
   link destinations need direct records; nonce rotation; `max_age_days` boundary; fixture flag
-  type; unreadable export and render-wrapper failure; research ledger in the delivery). The seven
-  tests added after the independent review answer its M2, M4, M9, M10, and O1 items. Fixtures use a local HTTP server and fictional statutes under
+  type; unreadable export and render-wrapper failure; research ledger in the delivery). The nine
+  tests added across the two independent review rounds answer its M2, M4, M9, M10, and O1 items. Fixtures use a local HTTP server and fictional statutes under
   `tests/fixtures/valid-run/research-pages/`; the URL rewrite is honoured only for `fixture: true`.
 - Baseline suites unchanged and passing: hook tests 8 and 6; candidate situational suite 38.
 - Fresh client run (Git-ignored `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/`): 13 live

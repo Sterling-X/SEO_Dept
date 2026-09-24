@@ -148,9 +148,14 @@ def is_reserved_host(url: str) -> bool:
 
 
 def section_tokens(authority: str) -> list[str]:
-    """Numeric identifiers in a citation ('767.001', '61.13', '161', '7'); at least one must appear in the
-    retrieved text so a wrong section that still returns 200 cannot be evidenced with page chrome."""
-    return [tok for tok in SECTION_TOKEN_RE.findall(authority or "") if tok]
+    """Numeric identifiers in a citation. Dotted section numbers ('767.001', '61.13', '12.345') are preferred;
+    bare numbers ('161', '7') are used only when the citation has no dotted token, because a bare digit
+    appears on almost any page. This is a consistency check: a chapter table of contents or a neighbouring
+    section that cross-references the cited number also passes it, so the legal reviewer's confirmation that
+    the operative subsection is inside the stored text remains the real guard (open question 13)."""
+    tokens = [tok for tok in SECTION_TOKEN_RE.findall(authority or "") if tok]
+    dotted = [tok for tok in tokens if "." in tok]
+    return dotted or tokens
 
 
 def section_token_present(authority: str, text: str) -> bool:
@@ -159,6 +164,14 @@ def section_token_present(authority: str, text: str) -> bool:
     if not tokens:
         return True  # nothing numeric to bind; the excerpt rule still applies
     return any(re.search(r"(?<![\w.])" + re.escape(tok.casefold()) + r"(?![\w])", haystack) for tok in tokens)
+
+
+def line_present(note: str, text: str) -> bool:
+    """True when the note appears in the retrieved text and runs to the end of its line (used for the
+    History / amendments line, which some sites render on the same line as a '<section> History'
+    marker). A truncated prefix that stops mid-line is not accepted."""
+    wanted = norm_match(note)
+    return bool(wanted) and any(norm_match(line).endswith(wanted) for line in (text or "").splitlines())
 
 
 def excerpt_overlaps_marker(excerpt: str, marker: str) -> bool:
@@ -369,14 +382,16 @@ def validate_record_shape(record: dict) -> list[str]:
         reason = cw.norm_ws(str(currency.get("marker_absent_reason") or ""))
         if len(marker) < 20 and len(reason) < 20:
             problems.append("a legal authority needs currency.marker (the page's own current-through or effective statement, 20+ characters) or currency.marker_absent_reason (20+ characters) so its currency is bound to the page or its absence is declared")
+        if marker and reason:
+            problems.append("currency.marker and currency.marker_absent_reason are mutually exclusive")
         for key in ("current_through_date", "effective_date", "future_effective_date"):
             if currency.get(key) and parse_date(currency.get(key)) is None:
                 problems.append(f"currency.{key} must be an ISO date")
     if record.get("kind") == "link-destination":
         fetched = str(record.get("fetched_url") or record.get("url") or "")
         final = str(record.get("final_url") or "")
-        if record.get("redirects") not in (0, None) or (final and canonical_url(final) not in {canonical_url(fetched), canonical_url(str(record.get("url") or ""))}):
-            problems.append("a link destination must resolve directly (zero redirects, final URL equal to the cited URL)")
+        if record.get("redirects") != 0 or not final or canonical_url(final) not in {canonical_url(fetched), canonical_url(str(record.get("url") or ""))}:
+            problems.append("a link destination must resolve directly (redirects recorded as 0 and a final URL equal to the cited URL)")
     return problems
 
 
@@ -593,8 +608,15 @@ def legal_log_problems(run_dir: Path, run: dict, record: dict) -> list[str]:
         if evidence is None:
             problems.append(f"{prefix}: evidence_id {eid} does not name a valid research record in this run")
             continue
-        if evidence.get("nonce") != block.get("nonce"):
+        if evidence.get("nonce") != block.get("nonce") or evidence.get("run_id") != run.get("run_id"):
             problems.append(f"{prefix}: evidence {eid} belongs to another run")
+            continue
+        retrieved = parse_iso(evidence.get("retrieved_at"))
+        if opened and retrieved and retrieved < opened:
+            problems.append(f"{prefix}: evidence {eid} was retrieved before this run's research opened")
+            continue
+        if retrieved and (_dt.datetime.now(_dt.timezone.utc) - retrieved) > _dt.timedelta(days=max_age_days(run)):
+            problems.append(f"{prefix}: evidence {eid} is older than research.max_age_days; re-retrieve before relying on it")
             continue
         row_url = canonical_url(str(row.get("url") or ""))
         record_urls = {canonical_url(str(evidence.get(k))) for k in ("url", "final_url") if evidence.get(k)}

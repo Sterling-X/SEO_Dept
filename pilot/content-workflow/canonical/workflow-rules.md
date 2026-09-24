@@ -126,7 +126,7 @@ planned claim with authority, official URL, access date, result, and, for every 
 `Unverifiable`, the `evidence_id` of the research record retrieved in this run for that URL and an
 `excerpt` of at least 40 characters quoted verbatim from the text retrieved as that record. The
 recorder refuses a verified row without them, a row whose URL is not the one the record
-retrieved, an excerpt that is not in the retrieved text, or an access date before the run opened
+retrieved, an excerpt that is not in the retrieved text, or an access date before the day the run's research opened
 (`LEGAL_LOG_NO_EVIDENCE` when the gate finds the same in a hand-written record). The record is
 bound to the pinned sources (its `subject.sources_sha256`), not to a draft. The writer may draft
 only claims that have a `Confirmed` row; a claim without one is omitted or the run is

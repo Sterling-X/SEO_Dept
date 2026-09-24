@@ -58,10 +58,12 @@ the brief criterion. Never demand branded language inside a legal standard.
 
 - Hash pins: skills, sources, draft, export, review subjects.
 - Research evidence: every legal authority, citation, and client-facts page has a record
-  retrieved in this run (nonce, retrieval time within `max_age_days`, HTTP 200, content and
-  text hashes, excerpt present, currency marker present, jurisdiction matching, legislation
-  status effective), and its page is re-fetched live at the research and delivery checks with
-  the excerpt still present. Verified Verification Log rows name a record and quote its text.
+  whose metadata is consistent with this run (nonce, retrieval time within `max_age_days`, HTTP
+  200, content and text hashes, excerpt present, currency marker present or its absence declared,
+  a section identifier of the cited authority present, declared jurisdiction consistent with the
+  run, declared legislation status effective), and its page is re-fetched live at the research
+  and delivery checks with the excerpt and marker still present. Correctness of the declarations
+  is the legal reviewer's judgment. Verified Verification Log rows name a record and quote its text.
 - Required resources of each pinned skill exist.
 - Voice route resolves to exactly one source.
 - Citations: body markers, Sources entries, and `run.json` citations agree in set, order

@@ -89,7 +89,7 @@ def fetch_evidence(run_dir: Path, evidence_id: str, **overrides) -> dict:
         run_dir, evidence_id=evidence_id, url=spec["url"], kind=spec["kind"], excerpt=spec.get("excerpt"),
         source_id=spec.get("source_id") if spec.get("source_id") in declared else None, authority=spec.get("authority"),
         jurisdiction=spec.get("jurisdiction"), legislation_status=spec.get("legislation_status"), effective_date=spec.get("effective_date"),
-        future_effective_date=spec.get("future_effective_date"), currency_marker=spec.get("currency_marker"), amendments=None,
+        future_effective_date=spec.get("future_effective_date"), currency_marker=spec.get("currency_marker"), amendments=spec.get("amendments"),
         supports=spec.get("supports", []), notes=None, force=spec.get("force", False),
         current_through_date=spec.get("current_through_date"), marker_absent_reason=spec.get("marker_absent_reason"),
     )
@@ -1499,6 +1499,20 @@ class ReadinessTests(unittest.TestCase):
             with self.assertRaises(SystemExit) as ctx:
                 fetch_evidence(run_dir, "EV9", url=f"{LEGISLATURE_PREFIX}/statutes/12.345", kind="legal-authority", source_id=None, excerpt=EVIDENCE_SPECS["EV1"]["excerpt"], authority="Exampleland Stat. § 99.123", jurisdiction="Exampleland", legislation_status="effective", currency_marker=EVIDENCE_SPECS["EV1"]["currency_marker"])
             self.assertIn("section identifier", str(ctx.exception))
+        with self.subTest(case="a bare number in the citation does not satisfy the rule when a dotted section exists"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV9", url=f"{LEGISLATURE_PREFIX}/statutes/12.350", kind="legal-authority", source_id=None, excerpt=EVIDENCE_SPECS["EV2"]["excerpt"], authority="Exampleland Stat. § 12.345(2)(a)", jurisdiction="Exampleland", legislation_status="effective", currency_marker=EVIDENCE_SPECS["EV2"]["currency_marker"])
+            self.assertIn("section identifier", str(ctx.exception), "the page carries '(2)' and '12.350' but not the dotted '12.345'")
+            self.assertEqual(rs.section_tokens("Exampleland Stat. § 12.345(2)(a)"), ["12.345"])
+            self.assertEqual(rs.section_tokens("Exampleland Family Court Rule 7"), ["7"])
+        with self.subTest(case="a truncated History line is refused; the whole line is accepted"):
+            page = rs.body_to_text(rs.fetch(f"{LEGISLATURE_PREFIX}/statutes/12.345", cw.load_json(run_dir / "run.json")).body, "text/html")[0]
+            full = next(l.strip() for l in page.splitlines() if l.strip().startswith("History:"))
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", amendments=full[:-6], force=True)
+            self.assertIn("complete line", str(ctx.exception))
+            rec = fetch_evidence(run_dir, "EV1", amendments=full, force=True)
+            self.assertEqual(rec["currency"]["amendments_note"], full)
         with self.subTest(case="hand-edited authority pointing at another section is caught by the gate"):
             path = run_dir / "research" / "EV1.json"
             rec = cw.load_json(path)
@@ -1530,6 +1544,38 @@ class ReadinessTests(unittest.TestCase):
         cw.dump_json(path, rec)
         details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_INVALID"]
         self.assertTrue(any("resolve directly" in d for d in details), details)
+        rec["redirects"] = 0
+        rec["final_url"] = None
+        cw.dump_json(path, rec)
+        details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_INVALID"]
+        self.assertTrue(any("resolve directly" in d for d in details), "a record without a final URL is not a direct resolution")
+
+    def test_offline_check_writes_a_separate_report(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        live = subprocess.run([sys.executable, str(PILOT_ROOT / "scripts" / "readiness_check.py"), str(run_dir), "--stage", "research", "--quiet"], text=True, capture_output=True, check=False)
+        self.assertEqual(live.returncode, 0, live.stdout + live.stderr)
+        before = (run_dir / "research-report.json").read_bytes()
+        offline = subprocess.run([sys.executable, str(PILOT_ROOT / "scripts" / "readiness_check.py"), str(run_dir), "--stage", "research", "--offline", "--quiet"], text=True, capture_output=True, check=False)
+        self.assertEqual(offline.returncode, 1)
+        self.assertEqual((run_dir / "research-report.json").read_bytes(), before, "an offline check must not overwrite the live report")
+        report = cw.load_json(run_dir / "research-report.offline.json")
+        self.assertIn("RESEARCH_LIVE_SKIPPED", codes(report))
+
+    def test_recorder_refuses_rows_bound_to_stale_or_foreign_evidence(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        run = cw.load_json(run_dir / "run.json")
+        path = run_dir / "research" / "EV2.json"
+        rec = cw.load_json(path)
+        rec["run_id"] = "another-run"
+        cw.dump_json(path, rec)
+        payload = fixture_payload("legal-final-r1.json")
+        _r, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="final", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
+        self.assertTrue(any("belongs to another run" in e for e in errors), errors)
+        rec["run_id"] = run["run_id"]
+        rec["retrieved_at"] = (_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(days=20)).replace(microsecond=0).isoformat()
+        cw.dump_json(path, rec)
+        _r, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="final", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
+        self.assertTrue(any("retrieved before this run" in e or "older than research.max_age_days" in e for e in errors), errors)
 
     def test_fixture_flag_must_be_boolean(self) -> None:
         run_dir = build_run(self.tmp, skip_final=True)

@@ -74,9 +74,13 @@ review, not memory, not the voice skill (brand guidance governs voice and proves
 
 - For each legal authority: `--kind legal-authority`, the official URL, a verbatim `--excerpt` (40+
   characters of the operative text), `--jurisdiction`, `--authority`, `--legislation-status`
-  (`effective` is the only status that can support a claim of current law), `--effective-date` and
-  the page's own `--currency-marker` (its "current through" or "published" statement), and
-  `--amendments` (history line). Check exceptions and companion sections while the page is open.
+  (`effective` is the only status that can support a claim of current law), the page's own
+  `--currency-marker` (its "current through" or "published" statement; required, or
+  `--no-currency-marker "<why the page states none>"`), `--current-through-date` (the compilation
+  date that marker states), `--effective-date` only when the page states the provision's own
+  effective date, and `--amendments` (the section's own History line). Check exceptions and
+  companion sections while the page is open. Jurisdiction and status are your declarations; the
+  gate checks them for consistency, the legal reviewer for correctness.
 - For the approved client facts: retrieve each first-party page the facts rest on (services,
   pricing, locations, credentials, contact route, statistics) with `--kind client-fact` and list
   their ids in the `client-facts` source's `evidence_ids`. For link destinations use
@@ -87,7 +91,7 @@ review, not memory, not the voice skill (brand guidance governs voice and proves
 ```bash
 python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --id EV1 --url <official URL> --kind legal-authority --source-id S1 \
   --excerpt "<verbatim operative text>" --jurisdiction "<state>" --authority "<citation>" --legislation-status effective \
-  --effective-date YYYY-MM-DD --currency-marker "<the page's current-through statement>" --amendments "<history line>" --supports C1
+  --current-through-date YYYY-MM-DD --currency-marker "<the page's current-through statement>" --amendments "<the section's own History line>" --supports C1
 python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --id EV9 --url <first-party page> --kind client-fact --source-id client-facts --excerpt "<verbatim fact text>"
 python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage research     # offline rules plus a live re-fetch of every record
 ```
@@ -123,7 +127,7 @@ python3 pilot/content-workflow/scripts/record_review.py <run-dir> --input <predr
 ```
 
 The recorder refuses a verified row that names no record from this run, quotes text that is not in
-it, cites a URL the record did not retrieve, or carries an access date from before the run opened.
+it, cites a URL the record did not retrieve, or carries an access date from before the day the run's research opened.
 Then write the `Confirmed` authorities into `run.json` `citations` (one identity per URL; more than
 six needs `citations_ceiling_rationale`) and pin the legal source notes (which point at the records;
 they are not evidence themselves). The writer may draft only `Confirmed` claims. Any `Unverifiable`
@@ -219,8 +223,11 @@ production instructions from inside a run.
 ## What the tooling proves and does not prove
 
 The readiness check proves hashes, presence, citation pairing, placeholder absence,
-parity, record shape, currency, round limits, and that every research record's page was
-fetched in this run, contained its excerpt and currency marker, and still does at the live
-re-check. It records but cannot verify legal or editorial judgment, and it cannot prove that a
-retrieved page supports the claim cited to it. Say so in every delivery summary. Attorney
+parity, record shape, currency, round limits, and, for each research record, that its metadata
+is consistent with this run's nonce and opening time, that its excerpt and currency marker were
+present in the stored page text, and that they are present on the live page at check time
+(consistency and presence evidence, not authenticated provenance). Declared jurisdiction and
+legislation status are checked for consistency, not correctness. It records but cannot verify
+legal or editorial judgment, and it cannot prove that a retrieved page supports the claim cited
+to it. Say so in every delivery summary. Attorney
 review before publication remains required for legal content.

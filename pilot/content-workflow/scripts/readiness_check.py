@@ -592,6 +592,8 @@ def main() -> int:
         print(f"ERROR: {error}")
         return 2
     default_name = {"delivery": "readiness-report.json", "intake": "intake-report.json", "research": "research-report.json"}[args.stage]
+    if args.offline and args.stage in ("research", "delivery"):
+        default_name = default_name.replace(".json", ".offline.json")  # an offline check never overwrites live evidence
     target = args.json or (run_dir / default_name)
     cw.dump_json(target, report)
     if not args.quiet:

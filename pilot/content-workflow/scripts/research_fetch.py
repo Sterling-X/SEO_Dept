@@ -97,8 +97,8 @@ def fetch_and_record(run_dir: Path, *, evidence_id: str, url: str, kind: str, ex
         raise SystemExit("REFUSED: the currency marker is not present in the page text retrieved just now; copy the page's own current-through or effective-date statement")
     if kind == "legal-authority" and not rs.section_token_present(authority or "", text):
         raise SystemExit(f"REFUSED: no section identifier from {authority!r} appears on the page retrieved just now; the URL does not carry the cited section")
-    if kind == "legal-authority" and amendments and not rs.excerpt_present(amendments, text):
-        raise SystemExit("REFUSED: the --amendments note is not present in the page text retrieved just now; copy the section's own History line (the line after the '<section> History' marker), or omit it when the rendered window does not reach it")
+    if kind == "legal-authority" and amendments and not rs.line_present(amendments, text):
+        raise SystemExit("REFUSED: the --amendments note is not a complete line of the page text retrieved just now; copy the section's own History line in full (the line after the '<section> History' marker), or omit it when the rendered window does not reach it")
     if kind == "link-destination" and (result.redirects != 0 or rs.canonical_url(result.final_url or result.fetched_url) != rs.canonical_url(result.fetched_url)):
         raise SystemExit(f"REFUSED: link destination {url} did not resolve directly (redirects={result.redirects}, final {result.final_url}); the page contract requires a direct HTTP 200")
     rs.research_dir(run_dir).mkdir(exist_ok=True)

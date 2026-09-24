@@ -161,7 +161,7 @@ rollback in a disposable checkout. Every row below names its evidence; nothing h
 
 | # | Defect | Evidence | Disposition | Where enforced |
 |---|---|---|---|---|
-| 8 | No mechanical evidence that any source was retrieved. A Verification Log row proved only a date; the fixture pre-draft record said "nothing fetched" and passed coverage; a row copied from an earlier run or written from a saved `sources/` note would pass. | `readiness_check.py` (2026-09-23) read only `result`, `url`, `accessed`; fixture `legal-predraft-r0.json` notes "FIXTURE: source note read; nothing fetched" | Research evidence layer: `scripts/research_fetch.py` writes `research/EV<n>.json` plus the extracted page text only after a live HTTP 200 fetch with the named excerpt (40+ chars) and currency marker present; each record carries the per-run nonce, retrieval time, content hash, jurisdiction, legislation status, effective date, amendments note. Every verified Verification Log row must name a record (`evidence_id`) and quote its text (`excerpt`); `record_review.py` refuses otherwise. | `cw_research.research_problems()`, `legal_log_problems()`; `record_review.py`; `readiness_check.py --stage research` and delivery |
+| 8 | No mechanical evidence that any source was retrieved. A Verification Log row proved only a date; the fixture pre-draft record said "nothing fetched" and passed coverage; a row copied from an earlier run or written from a saved `sources/` note would pass. | `readiness_check.py` (2026-09-23) read only `result`, `url`, `accessed`; fixture `legal-predraft-r0.json` notes "FIXTURE: source note read; nothing fetched" | Research evidence layer: `scripts/research_fetch.py` writes `research/EV<n>.json` plus the extracted page text only after a live HTTP 200 fetch with the named excerpt (40+ chars) and currency marker present; each record carries the per-run nonce, retrieval time, content hash, declared jurisdiction, declared legislation status, current-through date, amendments note. Every verified Verification Log row must name a record (`evidence_id`) and quote its text (`excerpt`); `record_review.py` refuses otherwise. | `cw_research.research_problems()`, `legal_log_problems()`; `record_review.py`; `readiness_check.py --stage research` and delivery |
 | 9 | Evidence reuse across runs undetectable. Nothing distinguished a record made for this run from one copied from an earlier run or written before the run started. | design gap; the Sterling 2026-09-23 run's `sources/legal-*.md` notes could have been copied into a new run | Per-run research nonce and opening time (`research_fetch.py --init`); a record with another nonce or `run_id`, or retrieved before `opened_at`, is `RESEARCH_REUSED`; older than `max_age_days` (14, max 30) is `RESEARCH_STALE`; an access date before `opened_at` in a log row is refused | `RESEARCH_REUSED`, `RESEARCH_STALE`, `LEGAL_LOG_NO_EVIDENCE` |
 | 10 | Timestamps treated as proof. A record or row with a date and no checkable text could pass. | same | A record needs an excerpt present in the retrieved text and a text hash; a row needs a verbatim excerpt found in that text; a record with a date and no excerpt is `RESEARCH_INVALID` ("a timestamp alone is not retrieval evidence") | `validate_record_shape()`, `legal_log_problems()` |
 | 11 | No currency check at delivery: law or a client page could change between review and delivery. | design gap | Live re-fetch of every valid record at every research-stage and delivery check: `RESEARCH_UNAVAILABLE`, `RESEARCH_EXCERPT_DRIFT`; `--offline` reports `RESEARCH_LIVE_SKIPPED` and is never READY; `deliver.py` has no offline mode | `research_live_problems()`; `deliver.py` |
@@ -173,8 +173,8 @@ rollback in a disposable checkout. Every row below names its evidence; nothing h
 
 ### Tests added (all synthetic; `tests/fixtures/valid-run/research-pages/` and `tests/fixture_server.py`)
 
-`test_readiness.py`: 74 tests, all passing on 2026-09-24 (about 2.5 minutes; 67 before the
-independent review, 74 after its M2, M4, M9, M10, and O1 items were adopted). New: research stage
+`test_readiness.py`: 76 tests, all passing on 2026-09-24 (about 2.5 minutes; 67 before the
+independent review, 74 after round 1, 76 after round 2). New: research stage
 completes and offline never does; missing, reused (nonce, run_id, before opening), stale,
 timestamp-only, edited-text, and excerpt-absent evidence; fetch-tool refusals (excerpt not on page,
 unavailable source, 404, marker absent, no legislation status, short excerpt, duplicate id, real run
@@ -227,7 +227,7 @@ with the test day so fixture rows never predate the run's opening.
   failure once, never an HTTP status.
 - Claude `legal-reviewer` on the fresh Sterling run (pre-draft C1-C9, live WebFetch of all eight
   record URLs plus five subsection windows and three 2025 Act pages): eight rows Confirmed with
-  narrowed wording, each bound to EV1-EV8 by a verbatim excerpt; planned claim C2 split, its
+  narrowed wording (nine Confirmed rows across eight records, because C2 was split and EV2 carries C2a and C3), each bound by a verbatim excerpt; planned claim C2 split, its
   sex/race, order-of-importance, and written-reasons part Flagged because the § 767.41 section page
   renders a window ending at sub. (4)(cm); five findings (L1 "not ranked" needs the § 767.41(5)(bm)
   paramount-safety qualification; L2 EV2 does not contain sub. (5)-(6); L3 C3's "only" contradicted
@@ -252,7 +252,7 @@ One blocker, ten material items, eight optional items. Dispositions, each checke
 | B1: the completion claim for "actual agents in Claude" was unsupported until a real `legal-reviewer` payload with `evidence_id`/`excerpt` passed the recorder | Cleared during the review: the refusal-run record and then the fresh-run pre-draft record (above) were both accepted by `record_review.py` and evaluated by the gate. |
 | M1: "fetched in this run" overstated; the layer proves nonce/run-id/time consistency plus excerpt presence, not authenticated provenance (the run directory is writable) | Accepted; reworded in the readiness notice, README, `workflow-rules.md`, `cw_research.py` docstring, the ledger header and footer, the record notice, the schema comment, and `AGENTS.md` ("checked mechanically for retrieval, consistency, and presence"); `research/` added to the writer's instruction-only list. |
 | M2: a legal record could carry no page-bound currency evidence | Accepted; a legal authority now needs `--currency-marker` present on the page or `--no-currency-marker "<reason>"` recorded and printed in the ledger; a hand-edited record without either is `RESEARCH_INVALID`. |
-| M3: `effective_date` conflated the compilation's current-through date with the provision's effective date, and the ledger printed it as "effective" | Accepted; `current_through_date` added and bound to the marker; `effective_date` is now the provision's own date only; the ledger prints them separately; schema, tests, and the integration run's records updated. |
+| M3: `effective_date` conflated the compilation's current-through date with the provision's effective date, and the ledger printed it as "effective" | Accepted; `current_through_date` added, declared alongside the marker (not checked against its text); `effective_date` is now the provision's own date only; the ledger prints them separately; schema, tests, and the integration run's records updated. |
 | M4: jurisdiction and status are declaration-consistency checks; `n/a` bypassed the jurisdiction rule; an excerpt could be page chrome | Accepted: neutral labels narrowed to `federal`/`united states`; a section identifier from the cited authority must appear in the retrieved text (fetch and gate); an excerpt equal to or inside the currency marker is refused; docs say "declared ... checked for consistency". Correctness stays the legal reviewer's judgment. |
 | M5: the Codex consequence was unstated | Accepted; README and this record now say the Codex path is not deliverable for any page with a legal claim until open question 12 is decided. |
 | M6: the Claude reviewer's WebFetch is a processed rendering, so the verbatim binding is to the coordinator's stored text | Accepted; stated in the Claude host note of the legal-reviewer adapter and in the README limitations; open question 13 records the residual. |
@@ -269,6 +269,29 @@ subagent. The reviewer's candidate lessons ("when a gate binds operator-declared
 neutral values that bypass the rule and whether the docs say declared rather than verified"; "re-check
 modification of key files at the end of a long read-only review") are recorded here as hypotheses for
 the `seo-reviewer` role, not promoted.
+
+
+### Independent review round 2 (read-only `seo-reviewer`, 2026-09-24)
+
+No blocker; six material and seven optional items. Dispositions:
+
+| Finding | Disposition |
+|---|---|
+| M-1: the refusal-run artifacts were produced before the currency-marker rule and would not reproduce under the current code | Confirmed. EV1-EV3 re-fetched under the current rules (EV2 and EV3 with a declared `--no-currency-marker` reason), the same real reviewer payload re-recorded (`--force`; the earlier record is kept under `reviews/superseded/`), and the gate re-run live: INCOMPLETE with `LEGISLATION_NOT_EFFECTIVE` (EV2), `RESEARCH_JURISDICTION_MISMATCH` (EV3), `RESEARCH_MISSING`, `REVIEW_VERDICT_BLOCKING`, `LEGAL_PREDRAFT_COVERAGE`, `LEGAL_LOG_UNVERIFIED`. The refusal run's `readiness-report.json` is now current-code evidence. |
+| M-2: an `--offline` check had overwritten the integration run's live `research-report.json` | Confirmed and fixed: offline checks now write `*.offline.json`; the live report was regenerated (15 of 15 records live-verified, `live_checked: true`); test `test_offline_check_writes_a_separate_report`. |
+| M-3: the section-identifier rule accepted a bare digit (and cannot tell a TOC or cross-reference page from the section) | Dotted section numbers are now required when the citation has one; bare numbers apply only to citations without a dotted token. The TOC and cross-reference residual is stated in the code docstring and open question 13; the legal reviewer's check that the operative subsection is inside the stored text remains the guard. Test case added. |
+| M-4: EV14 and EV15 carried a truncated History line that passed the substring check | Confirmed: the setup script's 600-character cap truncated it. `--amendments` must now run to the end of its line in the retrieved text; EV14 and EV15 re-fetched with the complete line (ending "2025 a. 24 s. 93; 2025 a. 81."). Test case added. |
+| M-5, M-6: remaining overstatement in the coordinator skill; "declared" and current-through vocabulary missing in review criteria, README, command reference, and schema ("bound to the marker") | Corrected on each surface named. |
+| O-1: link-destination shape accepted a missing `redirects` or `final_url`; marker and reason both present | Fixed in `validate_record_shape`; test extended. |
+| O-3: "eight Confirmed rows" | Corrected to nine rows across eight records. |
+| O-4: "before the day the run opened" wording | Applied in the rules and coordinator skill. |
+| O-6: the recorder did not check a row's record for run id, opening time, or age | Fixed in `legal_log_problems`; test `test_recorder_refuses_rows_bound_to_stale_or_foreign_evidence`. |
+| O-2, O-5, O-7 | O-2: integration EV9-EV13 keep the earlier notice text (mixed state recorded here; their rules are unchanged). O-5: EV8's coordinator excerpt is a heading; recorded as an open-question-13 example (the reviewer's row quotes operative text). O-7: row 8 wording updated. |
+
+The reviewer's candidate lesson ("when a fix changes a recorder or gate, re-run the gate on every run
+directory cited as evidence and cite the regenerated report; a report produced before the fix, or
+overwritten by a later offline run, is evidence about a different code state") is verified by M-1 and
+M-2 in this task and is carried into the learning pass.
 
 ### Disposable checkout (install and rollback)
 
