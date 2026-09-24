@@ -1,0 +1,59 @@
+{
+  "inspector": {
+    "runtime": "human",
+    "agent": "fixture-inspector"
+  },
+  "verdict": "pass",
+  "method": "FIXTURE: synthetic attestation for the test suite; pages were rendered by the pinned renderer but not viewed by a person",
+  "pages": [
+    {
+      "page": 1,
+      "observation": "FIXTURE observation for page 1: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 2,
+      "observation": "FIXTURE observation for page 2: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 3,
+      "observation": "FIXTURE observation for page 3: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 4,
+      "observation": "FIXTURE observation for page 4: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 5,
+      "observation": "FIXTURE observation for page 5: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 6,
+      "observation": "FIXTURE observation for page 6: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 7,
+      "observation": "FIXTURE observation for page 7: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 8,
+      "observation": "FIXTURE observation for page 8: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 9,
+      "observation": "FIXTURE observation for page 9: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 10,
+      "observation": "FIXTURE observation for page 10: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 11,
+      "observation": "FIXTURE observation for page 11: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    },
+    {
+      "page": 12,
+      "observation": "FIXTURE observation for page 12: rendered by pinned renderer; synthetic attestation, not a real inspection"
+    }
+  ],
+  "findings": []
+}

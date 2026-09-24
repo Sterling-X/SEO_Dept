@@ -23,7 +23,8 @@
         "verified_against_draft_sha256": null,
         "verified_by": null,
         "note": null
-      }
+      },
+      "category": "brand"
     }
   ],
   "checks_not_performed": [],

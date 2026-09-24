@@ -34,11 +34,14 @@
     "package.json",
     "package-lock.json",
     "node_modules/docx/package.json",
-    "node_modules/adm-zip/package.json"
+    "node_modules/adm-zip/package.json",
+    "renderer-tools.lock.json",
+    "scripts/render_support/pdf2image.py"
   ],
   "external_dependencies": [
     "context/architecture/Family_Law_StructureV2.html (governing V2 HTML, read at generation time)",
-    ".agents/skills/family-law-service-pages/scripts/render-core-hub.sh (render step; currently fails closed on both hosts, see CLAUDE.md)"
+    "Codex documents renderer release 26.905.11957 at ${CODEX_HOME:-~/.codex}/plugins/cache/openai-primary-runtime (pinned by hash in renderer-tools.lock.json)",
+    ".agents/skills/family-law-service-pages/.tools/LibreOffice.app and .venv (Git-ignored local installs, reused by path)"
   ],
   "changes": "CHANGES.md",
   "discovery": "Outside .agents/skills and .claude/skills by design; runs pin this directory's SKILL.md by path and SHA-256.",
@@ -66,5 +69,14 @@
       "purpose": "link authorities, single placement, anchors, citation pairing, placeholders, banned phrases"
     }
   ],
-  "validators_note": "A content-workflow run that pins this skill must declare validators with these names under run.json export.validators; readiness_check.py reports VALIDATORS_UNDECLARED otherwise and runs them at delivery."
+  "validators_note": "A content-workflow run that pins this skill must declare validators with these names under run.json export.validators; readiness_check.py reports VALIDATORS_UNDECLARED otherwise and runs them at delivery.",
+  "render": {
+    "wrapper": "scripts/render-situational.sh",
+    "lock": "renderer-tools.lock.json",
+    "reuses": [
+      ".agents/skills/family-law-service-pages/.tools/LibreOffice.app",
+      ".agents/skills/family-law-service-pages/.venv"
+    ],
+    "note": "Renders through the pinned Codex documents renderer 26.905.11957; fails closed on a changed renderer or missing tooling."
+  }
 }

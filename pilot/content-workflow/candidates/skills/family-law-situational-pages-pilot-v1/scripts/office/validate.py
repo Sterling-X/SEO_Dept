@@ -334,8 +334,8 @@ def main() -> int:
         if first_seen != expected_ids:
             errors.append(f"Citation markers by first appearance {first_seen} do not match manifest source order {expected_ids}.")
         for marker_id in set(marker_ids):
-            if marker_ids.count(marker_id) != 1:
-                errors.append(f"Citation marker [{marker_id}] appears {marker_ids.count(marker_id)} times; each source is cited exactly once.")
+            if marker_id not in expected_ids:
+                errors.append(f"Citation marker [{marker_id}] has no manifested source.")
         full_text = " ".join(paragraph_text(paragraph) for paragraph in paragraphs)
         placeholder = find_placeholder(full_text)
         if placeholder:
@@ -370,7 +370,8 @@ def main() -> int:
             if mode != "External":
                 errors.append(f"Hyperlink relationship {rid} is not marked External.")
             external_links.append(target)
-        expected_hyperlinks = len(manifest.get("link_manifest", [])) + 2 * len(manifest.get("sources", []))
+        # One hyperlink per internal link, one per Sources row, and one per body citation marker (repeats allowed).
+        expected_hyperlinks = len(manifest.get("link_manifest", [])) + len(manifest.get("sources", [])) + len(marker_ids)
         facts["external_hyperlinks"] = len(external_links)
         if len(external_links) != expected_hyperlinks:
             errors.append(f"Expected {expected_hyperlinks} external hyperlink occurrences; found {len(external_links)}.")

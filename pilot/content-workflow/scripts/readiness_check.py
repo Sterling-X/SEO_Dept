@@ -178,8 +178,10 @@ def intake_checks(repo_root: Path, run_dir: Path, run: dict, reasons: Reasons) -
     ids = [c.get("id") for c in citations]
     if ids != list(range(1, len(ids) + 1)):
         reasons.add("CITATION_MISMATCH", f"run.json citations must be numbered 1..n; found {ids}")
-    if len(citations) > 6:
-        reasons.add("CITATION_MISMATCH", f"{len(citations)} citations exceed the six-source limit")
+    if len(citations) > cw.SOURCE_SANITY_LIMIT:
+        reasons.add("SOURCE_CEILING", f"{len(citations)} citations exceed the sanity limit of {cw.SOURCE_SANITY_LIMIT}")
+    elif len(citations) > cw.SOURCE_GUIDELINE and len(cw.norm_ws(str(run.get("citations_ceiling_rationale") or ""))) < 40:
+        reasons.add("SOURCE_CEILING", f"{len(citations)} citations exceed the {cw.SOURCE_GUIDELINE}-source guideline; run.json citations_ceiling_rationale must state the claim coverage that requires them (40+ characters)")
     for citation in citations:
         source = source_by_id.get(citation.get("source_id"))
         if not source:
@@ -216,7 +218,10 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
 
     summary: dict = {"required": [], "findings": [], "accepted_risks": []}
     declared_required = (run.get("reviews") or {}).get("required") or []
-    required = list(cw.REQUIRED_REVIEW_FLOOR) + [k for k in declared_required if k not in cw.REQUIRED_REVIEW_FLOOR]
+    floor = cw.required_review_floor(run)
+    required = list(floor) + [k for k in declared_required if k not in floor]
+    export_rel = (run.get("export") or {}).get("path")
+    export_path = run_dir / export_rel if export_rel else None
     current_sources = {
         s.get("id"): (cw.sha256_file(run_dir / s["path"]) if (run_dir / s.get("path", "")).is_file() else None)
         for s in run.get("sources") or []
@@ -237,6 +242,72 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
             continue
         path, record = latest_by_kind[kind]
         entry.update({"file": path.name, "verdict": record.get("verdict"), "round": record.get("round")})
+        if kind == "legal-predraft":
+            # Bound to the pinned sources, not to a draft: it exists before drafting. Every expected
+            # citation must have a Confirmed row; any Unverifiable or Correction-needed row blocks.
+            predraft_records = sorted([r for _p, r in records if cw.record_kind(r) == "legal-predraft"], key=cw.record_order_key)
+            recorded_sources = (record.get("subject") or {}).get("sources_sha256") or {}
+            stale_sources = [sid for sid, digest in current_sources.items() if recorded_sources.get(sid) != digest]
+            entry["current"] = not stale_sources
+            entry["notice"] = "pre-draft legal verification; recorded judgment bound to the pinned sources"
+            if stale_sources:
+                reasons.add("REVIEW_STALE", f"{path.name}: pinned source(s) {stale_sources} changed after the pre-draft verification")
+            if record.get("verdict") in ("not-ready", "fail", "pending"):
+                reasons.add("REVIEW_VERDICT_BLOCKING", f"{path.name}: pre-draft legal verdict is {record.get('verdict')}")
+            first_predraft = predraft_records[0]
+            if (first_predraft.get("subject") or {}).get("draft_sha256"):
+                reasons.add("LEGAL_PREDRAFT_LATE", "the first pre-draft legal record was written after a draft existed (subject.draft_sha256 is set); verification must precede drafting")
+            log = [row for r in predraft_records if all((r.get("subject") or {}).get("sources_sha256", {}).get(sid) == digest for sid, digest in current_sources.items()) for row in (r.get("verification_log") or [])]
+            confirmed_urls = {str(row.get("url", "")).strip() for row in log if str(row.get("result", "")).strip().lower() == "confirmed"}
+            for citation in run.get("citations") or []:
+                if str(citation.get("url", "")).strip() not in confirmed_urls:
+                    reasons.add("LEGAL_PREDRAFT_COVERAGE", f"{path.name}: citation [{citation.get('id')}] {citation.get('url')} has no Confirmed pre-draft verification row")
+            bad_rows = [row for row in log if str(row.get("result", "")).strip().lower() in ("unverifiable", "correction-needed", "corrected")]
+            if bad_rows:
+                reasons.add("LEGAL_LOG_UNVERIFIED", f"{path.name}: {len(bad_rows)} pre-draft row(s) are Unverifiable or Correction-needed")
+            summary["required"].append(entry)
+            continue
+        if kind == "render-final":
+            subject = record.get("subject") or {}
+            current = bool(export_sha) and subject.get("export_sha256") == export_sha
+            entry["current"] = current
+            entry["notice"] = "rendered-page inspection; recorded judgment bound to the exact export hash"
+            if not current:
+                reasons.add("REVIEW_STALE", f"{path.name}: inspected export {str(subject.get('export_sha256'))[:12]}… but current export is {str(export_sha)[:12]}…")
+            render = record.get("render") or {}
+            pages = render.get("pages") or []
+            declared_count = render.get("page_count")
+            if not isinstance(declared_count, int) or declared_count < 1 or declared_count != len(pages):
+                reasons.add("RENDER_EVIDENCE_MISMATCH", f"{path.name}: page_count {declared_count!r} does not match {len(pages)} page record(s)")
+            numbers = sorted(int(pg.get("page", 0)) for pg in pages if isinstance(pg, dict))
+            if numbers != list(range(1, len(pages) + 1)):
+                reasons.add("RENDER_EVIDENCE_MISMATCH", f"{path.name}: page numbers {numbers} are not 1..{len(pages)}")
+            for page in pages:
+                if not isinstance(page, dict):
+                    continue
+                image = run_dir / str(page.get("path", ""))
+                if not image.is_file():
+                    reasons.add("RENDER_EVIDENCE_MISMATCH", f"{path.name}: page {page.get('page')} image {page.get('path')} is missing")
+                elif cw.sha256_file(image) != page.get("sha256"):
+                    reasons.add("RENDER_EVIDENCE_MISMATCH", f"{path.name}: page {page.get('page')} image changed after inspection")
+                observation = cw.norm_ws(str(page.get("observation") or ""))
+                if not page.get("inspected") or len(observation) < 15:
+                    reasons.add("RENDER_UNINSPECTED", f"{path.name}: page {page.get('page')} has no recorded inspection observation")
+                    continue
+                # Re-apply the inspector's page binding: the observation must quote the text on that page,
+                # and the page text it is checked against must be the one hashed at render time.
+                text_path = run_dir / str(page.get("text_path") or "")
+                if not text_path.is_file() or cw.sha256_file(text_path) != page.get("text_sha256"):
+                    reasons.add("RENDER_EVIDENCE_MISMATCH", f"{path.name}: page {page.get('page')} text file missing or changed since rendering")
+                elif not cw.observation_matches_page(observation, text_path.read_text(encoding="utf-8")):
+                    reasons.add("RENDER_UNINSPECTED", f"{path.name}: page {page.get('page')} observation does not quote three consecutive words that appear on that page")
+            if record.get("verdict") != "pass":
+                reasons.add("RENDER_FAILED", f"{path.name}: render inspection verdict is {record.get('verdict')}")
+            unresolved = cw.unresolved_render_findings(record.get("findings") or [])
+            if unresolved:
+                reasons.add("RENDER_FAILED", f"{path.name}: blocking or major render finding(s) {unresolved} not fixed-verified or withdrawn; a re-export needs a fresh render and inspection")
+            summary["required"].append(entry)
+            continue
         if kind.endswith("-checkpoint"):
             # A required checkpoint proves the checkpoint happened; it is bound to an earlier draft by design,
             # so only presence and shape are required here. Its findings still flow into the resolution rules.
@@ -268,12 +339,14 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
             # Re-apply the recorder's integrity rules so a hand-written record cannot bypass them.
             prior_ids = {
                 str(f.get("id")) for _p, r in records
-                if r.get("role") == record["role"] and cw.record_order_key(r) < cw.record_order_key(record)
+                if r.get("role") == record["role"] and r.get("stage") in ("predraft", "checkpoint") and cw.record_order_key(r) < cw.record_order_key(record)
                 for f in r.get("findings", [])
             }
             for finding in record.get("findings", []):
                 quote = ((finding.get("passage") or {}).get("quote")) or ""
-                if quote and cw.norm_ws(quote).casefold() not in cw.norm_ws(draft_text).casefold():
+                resolution_status = (finding.get("resolution") or {}).get("status")
+                # A fixed finding quotes the passage as it was; only open/unfixed findings must still match the draft.
+                if quote and resolution_status in ("open", "fixed-unverified", "disputed") and cw.norm_ws(quote).casefold() not in cw.norm_ws(draft_text).casefold():
                     reasons.add("REVIEW_INVALID", f"{path.name}: finding {finding.get('id')} quotes a passage not in the current draft")
                 resolution = finding.get("resolution") or {}
                 if (resolution.get("status") == "fixed-verified" and int(record.get("round", 0)) == 0 and record.get("stage") == "final"
@@ -285,16 +358,27 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
     by_role: dict[str, list[dict]] = {}
     for _path, record in records:
         by_role.setdefault(record["role"], []).append(record)
+    dispositions_path = run_dir / "reviews" / "coordinator-dispositions.json"
+    dispositions: dict[tuple[str, str], dict] = {}
+    if dispositions_path.is_file():
+        try:
+            for item in (cw.load_json(dispositions_path).get("dispositions") or []):
+                dispositions[(str(item.get("role")), str(item.get("id")))] = item
+        except (OSError, json.JSONDecodeError) as error:
+            reasons.add("REVIEW_INVALID", f"coordinator-dispositions.json unreadable ({error})")
     for role, role_records in by_role.items():
-        if role == "mechanical-qa":
-            continue  # mechanical records are gated by currency and verdict; failed checks are re-run, not carried as findings
+        if role in ("mechanical-qa", "render-inspector"):
+            continue  # gated by currency and verdict; a failed check or render defect is fixed and re-run, not carried as a finding
         role_records.sort(key=cw.record_order_key)
         latest = role_records[-1]
         latest_ids = {str(f["id"]) for f in latest.get("findings", [])}
         state: dict[str, dict] = {}
+        origin: dict[str, dict] = {}
         for record in role_records:
             for finding in record.get("findings", []):
-                state[str(finding["id"])] = {"finding": finding, "round": record.get("round"), "stage": record.get("stage")}
+                fid_key = str(finding["id"])
+                state[fid_key] = {"finding": finding, "round": record.get("round"), "stage": record.get("stage")}
+                origin.setdefault(fid_key, {"severity": finding.get("severity"), "category": finding.get("category") or "other", "agent": str(((record.get("reviewer") or {}).get("agent")) or ""), "runtime": str(((record.get("reviewer") or {}).get("runtime")) or "")})
         for fid, info in state.items():
             finding = info["finding"]
             severity = finding.get("severity")
@@ -304,23 +388,67 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
             verified_against = resolution.get("verified_against_draft_sha256")
             row = {"role": role, "id": fid, "severity": severity, "status": status, "last_seen_round": info["round"], "last_seen_stage": info["stage"]}
             summary["findings"].append(row)
-            if severity == "blocking":
-                ok = (status == "fixed-verified" and verified_against == draft_sha) or (status == "withdrawn" and len(note) >= 10)
-                if not ok:
-                    why = status
-                    if status == "fixed-verified" and verified_against != draft_sha:
-                        why = "fixed-verified against a different draft hash (stale verification)"
-                    reasons.add("FINDING_BLOCKING_UNRESOLVED", f"{role} {fid}: {why}")
-            elif severity == "major":
-                if status in ("open", "dropped", "fixed-unverified", "disputed"):
-                    reasons.add("FINDING_MAJOR_UNDISPOSED", f"{role} {fid}: {status}")
-                elif status == "fixed-verified" and verified_against != draft_sha:
-                    reasons.add("FINDING_MAJOR_UNDISPOSED", f"{role} {fid}: fixed-verified against a different draft hash")
-                elif status == "coordinator-accepted":
+            # Severity, category, and the raising reviewer come from the FIRST record that carried the id,
+            # so a later record cannot downgrade a finding or re-attribute it.
+            first = origin[fid]
+            severity = first["severity"]
+            category = first["category"]
+            raised_by = first["agent"]
+            closing_agent = str(((latest.get("reviewer") or {}).get("agent")) or "")
+            verified_by = str(resolution.get("verified_by") or "")
+            corrected_text = cw.norm_ws(str(resolution.get("corrected_text") or ""))
+            original_quote = cw.norm_ws(str(((finding.get("passage") or {}).get("quote")) or ""))
+            row.update({"severity": severity, "category": category, "raised_by": raised_by})
+            if fid in latest_ids and (finding.get("severity") != severity or (finding.get("category") or "other") != category) and status != "withdrawn":
+                reasons.add("FINDING_DRIFT", f"{role} {fid}: latest record says {finding.get('severity')}/{finding.get('category')} but the finding was raised as {severity}/{category}")
+            disposition = dispositions.get((role, fid))
+            if status in ("open", "dropped") and disposition and disposition.get("status") == "coordinator-accepted":
+                status = "coordinator-accepted"
+                note = cw.norm_ws(str(disposition.get("rationale") or ""))
+                if disposition.get("draft_sha256") != draft_sha:
+                    note = ""  # a disposition made on another draft does not carry forward
+                row["status"] = status
+
+            def closure_defect() -> str | None:
+                """Return why a non-open status does not count as evidence-based closure, or None."""
+                if status == "fixed-verified":
+                    if verified_against != draft_sha:
+                        return "fixed-verified against a different draft hash (stale verification)"
+                    if not verified_by:
+                        return "fixed-verified without verified_by"
+                    if verified_by != raised_by or closing_agent != raised_by:
+                        return f"fixed-verified recorded by {closing_agent!r}/{verified_by!r}, not by the raising reviewer {raised_by!r}"
+                    if category in cw.PROTECTED_CATEGORIES:
+                        if len(corrected_text) < 20:
+                            return f"{category} finding closed without corrected_text evidence of at least 20 characters"
+                        if corrected_text.casefold() == original_quote.casefold():
+                            return f"{category} finding's corrected_text is identical to the passage it targeted"
+                        if corrected_text.casefold() not in cw.norm_ws(draft_text).casefold():
+                            return f"{category} finding cites corrected_text that is not in the current draft"
+                    return None
+                if status == "withdrawn":
+                    if len(note) < 10:
+                        return "withdrawn without a reason"
+                    if not verified_by or verified_by != raised_by or closing_agent != raised_by:
+                        return f"withdrawn by {closing_agent!r}/{verified_by!r}; only the raising reviewer {raised_by!r} may withdraw"
+                    return None
+                if status == "coordinator-accepted":
+                    if category in cw.PROTECTED_CATEGORIES:
+                        return f"a {category} finding cannot be closed by coordinator acceptance"
+                    if severity == "blocking":
+                        return "a blocking finding cannot be closed by coordinator acceptance"
                     if len(note) < 40:
-                        reasons.add("FINDING_MAJOR_UNDISPOSED", f"{role} {fid}: coordinator-accepted needs a rationale of at least 40 characters")
-                    else:
-                        summary["accepted_risks"].append({"role": role, "id": fid, "rationale": note})
+                        return "coordinator-accepted needs a rationale of at least 40 characters recorded against the current draft (scripts/dispose_finding.py)"
+                    return None
+                return status  # open, dropped, fixed-unverified, disputed
+
+            if severity in ("blocking", "major"):
+                defect = closure_defect()
+                if defect:
+                    code = "FINDING_BLOCKING_UNRESOLVED" if severity == "blocking" else "FINDING_MAJOR_UNDISPOSED"
+                    reasons.add(code, f"{role} {fid} [{category}]: {defect}")
+                elif status == "coordinator-accepted":
+                    summary["accepted_risks"].append({"role": role, "id": fid, "category": category, "rationale": note})
     return summary
 
 
@@ -365,10 +493,11 @@ def run_check(run_dir: Path, stage: str, *, run_validators: bool = True) -> dict
         for check in checks:
             if check.status != "fail":
                 continue
-            code = {
+            exact = {"export-clean": "EXPORT_UNCLEAN", "export-readable": "EXPORT_UNREADABLE", "validators-declared": "VALIDATOR_SKIPPED"}
+            code = exact.get(check.name) or {
                 "citations": "CITATION_MISMATCH", "placeholders": "PLACEHOLDER_UNRESOLVED", "parity": "EXPORT_PARITY",
                 "client-name": "CLIENT_NAME_MISSING", "forbidden": "FORBIDDEN_TERM", "validator": "VALIDATOR_FAILED",
-                "validators": "VALIDATOR_SKIPPED", "export": "EXPORT_MISSING", "draft": "DRAFT_MISSING",
+                "export": "EXPORT_MISSING", "draft": "DRAFT_MISSING",
             }.get(check.name.split("-")[0], "MECHANICAL_FAILED")
             if code in ("EXPORT_MISSING", "DRAFT_MISSING") and code in reasons.codes():
                 continue

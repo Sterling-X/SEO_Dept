@@ -16,9 +16,11 @@ metadata:
 
 ## Pilot amendments (summary)
 
-1. **One citation format.** A hyperlinked `[n]` marker at the first material claim from each source,
-   numbered by first appearance, each source cited exactly once; Sources last as `[n] label | URL`.
-   The statute pairing (body marker plus Sources entry) is required and is not a duplicate URL.
+1. **One citation format, one identity per source.** A hyperlinked `[n]` marker at the first material
+   claim from each source, numbered by first appearance, and the same number again wherever that
+   authority supports a later material claim; Sources last with one `[n] label | URL` row per source.
+   Six sources is a readability guideline, not a cap: claim coverage governs, more than six needs
+   `quality_contract.source_ceiling_rationale`, and twelve is a sanity limit.
 2. **One limits table.** Link and CTA counts come from
    `pilot/content-workflow/canonical/link-and-cta-limits.md`; the linking section defers to it.
 3. **Voice by exact domain route.** `pilot/content-workflow/canonical/client-routing.json` (mirror of
@@ -287,17 +289,17 @@ Cite statutes sparingly. The goal is to ground legal claims in authority, not to
 
 **When to cite:**
 - Cite a statute at first mention when introducing a specific legal rule, factor set, threshold, burden, or remedy.
-- Do not cite the same statute again after it has been introduced. Once the reader knows which law governs the issue, every subsequent reference does not need a repeat citation.
+- Cite the same statute again when a later passage makes a distinct material claim that it supports; a passing mention that adds no new claim needs no marker.
 
 **When not to cite:**
 - General descriptions of how a situation commonly arises unless a specific legal rule is being introduced
 - Restatements of information already cited earlier on the page
 - FAQ answers that summarize content already covered and cited in the body sections above
 
-**In-body format (single format; validators enforce it):** at the first material claim from a source, place one bracketed sequential marker `[n]` that is a clickable hyperlink to the source URL. The official source identifier may precede it in the sentence. Numbers follow first appearance (`[1]`, then `[2]`, ...). Each source is cited exactly once in the body; a later reference to the same authority is plain text without a marker.
+**In-body format (single format; validators enforce it):** at the first material claim from a source, place one bracketed sequential marker `[n]` that is a clickable hyperlink to the source URL. The official source identifier may precede it in the sentence. Numbers follow first appearance (`[1]`, then `[2]`, ...). Each source keeps one identity and one number; cite it again with the same marker wherever the same authority supports a later material claim (including an FAQ answer). Never assign a second number to the same URL.
 Example: `Illinois courts evaluate the child's best interests using statutory factors listed in 750 ILCS 5/602.7 [1]` where `[1]` links to the statute URL.
 
-The pairing of one body marker and one Sources entry for the same URL is the required footnote convention. It is not a duplicate-URL violation; every other URL on the page appears exactly once.
+The required footnote convention for one authority is one hyperlinked `[n]` at its first material claim, the same `[n]` repeated wherever that authority supports a later material claim, and one Sources entry. Those repeated markers and the Sources row are not a duplicate-URL violation; every internal URL on the page still appears exactly once.
 
 **Sources section format (end of document):**
 ```text
@@ -306,7 +308,7 @@ The pairing of one body marker and one Sources entry for the same URL is the req
 
 **Rules:**
 - Each unique statute or source gets one citation number. Do not assign multiple numbers to the same statute.
-- Use 1 to 6 unique sources. The generator and validators reject more than six; the pilot limits table records the same bound.
+- Cover every material legal claim. Six unique sources is a readability guideline; when coverage needs more, record which claims require them in `quality_contract.source_ceiling_rationale` (the generator rejects seven or more without it) and in the run's `citations_ceiling_rationale`. Twelve is a sanity limit.
 - The Sources section appears as the last element of the document.
 
 ---
@@ -319,7 +321,7 @@ The generic defaults in this imported section remain advisory outside a governin
 
 Every **internal** destination URL appears **exactly once** per page. No internal URL may be linked from two or more locations on the same page. This applies to the parent Core hub, sibling Situational pages, Procedural bridges, and any other internal page linked from this content.
 
-**Scope clarification:** This rule does NOT apply to external statutory and authority citations. By skill design, a cited statute appears twice on the page: once as a numeric citation marker (e.g., `[1]`) hyperlinked to the statute URL in the body, and once as the corresponding Sources entry. That dual placement is the standard footnote convention and is required, not a violation.
+**Scope clarification:** This rule does NOT apply to external statutory and authority citations. By skill design, a cited statute appears on the page as a numeric citation marker (e.g., `[1]`) hyperlinked to the statute URL at its first material claim, again as the same marker wherever that authority supports a later material claim, and once as the corresponding Sources entry. That placement is the required footnote convention, not a violation.
 
 If a topic naturally surfaces in multiple sections, choose the strongest single placement (see Strongest-Placement Selection below) and rewrite the other mentions as plain text without the link. Run a duplicate-URL scan before delivery, with the body-vs-Sources statute pattern excluded.
 
@@ -453,6 +455,11 @@ For the locally demonstrated route, generate with `node scripts/build-situationa
 
 ## Review hand-off (pilot)
 
+Before drafting, hand the planned material legal claims to the coordinator for the legal reviewer's
+pre-draft verification; draft only claims marked `Confirmed`. After export, the coordinator renders
+every page with `scripts/render-situational.sh` (pinned renderer release in
+`renderer-tools.lock.json`) through `scripts/render_inspect.py`, and an inspector views each page.
+
 The writer does not self-certify. Hand the checkpoint draft and then the complete revised draft to the
 coordinator, who dispatches the legal reviewer and the editorial reviewer. Findings return by id;
 log every change in `changes.md` against its id. Never set a finding to `fixed-verified`; the reviewer
@@ -486,7 +493,7 @@ Before delivering the DOCX, verify the following. If any gate fails, fix it befo
 8. **No cannibalization risk** -- Does this page avoid competing with the parent hub or a Procedural page for the same keyword intent?
 9. **Paragraph discipline** -- No paragraph exceeds 3 sentences in body content?
 10. **No fabricated law** -- No invented statute numbers, case names, filing details, or local court practices? Every legal reference is research-backed?
-11. **Citation discipline** -- Is each statute cited only once at first mention? Are there no more than 4-6 unique citations? Does the page read like a service page, not a legal brief?
+11. **Citation discipline** -- Does each statute keep one number, cited at its first material claim and again only where it supports a later material claim? Does every material legal claim have support (coverage governs the count; six is a guideline, more needs a recorded rationale)? Does the page read like a service page, not a legal brief?
 12. **Readability** -- Is the page scannable? Would a stressed person in a legal crisis be able to find what they need quickly?
 13. **Voice source fidelity** -- Was the voice source named by the exact domain route (or the pinned approved brief) loaded before drafting? Does the page read like that specific firm, not a generic family law site? Does the tone, cadence, vocabulary, and positioning match the voice skill's guardrails? Do the flagship sections (opening paragraphs, "How [FIRM_NAME] Can Help," CTAs) especially sound on-brand?
 

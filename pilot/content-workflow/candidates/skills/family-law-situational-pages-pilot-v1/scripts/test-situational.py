@@ -512,6 +512,40 @@ def main() -> int:
                 completed.stdout,
             ))
 
+        # PILOT CANDIDATE v1: repeated citations share one source identity; the six-source figure is a guideline.
+        repeat = production_shaped_manifest()
+        stakes_index = next(i for i, b in enumerate(repeat["content"]) if b.get("type") == "h2" and b.get("role") == "stakes")
+        repeat["content"][stakes_index + 3]["runs"].extend([{"type": "text", "text": " "}, {"type": "citation", "source_id": 1, "text": "[1]"}])
+        repeat_dir = root / "positive-repeated-citation"
+        repeat_dir.mkdir()
+        passed, output, _d, _m = generate_and_validate(repeat_dir, repeat)
+        results.append(("positive-repeated-citation-same-source", passed, output))
+
+        def with_sources(count: int, rationale: str | None) -> dict:
+            manifest = production_shaped_manifest()
+            manifest["sources"] = [
+                {"id": n, "label": f"Synthetic Example Statute {n}", "url": f"https://example.com/statutes/{n}", "authority": "official-primary", "status": 200, "verified_on": "2026-09-23", "verification_evidence": "SYNTHETIC TEST FIXTURE"}
+                for n in range(1, count + 1)
+            ]
+            paragraphs = [i for i, b in enumerate(manifest["content"]) if b.get("type") == "p"]
+            for index, block_index in enumerate(paragraphs[:count]):
+                manifest["content"][block_index]["runs"] = [r for r in manifest["content"][block_index]["runs"] if r.get("type") != "citation"]
+                manifest["content"][block_index]["runs"].extend([{"type": "text", "text": " "}, {"type": "citation", "source_id": index + 1, "text": f"[{index + 1}]"}])
+            for block_index in paragraphs[count:]:
+                manifest["content"][block_index]["runs"] = [r for r in manifest["content"][block_index]["runs"] if r.get("type") != "citation"]
+            if rationale is not None:
+                manifest["quality_contract"]["source_ceiling_rationale"] = rationale
+            return manifest
+
+        seven_dir = root / "positive-seven-sources-with-rationale"
+        seven_dir.mkdir()
+        passed, output, _d, _m = generate_and_validate(seven_dir, with_sources(7, "Seven distinct authorities each support a separate material claim in the pre-draft ledger; removing any would leave a claim unsupported."))
+        results.append(("positive-seven-sources-with-coverage-rationale", passed, output))
+        passed, output = expect_generator_failure(root, "negative-seven-sources-no-rationale", with_sources(7, None), "exceed the 6-source guideline")
+        results.append(("negative-seven-sources-without-rationale", passed, output))
+        passed, output = expect_generator_failure(root, "negative-thirteen-sources", with_sources(13, "Rationale text long enough to pass the guideline check but the sanity limit still applies."), "exceeds the sanity limit")
+        results.append(("negative-thirteen-sources-sanity-limit", passed, output))
+
         # PILOT CANDIDATE v1 additions: citation and placeholder defects that the baseline validators accepted.
         prod_dir = root / "positive-production-shaped"
         prod_dir.mkdir()
@@ -536,7 +570,7 @@ def main() -> int:
                     completed = run([sys.executable, str(STRUCTURAL), str(target), "--manifest", str(prod_manifest)])
                     results.append((f"negative-{name}-structural", completed.returncode != 0 and expect_structural in completed.stdout, completed.stdout))
 
-            tampered("plaintext-citation-marker", inject(OPENING_TWO, OPENING_TWO + " [1]"), "appear as plain text without a hyperlink", "Citation marker [1] appears 2 times")
+            tampered("plaintext-citation-marker", inject(OPENING_TWO, OPENING_TWO + " [1]"), "appear as plain text without a hyperlink", "Expected 8 external hyperlink occurrences; found 7")
             tampered("unknown-citation-marker", inject(OPENING_TWO, OPENING_TWO + " [7]"), "do not match manifest source order", "do not match manifest source order")
             tampered("sources-label-mismatch", inject("[1] Synthetic Example Statute 1 | ", "[1] Wrong synthetic label | "), "label does not match the manifest label", "label does not match the manifest label")
             tampered("bracket-placeholder", inject(OPENING_TWO, OPENING_TWO + " [FIRM_NAME]"), "Unresolved placeholder detected: [FIRM_NAME]", "Unresolved placeholder detected")

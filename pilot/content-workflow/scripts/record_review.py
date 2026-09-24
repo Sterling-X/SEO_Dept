@@ -55,10 +55,12 @@ def build_record(run_dir: Path, run: dict, payload: dict, *, runtime: str, agent
     stage = stage or payload.get("stage")
     round_ = payload.get("round") if round_ is None else round_
     draft_path = run_dir / (run.get("draft") or {}).get("path", "draft.md")
-    if not draft_path.is_file():
+    if stage != "predraft" and not draft_path.is_file():
         errors.append(f"draft not found: {draft_path}")
         return {}, errors
-    draft_text = draft_path.read_text(encoding="utf-8")
+    if stage == "predraft" and int(round_ or 0) == 0 and (draft_path.is_file() or (run_dir / "manifest.json").is_file()):
+        errors.append("a round-0 predraft record must be written before any draft or manifest exists; verification has to precede drafting")
+    draft_text = draft_path.read_text(encoding="utf-8") if draft_path.is_file() else ""
     export_rel = (run.get("export") or {}).get("path")
     export_path = run_dir / export_rel if export_rel else None
     sources_sha = {}
@@ -67,6 +69,8 @@ def build_record(run_dir: Path, run: dict, payload: dict, *, runtime: str, agent
         sources_sha[source.get("id")] = cw.sha256_file(path) if path.is_file() else None
 
     agent_rel = agent_file or DEFAULT_AGENT_FILES.get((runtime, agent))
+    if runtime in ("claude", "codex") and not agent_rel:
+        errors.append(f"agent {agent!r} is not a known pilot agent for runtime {runtime}; pass --agent-file with the definition actually used")
     agent_abs = (repo_root / agent_rel) if agent_rel else None
     record = {
         "schema": cw.REVIEW_SCHEMA,
@@ -78,7 +82,7 @@ def build_record(run_dir: Path, run: dict, payload: dict, *, runtime: str, agent
         "judgment_notice": cw.JUDGMENT_NOTICE,
         "verdict": payload.get("verdict"),
         "subject": {
-            "draft_sha256": cw.sha256_file(draft_path),
+            "draft_sha256": cw.sha256_file(draft_path) if draft_path.is_file() else None,
             "export_sha256": cw.sha256_file(export_path) if export_path and export_path.is_file() else None,
             "sources_sha256": sources_sha,
         },
@@ -105,7 +109,7 @@ def build_record(run_dir: Path, run: dict, payload: dict, *, runtime: str, agent
             prior = cw.load_json(prior_path)
         except (OSError, json.JSONDecodeError):
             continue
-        if prior.get("role") == role and prior.get("stage") == "checkpoint" and int(prior.get("round", 0)) <= int(round_ or 0):
+        if prior.get("role") == role and prior.get("stage") in ("predraft", "checkpoint") and int(prior.get("round", 0)) <= int(round_ or 0):
             prior_ids.update(str(f.get("id")) for f in prior.get("findings", []) if isinstance(f, dict))
     if agent_rel and not (agent_abs and agent_abs.is_file()):
         errors.append(f"agent definition file {agent_rel} does not exist (activation missing?)")
@@ -114,9 +118,19 @@ def build_record(run_dir: Path, run: dict, payload: dict, *, runtime: str, agent
         if not isinstance(finding, dict):
             continue
         quote = ((finding.get("passage") or {}).get("quote")) or ""
-        if quote and not quote_present(quote, draft_text):
-            errors.append(f"finding {finding.get('id')}: quoted passage not found in the current draft: {cw.norm_ws(quote)[:80]!r}")
         resolution = finding.get("resolution") or {}
+        if stage == "predraft":
+            pass  # a predraft finding quotes the planned claim text the coordinator supplied; there is no draft to match
+        elif quote and resolution.get("status") in ("open", "fixed-unverified", "disputed") and not quote_present(quote, draft_text):
+            errors.append(f"finding {finding.get('id')}: quoted passage not found in the current draft: {cw.norm_ws(quote)[:80]!r}")
+        if finding.get("category") in cw.PROTECTED_CATEGORIES and resolution.get("status") == "fixed-verified":
+            corrected = cw.norm_ws(str(resolution.get("corrected_text") or ""))
+            if len(corrected) < 20:
+                errors.append(f"finding {finding.get('id')}: a {finding.get('category')} finding needs resolution.corrected_text of at least 20 characters (the revised passage you re-read)")
+            elif corrected.casefold() == cw.norm_ws(quote).casefold():
+                errors.append(f"finding {finding.get('id')}: corrected_text is identical to the passage the finding targeted")
+            elif not quote_present(corrected, draft_text):
+                errors.append(f"finding {finding.get('id')}: corrected_text is not in the current draft")
         if resolution.get("status") == "fixed-verified":
             # A reviewer without Bash cannot compute the hash; null means "the draft I just re-read".
             if not resolution.get("verified_against_draft_sha256"):
@@ -140,7 +154,7 @@ def main() -> int:
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--runtime", choices=("claude", "codex", "human"), required=True)
     parser.add_argument("--agent", required=True, help="agent name as used by the host (e.g. legal-reviewer or legal_reviewer)")
-    parser.add_argument("--stage", choices=("checkpoint", "final"))
+    parser.add_argument("--stage", choices=("predraft", "checkpoint", "final"))
     parser.add_argument("--round", type=int, dest="round_")
     parser.add_argument("--agent-file", help="repository-relative path of the agent definition actually used")
     parser.add_argument("--force", action="store_true")
@@ -170,7 +184,8 @@ def main() -> int:
         target.rename(superseded)
         print(f"superseded record kept at {superseded.relative_to(run_dir)}")
     cw.dump_json(target, record)
-    print(f"recorded {target.relative_to(run_dir)} (draft {record['subject']['draft_sha256'][:12]}…, {len(record['findings'])} finding(s), verdict={record['verdict']}) — {cw.JUDGMENT_NOTICE}")
+    draft_label = (record["subject"].get("draft_sha256") or "no draft (predraft)")[:20]
+    print(f"recorded {target.relative_to(run_dir)} (draft {draft_label}…, {len(record['findings'])} finding(s), verdict={record['verdict']}) — {cw.JUDGMENT_NOTICE}")
     return 0
 
 

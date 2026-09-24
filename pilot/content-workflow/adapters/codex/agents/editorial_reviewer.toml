@@ -27,9 +27,12 @@ assessable and raise a `blocking` finding that the run has no voice route.
 1. Usefulness: answer-first opening; the reader's decision is served in the first two
    paragraphs; selective procedure; no textbook definition, emotional preamble, firm
    history, listicle framing, or blog sprawl.
-2. Client specificity: every firm statement traces to the approved client facts; no
-   generic firm boilerplate; no other client's offices, fees, services, credentials, or
-   claims.
+2. Client specificity, evidence-based: every firm statement (offer, fee model, process,
+   credential, staffing, service area, response time, outcome) traces to the approved client
+   facts within their approved scope; no other client's facts. A neutral, accurate legal
+   explanation is acceptable even if another firm could publish it; do not fail a passage as
+   generic without naming a concrete defect (wrong or unsupported firm claim, a documented
+   voice contradiction, or a scenario connection the brief requires and the page lacks).
 3. Brand fidelity: tone, vocabulary, persona, messaging pillars, and banned patterns
    judged against the routed voice source only. Cite the specific voice element matched
    or violated in the evidence.
@@ -50,8 +53,9 @@ assessable and raise a `blocking` finding that the run has no voice route.
 ## Findings and rechecks
 
 Return one JSON object in the canonical structured format with ids `E1`, `E2`, ...; the
-exact passage quote and location; the issue; evidence naming the client fact, voice
-element, brief field, or rule and its source path; the requested correction; and
+exact passage quote and location; the issue; `category` (`client-fact`, `promise`, `brand`,
+`structure`, `brief`, or `citation`); evidence naming the client fact, voice element, brief
+field, or rule and its source path; the requested correction; and
 `resolution.status = "open"`.
 
 Severity: `blocking` for a wrong or unsupported client fact, an unsupported promise, a
@@ -60,8 +64,10 @@ for brand drift, a structural fault, or an exceeded limit; `minor` for polish; `
 optional improvements.
 
 On a recheck, re-read each revised passage and set `fixed-verified` only when the revised
-text satisfies the requested correction. Otherwise leave it `open` with a note. A change
-log is never a basis for `fixed-verified`.
+text satisfies the requested correction; for `client-fact`, `promise`, and `citation`
+findings copy the revised passage into `resolution.corrected_text`. Otherwise leave it
+`open` with a note. A change log is never a basis for `fixed-verified`. Only you may
+withdraw a finding you raised; the coordinator cannot accept a client-fact or promise error.
 
 ## Must not
 

@@ -12,7 +12,7 @@ One table, referenced by the candidate situational-page skill, the candidate edi
 | Secondary contextual links | 0 to 3 | Inline, Next Steps, or a short Related Issues list near the end |
 | Consultation CTA link | exactly 1 | Inside the final CTA section, before Sources |
 | Non-linked CTA sentence earlier in the page | 0 to 1 | Plain text, no guarantee, pricing, urgency, or "free" claim unless the client facts support it |
-| Statutory sources | 1 to 6 unique sources | Each cited once in the body at first material claim; each listed once in Sources |
+| Statutory sources | claim coverage governs; 6 is a readability guideline, 12 a sanity limit | One identity and number per authority; cited at first material claim and again wherever the same authority supports a later material claim; listed once in Sources; more than 6 needs a recorded coverage rationale |
 
 Draft form: in `draft.md` every marker is written `[[n]](url)` so the reviewed text carries the
 same hyperlink the export carries; a plain `[n]` in the draft fails `citations-draft`. In the
@@ -25,8 +25,9 @@ They are pilot decisions for situational pages, not a client's rule. The V2 arch
 governs which additional architecture links may exist; this table never adds a V2 edge.
 
 Single-placement rule: every internal destination URL appears exactly once on the page.
-The statute pairing (one hyperlinked `[n]` marker in the body plus one hyperlinked URL in
-Sources) is the required footnote convention and is not a duplicate. Any other URL that
+Statutory sources are different: one hyperlinked `[n]` marker at the first material claim, the
+same marker again wherever that authority supports a later material claim, and one hyperlinked
+URL in Sources. That repetition is the citation convention, not a duplicate. Any other URL that
 appears twice is a blocking finding.
 
 Where a governing client architecture applies (family-law V2), additional architecture

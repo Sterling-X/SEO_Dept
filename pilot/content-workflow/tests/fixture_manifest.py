@@ -29,6 +29,7 @@ SOURCES = [
     {"id": 2, "label": "Exampleland Stat. § 12.350, Parenting time", "url": "https://legislature.exampleland.example/statutes/12.350"},
     {"id": 3, "label": "Exampleland Family Court Rule 7, Case management", "url": "https://courts.exampleland.example/rules/family/7"},
 ]
+REPEAT_CLAIM = "Written findings on the parenting schedule also shape how any later request to change it is judged."
 STAKES_V0 = "Courts in Exampleland must always order equal parenting time, so the schedule is not something you can influence."
 STAKES_V1 = "Courts in Exampleland start from a presumption of equal parenting time, but a parent can rebut it with evidence and the court must make written findings."
 FIRM_HELP_V0 = f"{FIRM} represents people in high-conflict divorce matters in Exampleland. María Gómez-Núñez builds a plan around the pattern in your case: what to document, what to stop responding to, and which requests belong in front of the court."
@@ -81,6 +82,8 @@ def base_manifest() -> dict:
     content[strategy_index + 1]["runs"] = [_text("Ask the court for a case-management order that sets communication and disclosure requirements early."), *_cite(3)]
     firm_index = next(i for i, b in enumerate(content) if b.get("type") == "h2" and b.get("role") == "firm-help")
     content[firm_index + 1]["runs"] = [_text(FIRM_HELP_V0)]
+    # A later material claim supported by the same authority reuses source number 2 (repeated citation).
+    content[strategy_index + 3]["runs"] = [_text(REPEAT_CLAIM), *_cite(2)]
     manifest["quality_contract"] = {"forbidden_terms": ["collaborative divorce", "Sterling Lawyers"]}
     return manifest
 

@@ -163,4 +163,4 @@ The generator validates actual values against V2 and does not treat this abbrevi
 }
 ```
 
-The production `content` array must include the complete 1,100–1,700-word page and all required H2 roles. Each manifested link must appear exactly once as an `internal_link` run; the consultation link must appear after the final `role: cta` H2. Each source must be cited exactly once in body content; the generator adds the matching Sources hyperlink. Bold lead-ins use `strong` runs.
+The production `content` array must include the complete 1,100–1,700-word page and all required H2 roles. Each manifested link must appear exactly once as an `internal_link` run; the consultation link must appear after the final `role: cta` H2. Each source is cited at its first material claim and may be cited again with the same number wherever it supports a later material claim (pilot candidate v1; the baseline required exactly once); the generator adds the matching Sources hyperlink. Bold lead-ins use `strong` runs.

@@ -21,6 +21,11 @@ When this skill runs inside `pilot/content-workflow` as the editorial reviewer:
   (`pilot/content-workflow/canonical/review-findings-schema.md`) with ids `E1`, `E2`, ..., the exact
   passage quote and location, issue, evidence naming the client fact, voice element, brief field,
   or rule and its source path, requested correction, and `resolution.status = "open"`.
+- Apply `references/editorial-rubric-pilot.md`: client specificity is evidence-based. Accept a neutral,
+  accurate legal explanation; fail only an observable defect (unsupported or wrong firm claim, a
+  documented voice contradiction, a missing scenario connection the brief requires). Tag findings
+  `client-fact`, `promise`, `brand`, `structure`, `brief`, or `citation`; close them only after
+  re-reading the revised passage, with `corrected_text` for client-fact, promise, and citation.
 - Add an eighth review question, **brief compliance**: node, jurisdiction, excluded intents, word
   target, and the counts and placements in `pilot/content-workflow/canonical/link-and-cta-limits.md`.
 - The record is bound to the draft hash you read; any edit invalidates it. On a recheck set
@@ -86,7 +91,7 @@ Evaluate the work across these categories:
    - cannibalization risk
    - whether the asset type fits the topic
    - **internal link discipline:**
-     - duplicate internal destination URLs (any internal URL appearing more than once is a hard fail; the statute pairing of one hyperlinked `[n]` body marker plus one Sources entry is the required footnote convention and is exempt, see `pilot/content-workflow/canonical/link-and-cta-limits.md`)
+     - duplicate internal destination URLs (any internal URL appearing more than once is a hard fail; statutory citations are exempt: one number per authority, repeated wherever it supports a later material claim, plus one Sources entry, see `pilot/content-workflow/canonical/link-and-cta-limits.md`)
      - tag-on link patterns ("See our X page," "Learn more at," "Click here for") instead of integrated lead-ins
      - multi-link cluster sentences in body content (two or more links bundled in one sentence outside the Related Topics module)
      - resource-dump paragraphs ("For more on these topics, see X, Y, and Z")
@@ -226,7 +231,7 @@ Strong QA output should:
 - calling content "on-brand" without citing specific voice skill elements it matches or violates
 - treating generic professional legal tone as acceptable when the firm has a distinct, documented voice
 - ignoring persona drift within a piece (starts on-brand, slides into generic midway through)
-- approving a page where the same internal destination URL appears more than once (hard fail; the statute body-marker plus Sources pairing is exempt)
+- approving a page where the same internal destination URL appears more than once (hard fail; repeated statutory citations with one number per authority plus one Sources entry are exempt)
 - approving a page with "See our X page" tag-on links instead of integrated lead-ins (hard fail)
 - approving a page with multi-link cluster sentences or "resources dump" paragraphs in body content
 - citing a statute by section number without verifying the statute actually governs the proposition cited

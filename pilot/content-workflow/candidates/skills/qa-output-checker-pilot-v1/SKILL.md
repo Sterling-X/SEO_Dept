@@ -24,6 +24,12 @@ checklist below still applies to what the script cannot see (tone, cross-referen
 quality). A mechanical PASS is evidence that these checks ran against specific hashes; it is not
 legal or editorial clearance, and the legal handoff in Step 6 is unchanged.
 
+Rendered pages: the coordinator runs `scripts/render_inspect.py <run-dir> --round N --render` (pinned
+renderer release and hash from the page skill's `renderer-tools.lock.json`), then views every page
+image and attests with a per-page observation (`--attest`). Delivery requires that record to be
+bound to the exact export hash with every page inspected. Text extraction never substitutes for
+viewing the pages; a missing renderer leaves the run INCOMPLETE.
+
 Placeholder grammar for content-workflow runs: numeric citation markers `[1]`, `[2]`, ... are not
 placeholders. Every other bracketed token (`[LOCAL DETAIL: ...]`, `[FIRM_NAME]`, `[INSERT ...]`,
 `[TBD]`), `{{...}}`, `<<...>>`, `TODO`, `TBD`, `FIXME`, `XXX`, `TK`, and `lorem ipsum` is a

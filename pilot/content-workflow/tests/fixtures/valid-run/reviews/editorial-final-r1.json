@@ -23,16 +23,17 @@
         "verified_against_draft_sha256": null,
         "verified_by": null,
         "note": "minor; left open by agreement"
-      }
+      },
+      "category": "brand"
     },
     {
       "id": "E2",
       "severity": "major",
       "passage": {
         "location": "H2 'How Gómez & Núñez Family Law, P.A. can help', paragraph 1",
-        "quote": "María Gómez-Núñez, the founder and managing attorney, builds a plan around the pattern in your case"
+        "quote": "María Gómez-Núñez builds a plan around the pattern in your case"
       },
-      "issue": "Approved role descriptor now present.",
+      "issue": "Approved role descriptor now present. (recheck: revised passage re-read; see resolution.corrected_text)",
       "evidence": {
         "source": "sources/client-facts.md",
         "element": "Founder and managing attorney: María Gómez-Núñez."
@@ -42,8 +43,10 @@
         "status": "fixed-verified",
         "verified_against_draft_sha256": null,
         "verified_by": null,
-        "note": "Revised passage re-read against client facts."
-      }
+        "note": "Revised passage re-read against client facts.",
+        "corrected_text": "María Gómez-Núñez, the founder and managing attorney, builds a plan around the pattern in your case"
+      },
+      "category": "client-fact"
     }
   ],
   "checks_not_performed": [],

@@ -65,7 +65,21 @@ python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage inta
 Any `INCOMPLETE` reason stops the affected work. Report the missing item; do not draft
 around it.
 
-### 2. Draft with checkpoints
+### 1b. Pre-draft legal verification (family-law pages)
+
+List every material legal claim the page will need (jurisdiction, posture, authority). Dispatch the
+legal reviewer with `stage: predraft` and the pinned sources; it verifies each planned claim live
+and returns a Verification Log with a row per claim. Record it:
+
+```bash
+python3 pilot/content-workflow/scripts/record_review.py <run-dir> --input <predraft.json> --runtime claude --agent legal-reviewer --stage predraft --round 0
+```
+
+Then write the `Confirmed` authorities into `run.json` `citations` (one identity per URL; more than
+six needs `citations_ceiling_rationale`) and pin the legal source notes. The writer may draft only
+`Confirmed` claims. Any `Unverifiable` or `Correction-needed` row blocks the run until resolved.
+
+### 2. Draft with checkpoints (required)
 
 Dispatch the writer with: the run directory, the pinned skill path, the single voice
 source, the approved client facts path, the pinned legal sources, and the instruction to
@@ -86,6 +100,8 @@ passage exists in the draft and stamps the draft, export, and source hashes.
 Return findings to the writer by id. The writer logs changes in `changes.md` and never
 marks anything fixed-verified.
 
+Both checkpoints are required for family-law pages; there is no skip.
+
 ### 3. Final review of the complete revised document
 
 When the writer reports the complete revised draft and export, dispatch the legal
@@ -95,6 +111,22 @@ then run mechanical QA:
 ```bash
 python3 pilot/content-workflow/scripts/mechanical_qa.py <run-dir> --round 0
 ```
+
+### 3b. Render and inspect every page
+
+```bash
+python3 pilot/content-workflow/scripts/render_inspect.py <run-dir> --round 0 --render
+```
+
+View every `render/r0/page-N.png` at rendered resolution (Claude: the Read tool on each image; a
+human inspector otherwise). Write an attestation JSON with a specific observation per page and a
+`pass` or `fail` verdict, then:
+
+```bash
+python3 pilot/content-workflow/scripts/render_inspect.py <run-dir> --round 0 --attest <attestation.json>
+```
+
+The record is bound to the exact export hash; a re-export requires a new render and inspection.
 
 ### 4. Repair and recheck (at most two rounds)
 
@@ -106,8 +138,12 @@ then `--round 2`), because the new draft hash stales every record. Re-run
 A reviewer sets `fixed-verified` only after re-reading the revised passage; you never set
 it for them. After round 2 stop repairing and report what remains.
 
-`coordinator-accepted` is available for `major` findings only, with a written rationale.
-Never use it on a blocking finding. Preserve `disputed` findings as disagreement.
+`coordinator-accepted` is available for `major` findings only, outside the protected categories
+(`legal-accuracy`, `citation`, `client-fact`, `promise`), with a written rationale, and is recorded
+with `python3 pilot/content-workflow/scripts/dispose_finding.py <run-dir> --role <role> --id <id>
+--accept --rationale "..."` (never by editing a reviewer's record). Never use it on a blocking
+finding or on a legal or client-fact error; those close only when the raising reviewer re-reads the
+corrected passage and records it in `corrected_text`. Preserve `disputed` findings.
 
 ### 5. Deliver
 

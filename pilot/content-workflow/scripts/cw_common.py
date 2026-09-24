@@ -29,12 +29,21 @@ RUN_SCHEMA = "content-workflow-run/v1"
 REVIEW_SCHEMA = "content-workflow-review/v1"
 READINESS_SCHEMA = "content-workflow-readiness/v1"
 JUDGMENT_NOTICE = "recorded judgment; not mechanically verified"
-ROLE_SHORT = {"legal-reviewer": "legal", "editorial-reviewer": "editorial", "mechanical-qa": "mechanical"}
+ROLE_SHORT = {"legal-reviewer": "legal", "editorial-reviewer": "editorial", "mechanical-qa": "mechanical", "render-inspector": "render"}
 SHORT_ROLE = {v: k for k, v in ROLE_SHORT.items()}
-REQUIRED_REVIEW_KINDS = {"legal-final", "editorial-final", "mechanical-final", "legal-checkpoint", "editorial-checkpoint"}
+STAGES = ("predraft", "checkpoint", "final")
+REQUIRED_REVIEW_KINDS = {"legal-predraft", "legal-checkpoint", "editorial-checkpoint", "legal-final", "editorial-final", "mechanical-final", "render-final"}
+FAMILY_LAW_KINDS = ("situational", "core-hub", "procedural")
 SEVERITIES = ("blocking", "major", "minor", "note")
 RESOLUTIONS = ("open", "fixed-verified", "fixed-unverified", "disputed", "withdrawn", "coordinator-accepted")
-FINDING_ID_RE = re.compile(r"^[LEM][0-9]{1,3}$")
+FINDING_ID_RE = re.compile(r"^[LEMR][0-9]{1,3}$")
+FINDING_CATEGORIES = ("legal-accuracy", "citation", "client-fact", "promise", "brand", "structure", "brief", "mechanical", "render", "other")
+# Findings in these categories are never closed by a coordinator note; only the raising reviewer's recheck
+# (fixed-verified with corrected text present in the draft) or the reviewer's own withdrawal closes them.
+PROTECTED_CATEGORIES = ("legal-accuracy", "citation", "client-fact", "promise")
+SOURCE_GUIDELINE = 6
+SOURCE_SANITY_LIMIT = 12
+VERDICTS = ("ready", "ready-with-revisions", "not-ready", "pass", "fail", "pending")
 
 
 def q(ns: str, name: str) -> str:
@@ -110,8 +119,20 @@ def load_placeholder_patterns() -> list[tuple[str, re.Pattern[str]]]:
 
 
 PLACEHOLDER_PATTERNS: list[tuple[str, re.Pattern[str]]] = load_placeholder_patterns()
-REQUIRED_REVIEW_FLOOR = ("legal-final", "editorial-final", "mechanical-final")
 MAX_WORD_COUNT_TOLERANCE = 0.02
+
+
+def required_review_floor(run: dict) -> tuple[str, ...]:
+    """Reviews every run must carry. Family-law page kinds add the pre-draft legal verification and both
+    drafting checkpoints; a DOCX export adds the rendered-page inspection."""
+    floor = ["legal-final", "editorial-final", "mechanical-final"]
+    kind = (run.get("page_type") or {}).get("kind")
+    if kind in FAMILY_LAW_KINDS:
+        floor = ["legal-predraft", "legal-checkpoint", "editorial-checkpoint"] + floor
+    export_path = str((run.get("export") or {}).get("path") or "")
+    if export_path.lower().endswith(".docx"):
+        floor.append("render-final")
+    return tuple(floor)
 
 
 def count_words(text: str) -> int:
@@ -134,6 +155,7 @@ class TextModel:
     word_count: int = 0
     has_sources_heading: bool = False
     body_paragraphs: list[str] = field(default_factory=list)
+    unclean: list[str] = field(default_factory=list)
 
 
 def parse_markdown_draft(raw: str) -> TextModel:
@@ -200,14 +222,31 @@ HEADING_STYLE_RE = re.compile(r"^(?:Heading|heading|Titre|Überschrift)\s*([1-6]
 
 def parse_docx(path: Path) -> TextModel:
     model = TextModel(kind="docx")
+    unclean_tags = {"ins": "tracked insertion", "del": "tracked deletion", "delText": "deleted text", "moveFrom": "tracked move", "moveTo": "tracked move", "rPrChange": "tracked formatting change", "pPrChange": "tracked formatting change", "fldSimple": "field code", "fldChar": "field code", "instrText": "field instruction", "vanish": "hidden text", "altChunk": "embedded alternate content", "commentRangeStart": "comment", "commentReference": "comment reference", "object": "embedded object"}
+    seen_unclean: dict[str, int] = {}
     with zipfile.ZipFile(path) as archive:
         document = ET.fromstring(archive.read("word/document.xml"))
+        for member in archive.namelist():
+            if member.startswith("word/") and member.endswith(".xml") and "/_rels/" not in member and member not in ("word/styles.xml", "word/numbering.xml", "word/settings.xml", "word/fontTable.xml", "word/webSettings.xml", "word/theme/theme1.xml"):
+                try:
+                    part = ET.fromstring(archive.read(member))
+                except ET.ParseError:
+                    continue
+                is_header_footer = member.startswith(("word/header", "word/footer"))
+                for node in part.iter():
+                    local_name = node.tag.split("}")[-1]
+                    if local_name in unclean_tags:
+                        if is_header_footer and local_name in ("fldSimple", "fldChar", "instrText"):
+                            continue  # page-number fields in running headers and footers are legitimate
+                        label = unclean_tags[local_name] + (f" in {member}" if member != "word/document.xml" else "")
+                        seen_unclean[label] = seen_unclean.get(label, 0) + 1
         rel_map: dict[str, str] = {}
         if "word/_rels/document.xml.rels" in archive.namelist():
             rels = ET.fromstring(archive.read("word/_rels/document.xml.rels"))
             for rel in rels.findall("pr:Relationship", NS):
                 if (rel.get("Type") or "").endswith("/hyperlink"):
                     rel_map[rel.get("Id") or ""] = rel.get("Target") or ""
+    model.unclean = [f"{label} x{count}" for label, count in sorted(seen_unclean.items())]
     paragraphs: list[tuple[int | None, str, list[tuple[str, str | None]]]] = []
     body = document.find("w:body", NS)
     for paragraph in (body.iter(q(W_NS, "p")) if body is not None else document.iter(q(W_NS, "p"))):
@@ -304,9 +343,11 @@ def citation_issues(model: TextModel, expected: list[dict], label: str) -> list[
     if first_seen != expected_ids:
         issues.append(f"{label}: body citation markers (first appearance) {first_seen} do not equal expected {expected_ids}")
     for marker_id in set(marker_ids):
-        uses = marker_ids.count(marker_id)
-        if uses != 1:
-            issues.append(f"{label}: marker [{marker_id}] appears {uses} times in the body; each source is cited exactly once")
+        if marker_id not in by_id:
+            issues.append(f"{label}: marker [{marker_id}] has no matching citation in run.json")
+    for expected_id in expected_ids:
+        if expected_id not in marker_ids:
+            issues.append(f"{label}: source [{expected_id}] is never cited in the body")
     if model.kind == "docx":
         for marker_id, url in model.body_markers:
             expected_url = by_id.get(marker_id, {}).get("url")
@@ -381,6 +422,8 @@ def mechanical_checks(repo_root: Path, run_dir: Path, run: dict, *, run_declared
     else:
         checks.append(CheckResult("export-present", "fail", f"missing {export_path}"))
 
+    if export_model is not None:
+        checks.append(CheckResult("export-clean", "fail" if export_model.unclean else "pass", "; ".join(export_model.unclean) if export_model.unclean else "no fields, revisions, comments, hidden text, or embedded content"))
     for label, model in (("draft", draft_model), ("export", export_model)):
         if model is None:
             continue
@@ -429,9 +472,36 @@ def mechanical_checks(repo_root: Path, run_dir: Path, run: dict, *, run_declared
 
 # ------------------------------------------------------------- record loading
 
+
+_WORD_RE = re.compile(r"[^\W_]+(?:[-'’][^\W_]+)*", re.UNICODE)
+
+
+def _content_words(text: str) -> list[str]:
+    """Casefolded word tokens with surrounding punctuation removed (quotes, commas, brackets, section signs)."""
+    return _WORD_RE.findall(norm_ws(text).casefold())
+
+
+def observation_matches_page(observation: str, page_text: str) -> bool:
+    """True when the observation quotes at least three consecutive words that appear on the page text.
+
+    Punctuation attached to a word (an opening quote, a trailing comma) does not break the match;
+    the words themselves must appear in the same order on the page.
+    """
+    words = _content_words(observation)
+    haystack = " " + " ".join(_content_words(page_text)) + " "
+    return any(" " + " ".join(words[i:i + 3]) + " " in haystack for i in range(len(words) - 2))
+
+
+def unresolved_render_findings(findings: list) -> list[str]:
+    """Ids of blocking/major render findings that are neither fixed-verified nor withdrawn."""
+    return [str(f.get("id")) for f in findings or [] if isinstance(f, dict) and f.get("severity") in ("blocking", "major")
+            and (f.get("resolution") or {}).get("status", "open") not in ("fixed-verified", "withdrawn")]
+
+
 def review_files(run_dir: Path) -> list[Path]:
+    """Review records only; the coordinator-dispositions file lives beside them but is not a record."""
     reviews = run_dir / "reviews"
-    return sorted(reviews.glob("*.json")) if reviews.is_dir() else []
+    return sorted(p for p in reviews.glob("*.json") if p.name != "coordinator-dispositions.json") if reviews.is_dir() else []
 
 
 def validate_review_record(record: dict) -> list[str]:
@@ -440,15 +510,27 @@ def validate_review_record(record: dict) -> list[str]:
         problems.append(f"schema must be {REVIEW_SCHEMA}")
     if record.get("role") not in ROLE_SHORT:
         problems.append("role must be legal-reviewer, editorial-reviewer, or mechanical-qa")
-    if record.get("stage") not in ("checkpoint", "final"):
-        problems.append("stage must be checkpoint or final")
+    if record.get("stage") not in STAGES:
+        problems.append("stage must be predraft, checkpoint, or final")
+    if record.get("stage") == "predraft" and record.get("role") != "legal-reviewer":
+        problems.append("only the legal reviewer records a predraft review")
     if not isinstance(record.get("round"), int) or record.get("round") < 0:
         problems.append("round must be a non-negative integer")
-    if record.get("verdict") not in ("ready", "ready-with-revisions", "not-ready", "pass", "fail"):
-        problems.append("verdict must be ready, ready-with-revisions, not-ready, pass, or fail")
+    if record.get("verdict") not in VERDICTS:
+        problems.append(f"verdict must be one of {VERDICTS}")
     subject = record.get("subject")
-    if not isinstance(subject, dict) or not subject.get("draft_sha256"):
+    if not isinstance(subject, dict):
+        problems.append("subject is required")
+    elif record.get("stage") != "predraft" and not subject.get("draft_sha256"):
         problems.append("subject.draft_sha256 is required")
+    elif record.get("stage") == "predraft" and not isinstance(subject.get("sources_sha256"), dict):
+        problems.append("a predraft record must carry subject.sources_sha256")
+    if record.get("role") == "render-inspector":
+        render = record.get("render")
+        if not isinstance(render, dict) or not isinstance(render.get("pages"), list) or not render.get("pages"):
+            problems.append("render-inspector records must carry render.pages")
+        elif not (subject or {}).get("export_sha256"):
+            problems.append("render-inspector records must carry subject.export_sha256")
     reviewer = record.get("reviewer")
     if not isinstance(reviewer, dict) or reviewer.get("runtime") not in ("claude", "codex", "script", "human") or not reviewer.get("agent"):
         problems.append("reviewer.runtime and reviewer.agent are required")
@@ -466,12 +548,14 @@ def validate_review_record(record: dict) -> list[str]:
             continue
         fid = str(finding.get("id", ""))
         if not FINDING_ID_RE.match(fid):
-            problems.append(f"{prefix}.id {fid!r} must match [LEM]<n>")
+            problems.append(f"{prefix}.id {fid!r} must match [LEMR]<n>")
         if fid in seen:
             problems.append(f"{prefix}.id {fid!r} duplicated within the record")
         seen.add(fid)
         if finding.get("severity") not in SEVERITIES:
             problems.append(f"{prefix}.severity must be one of {SEVERITIES}")
+        if finding.get("category") not in FINDING_CATEGORIES:
+            problems.append(f"{prefix}.category must be one of {FINDING_CATEGORIES}")
         passage = finding.get("passage")
         if not isinstance(passage, dict) or len(norm_ws(passage.get("quote", ""))) < 8 or not passage.get("location"):
             problems.append(f"{prefix}.passage needs location and a quote of at least 8 characters")
@@ -494,4 +578,12 @@ def record_kind(record: dict) -> str:
 
 
 def record_order_key(record: dict) -> tuple:
-    return (int(record.get("round", 0)), 0 if record.get("stage") == "checkpoint" else 1, str(record.get("recorded_at", "")))
+    """Workflow order of review records.
+
+    Pre-draft records have no draft to bind to, so every one of them (whatever its round number;
+    a supplementary pre-draft record is recorded as a later round) precedes every record that
+    reviews a draft. Among draft-bound records the order is round, then stage, then time.
+    """
+    stage_rank = {"predraft": 0, "checkpoint": 1, "final": 2}.get(record.get("stage"), 2)
+    draft_bound = 0 if record.get("stage") == "predraft" else 1
+    return (draft_bound, int(record.get("round", 0)), stage_rank, str(record.get("recorded_at", "")))

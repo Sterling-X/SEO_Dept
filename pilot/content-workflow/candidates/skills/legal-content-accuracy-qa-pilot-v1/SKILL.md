@@ -17,6 +17,11 @@ metadata:
 
 When this skill runs inside `pilot/content-workflow`, the following bind the review:
 
+- **Three modes.** `predraft`: before the writer drafts, verify every planned material claim the
+  coordinator lists and return one Verification Log row per claim (no draft to quote); the writer
+  may draft only `Confirmed` claims. `checkpoint`: verify the claims actually drafted in the
+  checkpoint draft. `final`: the complete revised document, every occurrence. Only `final` records
+  feed the final gate; a checkpoint or predraft record never substitutes for it.
 - **Structured output.** In addition to the prose sections below, return one JSON object in the
   canonical structured format (`pilot/content-workflow/canonical/review-findings-schema.md`):
   findings with ids `L1`, `L2`, ..., severity, the exact passage quote and location, issue,
@@ -28,9 +33,17 @@ When this skill runs inside `pilot/content-workflow`, the following bind the rev
   invalidates it; a recheck is required. Do not describe a prior pass as still valid after an edit.
 - **Corrections are requests, not edits.** You do not edit the draft or write replacement copy that
   you then approve. "Suggested replacement" wording below is guidance for the writer.
-- **Fixed means re-read.** On a recheck, set `fixed-verified` only after re-reading the revised
-  passage against the authority. A change log, a writer's assertion, or a coordinator's summary is
-  never a basis for `fixed-verified`. Otherwise leave the finding `open` with a note.
+- **Fixed means re-read, with the corrected text.** On a recheck, set `fixed-verified` only after
+  re-reading the revised passage against the authority, and copy that revised passage into
+  `resolution.corrected_text`; the recorder and the gate reject text that is not in the current
+  draft. A change log, a writer's assertion, a proposed replacement, or a coordinator's summary is
+  never a basis for `fixed-verified`. Otherwise leave the finding `open` with a note. Only you may
+  withdraw a finding you raised; a legal-accuracy or citation finding is never closed by
+  coordinator acceptance.
+- **Categories.** Tag each finding `legal-accuracy`, `citation`, or `promise` (scope-of-service or
+  outcome implications) so the gate applies the protected-closure rule.
+- **Repeated citations.** One authority keeps one number and may be cited at several claims;
+  check every occurrence. Judge the source count by claim coverage, not by a fixed maximum.
 - **Verdict mapping.** `Ready` -> `ready`; `Ready after the required revisions` ->
   `ready-with-revisions`; `Not ready` -> `not-ready`.
 - **Voice source.** Load only the voice source pinned in `run.json` (resolved by exact domain

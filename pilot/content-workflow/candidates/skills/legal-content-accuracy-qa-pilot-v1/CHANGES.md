@@ -11,6 +11,10 @@ Baseline: `.agents/skills/legal-content-accuracy-qa` at the hashes recorded in `
 | 4 | Unstructured findings could not be tracked across rounds. | Structured JSON findings (`L1`, `L2`, ...) with exact passage quotes, evidence, requested correction, and resolution status, plus the Verification Log as `verification_log`. | `## Pilot workflow contract` |
 | 5 | No explicit no-delegation rule. | Added. Enforced on Claude by the adapter's tool allowlist; instruction-only on Codex. | `## Pilot workflow contract` |
 
+| 6 | Legal verification arrived only after drafting (patch F01). | Three modes: `predraft` (planned claims verified before drafting; writer may use only Confirmed claims), `checkpoint`, `final`; the gate requires the predraft record and coverage of every citation (integrated 2026-09-23). | `## Pilot workflow contract` |
+| 7 | A suggested correction or coordinator note could close a legal error (patch F02/C06). | `fixed-verified` needs `corrected_text` present in the draft; only the raising reviewer withdraws; legal-accuracy, citation, and promise findings are protected from coordinator acceptance (integrated 2026-09-23). | `## Pilot workflow contract` |
+| 8 | Citation identity confused with occurrences (patch F08). | One number per authority, repeat citations allowed and every occurrence checked; coverage governs the count (integrated 2026-09-23). | `## Pilot workflow contract` |
+
 Preserved unchanged: live-verification mandate, source hierarchy, the nine-step protocol,
 absolute-language check, output sections, practice-area checklists, attorney-review caveat.
 

@@ -50,8 +50,11 @@ placeholder or citation-marker check of its own.
 
 ## Test evidence
 
-- `pilot/content-workflow/tests/test_readiness.py`: 40 tests, all passing on 2026-09-23 after
-  both independent review rounds (Python 3.14.6, Node 20.20.1, about 27 seconds). The fixture is
+- `pilot/content-workflow/tests/test_readiness.py`: 55 tests, all passing on 2026-09-23 (about
+  two minutes; every READY fixture is rendered through the pinned renderer) after
+  both independent review rounds and the comparison-patch integration (pre-draft legal
+  verification, required checkpoints, render inspection bound to the export hash, protected
+  closure categories, coverage-based source ceiling, export cleanliness) (Python 3.14.6, Node 20.20.1). The fixture is
   generator-backed: every run builds its export with the candidate's real
   `build-situational.js`, renders `draft.md` from the same manifest with
   `scripts/render_draft.py`, and executes the candidate's structural and page validators
@@ -67,7 +70,7 @@ placeholder or citation-marker check of its own.
   echoed hash, missing agent file), delivery refusal (incomplete and fixture), delivery success,
   adapter sync, routing parity with `AGENTS.md`, single-source placeholder grammar, candidate
   manifests and baseline provenance, and the candidate regression suite.
-- Candidate `scripts/test-situational.py`: 34 cases (21 baseline cases unchanged plus 13 new),
+- Candidate `scripts/test-situational.py`: 38 cases (21 baseline cases unchanged plus 17 new),
   all passing.
 - Baseline suites unchanged and still passing: `.codex/hooks/test-seo-learning-loop.py` (8),
   `.codex/hooks/test-mempalace-recall-reminder.py` (6), baseline
@@ -114,25 +117,222 @@ lesson ("walk the documented failure-then-repair path through a gate, not just t
 passing path") is recorded here as a hypothesis for the `seo-reviewer` role and is not
 promoted.
 
+## Independent review of the refinement integration (2026-09-23, two rounds)
+
+The same read-only `seo-reviewer` reviewed the comparison-patch integration. Round 1 returned
+one blocker and eight material items; round 2 (recheck of the changed surfaces) returned no
+blocker, three material items, one optional item, and three design notes. Dispositions, each
+checked against the code and covered by a test where the row names one:
+
+| Finding | Disposition |
+|---|---|
+| B1: a failed render record followed by a passing one could never reach READY (the render-inspector finding stayed "dropped") | Confirmed and fixed: render-inspector findings are gated like mechanical ones (currency, verdict, and no unresolved blocking/major render finding); `attest()` refuses `pass` with such a finding; test `test_render_fail_then_reexport_then_pass_is_ready`. |
+| M1: closure could be self-referential; severity, category, or raising agent could drift between records; an unmapped agent name was accepted | Fixed: the origin record fixes all three (`FINDING_DRIFT`); `fixed-verified` requires `verified_by` and the closing record's agent to equal the raising agent; the recorder refuses unmapped `claude`/`codex` agents; test `test_closure_is_origin_based_and_drift_is_refused`. |
+| M2: no sanctioned path for coordinator acceptance | Fixed: `dispose_finding.py` writes `reviews/coordinator-dispositions.json` (major, non-protected, rationale of 40+ characters, bound to the draft hash). Regression found by `test_major_finding_disposition` and fixed: `review_files()` no longer loads that file as a review record. |
+| M3: `corrected_text` was presence-only | Fixed: 20+ characters, different from the targeted quote, present in the draft (recorder and gate); `test_protected_findings_need_reviewer_evidence_to_close`. |
+| M4: nothing proved pre-draft verification preceded drafting | Fixed: the recorder refuses a round-0 predraft record when `draft.md` or `manifest.json` exists; `LEGAL_PREDRAFT_LATE`; coverage is the union of `Confirmed` URLs across current predraft records; `test_predraft_must_precede_drafting`. |
+| M5: stale "cite once" wording | Fixed in `link-and-cta-limits.md`, the situational candidate (`SKILL.md` in-body format, footnote convention, single-placement scope clarification), `LOCAL-REPLACEMENT.md`, the template, and the candidate `CHANGES.md` (round-2 finding A1 caught the last two passages). Editing the pinned `SKILL.md` invalidates existing pins by design; the Sterling run was re-pinned. |
+| M6: E05 exclusion misattributed to V2 | Fixed: the reason now says V2 governs targets, not placement counts. |
+| M7: render attestation not bound to page content | Fixed on the sanctioned path (`attest()` requires three consecutive words of the page text) and, after round-2 finding A2, mirrored in the gate: `RENDER_EVIDENCE_MISMATCH` when a page text file is missing or changed, `RENDER_UNINSPECTED` when an observation does not quote the page, `RENDER_FAILED` for an unresolved blocking or major render finding; `render()` fails closed when the wrapper emits no PDF or an empty page text; `test_gate_reapplies_render_attestation_rules_to_hand_written_records`. |
+| M8: compatibility sentence; open questions 1 and 5 | Fixed: the compatibility sentence (validation requirement replaced, not removed) is in the adopted table; open questions 1 and 5 closed with evidence. |
+| Round 2 A3: this review was not in the record; counts stale | Fixed: this section; counts updated (55 tests). |
+| Round 2 A4: the canonical rules did not state the render-record rule | Fixed in `workflow-rules.md`. |
+| Round 2 design notes (optional) | `dispose_finding.py` now walks records in gate order (`record_order_key`); the `dropped`-status disposition is stated in `workflow-rules.md`; the agent-name equality question is recorded as open question 8. |
+| Recorder crash on a predraft record (found on the Sterling run, not by the reviewer) | The recorder's summary line indexed a missing draft hash after writing the record; fixed and covered by `test_record_review_cli_records_predraft_before_any_draft_exists`. |
+| Render-observation matcher brittleness (found on the Sterling run, not by the reviewer) | The three-consecutive-words binding compared raw whitespace tokens, so a genuine quote written as `H1 'High-Conflict Divorce in Wisconsin',` failed on the attached quote mark and comma (the round-0 attestation had passed on a different phrase). `observation_matches_page()` now strips punctuation attached to words on both sides before matching; the rule itself (three consecutive page words, in order) is unchanged; `test_observation_match_ignores_attached_punctuation`. |
+| Record ordering defect (found on the Sterling run, not by the reviewer) | A supplementary pre-draft record recorded as round 1 (one extra Confirmed row for a cited statute) sorted after the round-0 checkpoint, so the gate read the checkpoint's nine `fixed-verified` closures as "dropped" and reported two blocking and three major findings unresolved. `record_order_key()` now places every pre-draft record (no draft to bind to) before every draft-bound record, then orders by round, stage, time; `test_supplementary_predraft_record_does_not_outrank_the_checkpoint`. |
+
+Reviewer disagreement preserved: the reviewer left open whether closure should require the
+identical raising agent name or the same role (mixed-host or attorney rechecks); recorded as
+open question 8, not decided. The reviewer's candidate lesson ("for each script that writes a
+review record, enumerate its refusal rules and add a gate test that a hand-written record
+violating each rule is refused") is scenario-checked once here (A2 was exactly such a miss) and
+is recorded as a hypothesis for the `seo-reviewer` role, not promoted.
+
 ## Open questions (UNRESOLVED; not guidance)
 
-1. Whether "cite once at first mention" should permit a second hyperlinked reference to the
-   same authority on long pages. The pilot enforces once.
+1. Resolved 2026-09-23: a source keeps one number and is cited again wherever it supports a
+   later material claim (integrated from the comparison patch).
 2. Whether the bracket-token placeholder rule should exempt an allowlist (for example
    "[sic]"). No legitimate bracketed prose appears in the situational contract today.
-3. Whether checkpoint reviews should be mandatory rather than skippable with a recorded
-   reason. The pilot requires only the three final reviews; a checkpoint kind added to
-   `reviews.required` is satisfied by presence and shape.
+3. Resolved 2026-09-23 for family-law page kinds: legal and editorial checkpoints and the legal
+   pre-draft record are required by `required_review_floor()`; a checkpoint kind is satisfied
+   by presence and shape. Whether other page kinds should require checkpoints stays open.
 4. Codex cannot restrict a custom agent's tools or spawning by configuration (only
    `sandbox_mode`); the no-delegation rule is instruction-only there. Revisit when the Codex
    custom-agent format gains a tool or depth restriction.
-5. The pinned Core renderer fails closed on this machine, so rendered-page inspection of any
-   DOCX remains unavailable to the pilot. The pilot does not substitute a renderer.
+5. Resolved for the pilot 2026-09-23: the situational candidate carries its own hash-pinned
+   render wrapper on the installed renderer release. The production Core wrapper still fails
+   closed and is a separate production repair.
 6. `render_draft.py` supports only the FL-M008 manifest shape. Extending the workflow to
    another page type needs a renderer for that skill's manifest (or a skill that writes
    Markdown directly) before parity checks can apply.
 7. Whether `ready-with-revisions` with only minor findings should be deliverable is a
    coordinator preference; the pilot allows it and reports the open minors.
+8. Closure identity: `fixed-verified` requires the closing record's agent to equal the raising
+   agent's name, so a finding raised by `legal-reviewer` (Claude) cannot be closed by
+   `legal_reviewer` (Codex) or by a named attorney under `--runtime human`. Whether same-role
+   closure should suffice for mixed-host or attorney rechecks is undecided (reviewer round 2,
+   2026-09-23); until decided, the raising agent rechecks.
+9. `deliver.py` copies the export and the machine-readable reports but produces no reader-facing
+   cover note, so the brief basis, attorney-review requirement, and client confirmation items do
+   not travel with a hand-off unless the coordinator writes them by hand (seo-reviewer B1,
+   2026-09-23). Whether the run should declare disclosures in `run.json` for the delivery step to
+   render is undecided.
+10. The situational candidate's classification gate screens the parent hub and procedural pages
+   but not sibling situational nodes in other clusters that share the page's defining term
+   (seo-reviewer M1: FL-M008 versus the live FL-M039 High-Conflict Custody page). Whether the
+   intake or the editorial checkpoint should require that screen, and where the shared statutory
+   explanation should live, is undecided; hypothesis from one run.
+
+## Refinements integrated from `SEO_Dept_Refined_Content_Skills_v1.patch` (2026-09-23)
+
+The patch (32 files under `skill-releases/family-law-content-pilot-v1/`, not applied) was treated
+as comparison material. Its `INTEGRATE.md` itself asks for one coordinator and one readiness
+implementation; the existing pilot stays canonical and the useful refinements were folded into it.
+
+### Adopted
+
+| Patch idea (source) | Integration in the existing pilot | Enforcement |
+|---|---|---|
+| Legal verification before drafting (C04 step 2, F01) | New `legal-predraft` record: the legal reviewer verifies every planned material claim live and returns a Verification Log bound to the pinned sources; the writer may draft only `Confirmed` claims; every `run.json` citation needs a `Confirmed` row | `required_review_floor()`, `LEGAL_PREDRAFT_COVERAGE`, `LEGAL_LOG_UNVERIFIED`; roles and candidate legal skill updated |
+| Required section checkpoints during drafting (C04 step 3) | Legal and editorial checkpoints are required for family-law page kinds (presence and shape); the `checkpoints.skipped_reason` escape was removed | `required_review_floor()`, `REVIEW_MISSING` |
+| Independent final review of the complete document (C04 step 4) | Already present; wording aligned (every occurrence including title, metadata, FAQs, CTAs) | unchanged gate |
+| One source identity per canonical URL, repeated citations keep their number (E04, F08) | Generator, both candidate validators, `render_draft.py`, and `cw_common.citation_issues` accept repeated `[n]`; first-appearance order and one Sources row per source kept | candidate suite cases; `citations-*` checks |
+| No arbitrary source maximum; coverage governs (E04, situational step 5) | Six is a readability guideline; seven or more require a recorded coverage rationale in the manifest and in `run.json`; twelve is a sanity limit. The V2 architecture states no source count, so the architecture contract is unaffected. Because `docs/seo-skill-compatibility.md` forbids removing a validation requirement, the baseline hard cap is replaced rather than dropped: rationale plus `LEGAL_PREDRAFT_COVERAGE` (every citation needs a Confirmed pre-draft row) plus the sanity limit | generator; `SOURCE_CEILING`, `LEGAL_PREDRAFT_COVERAGE` |
+| Evidence-based client specificity; neutral accurate law acceptable (E02, F10, editorial rubric) | Editorial role and candidate updated; rubric adapted into `references/editorial-rubric-pilot.md` with decision examples | reviewer judgment; role text |
+| Required render gate with per-page evidence (C05, records.md, output-qa) | New `render-final` record written by `scripts/render_inspect.py`: pinned renderer (observed hash recorded), every page image and its extracted text hashed, per-page observation that must quote three consecutive words present on that page, bound to the export hash; a failed inspection is repaired by re-export and a fresh render, not by carrying findings; delivery refuses without a current passing record | `RENDER_UNINSPECTED`, `RENDER_EVIDENCE_MISMATCH`, `RENDER_FAILED`, `REVIEW_STALE` |
+| Evidence-based closure (C06, F02) | Finding `category`; protected categories (`legal-accuracy`, `citation`, `client-fact`, `promise`) close only by the raising reviewer's `fixed-verified` with `corrected_text` (20+ characters, different from the targeted passage, present in the draft) or the reviewer's own withdrawal; severity, category, and raising reviewer are fixed by the first record (`FINDING_DRIFT`); coordinator acceptance is recorded only through `dispose_finding.py`, never for protected or blocking findings | `evaluate_reviews()` closure rules; recorder; `dispose_finding.py` |
+| Export reconciliation rejects fields, revisions, hidden text (CHANGELOG refinements) | `export-clean` mechanical check | `EXPORT_UNCLEAN` |
+| Repair and validate the renderer dependency without bypassing checks (user item 4) | Candidate-owned `render-situational.sh` and `renderer-tools.lock.json` pinned to the installed release 26.905.11957 by SHA-256, revalidated by reading the script and rendering an existing six-page FL-M008 DOCX; fail-closed behaviour re-tested (non-empty output dir, tampered hash) | wrapper; `render_inspect.py` |
+
+### Excluded, with reasons
+
+| Patch element | Reason |
+|---|---|
+| `scripts/content_gate.py`, `job.json` / `draft.json` schema, `validate_release.py` | A second controller and a second record schema. The existing `run.json` + generator manifest + `readiness_check.py` remain the single implementation; equivalent checks were added where missing |
+| python-docx `build` exporter | The FL-M008 route already has a tested generator with the V2 link contract; a second exporter would fork the artifact path |
+| `reviewer_context_id` independence check | Claude's Agent tool exposes no context id to the subagent; the pilot records agent name, adapter file, and hash instead and states that it cannot authenticate who produced a record |
+| `READY_FOR_HUMAN_REVIEW` label | The pilot's `READY` already carries the same meaning in every report notice; renaming would churn tests and docs without changing behaviour |
+| Link policy by purpose with `repeat_editorial` exceptions (E05) | The baseline skill's single-placement rule for internal links is retained in the FL-M008 local contract (one parent-hub link, one `FL-M004` bridge, one CTA); V2 governs which targets may be linked, not placement counts, and there is no evidence yet for placement exceptions. The limits table already permits repeated citations and CTA sentences. Kept as an open question for other page kinds |
+| Five separately named `seo-pilot-*` skills | The existing uniquely named candidates cover the same roles; adding a second skill set would create duplicate names and two policy sets |
+| Editorial rubric's relaxation of the three-sentence paragraph rule to "diagnostic" | The FL-M008 generator and validators enforce the baseline three-sentence rule; relaxing it is a candidate change with no evidence yet |
+| Publisher metadata kept out of the consumer DOCX (F09/E06) | The FL-M008 generator's publisher block before the H1 is the baseline artifact the client team reviews; the readiness check already excludes everything before the H1 from parity and reads metadata separately. Changing the artifact shape is a Core-route decision |
+
+### Reconciliation of the MemPalace lesson with this record
+
+On 2026-09-23 the coordinator saved one `REUSABLE LESSON` drawer in the `seo_dept`
+`shared-methodology` room (`drawer_seo_dept_shared-methodology_934b8897e054f3d888923a41`,
+`source_file` pointing here). This record previously described the same lesson as "recorded here
+as a hypothesis and not promoted", which read as a contradiction. The precise state is:
+
+- The lesson is retained in MemPalace for cross-session continuity with verification state
+  "scenario-checked twice within one task; not yet exercised on a later task". A MemPalace drawer
+  is reference evidence, not an instruction (`AGENTS.md`, "MemPalace recall and retention").
+- It has not been promoted into any owning instruction, skill, checklist, or validator
+  (`AGENTS.md`, `learning/README.md`, reviewer definitions). Promotion needs the
+  `learning/README.md` cycle and a further natural case.
+- The round-2 recheck narrowed the lesson ("re-walk the operator procedure whenever a repair adds
+  gate conditions"); that narrower form is documented above and not saved separately.
+
+"Unpromoted" therefore means "not an instruction"; "saved" means "retrievable evidence". Both are
+true.
+
+A second drawer was saved on 2026-09-23 after the Sterling end-to-end run
+(`drawer_seo_dept_shared-methodology_526d63d2d8ad00a009288c08`, `source_file` pointing here):
+`REUSABLE LESSON`, a plain-language gloss of a legal term is itself a legal claim and must not name
+a party, actor, or standard the statute does not name; reviewer-proposed wording carries no
+verification of its own. Verification state recorded in the drawer: execution-verified on one run
+(the E5 gloss became L15 and was cured against live authority); hypothesis until a second run. It
+is likewise retrievable evidence, not an instruction; promotion into the candidate legal and
+editorial skills follows `learning/README.md`. The reviewer-proposed candidate lessons from this
+run that were not saved (recheck method after a hash change; quote a whole lettered paragraph
+when it creates a presumption; state which word counter gates a run) are recorded in the run's
+review records and in the end-to-end section below as hypotheses only.
+
+## End-to-end client run: Sterling Lawyers FL-M008, Wisconsin (2026-09-23)
+
+One complete run of the pilot on a real client page, as the second task requested. The run
+directory `runs/sterling-fl-m008-wisconsin-2026-09-23/` and the delivery directory are
+Git-ignored (client material); `coordinator-log.md` in the run is the coordinator's timeline.
+Nothing was published. The deliverable is a DOCX review copy for attorney and client review.
+
+**Scope and inputs.** Sterling Lawyers, LLC (sterlinglawyers.com), Wisconsin, node FL-M008
+(Practice-Area Situational Page, high-conflict divorce), retained URL
+`/wisconsin/divorce/high-conflict-divorce/`; voice `sterling-voice` by exact domain route;
+architecture links per V2 (parent hub FL-PA-DIV, bridge FL-M004, consultation CTA), each
+destination checked live (200, no redirect, self-canonical). Brief basis, disclosed in the run:
+no client-approved brief document exists under `clients/sterling/`; the run used the V2 node
+brief, the voice skill as the approved brand source, and `sources/client-facts.md` compiled from
+the voice skill and first-party pages checked live on 2026-09-23, which states that nothing in
+it was confirmed by a client call, a signed brief, or an intake test.
+
+**Sequence and outcome.**
+
+| Stage | Result |
+|---|---|
+| Pre-draft legal verification (Claude `legal-reviewer`, live fetch of eight Wisconsin statutes, banner "Published 9-4-26") | 10 planned claims confirmed only in narrowed wording; two planned claims were wrong (hybrid abuse-presumption standard; harassment ban attributed to § 767.225 instead of § 767.117); supplementary row for § 767.117 recorded as predraft round 1 |
+| Draft (Claude `content-writer`) | 1,664 consumer-copy words, eight sources cited 19 times in first-appearance order, generator and both validators exit 0; two earlier attempts failed the word ceiling |
+| Checkpoints | Legal: ready-with-revisions, L1-L9 fixed-verified with `corrected_text`, L10-L12 minor, L13-L14 notes. Editorial: not-ready, E1 major (legal name absent from body), E2 major (unsupported frequency claim), E3-E10 minor, E11-E12 notes |
+| Render round 0 (coordinator viewed all six pages) | pass; one minor pagination artifact |
+| Correction pass (writer) | 1,697 words; every required and minor finding applied; three optional notes left for budget |
+| Finals round 0 | Editorial ready-with-revisions (E1-E10, E12 fixed-verified; E11 withdrawn; new E13, E15 notes; E14 minor: the editorial reviewer's own proposed gloss named a rebutting party). Legal not-ready: L15 major, the same gloss, verified against § 767.41(2)(b)2.c and § 903.01; 38 log rows, 37 Confirmed, 1 Correction-needed |
+| Repair round 2 (writer) | one sentence; word-neutral; writer diffed against the round-0 hash and re-matched all 22 `corrected_text` strings |
+| Finals round 1 | Both ready. Legal: L1-L12 and L15 fixed-verified against the final hash, L13-L14 withdrawn, 38 of 38 rows Confirmed. Editorial: E1-E10, E12, E14 fixed-verified; E13, E15 open as note-severity optional improvements |
+| Mechanical round 1; render round 2 (all six pages viewed) | pass; pass (R1 resolved by re-export, R2 minor phone-number line wrap in the review copy) |
+| Readiness and delivery | READY with all seven required records current and hash-bound; `deliver.py` copied four files to the ignored delivery directory |
+
+**Distinguished results.**
+
+- Successful delegation: Claude `content-writer` (three dispatches), `legal-reviewer` (five:
+  pre-draft, supplementary pre-draft, checkpoint, final, recheck), `editorial-reviewer` (three).
+  Every reviewer wrote nothing; the writer wrote only inside the run. Codex was not used for
+  this run; its delegation evidence is the headless smoke tests recorded below.
+- Successful rejection: the gate refused delivery at every intermediate state with the expected
+  reasons (`MECHANICAL_FAILED` for the missing legal name, `REVIEW_MISSING`, stale
+  `fixed-verified` after each draft-hash change, `REVIEW_VERDICT_BLOCKING` and
+  `LEGAL_LOG_UNVERIFIED` for L15); `render_inspect.py --attest` refused an attestation whose
+  observation quoted the H1 with an attached quote mark and comma (a matcher defect, fixed
+  below, not a rule change).
+- Successful end-to-end completion: READY reached after two repair rounds, the pilot's cap.
+
+**Defects the run exposed in the pilot, each fixed with a test.** Recorder crash on a pre-draft
+record; supplementary pre-draft record (round 1) outranking the round-0 checkpoint in gate
+order; observation matcher defeated by punctuation attached to words; candidate template page
+contract still worded for Florida. Recorded in the review table above.
+
+**Decision (coordinator).** The pinned generator's consumer-copy word count governs the skill's
+word target (1,697 of 1,700 here). The mechanical parity counter reports 1,702 for both draft
+and export because it tokenizes with a Unicode word regex while the generator uses an ASCII
+one; the parity count exists to compare draft and export with each other and is informational
+for the ceiling. No code change; stated here and in the README.
+
+**Independent SEO review of the deliverable (read-only `seo-reviewer`, 2026-09-23).** READY is
+supported by the records (every required record bound to the final hashes; blocking and major
+closures by the raising reviewers with `corrected_text` present in the draft; the reviewer viewed
+all six round-2 pages itself). Dispositions:
+
+| Finding | Disposition |
+|---|---|
+| B1 (hand-off blocker): the delivery folder carried no reader-facing disclosure of the brief basis, attorney-review requirement, or client confirmation items | Fixed: `COVER-NOTE.md` added to the delivery folder and the run (Git-ignored with them). Scope was the hand-off only; READY is unaffected. Open question 9 records the tooling gap |
+| M1: Sterling's live High-Conflict Custody page (V2 FL-M039) covers the same joint-custody presumption, sole custody, abuse presumption, guardian ad litem, and mediation material; `excluded_intents` listed only the hub and the contested procedure | Accepted as a pre-publication dependency: decide which page owns the § 767.41 explanation, trim this page's custody-law depth, add the sibling to `excluded_intents`. Needs a content round beyond the pilot's two-repair cap, so it is recorded (cover note; open question 10) rather than applied; a manifest edit now would invalidate every hash-bound record |
+| M2: no Search Console baseline or post-publication check for replacing a roughly 3,500-word indexed page with 1,697 words | Accepted as a measurement limitation; steps in the cover note |
+| M3: the fixed-total fee sentence and the single Legal Team tier are accurate to the approved first-party sources but incomplete against the live pricing page (monthly starting figure with a total range; two Legal Team tiers) | Accepted as client confirmation items in the cover note; nothing asserted |
+| M4: two gate scripts changed mid-run | Disclosed above (record ordering; observation matcher), each with a regression test; suites green after the changes |
+| O1-O6 (answer-first opening; a causal connector in the firm sentence; `voice-route` labelled `kind: "brief"` in run.json; metadata fine; R2; readiness report shows the supplementary pre-draft as "current") | Recorded for a later round; O3 left unchanged to preserve the delivered `run.json` hash |
+
+Reviewer disagreement preserved: whether the custody-law depth is a defect or the consequence of
+correctly narrowed legal wording (exceptions must stay); and the live page's word count is an
+estimate from two sources that differ by about 1,000 words.
+
+**Remaining limitations, to be stated in any hand-off.** Attorney review before publication is
+still required (every legal record says so). No signed client brief. Client confirmation items
+surfaced by the editorial reviewer: the voice skill describes Contested pricing as
+"monthly-style starting figures with total ranges" while the approved live-page sentence says
+the total cost is defined before work starts; and "how a fixed fee fits your case" implies the
+strategy session covers fee scope, which the client facts do not publish. Open note-severity
+items E13, E15, and R2 are visible in the records. The interactive Codex session remains
+untested.
 
 ## Host verification record (2026-09-23)
 
@@ -197,11 +397,39 @@ Installed versions: Claude Code 2.1.277 (`~/.local/bin/claude`); Codex CLI 0.155
   `disable-model-invocation` key still present, so the symlinked skill directory is followed and
   the extra key does not break Codex parsing. Files were restored byte-for-byte afterward.
   The render does not list custom agents, so agent discovery could not be confirmed offline.
-- Live delegation: NOT VERIFIED. No Codex session was started from this task (it would spend
-  the user's Codex session and needs the interactive host). Exact instruction: open Codex at
-  `/Users/rocketclicks_1/SEO_Dept` on branch `content-workflow-pilot` after
-  `sh pilot/content-workflow/scripts/activate.sh`, then send
-  `$content-workflow pilot/content-workflow/runs/smoke-gomez-nunez-2026-09-23` and ask it to
-  dispatch `legal_reviewer` for a stage-final round-0 review only; confirm in the thread that a
-  custom agent named `legal_reviewer` ran and that it wrote no file. Until that succeeds, Codex
-  is unverified for this workflow.
+- Live delegation (headless, 2026-09-23, `codex exec --sandbox read-only --ephemeral --json`,
+  codex-cli 0.155.0-alpha.16.3, from the repository root):
+  - First attempt with the symlinked `.codex/agents/legal_reviewer.toml`: the model tried to spawn
+    `legal_reviewer` and Codex core logged `agent type is currently not available`; delegation
+    failed. Probes then showed the regular-file project agent `seo_reviewer` and a regular-file
+    copy of the pilot adapter both spawned and replied, while the built-in `explorer` did not
+    spawn in exec mode. Conclusion: Codex follows symlinked skill directories but not symlinked
+    agent files. `activate.sh` now installs the three Codex agents as byte copies of the generated
+    adapters (rollback removes an unmodified copy); `build_adapters.py` stays the only authoring
+    point.
+  - Second attempt after re-activation: Codex spawned `legal_reviewer` (thread
+    `/root/legal_reviewer`), which read the smoke draft, reported its H1, heading count, and marker
+    form, and confirmed it wrote nothing; the parent wrote nothing. A trailing
+    `collab spawn failed: no thread with id` router error appeared after the reply in every
+    successful probe and did not affect the result; it is recorded, not explained.
+  - Raw evidence: `runs/smoke-gomez-nunez-2026-09-23/smoke-logs/codex-*.{jsonl,txt,err}`
+    (Git-ignored).
+  - Third and fourth attempts (later on 2026-09-23, same binary at
+    `~/.vscode/extensions/openai.chatgpt-26.917.62051-darwin-arm64/bin/macos-aarch64/codex`;
+    `codex` is not on `PATH` in this shell): `editorial_reviewer` spawned under
+    `--sandbox read-only`, read the smoke draft, reported its H1, heading count, and client-name
+    paragraph count, and wrote nothing; no router error this time. `content_writer` spawned under
+    `--sandbox workspace-write` "on retry" (the parent's first spawn call logged the same
+    `collab spawn failed: no thread with id` router error, then succeeded), read the draft, and
+    created exactly the one requested file `smoke-logs/codex-writer-touch.txt`; `git status`
+    before and after showed no tracked-file change. Evidence:
+    `smoke-logs/codex-{prompt,events,last-message}-{editorial,writer}.*`, `codex-writer-touch.txt`.
+    All three Codex agents are therefore verified for headless delegation; the trailing router
+    error remains recorded, not explained.
+  - No interactive Codex session was used. Remaining instruction for the interactive check: open
+    Codex at `/Users/rocketclicks_1/SEO_Dept` on branch `content-workflow-pilot` after
+    `sh pilot/content-workflow/scripts/activate.sh`, then send
+    `$content-workflow pilot/content-workflow/runs/smoke-gomez-nunez-2026-09-23` and ask it to
+    dispatch `legal_reviewer` for a stage-final round-0 review only; confirm in the thread that a
+    custom agent named `legal_reviewer` ran and that it wrote no file. Until that succeeds, the
+    interactive Codex path is unverified for this workflow.

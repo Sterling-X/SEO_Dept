@@ -1,32 +1,300 @@
 {
   "$comment": "Documentation-grade schema for reviews/*.json (content-workflow-review/v1). Validated by scripts/record_review.py and scripts/readiness_check.py with a hand-written checker.",
   "type": "object",
-  "required": ["schema", "role", "stage", "round", "verdict", "findings", "subject", "reviewer", "recorded_at"],
+  "required": [
+    "schema",
+    "role",
+    "stage",
+    "round",
+    "verdict",
+    "findings",
+    "subject",
+    "reviewer",
+    "recorded_at"
+  ],
   "properties": {
-    "schema": {"const": "content-workflow-review/v1"},
-    "fixture": {"type": "boolean"},
-    "role": {"enum": ["legal-reviewer", "editorial-reviewer", "mechanical-qa"]},
-    "stage": {"enum": ["checkpoint", "final"]},
-    "round": {"type": "integer", "minimum": 0},
-    "verdict": {"enum": ["ready", "ready-with-revisions", "not-ready", "pass", "fail"]},
-    "kind": {"enum": ["judgment", "mechanical"]},
-    "judgment_notice": {"type": "string"},
-    "subject": {"type": "object", "required": ["draft_sha256"], "properties": {"draft_sha256": {"type": "string"}, "export_sha256": {"type": ["string", "null"]}, "sources_sha256": {"type": "object"}}},
-    "reviewer": {"type": "object", "required": ["runtime", "agent"], "properties": {"runtime": {"enum": ["claude", "codex", "script", "human"]}, "agent": {"type": "string"}, "agent_file": {"type": ["string", "null"]}, "agent_file_sha256": {"type": ["string", "null"]}}},
-    "recorded_at": {"type": "string"},
-    "findings": {"type": "array", "items": {"type": "object", "required": ["id", "severity", "passage", "issue", "evidence", "requested_correction", "resolution"], "properties": {
-      "id": {"type": "string", "pattern": "^[LEM][0-9]{1,3}$"},
-      "severity": {"enum": ["blocking", "major", "minor", "note"]},
-      "passage": {"type": "object", "required": ["location", "quote"], "properties": {"location": {"type": "string"}, "quote": {"type": "string", "minLength": 8}}},
-      "issue": {"type": "string", "minLength": 8},
-      "evidence": {"type": "object"},
-      "requested_correction": {"type": "string"},
-      "resolution": {"type": "object", "required": ["status"], "properties": {"status": {"enum": ["open", "fixed-verified", "fixed-unverified", "disputed", "withdrawn", "coordinator-accepted"]}, "verified_against_draft_sha256": {"type": ["string", "null"]}, "verified_by": {"type": ["string", "null"]}, "note": {"type": ["string", "null"]}}}
-    }}},
-    "verification_log": {"type": "array"},
-    "checks": {"type": "array", "description": "mechanical-qa only: [{name, status: pass|fail, detail}]"},
-    "validators": {"type": "array", "description": "mechanical-qa only: [{name, command, exit_code, output_tail}]"},
-    "checks_not_performed": {"type": "array"},
-    "learning_contribution": {"type": "object"}
+    "schema": {
+      "const": "content-workflow-review/v1"
+    },
+    "fixture": {
+      "type": "boolean"
+    },
+    "role": {
+      "enum": [
+        "legal-reviewer",
+        "editorial-reviewer",
+        "mechanical-qa",
+        "render-inspector"
+      ]
+    },
+    "stage": {
+      "enum": [
+        "predraft",
+        "checkpoint",
+        "final"
+      ]
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "verdict": {
+      "enum": [
+        "ready",
+        "ready-with-revisions",
+        "not-ready",
+        "pass",
+        "fail",
+        "pending"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "judgment",
+        "mechanical"
+      ]
+    },
+    "judgment_notice": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "object",
+      "required": [
+        "draft_sha256"
+      ],
+      "properties": {
+        "draft_sha256": {
+          "type": "string"
+        },
+        "export_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sources_sha256": {
+          "type": "object"
+        }
+      }
+    },
+    "reviewer": {
+      "type": "object",
+      "required": [
+        "runtime",
+        "agent"
+      ],
+      "properties": {
+        "runtime": {
+          "enum": [
+            "claude",
+            "codex",
+            "script",
+            "human"
+          ]
+        },
+        "agent": {
+          "type": "string"
+        },
+        "agent_file": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "agent_file_sha256": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "recorded_at": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "category",
+          "passage",
+          "issue",
+          "evidence",
+          "requested_correction",
+          "resolution"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[LEMR][0-9]{1,3}$"
+          },
+          "severity": {
+            "enum": [
+              "blocking",
+              "major",
+              "minor",
+              "note"
+            ]
+          },
+          "passage": {
+            "type": "object",
+            "required": [
+              "location",
+              "quote"
+            ],
+            "properties": {
+              "location": {
+                "type": "string"
+              },
+              "quote": {
+                "type": "string",
+                "minLength": 8
+              }
+            }
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 8
+          },
+          "evidence": {
+            "type": "object"
+          },
+          "requested_correction": {
+            "type": "string"
+          },
+          "resolution": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "open",
+                  "fixed-verified",
+                  "fixed-unverified",
+                  "disputed",
+                  "withdrawn",
+                  "coordinator-accepted"
+                ]
+              },
+              "verified_against_draft_sha256": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verified_by": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "note": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "corrected_text": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "revised passage the reviewer re-read; must appear in the current draft"
+              }
+            }
+          },
+          "category": {
+            "enum": [
+              "legal-accuracy",
+              "citation",
+              "client-fact",
+              "promise",
+              "brand",
+              "structure",
+              "brief",
+              "mechanical",
+              "render",
+              "other"
+            ],
+            "description": "legal-accuracy, citation, client-fact, and promise are protected: no coordinator acceptance; fixed-verified needs corrected_text"
+          }
+        }
+      }
+    },
+    "verification_log": {
+      "type": "array"
+    },
+    "checks": {
+      "type": "array",
+      "description": "mechanical-qa only: [{name, status: pass|fail, detail}]"
+    },
+    "validators": {
+      "type": "array",
+      "description": "mechanical-qa only: [{name, command, exit_code, output_tail}]"
+    },
+    "checks_not_performed": {
+      "type": "array"
+    },
+    "learning_contribution": {
+      "type": "object"
+    },
+    "render": {
+      "type": "object",
+      "description": "render-inspector only",
+      "properties": {
+        "wrapper": {
+          "type": "string"
+        },
+        "renderer_release": {
+          "type": "string"
+        },
+        "renderer_sha256": {
+          "type": "string"
+        },
+        "dpi": {
+          "type": "integer"
+        },
+        "page_count": {
+          "type": "integer"
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "page",
+              "path",
+              "sha256",
+              "inspected"
+            ],
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "inspected": {
+                "type": "boolean"
+              },
+              "observation": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

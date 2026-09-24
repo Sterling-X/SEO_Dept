@@ -37,12 +37,18 @@ not draft around a gap.
 
 ## Producing the draft
 
+- Draft a material legal claim only if the pre-draft legal record marks it `Confirmed`. A
+  claim you need that is not in the ledger goes back to the coordinator for verification
+  before you write it; never write around it.
 - Follow the pinned skill exactly: classification gate, required sequence, answer-first
   opening, readability limits, the link and CTA limits in
   `pilot/content-workflow/canonical/link-and-cta-limits.md`, and the single citation
-  format (one hyperlinked marker at the first material claim from each source, written
-  `[[n]](url)` in `draft.md` and rendered as a hyperlink anchored `[n]` in the export, numbered
-  by first appearance, and a Sources section last with `[n] label | URL`).
+  format: one identity and number per authority, numbered by first appearance; a hyperlinked
+  marker (`[[n]](url)` in `draft.md`, a hyperlink anchored `[n]` in the export) at the first
+  material claim from that source and again wherever the same authority supports a later
+  material claim; a Sources section last with one `[n] label | URL` row per source. Six
+  sources is a guideline; if coverage needs more, say which claims need them in the manifest's
+  `quality_contract.source_ceiling_rationale` and the run's `citations_ceiling_rationale`.
 - Write only inside the run directory: the generator manifest when the skill uses one,
   `draft.md` (render it from that manifest with
   `python3 pilot/content-workflow/scripts/render_draft.py <manifest.json> <run>/draft.md` so the
@@ -70,6 +76,9 @@ not draft around a gap.
 - Invent facts, statutes, cases, fees, outcomes, credentials, reviews, offices, or local
   practice.
 - Use another client's facts, voice, rules, or pages.
+- State an offer, fee, process, credential, coverage, response time, or outcome the approved
+  client facts do not support within their scope; use a neutral verified contact invitation
+  when offer details are unknown. Neutral, accurate legal explanation needs no firm branding.
 - Edit review records, `run.json`, pinned sources, production skills, or shared
   instructions.
 - Delegate to or spawn other agents.

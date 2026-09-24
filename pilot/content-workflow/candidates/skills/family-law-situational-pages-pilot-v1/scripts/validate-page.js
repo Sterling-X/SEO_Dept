@@ -167,10 +167,10 @@ for (const [url, link] of expectedInternal) {
 for (const [url, source] of expectedSources) {
   const bodyUses = linkOccurrences.filter((item) => item.url === url && !item.inSources);
   const sourceUses = linkOccurrences.filter((item) => item.url === url && item.inSources);
-  if (bodyUses.length !== 1 || sourceUses.length !== 1) {
-    fail(`Source ${source.id}: expected one body citation and one Sources hyperlink; found body=${bodyUses.length}, sources=${sourceUses.length}.`);
+  if (bodyUses.length < 1 || sourceUses.length !== 1) {
+    fail(`Source ${source.id}: expected at least one body citation and exactly one Sources hyperlink; found body=${bodyUses.length}, sources=${sourceUses.length}.`);
   }
-  if (bodyUses[0] && bodyUses[0].anchor !== `[${source.id}]`) fail(`Source ${source.id}: body marker must be [${source.id}].`);
+  for (const use of bodyUses) if (use.anchor !== `[${source.id}]`) fail(`Source ${source.id}: every body marker for this source must read [${source.id}]; found ${use.anchor}.`);
   if (sourceUses[0] && sourceUses[0].anchor !== source.url) fail(`Source ${source.id}: Sources hyperlink must display the full URL.`);
 }
 fact(`${expectedInternal.size} manifested internal link(s).`);
@@ -218,8 +218,7 @@ if (firstSeenIds.join(",") !== expectedSourceIds.join(",")) {
   fail(`Citation markers by first appearance [${firstSeenIds.join(", ")}] do not match manifest source order [${expectedSourceIds.join(", ")}].`);
 }
 for (const id of new Set(consumerMarkerIds)) {
-  const uses = consumerMarkerIds.filter((item) => item === id).length;
-  if (uses !== 1) fail(`Citation marker [${id}] appears ${uses} times in consumer copy; each source is cited exactly once.`);
+  if (!expectedSourceIds.includes(id)) fail(`Citation marker [${id}] has no manifested source.`);
 }
 const hyperlinkedMarkers = linkOccurrences.filter((item) => !item.inSources && /^\[\d+\]$/.test(item.anchor)).length;
 if (hyperlinkedMarkers !== consumerMarkerIds.length) {

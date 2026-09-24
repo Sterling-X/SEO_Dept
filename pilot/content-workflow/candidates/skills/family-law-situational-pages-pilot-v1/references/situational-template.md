@@ -10,9 +10,9 @@
 
 The page owns the reader's high-conflict circumstance: repeated escalation, difficult communication, control or non-cooperation, parenting friction, safety concerns, financial opacity, and the practical need for structure. It does not own:
 
-- a broad explanation of Florida divorce;
+- a broad explanation of divorce in the page's jurisdiction (the parent Core hub owns that);
 - the procedural lifecycle of a Contested Divorce case;
-- a complete treatment of parenting plans, equitable distribution, alimony, mediation, discovery, enforcement, or protective orders; or
+- a complete treatment of parenting plans or placement schedules, property division, alimony or maintenance, mediation, discovery, enforcement, or protective orders; or
 - a diagnostic label for either spouse.
 
 Use selective legal and procedural explanation only when it helps the reader understand what makes the high-conflict circumstance consequential or what decision to make next.
@@ -69,7 +69,7 @@ Supported run types:
 {"type":"citation","source_id":1,"text":"[1]"}
 ```
 
-The first two content blocks must be paragraphs. A body citation must appear once at the first material claim supported by that source, numbered by first appearance; the generator creates the matching Sources row `[n] label | URL` with the manifest label verbatim, and the validators check marker set, order, count, Sources-row id, label, and URL. The body-marker plus Sources-row pairing is the required footnote convention, not a duplicate URL.
+The first two content blocks must be paragraphs. A body citation appears at the first material claim supported by that source, numbered by first appearance, and may reappear with the same number wherever that source supports a later material claim; the generator creates the matching Sources row `[n] label | URL` with the manifest label verbatim, and the validators check marker set, order, count, Sources-row id, label, and URL. The body-marker plus Sources-row pairing is the required footnote convention, not a duplicate URL.
 
 ## Link authority rule for this local route
 
@@ -90,4 +90,4 @@ All four authority types retain the common dated destination evidence, right-ser
 - Arial 12 pt body, H1 18 pt, H2 15 pt, H3 13 pt; US Letter; one-inch margins.
 - No em dashes, tag-on link language, or duplicate internal destination URLs.
 - No placeholder of any form at delivery. `[LOCAL DETAIL: ...]` is the only valid interim form and is reported, never delivered; bracketed non-numeric tokens, `{{...}}`, `<<...>>`, `TODO`, `TBD`, `FIXME`, `XXX`, `TK`, and `lorem ipsum` fail validation.
-- No more than six sources; every material legal claim still requires assignment-specific live primary-authority verification.
+- Claim coverage governs the source count: six is a guideline, more than six needs a recorded rationale, twelve is a sanity limit; every material legal claim still requires assignment-specific live primary-authority verification before drafting and again in review.

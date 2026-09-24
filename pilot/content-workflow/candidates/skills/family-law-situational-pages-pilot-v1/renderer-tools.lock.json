@@ -1,0 +1,30 @@
+{
+  "scope": "PILOT CANDIDATE v1 render dependency for the FL-M008 route. Isolated visual-review tooling; not application dependencies. Supersedes, for this candidate only, the stale pin in .agents/skills/family-law-service-pages/renderer-tools.lock.json (release 26.819.11345 is no longer installed; the baseline lock is left unchanged).",
+  "revalidated_on": "2026-09-23",
+  "revalidation": [
+    "Read the installed render_docx.py in full: it still imports only pdf2image.convert_from_path and pdf2image.pdfinfo_from_path, resolves soffice from PATH when not running inside a codex-primary-runtime tree, normalizes TMPDIR to /private/tmp on macOS, and names pages page-<n>.png.",
+    "Ran it through the isolated LibreOffice and PyMuPDF adapter on an existing six-page FL-M008 DOCX (clients/fanash/.../florida-high-conflict-divorce-situational.docx): six PNGs plus the PDF were produced in about five seconds; page 1 was viewed at original resolution with no clipping or glyph defects.",
+    "The wrapper keeps every integrity check of the baseline wrapper: exact release path, SHA-256 pin, isolated soffice and Python, explicit and empty --output_dir."
+  ],
+  "libreoffice": {
+    "reuse": "../../../../../.agents/skills/family-law-service-pages/.tools/LibreOffice.app (installed by that skill's setup-renderer-macos.sh; Git-ignored)",
+    "version": "26.8.0",
+    "dmg_sha256": "8858d8058da4f862f47559486814e65efc27294da67c5e4bb56b006b1ee59f89"
+  },
+  "python": {
+    "reuse": "../../../../../.agents/skills/family-law-service-pages/.venv (PyMuPDF==1.26.4; Git-ignored)",
+    "adapter": "scripts/render_support/pdf2image.py (byte copy of the baseline adapter)"
+  },
+  "renderer": {
+    "package_version": "26.905.11957",
+    "relative_path": "plugins/cache/openai-primary-runtime/documents/26.905.11957/skills/documents/render_docx.py",
+    "sha256": "876d5993324e2faaaa96a68a4f7504642e9a07e6df265b385b2baa03b231369e",
+    "selection": "Exact installed package path under ${CODEX_HOME:-$HOME/.codex}; wrapper fails closed if absent or changed"
+  },
+  "limitations": [
+    "The adapter implements only the two pdf2image functions the renderer uses.",
+    "A different Codex documents renderer requires explicit revalidation and a lock update.",
+    "LibreOffice pagination may differ slightly from Microsoft Word; Arial may be substituted by Liberation Sans.",
+    "The baseline Core wrapper (production) remains pinned to the uninstalled release and still fails closed; repairing it is a separate production change."
+  ]
+}

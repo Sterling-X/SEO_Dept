@@ -225,7 +225,7 @@
     },
     "citations": {
       "type": "array",
-      "maxItems": 6,
+      "maxItems": 12,
       "items": {
         "type": "object",
         "required": [
@@ -270,7 +270,7 @@
           }
         }
       },
-      "description": "legal-final, editorial-final, and mechanical-final are always required; this list may only add checkpoint kinds"
+      "description": "the floor is computed from the run (legal-predraft, both checkpoints, the three finals, and render-final for a DOCX export on family-law page kinds); this list may only add kinds"
     },
     "rounds": {
       "type": "object",
@@ -282,14 +282,6 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 2
-        }
-      }
-    },
-    "checkpoints": {
-      "type": "object",
-      "properties": {
-        "skipped_reason": {
-          "type": "string"
         }
       }
     },
@@ -312,6 +304,10 @@
           "default": true
         }
       }
+    },
+    "citations_ceiling_rationale": {
+      "type": "string",
+      "description": "required (40+ chars) when more than six citations are declared: which material claims need the additional authorities"
     }
   }
 }

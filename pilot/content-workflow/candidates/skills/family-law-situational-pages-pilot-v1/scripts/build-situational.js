@@ -408,7 +408,14 @@ for (const source of data.sources) {
     }
   }
 }
-if (data.sources.length > 6) errors.push("No more than six sources are allowed for this Situational route.");
+// PILOT CANDIDATE v1: the six-source figure is a readability guideline, not a cap. Claim coverage governs.
+// More than six sources requires a recorded rationale; twelve is a sanity limit for a 1,100-1,700 word page.
+const SOURCE_GUIDELINE = 6;
+const SOURCE_SANITY_LIMIT = 12;
+if (data.sources.length > SOURCE_SANITY_LIMIT) errors.push(`More than ${SOURCE_SANITY_LIMIT} sources exceeds the sanity limit for a Situational page.`);
+if (data.sources.length > SOURCE_GUIDELINE && String(data.quality_contract?.source_ceiling_rationale || "").trim().length < 40) {
+  errors.push(`${data.sources.length} sources exceed the ${SOURCE_GUIDELINE}-source guideline; quality_contract.source_ceiling_rationale must explain the claim coverage that requires them (at least 40 characters).`);
+}
 
 if (data.content.length < 3 || data.content[0]?.type !== "p" || data.content[1]?.type !== "p") {
   errors.push("The first two content blocks must be answer-first paragraphs.");
@@ -490,9 +497,17 @@ for (const link of data.link_manifest.filter((item) => item.supporting_authority
 for (const id of usedLinkIds) {
   if (usedLinkIds.filter((item) => item === id).length > 1) errors.push(`${id}: duplicate internal-link placement.`);
 }
+// PILOT CANDIDATE v1: one source identity per authority; the same number may be cited again wherever
+// that authority supports a later material claim. Numbering follows first appearance.
 for (const source of data.sources) {
   const uses = usedSourceIds.filter((id) => id === source.id).length;
-  if (uses !== 1) errors.push(`Source ${source.id}: body citation must appear exactly once; found ${uses}.`);
+  if (uses < 1) errors.push(`Source ${source.id}: body citation must appear at least once; found ${uses}.`);
+}
+const firstAppearance = [];
+for (const id of usedSourceIds) if (!firstAppearance.includes(id)) firstAppearance.push(id);
+const declaredOrder = data.sources.map((source) => source.id);
+if (firstAppearance.join(",") !== declaredOrder.join(",")) {
+  errors.push(`Citation markers by first appearance [${firstAppearance.join(", ")}] must match the declared source order [${declaredOrder.join(", ")}].`);
 }
 
 const consumerText = data.content.map(blockText).join(" ");

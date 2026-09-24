@@ -23,7 +23,8 @@
         "verified_against_draft_sha256": null,
         "verified_by": null,
         "note": null
-      }
+      },
+      "category": "brand"
     },
     {
       "id": "E2",
@@ -43,7 +44,8 @@
         "verified_against_draft_sha256": null,
         "verified_by": null,
         "note": null
-      }
+      },
+      "category": "client-fact"
     }
   ],
   "checks_not_performed": [],

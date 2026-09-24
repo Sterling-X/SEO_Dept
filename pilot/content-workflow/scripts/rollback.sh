@@ -1,18 +1,21 @@
 #!/bin/sh
-# Remove exactly the eight pilot activation symlinks. Never touches a non-symlink or a
-# symlink that points somewhere other than the pilot tree.
+# Remove exactly the eight pilot activation entries: five symlinks and three Codex agent copies.
+# Never touches a foreign symlink or a modified copy.
 set -eu
 repo=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
 cd "$repo"
 unlink_pilot() {
   name=$1
+  adapter="pilot/content-workflow/adapters/codex/agents/$(basename "$name")"
   if [ -L "$name" ]; then
     case "$(readlink "$name")" in
       ../../pilot/content-workflow/*) rm "$name"; echo "removed  $name" ;;
       *) echo "SKIP     $name points outside the pilot tree; left in place" ;;
     esac
+  elif [ -f "$name" ] && [ -f "$adapter" ] && cmp -s "$name" "$adapter"; then
+    rm "$name"; echo "removed  $name (byte copy of its pilot adapter)"
   elif [ -e "$name" ]; then
-    echo "SKIP     $name is not a symlink; left in place"
+    echo "SKIP     $name is not a pilot symlink or an unmodified adapter copy; left in place"
   else
     echo "absent   $name"
   fi

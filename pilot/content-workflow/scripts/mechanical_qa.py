@@ -54,6 +54,7 @@ def main() -> int:
             {
                 "id": f"M{index + 1}",
                 "severity": "blocking",
+                "category": "mechanical",
                 "passage": {"location": check.name, "quote": (check.detail or check.name)[:400].ljust(8, ".")},
                 "issue": f"mechanical check {check.name} failed",
                 "evidence": {"check": check.name, "detail": check.detail},
