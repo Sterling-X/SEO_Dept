@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "mcp__mempalace__mempalace_search",
+      "mcp__mempalace__mempalace_get_drawer",
+      "mcp__mempalace__mempalace_list_drawers",
+      "mcp__mempalace__mempalace_list_rooms",
+      "mcp__mempalace__mempalace_list_wings",
+      "mcp__mempalace__mempalace_kg_query",
+      "mcp__mempalace__mempalace_kg_timeline",
+      "mcp__mempalace__mempalace_diary_read",
+      "mcp__mempalace__mempalace_check_duplicate",
+      "mcp__mempalace__mempalace_add_drawer"
+    ],
+    "ask": [
+      "mcp__mempalace__mempalace_update_drawer",
+      "mcp__mempalace__mempalace_delete_drawer",
+      "mcp__mempalace__mempalace_delete_by_source",
+      "mcp__mempalace__mempalace_mine",
+      "mcp__mempalace__mempalace_sync",
+      "mcp__mempalace__mempalace_checkpoint",
+      "mcp__mempalace__mempalace_reconnect",
+      "mcp__mempalace__mempalace_kg_add",
+      "mcp__mempalace__mempalace_kg_invalidate",
+      "mcp__mempalace__mempalace_kg_supersede",
+      "mcp__mempalace__mempalace_create_tunnel",
+      "mcp__mempalace__mempalace_delete_tunnel",
+      "mcp__mempalace__mempalace_delete_hallway",
+      "mcp__mempalace__mempalace_diary_write",
+      "mcp__mempalace__mempalace_hook_settings",
+      "mcp__mempalace__mempalace_memories_filed_away",
+      "mcp__mempalace__mempalace_event_append",
+      "mcp__mempalace__mempalace_event_ack",
+      "mcp__mempalace__mempalace_task_create",
+      "mcp__mempalace__mempalace_artifact_put",
+      "mcp__mempalace__mempalace_patch_submit"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 \"$CLAUDE_PROJECT_DIR/.codex/hooks/seo-learning-loop-v1.py\" || exit 1",
+            "timeout": 5,
+            "statusMessage": "Checking relevant SEO lessons"
+          },
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 \"$CLAUDE_PROJECT_DIR/.codex/hooks/mempalace-recall-retention-reminder-v3.py\" || exit 1",
+            "timeout": 5,
+            "statusMessage": "Loading MemPalace recall and retention rules"
+          }
+        ]
+      }
+    ]
+  }
+}

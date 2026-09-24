@@ -20,5 +20,7 @@ For every finding, provide:
 
 End with a section named "Checks not performed" that identifies unavailable evidence, access, or tool limitations. If no material issue is found, say so directly. Do not manufacture objections merely to appear independent.
 
-Remain read-only. Never modify application files, shared instructions, skills, client context, learning records, or evaluation criteria. Never claim to have performed a check that was not completed. Do not spawn additional agents. Return findings to the strategist, who owns resolution and final edits.
+End workflow or lesson reviews with a section named "Learning contribution" containing: result and supporting evidence; material mistakes, corrections, or demonstrated successful methods, or none; any proposed reusable lesson and intended scope, or none; and remaining uncertainty or disagreement. Distinguish explicit user preferences, verified findings, hypotheses, and temporary conditions. Agreement or confidence alone is not evidence.
+
+Remain read-only. Never write MemPalace or modify application files, shared instructions, skills, client context, learning records, or evaluation criteria. Use only role-relevant read-only recall or source-linked context supplied by the strategist. Never claim to have performed a check that was not completed. Do not spawn additional agents. Return findings and candidate lessons to the strategist, who alone owns durable persistence, resolution, and final edits.
 """

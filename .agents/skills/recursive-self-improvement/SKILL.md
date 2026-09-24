@@ -17,6 +17,17 @@ Use this as an automatically selectable skill, not a background service. Selecti
 
 This standing request does not authorize unrelated external writes, publishing, sending messages, purchases, deletion, expanding access, editing protected system or plugin instructions, or bypassing approvals. If a proposed action needs additional authorization, finish the permitted preparation and ask only about that concrete action, explaining the actual requirement.
 
+## Coordinated team learning
+
+In a multi-agent project, the primary coordinator owns durable memory writes and adoption of changes to shared instructions, skills, checklists, validators, and learning records. Workers and reviewers never independently promote or persist shared learning; reviewers remain read-only, while workers may implement project files explicitly assigned by the coordinator. Give them only role-, client-, and task-relevant recalled material through verified read-only palace access or a source-linked handoff, and require them to return:
+
+- Result and supporting evidence.
+- Material mistakes, corrections, or demonstrated successful methods, or `none`.
+- Proposed reusable lesson and intended scope, or `none`.
+- Remaining uncertainty or disagreement.
+
+The coordinator consolidates concurrent contributions before one end-of-task learning pass, checks duplicates and conflicts, classifies explicit preferences, verified findings, hypotheses, and temporary conditions, and uses independent review for material behavioral changes. Agent agreement is not evidence. Keep temporary coordination out of durable memory. Do not recursively spawn reviewers or treat persistence as a new lesson trigger. Follow a stricter project rule when one exists.
+
 ## Establish the lesson
 
 Identify the observable trigger, its source, what happened, and what should change. Use the current task's artifacts, tool results, explicit feedback, and relevant available history. Avoid collecting unrelated conversations or personal data.
@@ -38,7 +49,7 @@ Prefer the smallest durable change with a clear expected benefit in correctness,
 
 | What was learned | Preferred action |
 | --- | --- |
-| Stable user preference or relevant enduring fact | Use an available, authorized memory-writing capability. Discover the actual tool and follow its rules. Merge or update the relevant item rather than duplicating it. |
+| Stable user preference or relevant enduring fact | The coordinator uses an available, authorized memory-writing capability after a duplicate check. Add the smallest source-linked correction or decision; never automatically overwrite or delete an existing memory. |
 | Improvement to an existing repeatable task | Update the owning personal skill, its relevant reference, template, or helper. Keep the lesson discoverable where that task is performed. |
 | Distinct reusable capability with no suitable owner | Create a focused personal skill with clear triggers and a meaningful use case. Search the installed catalog first. Do not create a new skill for every correction or fragment of knowledge. |
 | Repeated mechanical operation | Add or repair a script, validator, template, or other reusable helper when execution is more reliable than prose. Test its actual behavior. |
@@ -65,7 +76,7 @@ Keep acceptance criteria stable while evaluating a candidate. Do not weaken an e
 
 Adopt a change when it addresses the observed need with no material regression in the checked cases. Narrow, revert, or leave unvalidated a candidate whose benefit is unclear. Once the concrete risk is sufficiently checked, stop optional testing and complete the user's work.
 
-Save through the destination's supported workflow and verify the result. For personal skills, complete the required save and post-save verification; local edits alone are not installation. For memory or project context, use the tool's confirmed result or read-back. Preserve unrelated concurrent changes and restrict rollback to the change being evaluated.
+Save through the destination's supported workflow and verify the result. For personal skills, complete the required save and post-save verification; local edits alone are not installation. For memory or project context, use the tool's confirmed result or read-back. Record the source task, contributing agent, evidence, scope, date, verification state, and affected authoritative instruction or skill when one exists. Preserve unrelated concurrent changes and restrict rollback to the change being evaluated.
 
 ## Close the recursive loop
 

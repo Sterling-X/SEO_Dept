@@ -311,6 +311,111 @@ The smallest retained correction has two layers:
 - `AGENTS.md` now requires targeted retrieval of scoped, adopted prior lessons before substantive decisions and proactive reviewer use without a user reminder. `learning/README.md` now distinguishes substantive reusable changes from simple preferences and no-op task completion.
 - `.codex/hooks.json` adds a separately trusted `UserPromptSubmit` candidate router. Its versioned helper reads only allowlisted shared record headings, never client files or transcripts, and emits no lesson body. It cannot select the reviewer, adjudicate evidence, or save a lesson because those decisions remain instruction-driven and this Codex version skips `agent` hook handlers.
 
-An initial independent `seo_reviewer` pass required the trust, authority, privacy, scoping, and evidence distinctions implemented above; its final read-only recheck found no remaining blocker or material issue. The focused helper suite passes eight original, different, minor, unrelated, malformed, client-safety, matching, and no-match cases. A clean read-only agent session retrieved the relevant Core path-mapping and bounded `FL-M008` navigation corrections, invoked the project reviewer without being prompted to do so, and incorporated its material qualifications without creating a new lesson. Structured `hooks/list` reports the project hook enabled with no hook warnings or errors, but `trustStatus="untrusted"`; lifecycle execution remains pending Casey's review in `/hooks`, and no bypass was used.
+An initial independent `seo_reviewer` pass required the trust, authority, privacy, scoping, and evidence distinctions implemented above; its final read-only recheck found no remaining blocker or material issue. The focused helper suite passes eight original, different, minor, unrelated, malformed, client-safety, matching, and no-match cases. A clean read-only agent session retrieved the relevant Core path-mapping and bounded `FL-M008` navigation corrections, invoked the project reviewer without being prompted to do so, and incorporated its material qualifications without creating a new lesson. On 2026-09-17 the exact candidate-router handler, hash `sha256:5a7d802fcd07e8a8b4dc1233422e3cf474d6ef0c938bf347504def01dc669a9b`, was confirmed trusted and active. A fresh session received its hook-only context without a trust bypass, completing the previously pending lifecycle check.
 
 The retained learning-record reference changed from SHA-256 `627d9c23cadef1dc256a920bdafd01b62dee88220465ab86c292ab16e6249b6c` to `4846c51d12b236fbd6a5966035efb5e9a1c169fb69746bf5aaeb8fb583442193`. This is a local operational record, not model training, native memory, a guarantee of future reviewer selection, or proof of SEO impact.
+
+## 2026-09-17: Automatic MemPalace recall with approval-gated retention (superseded)
+
+This is the historical first phase, superseded later on 2026-09-17 by the coordinator-owned automatic curated-retention workflow below. Casey initially requested automatic, bounded MemPalace recall for substantive SEO_Dept work without a skill mention, while keeping repository instructions authoritative and every memory mutation approval-gated. At that phase, `AGENTS.md` owned the rule and `.codex/hooks.json` added the versioned, instructions-only `mempalace-recall-reminder-v1.py` alongside the unchanged lesson router; the helper did not inspect, log, or emit prompt text or read transcripts, and it never called MCP.
+
+The installed MemPalace 3.10.0 implementation exposes no MCP read-only annotations. Inspection of its handlers and mutation guards supported exact `approval_mode = "approve"` overrides only for `mempalace_search`, `mempalace_get_drawer`, `mempalace_list_drawers`, `mempalace_kg_query`, `mempalace_kg_timeline`, `mempalace_diary_read`, `mempalace_list_wings`, and `mempalace_list_rooms`. The ignored project-local `.codex/config.toml` retains `default_tools_approval_mode = "writes"`; every unlisted tool remains approval-gated. Autosave and daemon flags remain false, hub forwarding remains off, and no transcript-ingestion, repository-mining, serving, or daemon process is configured or running.
+
+The reminder's three direct tests and the existing router's eight tests pass. Structured hook inspection reports both handlers trusted and active with no warnings or errors; the reminder hash is `sha256:20b92c6d252f12826e0c51a1411f8b71301a91ad1d955843b360daad9bc049ef`. A fresh no-bypass, no-approval session received the exact reminder context, and an ordinary internal task completed a relevant `mempalace_search` without an approval interruption. Separate calls to the unlisted write tool `mempalace_checkpoint` with an empty item list and the mutation-capable `mempalace_delete_by_source` in dry-run mode both failed before dispatch with `MCP tool call requires approval, but approval policy is never`; no palace or repository data changed.
+
+The independent reviewer found no hook or approval-policy defect, but identified stale setup and compatibility records that still described one untrusted hook and pending activation. Those status sentences were corrected in the smallest owning sources. This demonstrated the configured phase-one paths, not that every future task would choose the right query or memory. The per-save approval rule and v1 reminder are historical and must not be used as current policy.
+
+## 2026-09-17: Coordinator-owned automatic curated shared learning
+
+Casey's later explicit authorization superseded routine per-save approval. `AGENTS.md` now requires automatic relevant recall before substantive work and one coordinated learning pass after meaningful completed work. Workers and reviewers return their result and evidence, material mistakes or demonstrated methods, a scoped lesson candidate or `none`, and remaining uncertainty or disagreement. They do not write durable memory or promote shared rules. The primary strategist consolidates concurrent contributions, checks conflicting guidance and counterexamples, obtains read-only review for material behavioral changes, and owns both repository adoption and any durable MemPalace write.
+
+Participating agents use the same project-local `seo_dept` palace through verified read-only MCP access or a source-linked context handoff limited to the assignment. Actual `mempalace_search` calls completed without approval from both a child agent and the custom `seo_reviewer`; this verifies those instances rather than assuming universal inheritance. Repository instructions and evidence remain authoritative. Memory entries provide cross-session continuity and point back to the source task or affected file; shared methodology, role-specific lessons, client-specific facts, and durable unresolved questions stay separated.
+
+The ignored project-local `.codex/config.toml` keeps `default_tools_approval_mode = "writes"` and adds automatic approval only for the minimum retention sequence: exact `mempalace_check_duplicate`, then exact `mempalace_add_drawer` for a confirmed non-duplicate. MemPalace 3.10.0 source inspection found that `mempalace_add_drawer` accepts only `wing`, `room`, `content`, `source_file`, and `added_by` and uses a content-addressed idempotent identifier; it cannot update, overwrite, delete, mine, import, sync, or share. All unlisted mutation tools remain approval-gated. Autosave, transcript ingestion, repository mining, hub forwarding, sharing, serving, and daemon mode remain disabled.
+
+`.codex/hooks.json` replaces v1 with the separately trusted, instructions-only `mempalace-recall-retention-reminder-v3.py` while preserving the lesson router and its ordering. The short-lived v2 candidate was superseded before completion after final review found that an unfiltered wing search could expose one client's facts to another client-scoped assignment. V3 requires room-filtered shared, relevant-role, and exact-current-client searches with a combined small-result cap; if the client room is unknown, agents may list room names but must not search client contents until scope is known. The helper itself never reads a transcript, inspects or logs prompt text, calls MCP, spawns an agent, or writes memory. No `Stop` hook was added. Instead, the v3 context requires no more than one coordinator learning pass per completed task, normally one saved entry, no repeated same-turn save, and at most two focused repair attempts. A save is not a new learning trigger.
+
+The unchanged router's eight focused tests and the v3 reminder's six policy tests pass, including static assertions for exact room filters, unknown-client narrowing, a combined retrieval cap, and prompt/transcript privacy. The exact v3 handler was reviewed and trusted at hash `sha256:3a15803c2f68895d849b1938702bf958056540a7fba01f3f7701117ad2c937c4`. That hash was invalidated by the 2026-09-17 retention-routing rule edit; Codex re-trust is pending. Direct child and reviewer read access is execution-verified as described above. A fresh ordinary documentation task under approval policy `never` searched the palace, checked a new coordinator-write guardrail for duplicates at `0.9`, and created `drawer_seo_dept_operating-rules_b2b6f07d08b2105c0fd38804` without an approval interruption. After v3 trust, a different fresh non-client run listed room names and searched only exact room `operating-rules` with limit three, retrieving that source-linked entry without a skill mention or recall request, wing-wide search, client-room search, or approval. Exact-content duplicate checking returned similarity `1.0`, no second drawer was added, and the wing count remained three at that checkpoint. Separate no-op fresh-session probes confirmed that checkpoint, deletion-by-source, update, mining, and sync remain approval-gated; remote forwarding remains disabled and no sharing tool is allowlisted.
+
+The first automatic-save attempt also exposed MemPalace's per-palace single-writer contention between concurrent MCP connections. Installed 3.10.0 source and a bounded retry confirmed that later mutating calls re-attempt the lease. The smallest correction is now authoritative in `AGENTS.md`: finish agent contributions, serialize coordinator saves across active sessions, never bypass the lock or launch competing writers, wait for the owning coordinator MCP connection to release its lease, retry only within the existing two-repair cap, and report remaining failure accurately. The setup guide carries the operational pointer. After the documentation and v3 isolation repairs, the independent reviewer's final read-only recheck found no blocker or material improvement; it retained the limits that no live client-room fixture or remote-sharing write was attempted and no professional-quality or performance gain was established.
+
+The coordinator's final learning pass then duplicate-checked the reviewed client-room isolation correction, saved it as source-linked drawer `drawer_seo_dept_operating-rules_c92b7411b15d551c16447724`, and read it back successfully. The palace contained four drawers after that save. This memory points to the authoritative v3 implementation; it does not replace it or broaden the static isolation evidence into a live cross-client test.
+
+This architecture is a scoped, reversible workflow change, not evidence that additional memory volume, longer outputs, or more review rounds improve SEO work. Any claimed behavioral benefit still requires fixed original, different-applicable, unaffected, and unsupported-lesson cases, and later natural use must narrow or reverse a rule that causes regression.
+
+## 2026-09-17: Retention room routing and open-question recall repair
+
+A saved project-wide open question was found to hold client-specific examples and one
+unsourced geographic assertion in the shared `open-questions` room. The record was
+corrected in place and three rules were added to prevent recurrence on both hosts.
+
+### Corrected record
+
+- `drawer_seo_dept_open-questions_9e47f066dd40252101caa0ce` was rewritten with
+  `mempalace_update_drawer`, the designated approval-gated update tool. The client
+  name, the two county and city examples, and the two-state references were removed.
+  The V2 path facts, the line 15 and line 53 citations, both affected authoritative
+  files, the `source_file` metadata, and the original `filed_at` were preserved, and a
+  `Source task:` clause was added per `AGENTS.md`. Every chunk was re-read individually
+  after each update. `mempalace_check_duplicate` against the pre-repair text returned
+  no match, which shows the vectors were re-embedded rather than left stale.
+- The one independently sourced instance, a county-name recurrence, was deliberately
+  not retained in any room. It exists only in the task artifact.
+- `mempalace_update_drawer` overwrites without history, so the pre-repair text is not
+  recoverable from the palace.
+
+### Rules added
+
+Three sentences were appended to `AGENTS.md` lines 29, 35, and 36 and mirrored verbatim
+into the matching paragraphs of
+`.codex/hooks/mempalace-recall-retention-reminder-v3.py`, which both hosts load: Codex
+through `.codex/hooks.json` and Claude through `.claude/settings.json`.
+
+1. Retained open questions get a bounded recall route, anything recalled from an
+   open-question room stays unresolved rather than validated guidance, and
+   client-specific content found in the shared room is a routing defect to report
+   rather than evidence to apply.
+2. Routing follows content scope: client material belongs in that client's room, and a
+   missing or not-yet-created client room is never a reason to use a shared room.
+3. Every factual assertion carries its supporting evidence or an explicit unverified
+   label, inside open questions too.
+
+`.claude/agents/seo-reviewer.md` and `docs/seo-skill-compatibility.md` carried room
+enumerations that the recall change made narrower than `AGENTS.md`; both were extended
+to match rather than left contradicting the governing rule.
+
+### Separate pre-existing defect found during the repair
+
+`ADDITIONAL_CONTEXT` measured 3513 characters against `additionalContextLimit: 3200`,
+so the tail of the retention-safety paragraph was being truncated on Codex only;
+Claude's handler sets no limit and received the whole text. The limit is now 5200
+against a 4557-character raw payload. A new test bounds both the decoded string and the
+raw stdout payload against the configured limit and asserts the closing sentence
+survives. Measuring injected context against the configured host limit before appending
+is the method that surfaced this.
+
+### Verification
+
+- `.codex/hooks/test-mempalace-recall-reminder.py`: 6 of 6 pass. The 4 pre-existing
+  tests are unchanged and still pass, serving as the unaffected case.
+- Disposable fixture outside the repository at `/tmp/mp-routing-fixture/`: 6 of 6,
+  covering the original failure case (rejected on both required grounds), the repaired
+  shared question taken verbatim from the palace (accepted with zero violations), a
+  properly scoped client memory (accepted in its client room and rejected as a negative
+  control in the shared room), and a client with no directory and no room yet (still
+  caught). The fixture found one real defect during hardening: an intermediate repair
+  named the client in its own `Source task:` field.
+- Frozen criteria, fixed before the runs: the failure case must be rejected for both
+  stated reasons, the legitimate shared question must pass with zero violations, and a
+  properly scoped client memory must pass in its client room and fail in a shared room.
+
+### Limits
+
+- The fixture predicates are heuristics standing in for strategist judgement. They show
+  the rules discriminate these cases; they do not validate the rules generally.
+- The evidence-or-label rule is a judgement rule and is not mechanically enforced.
+- Editing the handler invalidated its recorded trust hash, so Codex re-trust is pending
+  and the truncation fix is unverified on that host. The rules themselves do not depend
+  on the hook, since `AGENTS.md` carries them and Codex reads it directly.
+- Whether this unresolved architecture question should also be recorded in the V2
+  open-decisions section is a pending user decision; that file was not edited.

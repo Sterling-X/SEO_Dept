@@ -1,5 +1,5 @@
 {
-  "description": "Read-only candidate routing for the repository SEO learning loop.",
+  "description": "Project reminders for SEO lesson routing and curated MemPalace recall and retention.",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -10,6 +10,16 @@
             "timeout": 3,
             "statusMessage": "Checking relevant SEO lessons",
             "additionalContextLimit": 900
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/python3 \"$(git rev-parse --show-toplevel)/.codex/hooks/mempalace-recall-retention-reminder-v3.py\"",
+            "timeout": 3,
+            "additionalContextLimit": 5200
           }
         ]
       }
