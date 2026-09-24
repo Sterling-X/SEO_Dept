@@ -15,6 +15,8 @@ Baseline: `.agents/skills/legal-content-accuracy-qa` at the hashes recorded in `
 | 7 | A suggested correction or coordinator note could close a legal error (patch F02/C06). | `fixed-verified` needs `corrected_text` present in the draft; only the raising reviewer withdraws; legal-accuracy, citation, and promise findings are protected from coordinator acceptance (integrated 2026-09-23). | `## Pilot workflow contract` |
 | 8 | Citation identity confused with occurrences (patch F08). | One number per authority, repeat citations allowed and every occurrence checked; coverage governs the count (integrated 2026-09-23). | `## Pilot workflow contract` |
 
+| 9 | A Verification Log row proved nothing beyond a date: the live-verification mandate was instruction-only, and a row copied from an earlier run or written from a saved note passed the gate. | Every verified row names the `evidence_id` of a research record retrieved in this run and quotes a verbatim excerpt of the retrieved text; the recorder and the gate refuse otherwise; jurisdiction, amendments, effective date, and legislation status are recorded per authority (2026-09-24). | `## Pilot workflow contract`, `## Verification Log (mandatory)` |
+
 Preserved unchanged: live-verification mandate, source hierarchy, the nine-step protocol,
 absolute-language check, output sections, practice-area checklists, attorney-review caveat.
 

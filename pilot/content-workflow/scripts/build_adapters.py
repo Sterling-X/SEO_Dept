@@ -64,7 +64,11 @@ ROLES = {
             "Host note (Claude Code): paths are relative to the repository root. You hold Read, Grep, "
             "Glob, WebFetch, and WebSearch only. You cannot compute hashes, run validators, or write "
             "files; the coordinator records your findings with scripts/record_review.py. Your tool "
-            "allowlist omits the Agent tool, so you cannot delegate."
+            "allowlist omits the Agent tool, so you cannot delegate. WebFetch returns a processed rendering "
+            "of a page, not its raw text: take every verbatim excerpt from the research record's stored "
+            "text (research/EV<n>.txt) and use your own fetch to corroborate that the live page still says "
+            "it; confirm the operative subsection is inside the stored text before recording Confirmed, and "
+            "otherwise record Flagged and ask the coordinator for a record of the subsection URL."
         ),
         "codex_note": (
             "Host note (Codex): paths are relative to the repository root. Your sandbox is read-only; "

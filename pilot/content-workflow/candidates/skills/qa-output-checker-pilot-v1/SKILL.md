@@ -30,6 +30,16 @@ image and attests with a per-page observation (`--attest`). Delivery requires th
 bound to the exact export hash with every page inspected. Text extraction never substitutes for
 viewing the pages; a missing renderer leaves the run INCOMPLETE.
 
+Research evidence (2026-09-24): `readiness_check.py --stage research` and every delivery check verify
+that each legal authority, citation, and client-facts page has a `research/EV<n>.json` record
+retrieved in this run (nonce, retrieval time, excerpt present, currency marker, jurisdiction,
+legislation status) and re-fetch every record live (`RESEARCH_MISSING`, `RESEARCH_REUSED`,
+`RESEARCH_STALE`, `RESEARCH_INVALID`, `RESEARCH_JURISDICTION_MISMATCH`, `LEGISLATION_NOT_EFFECTIVE`,
+`RESEARCH_UNAVAILABLE`, `RESEARCH_EXCERPT_DRIFT`). The mechanical pass confirms the delivery folder
+carries `research-ledger.md` with every source, retrieval time, currency statement, and live re-check
+result, and that no ledger row reads "not re-checked". A ledger row proves retrieval, not that the
+source supports the claim; the legal hand-off in Step 6 is unchanged.
+
 Placeholder grammar for content-workflow runs: numeric citation markers `[1]`, `[2]`, ... are not
 placeholders. Every other bracketed token (`[LOCAL DETAIL: ...]`, `[FIRM_NAME]`, `[INSERT ...]`,
 `[TBD]`), `{{...}}`, `<<...>>`, `TODO`, `TBD`, `FIXME`, `XXX`, `TK`, and `lorem ipsum` is a

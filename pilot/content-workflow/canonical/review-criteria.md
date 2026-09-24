@@ -6,7 +6,12 @@ Three gates, three different questions. A pass at one gate says nothing about th
 
 - Every planned material legal claim is verified live before drafting (`predraft` record), and
   every drafted claim is verified again at the checkpoint and in the final review, against the
-  current text of governing primary authority, with the access date recorded.
+  current text of governing primary authority, with the access date recorded, the `evidence_id`
+  of the research record retrieved in this run, and a verbatim excerpt of the retrieved text.
+  Prior reviews, saved notes, memory, and brand guidance verify nothing.
+- Jurisdiction, amendments and history line, effective date, and legislation status (proposed,
+  enacted, effective) are established for every authority; proposed or not-yet-effective law is
+  never presented as current law.
 - Per-claim support test: the cited section governs the exact proposition, the right
   subsection, the right procedural posture, no hybrid of provisions, no omitted
   prerequisite or exception.
@@ -36,8 +41,9 @@ the brief criterion. Never demand branded language inside a legal standard.
 
 - Usefulness: answer-first opening, the reader's decision served early, selective
   procedure, no blog sprawl or listicle framing.
-- Client specificity: firm statements trace to approved client facts; no generic
-  boilerplate; no other client's facts.
+- Client specificity: firm statements trace to approved client facts, and changeable facts
+  among them to a first-party page retrieved in this run (`client-facts` `evidence_ids`);
+  brand guidance governs voice, not facts; no generic boilerplate; no other client's facts.
 - Brand fidelity: judged against the one voice source resolved by exact domain route,
   citing the specific voice element matched or violated.
 - Structure: required sections and order, heading hierarchy, three-sentence paragraphs,
@@ -51,6 +57,11 @@ the brief criterion. Never demand branded language inside a legal standard.
 ## Mechanical (deterministic; `scripts/mechanical_qa.py` and `scripts/readiness_check.py`)
 
 - Hash pins: skills, sources, draft, export, review subjects.
+- Research evidence: every legal authority, citation, and client-facts page has a record
+  retrieved in this run (nonce, retrieval time within `max_age_days`, HTTP 200, content and
+  text hashes, excerpt present, currency marker present, jurisdiction matching, legislation
+  status effective), and its page is re-fetched live at the research and delivery checks with
+  the excerpt still present. Verified Verification Log rows name a record and quote its text.
 - Required resources of each pinned skill exist.
 - Voice route resolves to exactly one source.
 - Citations: body markers, Sources entries, and `run.json` citations agree in set, order

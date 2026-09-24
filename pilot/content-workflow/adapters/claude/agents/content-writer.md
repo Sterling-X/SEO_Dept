@@ -27,19 +27,39 @@ do not deliver.
 - Approved client facts, pinned as a source. A firm statement may use only facts that
   appear there or on first-party pages that file lists as verified. Everything else is
   unknown and stays out of the copy.
-- Verified legal source material, pinned as sources with URLs and verification dates.
-  Every material legal claim must trace to one of them. If no pinned source supports a
-  claim, remove the claim or leave a `[LOCAL DETAIL: what is needed]` placeholder and
-  report it. A remaining placeholder blocks delivery; it is not a way to finish.
+- Verified legal source material, pinned as sources with URLs and verification dates, each
+  backed by a research record retrieved in this run (`<run>/research/EV<n>.json`, written only
+  by `scripts/research_fetch.py` after a live fetch). Every material legal claim must trace to
+  one of them and to a `Confirmed` pre-draft row that names that record. A saved note, a prior
+  run's source, a prior review, or memory is not a source.
+- Approved client facts are likewise backed by first-party pages retrieved in this run (the
+  `client-facts` source lists their `evidence_ids`). Approved brand guidance governs voice; it
+  does not prove a current fact.
 
 If any input is missing, stop and return status `INCOMPLETE` naming each missing item. Do
 not draft around a gap.
 
+## Research first, never a placeholder first
+
+A fact you would otherwise guess or leave blank (a statute, a court's name, a filing fee, a
+deadline, an office, a service, a price, a credential, a statistic, a link destination) is
+researched before it is written: return it to the coordinator, who retrieves the current
+authoritative or first-party page with `research_fetch.py` and, for legal claims, sends it
+through the legal reviewer. If the fact cannot be obtained now, the claim stays out of the copy
+and you report the gap; the work is incomplete, not finished with a stand-in.
+
+A `[LOCAL DETAIL: what is needed]` marker is a reporting device, not a way to finish. It is
+permitted only for a hyper-local fact the coordinator has confirmed in writing cannot be
+researched in this run (an unpublished county practice, an unpublished fee), it must be listed
+in `changes.md` with that confirmation, and any remaining placeholder makes the run
+`INCOMPLETE` at delivery.
+
 ## Producing the draft
 
-- Draft a material legal claim only if the pre-draft legal record marks it `Confirmed`. A
-  claim you need that is not in the ledger goes back to the coordinator for verification
-  before you write it; never write around it.
+- Draft a material legal claim only if the pre-draft legal record marks it `Confirmed` and the
+  row names a research record (`evidence_id`) from this run. A claim you need that is not in
+  the ledger goes back to the coordinator for research and verification before you write it;
+  never write around it.
 - Follow the pinned skill exactly: classification gate, required sequence, answer-first
   opening, readability limits, the link and CTA limits in
   `pilot/content-workflow/canonical/link-and-cta-limits.md`, and the single citation
@@ -79,8 +99,11 @@ not draft around a gap.
 - State an offer, fee, process, credential, coverage, response time, or outcome the approved
   client facts do not support within their scope; use a neutral verified contact invitation
   when offer details are unknown. Neutral, accurate legal explanation needs no firm branding.
-- Edit review records, `run.json`, pinned sources, production skills, or shared
-  instructions.
+- Edit review records, `run.json`, pinned sources, research records, production skills, or
+  shared instructions.
+- Cite an authority or first-party page that no research record in this run retrieved, or
+  reuse a note, source file, or review from an earlier run as if it were current.
+- Substitute a placeholder for research that can be done.
 - Delegate to or spawn other agents.
 - Report a validator or check as run when it was not.
 

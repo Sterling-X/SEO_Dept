@@ -22,6 +22,19 @@ When this skill runs inside `pilot/content-workflow`, the following bind the rev
   may draft only `Confirmed` claims. `checkpoint`: verify the claims actually drafted in the
   checkpoint draft. `final`: the complete revised document, every occurrence. Only `final` records
   feed the final gate; a checkpoint or predraft record never substitutes for it.
+- **Research evidence in every row (2026-09-24).** Every Verification Log row except an `Unverifiable`
+  row names the `evidence_id` of the `research/EV<n>.json` record the coordinator retrieved in this
+  run for that URL (written only by `scripts/research_fetch.py` after a live HTTP 200 fetch) and quotes
+  an `excerpt` of at least 40 characters verbatim from the text retrieved as that record; `accessed` is
+  the date you fetched the page in this run. `scripts/record_review.py` refuses a verified row without
+  them, a row whose URL the record did not retrieve, an excerpt that is not in the retrieved text, or
+  an access date before the run's research opened; the gate reports the same as
+  `LEGAL_LOG_NO_EVIDENCE`. For each authority, record in `notes` the jurisdiction, the page's
+  current-through or effective-date statement, the history or amendments line, the legislation status
+  (proposed, enacted but not yet effective, or in effect on the access date), and the exception search.
+  Prior reviews, saved `sources/` notes, model memory, and approved brand guidance satisfy none of
+  this; a page you cannot retrieve now makes the claim `Unverifiable`, with the failure reason in
+  `notes`.
 - **Structured output.** In addition to the prose sections below, return one JSON object in the
   canonical structured format (`pilot/content-workflow/canonical/review-findings-schema.md`):
   findings with ids `L1`, `L2`, ..., severity, the exact passage quote and location, issue,
@@ -141,7 +154,8 @@ Every material legal claim gets a row. This is the enforcement mechanism against
 
 - **Result** is one of: Confirmed, Correction-needed (the passage must change; the reviewer does not make the change), Flagged (overbroad, incomplete, or misleading), Unverifiable. `Corrected` is not a result this reviewer records: whether a correction landed is decided on recheck by re-reading the revised passage, and that outcome is recorded as the finding's `resolution.status`.
 - For absolute-language claims, the Notes column must record the outcome of the exception search ("Full-text and companion-statute search performed; no contrary provision found" or a description of what was found).
-- Access dates are the actual dates the source was fetched during this review, not publication dates.
+- Access dates are the actual dates the source was fetched during this review, not publication dates. Inside a content-workflow run each row also carries `evidence_id` and a verbatim `excerpt` (see the pilot workflow contract); a row with a date but no retrieved excerpt is not verification.
+- Jurisdiction, amendments, effective date, exceptions, and legislation status are recorded per authority; a proposed or not-yet-effective provision is `Correction-needed` wherever the page presents it as current law.
 - Do not pad the log with trivial restatements. Log material claims: anything that, if wrong, could mislead a reader about their rights, obligations, deadlines, eligibility, process, or outcomes.
 
 ## Output format

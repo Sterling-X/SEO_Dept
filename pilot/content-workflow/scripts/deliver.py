@@ -22,7 +22,23 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import cw_common as cw  # noqa: E402
+import cw_research as rs  # noqa: E402
 import readiness_check  # noqa: E402
+
+
+def write_ledger(run_dir: Path, run: dict, report: dict) -> Path:
+    """Reader-facing research ledger: sources retrieved, times, currency, live re-check, claims supported."""
+    rows: list[dict] = []
+    for path in cw.review_files(run_dir):
+        try:
+            record = cw.load_json(path)
+        except (OSError, json.JSONDecodeError):
+            continue
+        if record.get("role") == "legal-reviewer":
+            rows.extend(r for r in record.get("verification_log") or [] if isinstance(r, dict))
+    target = run_dir / "research-ledger.md"
+    target.write_text(rs.ledger_markdown(run, report.get("research") or {}, rows), encoding="utf-8")
+    return target
 
 
 def main() -> int:
@@ -33,7 +49,8 @@ def main() -> int:
     args = parser.parse_args()
     run_dir = args.run_dir.resolve()
     try:
-        report = readiness_check.run_check(run_dir, "delivery", run_validators=True)
+        # Delivery always re-verifies research live; there is no offline delivery.
+        report = readiness_check.run_check(run_dir, "delivery", run_validators=True, live_research=True)
     except (FileNotFoundError, ValueError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}")
         return 2
@@ -62,8 +79,9 @@ def main() -> int:
     out = (args.out or (cw.PILOT_ROOT / "deliveries" / str(run.get("run_id")))).resolve()
     out.mkdir(parents=True, exist_ok=True)
     export_path = run_dir / run["export"]["path"]
+    ledger_path = write_ledger(run_dir, run, report)
     copied = []
-    for source, name in ((export_path, export_path.name), (run_dir / "readiness-report.json", "readiness-report.json"), (run_dir / "run.json", "run.json"), (run_dir / run.get("draft", {}).get("path", "draft.md"), "draft.md")):
+    for source, name in ((export_path, export_path.name), (run_dir / "readiness-report.json", "readiness-report.json"), (run_dir / "run.json", "run.json"), (run_dir / run.get("draft", {}).get("path", "draft.md"), "draft.md"), (ledger_path, "research-ledger.md")):
         if source.is_file():
             shutil.copy2(source, out / name)
             copied.append(str(out / name))

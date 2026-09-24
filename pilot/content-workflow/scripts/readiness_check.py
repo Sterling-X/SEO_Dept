@@ -2,7 +2,7 @@
 """Deterministic readiness check for a content-workflow run.
 
 Usage:
-  readiness_check.py <run-dir> [--stage intake|delivery] [--json <path>] [--quiet]
+  readiness_check.py <run-dir> [--stage intake|research|delivery] [--json <path>] [--offline] [--quiet]
 
 Exit codes: 0 = READY (or intake complete), 1 = INCOMPLETE, 2 = usage or unreadable run.
 
@@ -24,6 +24,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import cw_common as cw  # noqa: E402
+import cw_research as rs  # noqa: E402
 
 
 class Reasons:
@@ -63,6 +64,8 @@ def intake_checks(repo_root: Path, run_dir: Path, run: dict, reasons: Reasons) -
         reasons.add("INTAKE_MISSING_FIELD", "page_type.kind is empty")
     elif page_type.get("kind") in ("situational", "core-hub", "procedural") and not page_type.get("architecture_node_id"):
         reasons.add("INTAKE_MISSING_FIELD", f"page_type.architecture_node_id is required for kind {page_type.get('kind')}")
+    if "fixture" in run and not isinstance(run.get("fixture"), bool):
+        reasons.add("FIXTURE_FLAG", f"run.json fixture must be a JSON boolean, not {run.get('fixture')!r}")
     rounds = run.get("rounds") or {}
     max_rounds = rounds.get("max_repair_rounds")
     if not isinstance(max_rounds, int) or not 0 <= max_rounds <= 2:
@@ -257,10 +260,22 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
             first_predraft = predraft_records[0]
             if (first_predraft.get("subject") or {}).get("draft_sha256"):
                 reasons.add("LEGAL_PREDRAFT_LATE", "the first pre-draft legal record was written after a draft existed (subject.draft_sha256 is set); verification must precede drafting")
+            for predraft in predraft_records:
+                for problem in rs.legal_log_problems(run_dir, run, predraft)[:6]:
+                    reasons.add("LEGAL_LOG_NO_EVIDENCE", f"legal-predraft-r{predraft.get('round')}.json: {problem}")
             log = [row for r in predraft_records if all((r.get("subject") or {}).get("sources_sha256", {}).get(sid) == digest for sid, digest in current_sources.items()) for row in (r.get("verification_log") or [])]
-            confirmed_urls = {str(row.get("url", "")).strip() for row in log if str(row.get("result", "")).strip().lower() == "confirmed"}
+            # A Confirmed row covers a citation when its URL, or the URL / final URL of the research record it names,
+            # is the citation URL (same canonical form the recorder uses).
+            evidence_urls = {str(rec.get("evidence_id")): {rs.canonical_url(str(rec.get(k))) for k in ("url", "final_url") if rec.get(k)} for _p, rec, _e in rs.load_records(run_dir) if rec}
+            confirmed_urls: set[str] = set()
+            for row in log:
+                if str(row.get("result", "")).strip().lower() != "confirmed":
+                    continue
+                if row.get("url"):
+                    confirmed_urls.add(rs.canonical_url(str(row.get("url"))))
+                confirmed_urls.update(evidence_urls.get(str(row.get("evidence_id") or ""), set()))
             for citation in run.get("citations") or []:
-                if str(citation.get("url", "")).strip() not in confirmed_urls:
+                if rs.canonical_url(str(citation.get("url", ""))) not in confirmed_urls:
                     reasons.add("LEGAL_PREDRAFT_COVERAGE", f"{path.name}: citation [{citation.get('id')}] {citation.get('url')} has no Confirmed pre-draft verification row")
             bad_rows = [row for row in log if str(row.get("result", "")).strip().lower() in ("unverifiable", "correction-needed", "corrected")]
             if bad_rows:
@@ -336,6 +351,10 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
                 bad_rows = [row for row in record.get("verification_log", []) or [] if str(row.get("result", "")).strip().lower() in ("unverifiable", "correction-needed", "corrected")]
                 if bad_rows:
                     reasons.add("LEGAL_LOG_UNVERIFIED", f"{path.name}: {len(bad_rows)} Verification Log row(s) are Unverifiable or Correction-needed: " + "; ".join(str(r.get("claim", ""))[:60] for r in bad_rows[:3]))
+                # Re-apply the recorder's evidence linkage: every verified row must point at a research record
+                # retrieved in this run and quote text that is in it. A hand-written record cannot skip this.
+                for problem in rs.legal_log_problems(run_dir, run, record)[:6]:
+                    reasons.add("LEGAL_LOG_NO_EVIDENCE", f"{path.name}: {problem}")
             # Re-apply the recorder's integrity rules so a hand-written record cannot bypass them.
             prior_ids = {
                 str(f.get("id")) for _p, r in records
@@ -452,7 +471,21 @@ def evaluate_reviews(run_dir: Path, run: dict, draft_sha: str | None, export_sha
     return summary
 
 
-def run_check(run_dir: Path, stage: str, *, run_validators: bool = True) -> dict:
+def research_stage_checks(run_dir: Path, run: dict, reasons: Reasons, *, live: bool) -> dict:
+    """Offline research checks plus, unless live=False, a live re-fetch of every valid record."""
+    offline, ledger = rs.research_problems(run_dir, run)
+    for code, detail in offline:
+        reasons.add(code, detail)
+    if live:
+        for code, detail in rs.research_live_problems(run_dir, run, ledger):
+            reasons.add(code, detail)
+    else:
+        reasons.add("RESEARCH_LIVE_SKIPPED", "live re-verification of research records was skipped (--offline); currency of every authority and client page is unknown until the check runs online")
+    ledger["live_checked"] = live
+    return ledger
+
+
+def run_check(run_dir: Path, stage: str, *, run_validators: bool = True, live_research: bool = True) -> dict:
     repo_root = cw.find_repo_root()  # anchored on the pilot's own location; run dirs may live anywhere
     run = load_run(run_dir)
     reasons = Reasons()
@@ -464,18 +497,28 @@ def run_check(run_dir: Path, stage: str, *, run_validators: bool = True) -> dict
         "fixture": bool(run.get("fixture", False)),
         "hashes": {"run_json": cw.sha256_file(run_dir / "run.json")},
         "intake": intake_checks(repo_root, run_dir, run, reasons),
+        "research": {},
         "mechanical": [],
         "validators": [],
         "recorded_judgments": [],
         "findings": [],
         "accepted_risks": [],
         "notice": (
-            "Mechanical checks prove hashes, presence, pairing, and record shape. Recorded legal and "
-            "editorial verdicts are judgments bound to the hashes present when the record was written; "
-            "this tool cannot verify that a judgment was correct or that the record was produced by the "
-            "named reviewer. Attorney review before publication remains required for legal content."
+            "Mechanical checks prove hashes, presence, pairing, record shape, and, for each research record, that its "
+            "metadata is consistent with this run's nonce and opening time, that the quoted excerpt and currency marker "
+            "were present in the stored page text, and that they are present on the live page at check time. Declared "
+            "jurisdiction and legislation status are checked for consistency, not correctness. "
+            "Recorded legal and editorial verdicts are judgments bound to the hashes present when the record "
+            "was written; this tool cannot verify that a judgment was correct, that a source supports a claim, "
+            "or that the record was produced by the named reviewer. Attorney review before publication remains "
+            "required for legal content."
         ),
     }
+    if stage == "intake":
+        for problem in rs.research_block_problems(run):
+            reasons.add("RESEARCH_NOT_OPENED", problem)
+    if stage in ("research", "delivery"):
+        report["research"] = research_stage_checks(run_dir, run, reasons, live=live_research)
     if stage == "delivery":
         draft_path = run_dir / (run.get("draft") or {}).get("path", "draft.md")
         export_rel = (run.get("export") or {}).get("path")
@@ -507,7 +550,8 @@ def run_check(run_dir: Path, stage: str, *, run_validators: bool = True) -> dict
         report["findings"] = summary["findings"]
         report["accepted_risks"] = summary["accepted_risks"]
     report["reasons"] = reasons.items
-    report["status"] = ("READY" if stage == "delivery" else "INTAKE-COMPLETE") if not reasons.items else "INCOMPLETE"
+    complete_label = {"delivery": "READY", "intake": "INTAKE-COMPLETE", "research": "RESEARCH-COMPLETE"}[stage]
+    report["status"] = complete_label if not reasons.items else "INCOMPLETE"
     return report
 
 
@@ -517,6 +561,10 @@ def print_report(report: dict) -> None:
     for key in ("draft", "export"):
         if hashes.get(key):
             print(f"  {key} sha256: {hashes[key]}")
+    for entry in (report.get("research") or {}).get("records", []):
+        live = "live-verified" if entry.get("live_verified") else ("live-check failed" if entry.get("live_checked_at") else "not live-checked")
+        currency = (entry.get("currency") or {}).get("legislation_status") if entry.get("currency") else "n/a"
+        print(f"  RESEARCH   {entry['evidence_id']} [{entry.get('kind')}] {entry.get('url')} retrieved {entry.get('retrieved_at')} status={currency} {'valid' if entry.get('valid') else 'INVALID'} {live}")
     for check in report.get("mechanical", []):
         print(f"  MECHANICAL {check['status'].upper():7} {check['check']}: {check['detail']}")
     for judgment in report.get("recorded_judgments", []):
@@ -531,23 +579,25 @@ def print_report(report: dict) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("run_dir", type=Path)
-    parser.add_argument("--stage", choices=("intake", "delivery"), default="delivery")
-    parser.add_argument("--json", type=Path, default=None, help="write the JSON report here (default: <run>/readiness-report.json for delivery)")
+    parser.add_argument("--stage", choices=("intake", "research", "delivery"), default="delivery")
+    parser.add_argument("--json", type=Path, default=None, help="write the JSON report here (default: <run>/readiness-report.json for delivery, intake-report.json or research-report.json otherwise)")
     parser.add_argument("--no-validators", action="store_true", help="skip run-declared validator commands")
+    parser.add_argument("--offline", action="store_true", help="skip the live re-fetch of research records (reported as RESEARCH_LIVE_SKIPPED; never READY)")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
     run_dir = args.run_dir.resolve()
     try:
-        report = run_check(run_dir, args.stage, run_validators=not args.no_validators)
+        report = run_check(run_dir, args.stage, run_validators=not args.no_validators, live_research=not args.offline)
     except (FileNotFoundError, ValueError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}")
         return 2
-    target = args.json or (run_dir / ("readiness-report.json" if args.stage == "delivery" else "intake-report.json"))
+    default_name = {"delivery": "readiness-report.json", "intake": "intake-report.json", "research": "research-report.json"}[args.stage]
+    target = args.json or (run_dir / default_name)
     cw.dump_json(target, report)
     if not args.quiet:
         print_report(report)
         print(f"  report: {target}")
-    return 0 if report["status"] in ("READY", "INTAKE-COMPLETE") else 1
+    return 0 if report["status"] in ("READY", "INTAKE-COMPLETE", "RESEARCH-COMPLETE") else 1
 
 
 if __name__ == "__main__":

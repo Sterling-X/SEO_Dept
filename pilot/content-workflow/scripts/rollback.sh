@@ -4,6 +4,7 @@
 set -eu
 repo=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
 cd "$repo"
+banner='# GENERATED FILE. Source of truth: pilot/content-workflow/canonical/roles/'
 unlink_pilot() {
   name=$1
   adapter="pilot/content-workflow/adapters/codex/agents/$(basename "$name")"
@@ -14,8 +15,10 @@ unlink_pilot() {
     esac
   elif [ -f "$name" ] && [ -f "$adapter" ] && cmp -s "$name" "$adapter"; then
     rm "$name"; echo "removed  $name (byte copy of its pilot adapter)"
+  elif [ -f "$name" ] && head -n 1 "$name" | grep -q "^$banner"; then
+    rm "$name"; echo "removed  $name (pilot-generated copy from an earlier adapter build)"
   elif [ -e "$name" ]; then
-    echo "SKIP     $name is not a pilot symlink or an unmodified adapter copy; left in place"
+    echo "SKIP     $name is not a pilot symlink or a pilot-generated copy; left in place"
   else
     echo "absent   $name"
   fi

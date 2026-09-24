@@ -23,12 +23,18 @@ link ../../pilot/content-workflow/adapters/claude/agents/editorial-reviewer.md  
 # .codex/agents/legal_reviewer.toml was "agent type is currently not available" in `codex exec`,
 # while a regular-file copy spawned). Codex agents are therefore installed as byte copies of the
 # generated adapters; rollback removes a copy only if it is still identical to its adapter.
+# A pilot-generated copy is recognised by the generator banner on its first line, so a copy left
+# from an earlier build_adapters.py run can be refreshed; any other file is never overwritten.
+banner='# GENERATED FILE. Source of truth: pilot/content-workflow/canonical/roles/'
+is_pilot_copy() { [ -f "$1" ] && [ ! -L "$1" ] && head -n 1 "$1" | grep -q "^$banner"; }
 copy_agent() {
   source=$1; name=$2
   if [ -L "$name" ]; then rm "$name"; echo "replaced symlink $name with a copy"; fi
-  if [ -e "$name" ] && ! cmp -s "$source" "$name"; then
-    echo "ERROR: $name exists and differs from $source; refusing to overwrite" >&2; exit 1
+  if [ -e "$name" ] && cmp -s "$source" "$name"; then echo "exists   $name (byte copy of $source)"; return; fi
+  if [ -e "$name" ] && ! is_pilot_copy "$name"; then
+    echo "ERROR: $name exists and is not a pilot-generated copy; refusing to overwrite" >&2; exit 1
   fi
+  if [ -e "$name" ]; then echo "refresh  $name (pilot-generated copy from an earlier adapter build)"; fi
   cp -p "$source" "$name"; echo "copied   $name <- $source"
 }
 copy_agent pilot/content-workflow/adapters/codex/agents/content_writer.toml     .codex/agents/content_writer.toml

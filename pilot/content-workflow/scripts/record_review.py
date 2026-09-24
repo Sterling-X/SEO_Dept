@@ -28,6 +28,7 @@ sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import cw_common as cw  # noqa: E402
+import cw_research as rs  # noqa: E402
 
 DEFAULT_AGENT_FILES = {
     ("claude", "legal-reviewer"): ".claude/agents/legal-reviewer.md",
@@ -114,6 +115,10 @@ def build_record(run_dir: Path, run: dict, payload: dict, *, runtime: str, agent
     if agent_rel and not (agent_abs and agent_abs.is_file()):
         errors.append(f"agent definition file {agent_rel} does not exist (activation missing?)")
     errors.extend(cw.validate_review_record(record))
+    if role == "legal-reviewer":
+        # Every verified Verification Log row must name a research record retrieved in this run and quote
+        # text that is in it. Prior reviews, saved notes, and memory are not retrieval; neither is a date.
+        errors.extend(rs.legal_log_problems(run_dir, run, record))
     for finding in record["findings"] if isinstance(record["findings"], list) else []:
         if not isinstance(finding, dict):
             continue

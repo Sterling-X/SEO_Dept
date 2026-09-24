@@ -10,8 +10,10 @@ is synthetic; no real deliverable or real review record is used.
 from __future__ import annotations
 
 import copy
+import datetime as _dt
 import io
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -19,7 +21,7 @@ import sys
 import tempfile
 import unittest
 import zipfile
-from contextlib import redirect_stdout
+from contextlib import contextmanager, redirect_stdout
 from pathlib import Path
 
 sys.dont_write_bytecode = True
@@ -29,6 +31,7 @@ sys.path.insert(0, str(PILOT_ROOT / "scripts"))
 sys.path.insert(0, str(TESTS_DIR))
 
 import cw_common as cw  # noqa: E402
+import cw_research as rs  # noqa: E402
 import deliver  # noqa: E402
 import fixture_manifest as fm  # noqa: E402
 import pin  # noqa: E402
@@ -36,8 +39,74 @@ import readiness_check  # noqa: E402
 import record_review  # noqa: E402
 import render_draft  # noqa: E402
 import render_inspect  # noqa: E402
+import research_fetch  # noqa: E402
+from fixture_server import CLIENT_PREFIX, COURTS_PREFIX, LEGISLATURE_PREFIX, FixtureServer  # noqa: E402
 
 REPO_ROOT = cw.find_repo_root(PILOT_ROOT)
+TODAY = _dt.date.today().isoformat()
+SERVER: FixtureServer | None = None
+
+
+def setUpModule() -> None:
+    """One local fixture server for the whole suite; fixture runs map their reserved .example URLs to it."""
+    global SERVER
+    SERVER = FixtureServer().__enter__()
+    os.environ[rs.FIXTURE_REWRITE_ENV] = SERVER.rewrite_map()
+
+
+def tearDownModule() -> None:
+    if SERVER is not None:
+        SERVER.__exit__(None, None, None)
+    os.environ.pop(rs.FIXTURE_REWRITE_ENV, None)
+
+
+@contextmanager
+def rewrite(**trees):
+    """Temporarily repoint fixture URL prefixes (legislature=, courts=, client=; None = unavailable)."""
+    previous = os.environ.get(rs.FIXTURE_REWRITE_ENV)
+    os.environ[rs.FIXTURE_REWRITE_ENV] = SERVER.rewrite_map(**trees)
+    try:
+        yield
+    finally:
+        os.environ[rs.FIXTURE_REWRITE_ENV] = previous
+
+
+# Synthetic research evidence: every excerpt is quoted from a page under tests/fixtures/valid-run/research-pages/.
+EVIDENCE_SPECS = {
+    "EV1": dict(url=f"{LEGISLATURE_PREFIX}/statutes/12.345", kind="legal-authority", source_id="S1", excerpt="remains a dissolution of marriage under this section and is governed by this chapter", authority="Exampleland Stat. § 12.345", jurisdiction="Exampleland", legislation_status="effective", current_through_date="2026-09-01", currency_marker="Current through 2026 Exampleland Act 12; published September 1, 2026.", supports=["C1"]),
+    "EV2": dict(url=f"{LEGISLATURE_PREFIX}/statutes/12.350", kind="legal-authority", source_id="S2", excerpt="A parent may rebut the presumption with evidence, and the court must make written findings supporting any departure", authority="Exampleland Stat. § 12.350", jurisdiction="Exampleland", legislation_status="effective", current_through_date="2026-09-01", currency_marker="Current through 2026 Exampleland Act 12; published September 1, 2026.", supports=["C2"]),
+    "EV3": dict(url=f"{COURTS_PREFIX}/rules/family/7", kind="legal-authority", source_id="S3", excerpt="the court may enter a case-management order that sets communication and disclosure requirements for the parties", authority="Exampleland Family Court Rule 7", jurisdiction="Exampleland", legislation_status="effective", current_through_date="2026-07-01", currency_marker="Rules current as of July 1, 2026.", supports=["C3"]),
+    "EV4": dict(url=f"{CLIENT_PREFIX}/", kind="client-fact", source_id="client-facts", excerpt="María Gómez-Núñez is the founder and managing attorney of Gómez & Núñez Family Law, P.A.", supports=["firm identity", "attorney role"]),
+    "EV5": dict(url=f"{CLIENT_PREFIX}/contact/", kind="client-fact", source_id="client-facts", excerpt="Consultations with Gómez & Núñez Family Law are by appointment; the firm does not advertise a free consultation.", supports=["contact path", "no free consultation"]),
+}
+
+
+def fetch_evidence(run_dir: Path, evidence_id: str, **overrides) -> dict:
+    spec = {**EVIDENCE_SPECS.get(evidence_id, {}), **overrides}
+    run = cw.load_json(run_dir / "run.json")
+    declared = {s.get("id") for s in run.get("sources", [])}
+    return research_fetch.fetch_and_record(
+        run_dir, evidence_id=evidence_id, url=spec["url"], kind=spec["kind"], excerpt=spec.get("excerpt"),
+        source_id=spec.get("source_id") if spec.get("source_id") in declared else None, authority=spec.get("authority"),
+        jurisdiction=spec.get("jurisdiction"), legislation_status=spec.get("legislation_status"), effective_date=spec.get("effective_date"),
+        future_effective_date=spec.get("future_effective_date"), currency_marker=spec.get("currency_marker"), amendments=None,
+        supports=spec.get("supports", []), notes=None, force=spec.get("force", False),
+        current_through_date=spec.get("current_through_date"), marker_absent_reason=spec.get("marker_absent_reason"),
+    )
+
+
+def open_research(run_dir: Path, evidence: tuple[str, ...] = ("EV1", "EV2", "EV3", "EV4", "EV5")) -> None:
+    research_fetch.init_research(run_dir)
+    for evidence_id in evidence:
+        fetch_evidence(run_dir, evidence_id)
+
+
+def stamp_fixture_dates(payload: dict) -> dict:
+    return json.loads(json.dumps(payload).replace("FIXTURE-DATE", TODAY))
+
+
+def fixture_payload(name: str) -> dict:
+    return stamp_fixture_dates(cw.load_json(FIXTURE / "reviews" / name))
 FIXTURE = TESTS_DIR / "fixtures" / "valid-run"
 CANDIDATES = PILOT_ROOT / "candidates" / "skills"
 SITUATIONAL = CANDIDATES / "family-law-situational-pages-pilot-v1"
@@ -59,10 +128,10 @@ PAYLOAD_TRANSFORM = None  # optional hook applied to every fixture payload befor
 
 def record(run_dir: Path, payload: dict | str, *, agent_file: str | None = None) -> Path:
     if isinstance(payload, str):
-        payload = cw.load_json(FIXTURE / "reviews" / payload)
+        payload = fixture_payload(payload)
     run = cw.load_json(run_dir / "run.json")
     agent = "legal-reviewer" if payload["role"] == "legal-reviewer" else "editorial-reviewer"
-    payload = copy.deepcopy(payload)
+    payload = stamp_fixture_dates(copy.deepcopy(payload))
     if PAYLOAD_TRANSFORM is not None:
         payload = PAYLOAD_TRANSFORM(payload)
     rec, errors = record_review.build_record(
@@ -121,6 +190,7 @@ def build_run(tmp: Path, *, run_transform=None, v1_transform=None, skip_final: b
     if run_transform:
         run_transform(run)
     cw.dump_json(run_dir / "run.json", run)
+    open_research(run_dir)  # research opened and every authority and client page fetched before any review
     record(run_dir, "legal-predraft-r0.json")
     build_export(run_dir, fm.manifest_v0())
     record(run_dir, "legal-checkpoint-r0.json")
@@ -534,9 +604,9 @@ class ReadinessTests(unittest.TestCase):
             self.assertEqual(check(run_dir)["status"], "READY")
 
     def test_checkpoint_finding_closed_at_initial_final_review(self) -> None:
-        legal_final_r0 = cw.load_json(FIXTURE / "reviews" / "legal-final-r1.json")
+        legal_final_r0 = fixture_payload("legal-final-r1.json")
         legal_final_r0["round"] = 0
-        editorial_final_r0 = cw.load_json(FIXTURE / "reviews" / "editorial-final-r1.json")
+        editorial_final_r0 = fixture_payload("editorial-final-r1.json")
         editorial_final_r0["round"] = 0
         # E2 was never raised at a checkpoint, so it cannot be closed at final r0; keep only E1 (minor, open).
         editorial_final_r0["findings"] = [f for f in editorial_final_r0["findings"] if f["id"] == "E1"]
@@ -771,7 +841,7 @@ class ReadinessTests(unittest.TestCase):
     def test_predraft_must_precede_drafting(self) -> None:
         run_dir = build_run(self.tmp, render=False)
         run = cw.load_json(run_dir / "run.json")
-        payload = cw.load_json(FIXTURE / "reviews" / "legal-predraft-r0.json")
+        payload = fixture_payload("legal-predraft-r0.json")
         _rec, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="predraft", round_=0, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
         self.assertTrue(any("precede drafting" in e for e in errors), errors)
         path = run_dir / "reviews" / "legal-predraft-r0.json"
@@ -832,7 +902,7 @@ class ReadinessTests(unittest.TestCase):
         with self.subTest(case="recorder refuses protected fixed-verified without corrected_text"):
             run_dir = build_run(self.fresh(), skip_final=True)
             run = cw.load_json(run_dir / "run.json")
-            payload = cw.load_json(FIXTURE / "reviews" / "legal-final-r1.json")
+            payload = fixture_payload("legal-final-r1.json")
             payload["findings"][0]["resolution"].pop("corrected_text")
             _rec, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="final", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
             self.assertTrue(any("corrected_text" in e for e in errors), errors)
@@ -866,7 +936,7 @@ class ReadinessTests(unittest.TestCase):
     def test_record_review_rejects_quote_not_in_draft(self) -> None:
         run_dir = build_run(self.tmp, skip_final=True)
         run = cw.load_json(run_dir / "run.json")
-        payload = cw.load_json(FIXTURE / "reviews" / "legal-final-r1.json")
+        payload = fixture_payload("legal-final-r1.json")
         payload["findings"][0]["passage"]["quote"] = "This sentence was never in the draft at all."
         payload["findings"][0]["resolution"] = {"status": "open"}
         _rec, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="final", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
@@ -875,7 +945,7 @@ class ReadinessTests(unittest.TestCase):
     def test_record_review_rejects_role_agent_mismatch_and_echoed_hash(self) -> None:
         run_dir = build_run(self.tmp, skip_final=True)
         run = cw.load_json(run_dir / "run.json")
-        payload = cw.load_json(FIXTURE / "reviews" / "legal-final-r1.json")
+        payload = fixture_payload("legal-final-r1.json")
         _rec, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="editorial-reviewer", stage="final", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/editorial-reviewer.md", repo_root=REPO_ROOT)
         self.assertTrue(any("declares role" in e for e in errors), errors)
         payload["subject"] = {"draft_sha256": "f" * 64}
@@ -885,7 +955,7 @@ class ReadinessTests(unittest.TestCase):
     def test_record_review_rejects_missing_agent_file(self) -> None:
         run_dir = build_run(self.tmp, skip_final=True)
         run = cw.load_json(run_dir / "run.json")
-        payload = cw.load_json(FIXTURE / "reviews" / "editorial-checkpoint-r0.json")
+        payload = fixture_payload("editorial-checkpoint-r0.json")
         _rec, errors = record_review.build_record(run_dir, run, payload, runtime="codex", agent="editorial_reviewer", stage="checkpoint", round_=0, agent_file=".codex/agents/not-activated.toml", repo_root=REPO_ROOT)
         self.assertTrue(any("does not exist" in e for e in errors), errors)
 
@@ -894,9 +964,12 @@ class ReadinessTests(unittest.TestCase):
         run_dir = self.tmp / "predraft-only"
         shutil.copytree(FIXTURE / "sources", run_dir / "sources")
         run = cw.load_json(FIXTURE / "run.template.json")
+        for source in run["sources"]:
+            source["sha256"] = cw.sha256_file(run_dir / source["path"])
         cw.dump_json(run_dir / "run.json", run)
+        open_research(run_dir)
         payload_path = run_dir / "legal-predraft-input.json"
-        cw.dump_json(payload_path, cw.load_json(FIXTURE / "reviews" / "legal-predraft-r0.json"))
+        cw.dump_json(payload_path, fixture_payload("legal-predraft-r0.json"))
         completed = subprocess.run(
             [sys.executable, str(PILOT_ROOT / "scripts" / "record_review.py"), str(run_dir), "--input", str(payload_path),
              "--runtime", "claude", "--agent", "legal-reviewer", "--stage", "predraft", "--round", "0",
@@ -1023,6 +1096,464 @@ class ReadinessTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stdout[-4000:])
         self.assertIn("negative-plaintext-citation-marker-page", completed.stdout)
         self.assertIn("negative-bracket-placeholder-page", completed.stdout)
+
+    # -- current-source research (2026-09-24) -------------------------------------------------
+    def test_research_stage_completes_and_offline_never_does(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        report = check(run_dir, "research")
+        self.assertEqual(report["status"], "RESEARCH-COMPLETE", report["reasons"])
+        self.assertEqual(report["research"]["valid_ids"], ["EV1", "EV2", "EV3", "EV4", "EV5"])
+        self.assertTrue(all(e.get("live_verified") for e in report["research"]["records"]), report["research"]["records"])
+        for entry in report["research"]["records"]:
+            self.assertEqual(entry["http_status"], 200)
+            self.assertTrue(entry["retrieved_at"] >= cw.load_json(run_dir / "run.json")["research"]["opened_at"])
+        offline = readiness_check.run_check(run_dir, "research", live_research=False)
+        self.assertEqual(offline["status"], "INCOMPLETE")
+        self.assertIn("RESEARCH_LIVE_SKIPPED", codes(offline))
+        offline = readiness_check.run_check(run_dir, "delivery", live_research=False)
+        self.assertIn("RESEARCH_LIVE_SKIPPED", codes(offline))
+        run = cw.load_json(run_dir / "run.json")
+        run.pop("research")
+        cw.dump_json(run_dir / "run.json", run)
+        self.assertIn("RESEARCH_NOT_OPENED", codes(check(run_dir, "intake")))
+        report = check(run_dir, "research")
+        self.assertIn("RESEARCH_NOT_OPENED", codes(report))
+
+    def test_research_missing_reused_stale_and_timestamp_only_evidence(self) -> None:
+        with self.subTest(case="authority never retrieved in this run"):
+            run_dir = build_run(self.fresh(), render=False)
+            (run_dir / "research" / "EV2.json").unlink()
+            report = check(run_dir)
+            self.assertEqual(report["status"], "INCOMPLETE")
+            missing = [r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_MISSING"]
+            self.assertTrue(any("source S2" in d for d in missing), missing)
+            self.assertTrue(any("citation [2]" in d for d in missing), missing)
+            self.assertIn("LEGAL_LOG_NO_EVIDENCE", codes(report), "the Verification Log rows that relied on EV2 lose their evidence too")
+        with self.subTest(case="record carries another run's nonce (copied evidence)"):
+            run_dir = build_run(self.fresh(), render=False)
+            path = run_dir / "research" / "EV2.json"
+            rec = cw.load_json(path)
+            rec["nonce"] = "0" * 32
+            cw.dump_json(path, rec)
+            report = check(run_dir)
+            self.assertIn("RESEARCH_REUSED", codes(report))
+            self.assertIn("RESEARCH_MISSING", codes(report))
+        with self.subTest(case="record carries another run_id"):
+            run_dir = build_run(self.fresh(), render=False)
+            path = run_dir / "research" / "EV1.json"
+            rec = cw.load_json(path)
+            rec["run_id"] = "some-earlier-run-2026-09-01"
+            cw.dump_json(path, rec)
+            self.assertIn("RESEARCH_REUSED", codes(check(run_dir)))
+        with self.subTest(case="retrieved before the run opened research"):
+            run_dir = build_run(self.fresh(), render=False)
+            path = run_dir / "research" / "EV3.json"
+            rec = cw.load_json(path)
+            opened = rs.parse_iso(cw.load_json(run_dir / "run.json")["research"]["opened_at"])
+            rec["retrieved_at"] = (opened - _dt.timedelta(days=1)).isoformat()
+            cw.dump_json(path, rec)
+            details = [r["detail"] for r in check(run_dir)["reasons"] if r["code"] == "RESEARCH_REUSED"]
+            self.assertTrue(any("predates research.opened_at" in d for d in details), details)
+        with self.subTest(case="evidence older than max_age_days"):
+            run_dir = build_run(self.fresh(), render=False)
+            run = cw.load_json(run_dir / "run.json")
+            old = (_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(days=20)).replace(microsecond=0).isoformat()
+            run["research"]["opened_at"] = old
+            cw.dump_json(run_dir / "run.json", run)
+            path = run_dir / "research" / "EV2.json"
+            rec = cw.load_json(path)
+            rec["retrieved_at"] = old
+            cw.dump_json(path, rec)
+            report = check(run_dir)
+            self.assertIn("RESEARCH_STALE", codes(report))
+            self.assertIn("EV2", " ".join(r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_STALE"))
+        with self.subTest(case="a timestamp without an excerpt is not evidence"):
+            run_dir = build_run(self.fresh(), render=False)
+            path = run_dir / "research" / "EV2.json"
+            rec = cw.load_json(path)
+            rec["excerpt"] = None
+            cw.dump_json(path, rec)
+            details = [r["detail"] for r in check(run_dir)["reasons"] if r["code"] == "RESEARCH_INVALID"]
+            self.assertTrue(any("timestamp alone" in d for d in details), details)
+        with self.subTest(case="retrieved text edited after retrieval"):
+            run_dir = build_run(self.fresh(), render=False)
+            text_path = run_dir / "research" / "EV2.txt"
+            text_path.write_text(text_path.read_text(encoding="utf-8") + "\nedited", encoding="utf-8")
+            details = [r["detail"] for r in check(run_dir)["reasons"] if r["code"] == "RESEARCH_INVALID"]
+            self.assertTrue(any("changed after retrieval" in d for d in details), details)
+        with self.subTest(case="excerpt not actually in the retrieved text"):
+            run_dir = build_run(self.fresh(), render=False)
+            path = run_dir / "research" / "EV1.json"
+            rec = cw.load_json(path)
+            rec["excerpt"] = "This sentence was never on the retrieved page but is long enough to pass the length rule."
+            cw.dump_json(path, rec)
+            details = [r["detail"] for r in check(run_dir)["reasons"] if r["code"] == "RESEARCH_INVALID"]
+            self.assertTrue(any("excerpt is not present" in d for d in details), details)
+
+    def test_research_fetch_refuses_what_it_did_not_retrieve(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        with self.subTest(case="excerpt not on the page"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", **{"excerpt": "The court shall always order equal parenting time without exception under this section."}, force=True)
+            self.assertIn("not present in the page text retrieved just now", str(ctx.exception))
+            self.assertTrue((run_dir / "research" / "EV1.json").is_file(), "the prior record is untouched when a re-fetch is refused")
+        with self.subTest(case="source unavailable: nothing is recorded"):
+            with rewrite(legislature=None):
+                with self.assertRaises(SystemExit) as ctx:
+                    research_fetch.fetch_and_record(run_dir, evidence_id="EV9", url=f"{LEGISLATURE_PREFIX}/statutes/12.345", kind="legal-authority", excerpt=EVIDENCE_SPECS["EV1"]["excerpt"], source_id=None, authority="Exampleland Stat. § 12.345", jurisdiction="Exampleland", legislation_status="effective", effective_date=None, future_effective_date=None, currency_marker=EVIDENCE_SPECS["EV1"]["currency_marker"], amendments=None, supports=[], notes=None, force=False)
+            self.assertIn("retrieval failed", str(ctx.exception))
+            self.assertFalse((run_dir / "research" / "EV9.json").exists())
+            self.assertFalse((run_dir / "research" / "EV9.txt").exists())
+        with self.subTest(case="page not found (404)"):
+            with self.assertRaises(SystemExit) as ctx:
+                research_fetch.fetch_and_record(run_dir, evidence_id="EV9", url=f"{LEGISLATURE_PREFIX}/statutes/99.999", kind="legal-authority", excerpt="x" * 50, source_id=None, authority="Exampleland Stat. § 99.999", jurisdiction="Exampleland", legislation_status="effective", effective_date=None, future_effective_date=None, currency_marker=None, amendments=None, supports=[], notes=None, force=False, marker_absent_reason="Test case: the fetch is expected to fail before any marker check applies.")
+            self.assertIn("HTTP 404", str(ctx.exception))
+        with self.subTest(case="currency marker not on the page"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", currency_marker="Current through 2031 Exampleland Act 99.", force=True)
+            self.assertIn("currency marker is not present", str(ctx.exception))
+        with self.subTest(case="legal authority without a legislation status"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", legislation_status=None, force=True)
+            self.assertIn("legislation-status", str(ctx.exception))
+        with self.subTest(case="short excerpt"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", excerpt="dissolution of marriage", force=True)
+            self.assertIn("at least 40 characters", str(ctx.exception))
+        with self.subTest(case="duplicate id without --force"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1")
+            self.assertIn("exists", str(ctx.exception))
+        with self.subTest(case="a real run never rewrites a reserved fixture host"):
+            run = cw.load_json(run_dir / "run.json")
+            run["fixture"] = False
+            cw.dump_json(run_dir / "run.json", run)
+            try:
+                with self.assertRaises(SystemExit) as ctx:
+                    fetch_evidence(run_dir, "EV9", url=f"{LEGISLATURE_PREFIX}/statutes/12.345", kind="legal-authority", source_id=None, excerpt=EVIDENCE_SPECS["EV1"]["excerpt"], authority="Exampleland Stat. § 12.345", jurisdiction="Exampleland", legislation_status="effective", currency_marker=EVIDENCE_SPECS["EV1"]["currency_marker"])
+                self.assertIn("reserved or fixture host", str(ctx.exception))
+                self.assertFalse((run_dir / "research" / "EV9.json").exists())
+            finally:
+                run["fixture"] = True
+                cw.dump_json(run_dir / "run.json", run)
+        with self.subTest(case="init refuses to reopen without --force"):
+            with self.assertRaises(SystemExit):
+                research_fetch.init_research(run_dir)
+
+    def test_unavailable_authority_at_live_check_blocks_delivery(self) -> None:
+        run_dir = build_run(self.tmp)
+        self.assertEqual(check(run_dir)["status"], "READY")
+        with rewrite(legislature=None):
+            report = check(run_dir)
+            self.assertEqual(report["status"], "INCOMPLETE")
+            unavailable = [r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_UNAVAILABLE"]
+            self.assertEqual(len(unavailable), 2, unavailable)
+            self.assertTrue(all("could not be re-verified live" in d for d in unavailable))
+            out = self.tmp / "out"
+            with redirect_stdout(io.StringIO()):
+                code = _run_deliver(run_dir, out)
+            self.assertEqual(code, 1)
+            self.assertFalse(out.exists() and any(out.iterdir()), "nothing is delivered while an authority is unavailable")
+        self.assertEqual(check(run_dir)["status"], "READY", "the same run is READY again once the authority is reachable")
+
+    def test_changed_law_is_detected_at_live_check(self) -> None:
+        run_dir = build_run(self.tmp)
+        self.assertEqual(check(run_dir)["status"], "READY")
+        with rewrite(legislature="leg-changed"):
+            report = check(run_dir)
+            self.assertEqual(report["status"], "INCOMPLETE")
+            drift = [r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_EXCERPT_DRIFT"]
+            self.assertEqual(len(drift), 1, drift)
+            self.assertIn("EV2", drift[0])
+            self.assertIn("changed since retrieval", drift[0])
+            entries = {e["evidence_id"]: e for e in report["research"]["records"]}
+            self.assertTrue(entries["EV1"].get("live_verified"), "the unchanged section still verifies")
+            self.assertFalse(entries["EV2"].get("live_verified"))
+
+    def test_wrong_jurisdiction_is_refused(self) -> None:
+        with self.subTest(case="authority from another jurisdiction"):
+            run_dir = build_run(self.fresh(), render=False)
+            path = run_dir / "research" / "EV1.json"
+            rec = cw.load_json(path)
+            rec["jurisdiction"] = "Otherland"
+            cw.dump_json(path, rec)
+            report = check(run_dir)
+            self.assertIn("RESEARCH_JURISDICTION_MISMATCH", codes(report))
+            self.assertTrue(any("source S1" in r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_MISSING"), "a wrong-jurisdiction record does not count as coverage")
+        with self.subTest(case="federal authority is accepted for any state run"):
+            run_dir = build_run(self.fresh(), skip_final=True)
+            path = run_dir / "research" / "EV3.json"
+            rec = cw.load_json(path)
+            rec["jurisdiction"] = "federal"
+            cw.dump_json(path, rec)
+            self.assertNotIn("RESEARCH_JURISDICTION_MISMATCH", codes(check(run_dir, "research")))
+
+    def test_future_effective_and_proposed_legislation_are_refused(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        fetch_evidence(run_dir, "EV6", url=f"{LEGISLATURE_PREFIX}/statutes/12.360", kind="legal-authority", source_id=None, excerpt="the court may appoint a parenting coordinator to resolve day-to-day disputes about the parenting schedule", authority="Exampleland Stat. § 12.360", jurisdiction="Exampleland", legislation_status="enacted-not-effective", future_effective_date="2027-01-01", currency_marker="This section takes effect on January 1, 2027.")
+        with self.subTest(case="enacted, not yet effective"):
+            report = check(run_dir, "research")
+            blocked = [r["detail"] for r in report["reasons"] if r["code"] == "LEGISLATION_NOT_EFFECTIVE"]
+            self.assertEqual(len(blocked), 1, blocked)
+            self.assertIn("EV6", blocked[0])
+            self.assertNotIn("EV6", report["research"]["valid_ids"])
+        with self.subTest(case="proposed bill"):
+            path = run_dir / "research" / "EV6.json"
+            rec = cw.load_json(path)
+            rec["currency"]["legislation_status"] = "proposed"
+            rec["currency"]["future_effective_date"] = None
+            cw.dump_json(path, rec)
+            self.assertIn("LEGISLATION_NOT_EFFECTIVE", codes(check(run_dir, "research")))
+        with self.subTest(case="declared effective but with an effective date after retrieval"):
+            rec["currency"]["legislation_status"] = "effective"
+            rec["currency"]["effective_date"] = "2027-01-01"
+            cw.dump_json(path, rec)
+            details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "LEGISLATION_NOT_EFFECTIVE"]
+            self.assertTrue(any("after the retrieval date" in d for d in details), details)
+        with self.subTest(case="a legal row that relies on the not-yet-effective record is refused at the gate"):
+            rec["currency"]["legislation_status"] = "enacted-not-effective"
+            rec["currency"]["effective_date"] = None
+            rec["currency"]["future_effective_date"] = "2027-01-01"
+            cw.dump_json(path, rec)
+            payload = fixture_payload("legal-predraft-r0.json")
+            payload["round"] = 1
+            payload["verification_log"] = [{"claim": "the court may appoint a parenting coordinator", "location": "planned strategy", "authority": "Exampleland Stat. § 12.360", "url": f"{LEGISLATURE_PREFIX}/statutes/12.360", "accessed": TODAY, "result": "Confirmed", "evidence_id": "EV6", "excerpt": "the court may appoint a parenting coordinator to resolve day-to-day disputes about the parenting schedule", "notes": "FIXTURE"}]
+            run = cw.load_json(run_dir / "run.json")
+            rec_out, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="predraft", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
+            self.assertEqual(errors, [], "the recorder binds the row to the record; the gate judges the record's currency")
+            cw.dump_json(run_dir / "reviews" / "legal-predraft-r1.json", rec_out)
+            report = check(run_dir, "research")
+            self.assertIn("LEGISLATION_NOT_EFFECTIVE", codes(report))
+
+    def test_legal_log_rows_need_this_runs_evidence(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        run = cw.load_json(run_dir / "run.json")
+
+        def attempt(mutate) -> list[str]:
+            payload = fixture_payload("legal-final-r1.json")
+            mutate(payload)
+            _rec, errors = record_review.build_record(run_dir, run, payload, runtime="claude", agent="legal-reviewer", stage="final", round_=1, agent_file="pilot/content-workflow/adapters/claude/agents/legal-reviewer.md", repo_root=REPO_ROOT)
+            return errors
+
+        self.assertEqual(attempt(lambda p: None), [], "the fixture row is bound to EV2")
+        with self.subTest(case="verified row without evidence_id"):
+            errors = attempt(lambda p: p["verification_log"][0].pop("evidence_id"))
+            self.assertTrue(any("needs evidence_id" in e for e in errors), errors)
+        with self.subTest(case="excerpt not in the retrieved text"):
+            errors = attempt(lambda p: p["verification_log"][0].update({"excerpt": "The court shall always order equal parenting time without exception, so nothing can change it."}))
+            self.assertTrue(any("excerpt is not in the text retrieved as EV2" in e for e in errors), errors)
+        with self.subTest(case="row URL is not the URL retrieved as that evidence"):
+            errors = attempt(lambda p: p["verification_log"][0].update({"url": f"{LEGISLATURE_PREFIX}/statutes/12.345"}))
+            self.assertTrue(any("is not the URL retrieved as EV2" in e for e in errors), errors)
+        with self.subTest(case="access date from before this run opened"):
+            errors = attempt(lambda p: p["verification_log"][0].update({"accessed": "2026-09-01"}))
+            self.assertTrue(any("predates research.opened_at" in e for e in errors), errors)
+        with self.subTest(case="evidence id that does not exist"):
+            errors = attempt(lambda p: p["verification_log"][0].update({"evidence_id": "EV77"}))
+            self.assertTrue(any("does not name a valid research record" in e for e in errors), errors)
+        with self.subTest(case="Unverifiable row must explain the failed retrieval"):
+            errors = attempt(lambda p: p["verification_log"].append({"claim": "some claim", "authority": "x", "url": "https://legislature.exampleland.example/statutes/12.999", "accessed": TODAY, "result": "Unverifiable"}))
+            self.assertTrue(any("must say in notes why retrieval failed" in e for e in errors), errors)
+        with self.subTest(case="Unverifiable row with an explanation is recorded (and blocks delivery separately)"):
+            errors = attempt(lambda p: p["verification_log"].append({"claim": "some claim", "authority": "x", "url": "https://legislature.exampleland.example/statutes/12.999", "accessed": TODAY, "result": "Unverifiable", "notes": "Fetch returned HTTP 404 twice during this review; the section may have been renumbered."}))
+            self.assertEqual(errors, [])
+        with self.subTest(case="the gate re-applies the rule to a hand-edited record"):
+            full = build_run(self.fresh(), render=False)
+            path = full / "reviews" / "legal-final-r1.json"
+            rec = cw.load_json(path)
+            rec["verification_log"][0].pop("evidence_id")
+            rec["verification_log"][0].pop("excerpt")
+            cw.dump_json(path, rec)
+            report = check(full)
+            self.assertIn("LEGAL_LOG_NO_EVIDENCE", codes(report))
+            self.assertIn("needs evidence_id", " ".join(r["detail"] for r in report["reasons"]))
+        with self.subTest(case="the gate re-applies the rule to the pre-draft record"):
+            full = build_run(self.fresh(), render=False)
+            path = full / "reviews" / "legal-predraft-r0.json"
+            rec = cw.load_json(path)
+            rec["verification_log"][1]["excerpt"] = "Words that were never on the retrieved page but are long enough to pass length."
+            cw.dump_json(path, rec)
+            report = check(full)
+            self.assertTrue(any(r["code"] == "LEGAL_LOG_NO_EVIDENCE" and "legal-predraft-r0.json" in r["detail"] for r in report["reasons"]), report["reasons"])
+
+    def test_unsupported_client_claims_need_first_party_evidence(self) -> None:
+        with self.subTest(case="client facts with no evidence"):
+            run_dir = build_run(self.fresh(), skip_final=True)
+            run = cw.load_json(run_dir / "run.json")
+            next(s for s in run["sources"] if s["kind"] == "client-facts").pop("evidence_ids")
+            cw.dump_json(run_dir / "run.json", run)
+            details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_MISSING"]
+            self.assertTrue(any("declare no evidence_ids" in d for d in details), details)
+        with self.subTest(case="client facts pointing at a legal authority instead of a first-party page"):
+            run_dir = build_run(self.fresh(), skip_final=True)
+            run = cw.load_json(run_dir / "run.json")
+            next(s for s in run["sources"] if s["kind"] == "client-facts")["evidence_ids"] = ["EV1"]
+            cw.dump_json(run_dir / "run.json", run)
+            details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_MISSING"]
+            self.assertTrue(any("not a valid client-fact research record" in d for d in details), details)
+        with self.subTest(case="first-party page changed since retrieval"):
+            run_dir = build_run(self.fresh(), skip_final=True)
+            path = run_dir / "research" / "EV4.json"
+            rec = cw.load_json(path)
+            rec["excerpt"] = "María Gómez-Núñez is the founder and managing attorney"  # still true on the page
+            cw.dump_json(path, rec)
+            with rewrite(client="client/divorce"):  # the firm's page now serves different content
+                report = check(run_dir, "research")
+            self.assertTrue(any(r["code"] in ("RESEARCH_EXCERPT_DRIFT", "RESEARCH_UNAVAILABLE") and "EV4" in r["detail"] for r in report["reasons"]), report["reasons"])
+
+    def test_incorrect_citation_url_has_no_evidence(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        run = cw.load_json(run_dir / "run.json")
+        wrong = f"{COURTS_PREFIX}/rules/family/8"
+        run["citations"][2]["url"] = wrong
+        next(s for s in run["sources"] if s["id"] == "S3")["url"] = wrong
+        cw.dump_json(run_dir / "run.json", run)
+        report = check(run_dir, "research")
+        missing = [r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_MISSING"]
+        self.assertTrue(any("citation [3]" in d and "rules/family/8" in d for d in missing), missing)
+        self.assertTrue(any("source S3" in d for d in missing), missing)
+
+    def test_export_unreadable_and_render_wrapper_failure(self) -> None:
+        run_dir = build_run(self.tmp)
+        export = run_dir / "export" / EXPORT_NAME
+        export.write_bytes(b"not a zip archive")
+        report = check(run_dir)
+        self.assertEqual(report["status"], "INCOMPLETE")
+        self.assertIn("EXPORT_UNREADABLE", codes(report))
+        self.assertIn("VALIDATOR_FAILED", codes(report))
+        self.assertIn("REVIEW_STALE", codes(report))
+        build_export(run_dir, fm.manifest_v1())
+        broken_wrapper = self.tmp / "broken-render.sh"
+        broken_wrapper.write_text("#!/bin/sh\necho 'renderer missing' >&2\nexit 3\n", encoding="utf-8")
+        broken_wrapper.chmod(0o755)
+        (self.tmp / "renderer-tools.lock.json").write_text("{}", encoding="utf-8")
+        run = cw.load_json(run_dir / "run.json")
+        with self.assertRaises(SystemExit) as ctx:
+            render_inspect.render(run_dir, run, 7, broken_wrapper, 144, False)
+        self.assertIn("render wrapper exited 3", str(ctx.exception))
+        self.assertFalse((run_dir / "reviews" / "render-final-r7.json").exists())
+
+    def test_nonce_rotation_invalidates_every_record(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        self.assertEqual(check(run_dir, "research")["status"], "RESEARCH-COMPLETE")
+        research_fetch.init_research(run_dir, force=True)
+        report = check(run_dir, "research")
+        reused = [r for r in report["reasons"] if r["code"] == "RESEARCH_REUSED"]
+        self.assertEqual(len(reused), 5, reused)
+        self.assertIn("RESEARCH_MISSING", codes(report))
+        fetch_evidence(run_dir, "EV1", force=True)
+        report = check(run_dir, "research")
+        self.assertEqual(len([r for r in report["reasons"] if r["code"] == "RESEARCH_REUSED"]), 4, "a re-fetch under the new nonce is valid again")
+
+    def test_marker_only_drift_is_detected_at_live_check(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        with rewrite(legislature="leg-marker-changed"):
+            report = check(run_dir, "research")
+        drift = [r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_EXCERPT_DRIFT"]
+        self.assertEqual(len(drift), 1, drift)
+        self.assertIn("EV1", drift[0])
+        self.assertIn("currency marker", drift[0])
+
+    def test_max_age_boundary(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        run = cw.load_json(run_dir / "run.json")
+        path = run_dir / "research" / "EV1.json"
+        rec = cw.load_json(path)
+        now = _dt.datetime.now(_dt.timezone.utc).replace(microsecond=0)
+        for days, hours, expect_stale in ((13, 23, False), (14, 1, True)):
+            stamp = (now - _dt.timedelta(days=days, hours=hours)).isoformat()
+            run["research"]["opened_at"] = stamp
+            cw.dump_json(run_dir / "run.json", run)
+            rec["retrieved_at"] = stamp
+            cw.dump_json(path, rec)
+            stale = [r for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_STALE"]
+            self.assertEqual(bool(stale), expect_stale, f"{days}d{hours}h -> {stale}")
+
+    def test_legal_record_needs_page_bound_currency_or_a_declared_reason(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        with self.subTest(case="neither marker nor reason"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", currency_marker=None, force=True)
+            self.assertIn("--currency-marker", str(ctx.exception))
+        with self.subTest(case="declared reason is accepted and printed in the ledger"):
+            rec = fetch_evidence(run_dir, "EV1", currency_marker=None, marker_absent_reason="The fixture legislature page for this section carries no current-through statement.", force=True)
+            self.assertIsNone(rec["currency"]["marker"])
+            report = check(run_dir, "research")
+            self.assertEqual(report["status"], "RESEARCH-COMPLETE", report["reasons"])
+            self.assertIn("no page marker", rs.ledger_markdown(cw.load_json(run_dir / "run.json"), report["research"], []))
+        with self.subTest(case="hand-edited record with the marker removed and no reason is refused"):
+            path = run_dir / "research" / "EV2.json"
+            rec = cw.load_json(path)
+            rec["currency"]["marker"] = None
+            cw.dump_json(path, rec)
+            details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_INVALID"]
+            self.assertTrue(any("currency.marker" in d for d in details), details)
+
+    def test_excerpt_must_be_operative_text_of_the_cited_section(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        with self.subTest(case="excerpt equal to the currency marker is refused"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV1", excerpt="Current through 2026 Exampleland Act 12; published September 1, 2026.", force=True)
+            self.assertIn("currency marker", str(ctx.exception))
+        with self.subTest(case="page that does not carry the cited section is refused"):
+            with self.assertRaises(SystemExit) as ctx:
+                fetch_evidence(run_dir, "EV9", url=f"{LEGISLATURE_PREFIX}/statutes/12.345", kind="legal-authority", source_id=None, excerpt=EVIDENCE_SPECS["EV1"]["excerpt"], authority="Exampleland Stat. § 99.123", jurisdiction="Exampleland", legislation_status="effective", currency_marker=EVIDENCE_SPECS["EV1"]["currency_marker"])
+            self.assertIn("section identifier", str(ctx.exception))
+        with self.subTest(case="hand-edited authority pointing at another section is caught by the gate"):
+            path = run_dir / "research" / "EV1.json"
+            rec = cw.load_json(path)
+            rec["authority"] = "Exampleland Stat. § 99.123"
+            cw.dump_json(path, rec)
+            details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_INVALID"]
+            self.assertTrue(any("section identifier" in d for d in details), details)
+        with self.subTest(case="neutral jurisdiction labels other than federal do not bypass the check"):
+            path = run_dir / "research" / "EV2.json"
+            rec = cw.load_json(path)
+            rec["jurisdiction"] = "n/a"
+            cw.dump_json(path, rec)
+            self.assertIn("RESEARCH_JURISDICTION_MISMATCH", codes(check(run_dir, "research")))
+
+    def test_link_destinations_need_direct_records(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        run = cw.load_json(run_dir / "run.json")
+        run["link_destinations"] = [f"{CLIENT_PREFIX}/divorce/", f"{CLIENT_PREFIX}/divorce/contested/"]
+        cw.dump_json(run_dir / "run.json", run)
+        report = check(run_dir, "research")
+        missing = [r["detail"] for r in report["reasons"] if r["code"] == "RESEARCH_MISSING" and "link destination" in r["detail"]]
+        self.assertEqual(len(missing), 2, missing)
+        fetch_evidence(run_dir, "EV6", url=f"{CLIENT_PREFIX}/divorce/", kind="link-destination", source_id=None, excerpt=None)
+        fetch_evidence(run_dir, "EV7", url=f"{CLIENT_PREFIX}/divorce/contested/", kind="link-destination", source_id=None, excerpt=None)
+        self.assertEqual(check(run_dir, "research")["status"], "RESEARCH-COMPLETE")
+        path = run_dir / "research" / "EV6.json"
+        rec = cw.load_json(path)
+        rec["redirects"] = 1
+        cw.dump_json(path, rec)
+        details = [r["detail"] for r in check(run_dir, "research")["reasons"] if r["code"] == "RESEARCH_INVALID"]
+        self.assertTrue(any("resolve directly" in d for d in details), details)
+
+    def test_fixture_flag_must_be_boolean(self) -> None:
+        run_dir = build_run(self.tmp, skip_final=True)
+        run = cw.load_json(run_dir / "run.json")
+        run["fixture"] = "false"
+        cw.dump_json(run_dir / "run.json", run)
+        self.assertIn("FIXTURE_FLAG", codes(check(run_dir, "intake")))
+
+    def test_deliver_writes_research_ledger(self) -> None:
+        run_dir = build_run(self.tmp)
+        out = self.tmp / "out"
+        with redirect_stdout(io.StringIO()):
+            code = _run_deliver(run_dir, out)
+        self.assertEqual(code, 0)
+        ledger = (out / "research-ledger.md").read_text(encoding="utf-8")
+        for eid in ("EV1", "EV2", "EV3", "EV4", "EV5"):
+            self.assertIn(eid, ledger)
+        self.assertIn("| verified |", ledger)
+        self.assertIn("current through 2026-09-01", ledger)
+        self.assertNotIn("provision effective 2026-09-01", ledger, "the compilation date is not printed as the provision's effective date")
+        self.assertIn("not authenticated provenance", ledger)
+        self.assertIn("presumption of equal parenting time", ledger, "claims supported come from the recorded Verification Log rows")
+        report = cw.load_json(out / "readiness-report.json")
+        self.assertTrue(report["research"]["live_checked"])
 
 
 if __name__ == "__main__":

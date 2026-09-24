@@ -1,5 +1,5 @@
 {
-  "$comment": "Documentation-grade schema for run.json (content-workflow-run/v1). Validated by scripts/readiness_check.py with a hand-written checker; no external jsonschema dependency.",
+  "$comment": "Documentation-grade schema for run.json (content-workflow-run/v1). Validated by scripts/readiness_check.py with a hand-written checker; no external jsonschema dependency. Research evidence records live in <run>/research/ (schema research-record.schema.json).",
   "type": "object",
   "required": [
     "schema",
@@ -176,6 +176,14 @@
           },
           "verified_on": {
             "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^EV[0-9]{1,3}$"
+            },
+            "description": "required (non-empty) for kind client-facts: the first-party pages retrieved in this run that the approved facts were checked against"
           }
         }
       }
@@ -308,6 +316,39 @@
     "citations_ceiling_rationale": {
       "type": "string",
       "description": "required (40+ chars) when more than six citations are declared: which material claims need the additional authorities"
+    },
+    "research": {
+      "type": "object",
+      "required": [
+        "nonce",
+        "opened_at"
+      ],
+      "description": "issued once per run by scripts/research_fetch.py --init; every research/EV<n>.json record must carry this nonce and a retrieved_at on or after opened_at",
+      "properties": {
+        "nonce": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{32,}$"
+        },
+        "opened_at": {
+          "type": "string"
+        },
+        "opened_by": {
+          "type": "string"
+        },
+        "max_age_days": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30,
+          "default": 14
+        }
+      }
+    },
+    "link_destinations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "internal link destinations the page will carry (parent hub, process bridge, CTA); each needs a link-destination research record retrieved in this run with zero redirects (RESEARCH_MISSING otherwise)"
     }
   }
 }

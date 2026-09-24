@@ -227,7 +227,63 @@
       }
     },
     "verification_log": {
-      "type": "array"
+      "type": "array",
+      "description": "legal-reviewer records: one row per material claim",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "result",
+          "accessed"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "authority": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "must equal the url or final_url of the research record named by evidence_id"
+          },
+          "accessed": {
+            "type": "string",
+            "description": "ISO date of the retrieval in this run; must be on or after run.json research.opened_at"
+          },
+          "result": {
+            "enum": [
+              "Confirmed",
+              "Flagged",
+              "Correction-needed",
+              "Unverifiable"
+            ]
+          },
+          "evidence_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^EV[0-9]{1,3}$",
+            "description": "required for every result except Unverifiable: the research/EV<n>.json record retrieved in this run"
+          },
+          "excerpt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 40,
+            "description": "required for every result except Unverifiable: 40+ characters quoted verbatim from the text retrieved as evidence_id"
+          },
+          "notes": {
+            "type": "string",
+            "description": "for Unverifiable rows: why retrieval failed (20+ characters)"
+          }
+        }
+      }
     },
     "checks": {
       "type": "array",

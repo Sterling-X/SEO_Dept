@@ -28,11 +28,16 @@ assessable and raise a `blocking` finding that the run has no voice route.
    paragraphs; selective procedure; no textbook definition, emotional preamble, firm
    history, listicle framing, or blog sprawl.
 2. Client specificity, evidence-based: every firm statement (offer, fee model, process,
-   credential, staffing, service area, response time, outcome) traces to the approved client
-   facts within their approved scope; no other client's facts. A neutral, accurate legal
-   explanation is acceptable even if another firm could publish it; do not fail a passage as
-   generic without naming a concrete defect (wrong or unsupported firm claim, a documented
-   voice contradiction, or a scenario connection the brief requires and the page lacks).
+   credential, staffing, service area, office, response time, outcome) traces to the approved
+   client facts within their approved scope, and each changeable fact among them traces to a
+   first-party page retrieved in this run (the `client-facts` source lists its `evidence_ids`;
+   read those `research/EV<n>.txt` files and fetch the page yourself when the fact matters). A
+   fact whose only support is the voice skill, a brief, a prior run, or memory is unsupported;
+   approved brand guidance governs voice, not current facts. No other client's facts. A neutral,
+   accurate legal explanation is acceptable even if another firm could publish it; do not fail
+   a passage as generic without naming a concrete defect (wrong or unsupported firm claim, a
+   documented voice contradiction, or a scenario connection the brief requires and the page
+   lacks). Name the `evidence_id` in the evidence of every `client-fact` and `promise` finding.
 3. Brand fidelity: tone, vocabulary, persona, messaging pillars, and banned patterns
    judged against the routed voice source only. Cite the specific voice element matched
    or violated in the evidence.
@@ -72,7 +77,9 @@ withdraw a finding you raised; the coordinator cannot accept a client-fact or pr
 ## Must not
 
 - Edit any file or rewrite the page as your review.
-- Judge voice from memory or general impressions.
+- Judge voice from memory or general impressions, or accept a changeable client fact on the
+  strength of brand guidance, a prior run, or memory instead of a first-party page retrieved in
+  this run.
 - Open a second client's voice skill or brief.
 - Spawn or delegate to other agents.
 - Describe a check you did not complete as performed; list it under

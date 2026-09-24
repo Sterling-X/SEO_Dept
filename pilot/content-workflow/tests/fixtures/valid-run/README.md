@@ -13,3 +13,7 @@ skill's real `build-situational.js`, renders `draft.md` from the same manifest w
 `scripts/render_draft.py`, records the checkpoint and initial final reviews against it, then
 builds manifest v1 (the revision), re-renders, records the round-1 rechecks, and runs
 mechanical QA with the candidate's structural and page validators declared in `run.json`.
+
+## Research evidence (added 2026-09-24)
+
+`research-pages/` holds the synthetic statute, court-rule, and firm pages that `tests/fixture_server.py` serves during the suite. `build_run` opens research for each fixture run (`research_fetch.py --init`), fetches EV1 through EV5 from that server with the excerpts the review payloads quote, and the payloads' `accessed` value `FIXTURE-DATE` is replaced with the test day so no row predates `research.opened_at`. The `.example` URLs are mapped to the server only because `run.json` says `fixture: true`; a real run never rewrites.

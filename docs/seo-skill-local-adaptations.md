@@ -419,3 +419,79 @@ is the method that surfaced this.
   on the hook, since `AGENTS.md` carries them and Codex reads it directly.
 - Whether this unresolved architecture question should also be recorded in the V2
   open-decisions section is a pending user decision; that file was not edited.
+
+## 2026-09-24: Current-source research made mandatory (research-first, never placeholder-first)
+
+Branch `content-workflow-pilot`. Source task: full-system audit, repair, and test of the
+content-workflow pilot (user request 2026-09-24). Contributing agents: primary strategist
+(design, code, tests); `legal-reviewer` and Codex `legal_reviewer` (live integration runs);
+`seo-reviewer` (independent review of the change). Verification state: execution-verified in the
+pilot test suite and on a fresh client run; the `AGENTS.md` rule outside the pilot is
+instruction-only.
+
+### Observed failure
+
+The pilot's gate bound reviews to file hashes but had no mechanical evidence that any source was
+retrieved. A Verification Log row proved only a date: the 2026-09-23 fixture pre-draft record said
+"nothing fetched" and passed coverage; a row copied from an earlier run, a saved `sources/` note, or
+memory would have passed. The writer role and both situational skills carried placeholder-first
+instructions ("leave a placeholder rather than guessing").
+
+### Correction adopted
+
+- `AGENTS.md`: new section "Current-source research" (mandatory on every new assignment and every
+  standalone skill invocation that drafts, audits, or verifies client-facing content; prior reviews,
+  memory, saved files, and brand guidance do not satisfy it; record what was retrieved, when, its
+  effective dates, the claims it supports, and retrieval evidence; research before placeholders;
+  report incomplete when evidence cannot be obtained). Default workflow step 2 amended to match.
+- `docs/seo-skill-compatibility.md`: precedence bullet stating that imported placeholder-first text
+  is superseded on conflict and that the imported skill files stay unchanged as the fallback.
+- Pilot: `scripts/research_fetch.py` and `scripts/cw_research.py` (per-run nonce; a record is
+  written only after a live HTTP 200 fetch with the named excerpt and currency marker present;
+  offline rules; live re-fetch; Verification-Log linkage), `readiness_check.py --stage research`,
+  new reason codes (`RESEARCH_NOT_OPENED`, `RESEARCH_MISSING`, `RESEARCH_REUSED`, `RESEARCH_STALE`,
+  `RESEARCH_INVALID`, `RESEARCH_JURISDICTION_MISMATCH`, `LEGISLATION_NOT_EFFECTIVE`,
+  `RESEARCH_UNAVAILABLE`, `RESEARCH_EXCERPT_DRIFT`, `RESEARCH_LIVE_SKIPPED`,
+  `LEGAL_LOG_NO_EVIDENCE`), `record_review.py` refusing legal rows without this-run evidence,
+  `deliver.py` writing `research-ledger.md`; canonical roles, rules, criteria, schema, coordinator
+  skill, and the four candidate skills reworded research-first. Details:
+  `pilot/content-workflow/docs/CHANGES-AND-OPEN-QUESTIONS.md`.
+- `activate.sh` / `rollback.sh`: a Codex agent copy is recognised by its generator banner so a
+  regenerated adapter can be refreshed and removed (defect found today).
+
+### Verification
+
+- `pilot/content-workflow/tests/test_readiness.py`: 74 of 74 pass (55 pre-existing unchanged in
+  intent, 19 new: research stage and offline refusal; missing, reused, stale, and timestamp-only
+  evidence; fetch-tool refusals; unavailable authority at live check; changed law and marker-only
+  drift at live check; wrong jurisdiction and neutral-label bypass; future-effective and proposed
+  legislation; legal rows without evidence; unsupported client claims; incorrect citation URL;
+  page-bound currency or declared reason; excerpt must be operative text of the cited section;
+  link destinations need direct records; nonce rotation; `max_age_days` boundary; fixture flag
+  type; unreadable export and render-wrapper failure; research ledger in the delivery). The seven
+  tests added after the independent review answer its M2, M4, M9, M10, and O1 items. Fixtures use a local HTTP server and fictional statutes under
+  `tests/fixtures/valid-run/research-pages/`; the URL rewrite is honoured only for `fixture: true`.
+- Baseline suites unchanged and passing: hook tests 8 and 6; candidate situational suite 38.
+- Fresh client run (Git-ignored `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/`): 13 live
+  retrievals; INTAKE-COMPLETE; RESEARCH-COMPLETE with every record live-verified. Controlled refusal
+  run: failed bill, out-of-state statute, and nonexistent section refused with the intended codes.
+- Disposable checkout (`git worktree` plus the working changes): activation created exactly eight
+  Git-ignored entries; adapter check, hook tests, and candidate suite passed; the readiness suite
+  failed only where rendering needs the Git-ignored LibreOffice and PyMuPDF installs; a foreign
+  `.codex/agents` file was refused by activation and left by rollback; full rollback removed all
+  eight entries with a clean `git status`.
+
+### Limits
+
+- The rule outside the pilot is instruction-only; nothing mechanically checks a standalone skill
+  invocation's research. The reviewer treats a claim without current retrieval evidence as
+  unverified.
+- The fetch tool proves retrieval, not that a page supports a claim; excerpt selection remains a
+  judgment, and a reviewer can quote the coordinator's excerpt without reading further.
+- `research_fetch.py` uses this machine's Python TLS trust: revisor.mn.gov fails the handshake under
+  Homebrew Python 3.14 / OpenSSL 3.6.3 (system Python and curl succeed), legislature.mi.gov's
+  chain does not validate, ilga.gov returns 403 to automated clients, and PDF authorities are not
+  extracted. Each fails closed (`RESEARCH_UNAVAILABLE`); none is bypassed.
+- Codex headless `legal_reviewer` could not fetch under the read-only sandbox and correctly returned
+  `Unverifiable`; live research on Codex is unverified on this host. The interactive Codex session
+  remains untested.

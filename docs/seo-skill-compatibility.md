@@ -1,6 +1,6 @@
 # SEO Skill Compatibility
 
-Status: 2026-09-17 on `seo-agent-foundation`
+Status: 2026-09-17 on `seo-agent-foundation`; research-first precedence bullet added 2026-09-24 on `content-workflow-pilot`
 
 This document is the local compatibility contract for skills imported from `SEO_Skills_Transfer.json`. Baseline commit `9d8e07f` preserves the unchanged export. Read this document and [SEO Skill Local Adaptations](seo-skill-local-adaptations.md) before relying on an imported skill. File presence or Codex discovery does not mean that a workflow's dependencies, execution, factual accuracy, or performance have been validated.
 
@@ -11,6 +11,7 @@ This document is the local compatibility contract for skills imported from `SEO_
 - Imported files do not supply credentials, connectors, account access, packages, live research, document rendering, or background services.
 - Repository files and Git history remain the authoritative local implementation. Project-local MemPalace provides scoped reference continuity only; it is not ChatGPT memory and does not synchronize or supersede the source export.
 - Changing facts, legal claims, financial claims, office details, products, rates, policies, and live search behavior still require current authoritative sources.
+- Current-source research is mandatory before any imported skill's drafting, audit, or verification workflow relies on a legal or changeable factual claim (`AGENTS.md`, "Current-source research", added 2026-09-24). The placeholder-first instructions in the imported skill text (`[LOCAL DETAIL: ...]`, `[VERIFY: ...]`, "leave a placeholder rather than guessing", "use a clearly labeled placeholder") are superseded on conflict: research first; a placeholder marks only a fact confirmed unobtainable now, and the work stays incomplete until it is researched or removed. The imported skill files are preserved unchanged as the fallback text; the pilot candidates under `pilot/content-workflow/candidates/skills/` carry the research-first wording and the enforcing tooling.
 - Repairs must be separate, attributable changes. Do not describe a newly authored replacement as a recovered original, remove a validation requirement, or claim that an unavailable check passed.
 
 ## Client voice routing

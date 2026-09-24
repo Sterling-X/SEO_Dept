@@ -24,7 +24,7 @@ subject hashes and writes it to `reviews/`. The machine-checked shape is in
     }
   ],
   "verification_log": [
-    {"claim": "condensed claim", "location": "…", "authority": "…", "url": "…", "accessed": "2026-09-23", "result": "Confirmed", "notes": "…"}
+    {"claim": "condensed claim", "location": "…", "authority": "…", "url": "…", "accessed": "2026-09-24", "result": "Confirmed", "evidence_id": "EV2", "excerpt": "forty or more characters quoted verbatim from the page as retrieved in this run", "notes": "jurisdiction, current-through marker, history line, legislation status, exceptions searched"}
   ],
   "checks_not_performed": ["…"],
   "learning_contribution": {"result_and_evidence": "…", "corrections_or_methods": "none", "lesson_candidate": "none", "uncertainty_or_disagreement": "…"}
@@ -61,7 +61,14 @@ Field rules:
 - Role `render-inspector` (stage `final`): carries `render.pages[]` with `page`, `path`,
   `sha256`, `inspected`, `observation`, plus `page_count`, `renderer_release`,
   `renderer_sha256`, and `subject.export_sha256`. Written by `scripts/render_inspect.py`.
-- `verification_log`: required for the legal role; optional otherwise.
+- `verification_log`: required for the legal role; optional otherwise. Each row carries `claim`,
+  `result` (`Confirmed`, `Flagged`, `Correction-needed`, `Unverifiable`), and `accessed` (the
+  actual retrieval date in this run, never earlier than `run.json` `research.opened_at`). Every
+  result except `Unverifiable` also carries `evidence_id` (the `research/EV<n>.json` record
+  retrieved in this run for that URL) and `excerpt` (40+ characters quoted verbatim from the text
+  retrieved as that record). `record_review.py` refuses a row without them, a row whose `url` is not
+  the retrieved URL, or an excerpt that is not in the retrieved text; the gate reports the same as
+  `LEGAL_LOG_NO_EVIDENCE`. An `Unverifiable` row must explain the failed retrieval in `notes`.
 - `learning_contribution`: the four items `AGENTS.md` requires from every participating
   agent.
 

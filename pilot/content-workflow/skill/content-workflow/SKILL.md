@@ -58,6 +58,7 @@ situational candidate declares `structural` and `page`; their commands take the 
 `<run>/manifest.json`). The intake gate reports `VALIDATORS_UNDECLARED` until they are declared.
 
 ```bash
+python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --init          # issues the run's research nonce; nothing retrieved earlier counts
 python3 pilot/content-workflow/scripts/pin.py <run-dir> --skills <path-to-SKILL.md>... --sources <run-relative path>...
 python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage intake
 ```
@@ -65,19 +66,68 @@ python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage inta
 Any `INCOMPLETE` reason stops the affected work. Report the missing item; do not draft
 around it.
 
+### 1a. Current-source research (required on every run; research first, never a placeholder first)
+
+Before any claim is planned or drafted, retrieve every source the page will rely on, during this
+run, with the fetch tool. Nothing else counts: not a prior run's `sources/` notes, not an earlier
+review, not memory, not the voice skill (brand guidance governs voice and proves no fact).
+
+- For each legal authority: `--kind legal-authority`, the official URL, a verbatim `--excerpt` (40+
+  characters of the operative text), `--jurisdiction`, `--authority`, `--legislation-status`
+  (`effective` is the only status that can support a claim of current law), `--effective-date` and
+  the page's own `--currency-marker` (its "current through" or "published" statement), and
+  `--amendments` (history line). Check exceptions and companion sections while the page is open.
+- For the approved client facts: retrieve each first-party page the facts rest on (services,
+  pricing, locations, credentials, contact route, statistics) with `--kind client-fact` and list
+  their ids in the `client-facts` source's `evidence_ids`. For link destinations use
+  `--kind link-destination`.
+- For court procedures and filing fees: the court's or clerk's official page, `--kind
+  legal-authority` or `--kind other`, with the fee or procedure text as the excerpt.
+
+```bash
+python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --id EV1 --url <official URL> --kind legal-authority --source-id S1 \
+  --excerpt "<verbatim operative text>" --jurisdiction "<state>" --authority "<citation>" --legislation-status effective \
+  --effective-date YYYY-MM-DD --currency-marker "<the page's current-through statement>" --amendments "<history line>" --supports C1
+python3 pilot/content-workflow/scripts/research_fetch.py <run-dir> --id EV9 --url <first-party page> --kind client-fact --source-id client-facts --excerpt "<verbatim fact text>"
+python3 pilot/content-workflow/scripts/readiness_check.py <run-dir> --stage research     # offline rules plus a live re-fetch of every record
+```
+
+The tool writes a record only when the page returned HTTP 200 now and the excerpt (and marker)
+are on it, a section identifier from `--authority` appears in the text, and the excerpt is not the
+marker. A refusal means the fact is unverified: report the affected work as `INCOMPLETE` and do
+not draft, cite, or placeholder around it. The research stage must report `RESEARCH-COMPLETE`
+before the pre-draft dispatch.
+
+Two practices learned on windowed legislature sites (docs.legis.wisconsin.gov, 2026-09-24):
+
+- Take `--amendments` from the section's own History line, the `History:` line that follows the
+  `<section> History` marker in the retrieved text, never the first `History:` in the page (that
+  is a neighbouring section's). When the rendered window does not reach the marker, omit the note
+  and say so in `--notes`; the tool refuses a note that is not in the retrieved text.
+- A long section is served as a window that omits later subsections. If a planned claim rests on
+  a subsection that is not in the record's `.txt`, retrieve the subsection-anchored URL as its own
+  record (for example `/document/statutes/767.41(5)(am)`) so the reviewer can quote it; the legal
+  reviewer records `Flagged` with a record request until that exists.
+
 ### 1b. Pre-draft legal verification (family-law pages)
 
 List every material legal claim the page will need (jurisdiction, posture, authority). Dispatch the
-legal reviewer with `stage: predraft` and the pinned sources; it verifies each planned claim live
-and returns a Verification Log with a row per claim. Record it:
+legal reviewer with `stage: predraft`, the pinned sources, and the research records (`research/`);
+it fetches each authority itself, verifies each planned claim live, and returns a Verification Log
+with a row per claim that names the `evidence_id` and quotes a verbatim `excerpt` of the retrieved
+text, with jurisdiction, currency, amendments, exceptions, and legislation status in `notes`.
+Record it:
 
 ```bash
 python3 pilot/content-workflow/scripts/record_review.py <run-dir> --input <predraft.json> --runtime claude --agent legal-reviewer --stage predraft --round 0
 ```
 
+The recorder refuses a verified row that names no record from this run, quotes text that is not in
+it, cites a URL the record did not retrieve, or carries an access date from before the run opened.
 Then write the `Confirmed` authorities into `run.json` `citations` (one identity per URL; more than
-six needs `citations_ceiling_rationale`) and pin the legal source notes. The writer may draft only
-`Confirmed` claims. Any `Unverifiable` or `Correction-needed` row blocks the run until resolved.
+six needs `citations_ceiling_rationale`) and pin the legal source notes (which point at the records;
+they are not evidence themselves). The writer may draft only `Confirmed` claims. Any `Unverifiable`
+or `Correction-needed` row blocks the run until resolved by a fresh retrieval and recheck.
 
 ### 2. Draft with checkpoints (required)
 
@@ -151,10 +201,12 @@ corrected passage and records it in `corrected_text`. Preserve `disputed` findin
 python3 pilot/content-workflow/scripts/deliver.py <run-dir>
 ```
 
-`READY` copies the export and readiness report to `pilot/content-workflow/deliveries/`.
-`INCOMPLETE` copies nothing and lists reason codes. Delivery executes the declared validators
-against the exported file; it cannot be skipped. Do not hand-edit records to reach
-`READY`; fix the underlying problem or report `INCOMPLETE`.
+`READY` copies the export, the readiness report, `run.json`, `draft.md`, and
+`research-ledger.md` (sources retrieved, retrieval times, currency statements, live re-check
+results, claims supported) to `pilot/content-workflow/deliveries/`. `INCOMPLETE` copies nothing
+and lists reason codes. Delivery executes the declared validators against the exported file and
+re-fetches every research record live; neither can be skipped, and there is no offline delivery.
+Do not hand-edit records to reach `READY`; fix the underlying problem or report `INCOMPLETE`.
 
 ### 6. Independent review and learning pass
 
@@ -167,6 +219,8 @@ production instructions from inside a run.
 ## What the tooling proves and does not prove
 
 The readiness check proves hashes, presence, citation pairing, placeholder absence,
-parity, record shape, currency, and round limits. It records but cannot verify legal or
-editorial judgment. Say so in every delivery summary. Attorney review before publication
-remains required for legal content.
+parity, record shape, currency, round limits, and that every research record's page was
+fetched in this run, contained its excerpt and currency marker, and still does at the live
+re-check. It records but cannot verify legal or editorial judgment, and it cannot prove that a
+retrieved page supports the claim cited to it. Say so in every delivery summary. Attorney
+review before publication remains required for legal content.

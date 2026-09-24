@@ -35,6 +35,11 @@ metadata:
    Node dependencies; a missing resource is an explicit INCOMPLETE at intake.
 7. **Review hand-off.** Drafts go to the legal and editorial reviewers at checkpoint and final; the
    writer never marks a finding fixed-verified; a later edit invalidates earlier review records.
+8. **Research first (2026-09-24).** Every authority and changeable client fact is retrieved during the
+   run with `scripts/research_fetch.py` before it is planned or drafted; the placeholder-first
+   instruction ("leave a placeholder rather than guessing") is replaced by research-first, and a
+   `[LOCAL DETAIL]` marker is a reporting device for a fact confirmed unobtainable now, never a way
+   to finish. Prior runs, saved notes, memory, and brand guidance verify nothing.
 
 ## Local repository status
 
@@ -261,7 +266,7 @@ A Situational page must:
 
 ### State-Specific Content: Research and Verification
 
-Before writing any state-specific content, research and verify the legal details for [STATE]. This is not optional. Do the work before drafting, not after.
+Before writing any state-specific content, research and verify the legal details for [STATE]. This is not optional. Do the work before drafting, not after. Inside a content-workflow run "research" has one meaning: the coordinator retrieved the current official page during this run with `scripts/research_fetch.py` (a `research/EV<n>.json` record with the page text, retrieval time, jurisdiction, legislation status, effective date, and currency marker) and the legal reviewer's pre-draft row names that record. A saved note, a prior run, a prior review, model memory, or the voice skill is not research.
 
 **What to research for every page:**
 - Governing statutes and code sections relevant to the situation
@@ -277,10 +282,10 @@ Before writing any state-specific content, research and verify the legal details
 - Use the state name naturally throughout the content where jurisdiction matters.
 - Integrate local court names, filing locations, and county-specific details when provided by the user.
 
-**How to handle unverifiable details:**
-- If a detail is hyper-local (county-specific court rules, specific judge procedures, current filing fee dollar amounts) and the user has not provided it, use a clear placeholder: `[LOCAL DETAIL: describe what goes here]`
-- Do not fabricate statute numbers, fee amounts, case law, or county-specific practices. If you cannot confirm it, leave a placeholder rather than guessing.
-- Placeholders should be rare. Most state-level legal details are researchable.
+**How to handle details you do not yet have (research first, never a placeholder first):**
+- A detail you would otherwise guess (a statute, a court's name, a filing fee, a deadline, an office, a service, a credential, a statistic, a link destination) is researched before it is written: return it to the coordinator for live retrieval with `research_fetch.py` and, for legal claims, pre-draft verification. County court pages, clerk fee schedules, and local rules are usually published and are researched the same way.
+- Do not fabricate statute numbers, fee amounts, case law, or county-specific practices, and do not fill the gap with a placeholder while research is possible. If the fact cannot be obtained now, leave the claim out and report the gap; the work is incomplete, not finished with a stand-in.
+- `[LOCAL DETAIL: describe what goes here]` is a reporting device for a fact the coordinator has confirmed in writing cannot be researched in this run (an unpublished county practice, an unpublished fee). List every such marker in `changes.md` with that confirmation.
 - `[LOCAL DETAIL: ...]` is the only valid placeholder form. Never leave `[FIRM_NAME]`, `[STATE]`, `[INSERT ...]`, `{{...}}`, `TBD`, `TODO`, or similar tokens. Any remaining placeholder makes the run INCOMPLETE at delivery; report every placeholder to the coordinator in `changes.md`.
 
 ### Citation Rules
@@ -489,10 +494,11 @@ Before delivering the DOCX, verify the following. If any gate fails, fix it befo
    - **Per-citation claim test:** For every statute cited, read ONLY the cited section's text and ask whether it directly supports the surrounding sentence. A statute about post-decree disputes is NOT authority for an initial-case proposition. A statute about subsection (4) is NOT authority for a claim made under subsection (1.5)(b). If the cited section does not directly govern the claim, the citation is misapplied; remove it or replace it with the correct authority.
    - **Subsection precision:** When citing a subsection, verify the subsection actually contains what the page claims it contains. Do not conflate adjacent subsections.
    - **Statutory paraphrase fidelity:** Where the page paraphrases a legal term ("rebuttable presumption," "clear and convincing evidence," "shall not be ordered unless"), the paraphrase must match the statute's actual structure.
-   - Does any placeholder remain? In a content-workflow run the answer must be no; a remaining `[LOCAL DETAIL]` placeholder is reported and the run stays INCOMPLETE until the fact is supplied or the claim is removed.
+   - Does every cited authority have a research record retrieved in this run (`research/EV<n>.json`) and a `Confirmed` pre-draft row naming it? A citation without one is unverified, whatever its date.
+   - Does any placeholder remain? In a content-workflow run the answer must be no; a remaining `[LOCAL DETAIL]` placeholder is reported and the run stays INCOMPLETE until the fact is researched or the claim is removed.
 8. **No cannibalization risk** -- Does this page avoid competing with the parent hub or a Procedural page for the same keyword intent?
 9. **Paragraph discipline** -- No paragraph exceeds 3 sentences in body content?
-10. **No fabricated law** -- No invented statute numbers, case names, filing details, or local court practices? Every legal reference is research-backed?
+10. **No fabricated law** -- No invented statute numbers, case names, filing details, or local court practices? Every legal reference is backed by a research record retrieved in this run and a `Confirmed` pre-draft row, not by memory, a saved note, or an earlier run?
 11. **Citation discipline** -- Does each statute keep one number, cited at its first material claim and again only where it supports a later material claim? Does every material legal claim have support (coverage governs the count; six is a guideline, more needs a recorded rationale)? Does the page read like a service page, not a legal brief?
 12. **Readability** -- Is the page scannable? Would a stressed person in a legal crisis be able to find what they need quickly?
 13. **Voice source fidelity** -- Was the voice source named by the exact domain route (or the pinned approved brief) loaded before drafting? Does the page read like that specific firm, not a generic family law site? Does the tone, cadence, vocabulary, and positioning match the voice skill's guardrails? Do the flagship sections (opening paragraphs, "How [FIRM_NAME] Can Help," CTAs) especially sound on-brand?

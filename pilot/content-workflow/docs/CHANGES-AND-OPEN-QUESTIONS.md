@@ -149,6 +149,146 @@ review record, enumerate its refusal rules and add a gate test that a hand-writt
 violating each rule is refused") is scenario-checked once here (A2 was exactly such a miss) and
 is recorded as a hypothesis for the `seo-reviewer` role, not promoted.
 
+## Full-system audit and research-first repair (2026-09-24)
+
+Source task: the user's 2026-09-24 request to audit, repair, and test the complete pilot, make
+current-source research mandatory, replace placeholder-first with research-first, add controlled
+tests, run fresh integration tests with the actual agents on both hosts, and test install and
+rollback in a disposable checkout. Every row below names its evidence; nothing here reuses the
+2026-09-23 results as a new test.
+
+### Defects found by the audit and their disposition
+
+| # | Defect | Evidence | Disposition | Where enforced |
+|---|---|---|---|---|
+| 8 | No mechanical evidence that any source was retrieved. A Verification Log row proved only a date; the fixture pre-draft record said "nothing fetched" and passed coverage; a row copied from an earlier run or written from a saved `sources/` note would pass. | `readiness_check.py` (2026-09-23) read only `result`, `url`, `accessed`; fixture `legal-predraft-r0.json` notes "FIXTURE: source note read; nothing fetched" | Research evidence layer: `scripts/research_fetch.py` writes `research/EV<n>.json` plus the extracted page text only after a live HTTP 200 fetch with the named excerpt (40+ chars) and currency marker present; each record carries the per-run nonce, retrieval time, content hash, jurisdiction, legislation status, effective date, amendments note. Every verified Verification Log row must name a record (`evidence_id`) and quote its text (`excerpt`); `record_review.py` refuses otherwise. | `cw_research.research_problems()`, `legal_log_problems()`; `record_review.py`; `readiness_check.py --stage research` and delivery |
+| 9 | Evidence reuse across runs undetectable. Nothing distinguished a record made for this run from one copied from an earlier run or written before the run started. | design gap; the Sterling 2026-09-23 run's `sources/legal-*.md` notes could have been copied into a new run | Per-run research nonce and opening time (`research_fetch.py --init`); a record with another nonce or `run_id`, or retrieved before `opened_at`, is `RESEARCH_REUSED`; older than `max_age_days` (14, max 30) is `RESEARCH_STALE`; an access date before `opened_at` in a log row is refused | `RESEARCH_REUSED`, `RESEARCH_STALE`, `LEGAL_LOG_NO_EVIDENCE` |
+| 10 | Timestamps treated as proof. A record or row with a date and no checkable text could pass. | same | A record needs an excerpt present in the retrieved text and a text hash; a row needs a verbatim excerpt found in that text; a record with a date and no excerpt is `RESEARCH_INVALID` ("a timestamp alone is not retrieval evidence") | `validate_record_shape()`, `legal_log_problems()` |
+| 11 | No currency check at delivery: law or a client page could change between review and delivery. | design gap | Live re-fetch of every valid record at every research-stage and delivery check: `RESEARCH_UNAVAILABLE`, `RESEARCH_EXCERPT_DRIFT`; `--offline` reports `RESEARCH_LIVE_SKIPPED` and is never READY; `deliver.py` has no offline mode | `research_live_problems()`; `deliver.py` |
+| 12 | Jurisdiction and legislation status never recorded or checked; proposed or not-yet-effective law could back a claim of current law. | design gap | Declared jurisdiction and legislation status are checked for consistency: `RESEARCH_JURISDICTION_MISMATCH` (declared jurisdiction must be the run's or federal; neutral labels such as `n/a` no longer pass), `LEGISLATION_NOT_EFFECTIVE` (declared status must be `effective`; a provision effective date after retrieval is refused), a section identifier from the cited authority must appear in the retrieved text, the excerpt may not be the currency marker, and a legal record needs the page's marker or a recorded reason for its absence. Correctness of the declarations is the legal reviewer's judgment. | `research_problems()`, `validate_record_shape()`, `research_fetch.py` |
+| 13 | Client facts needed no current first-party evidence; the voice skill alone could support a fee, office, or credential statement. | `client-facts` source had only `verified_on` | `client-facts` source declares `evidence_ids` of first-party pages retrieved in the run (`RESEARCH_MISSING` otherwise); editorial role and red-team candidate require it; brand guidance governs voice, not facts | `research_problems()`; roles; candidate |
+| 14 | Placeholder-first instructions. Writer role: "remove the claim or leave a `[LOCAL DETAIL]` placeholder"; situational candidate and baseline: "leave a placeholder rather than guessing". | role and skill text | Research-first wording in the writer role, situational candidate (research section, Quality Gates 7 and 10, template), coordinator skill (Stage 1a), workflow rules (Stage 0b), `AGENTS.md` ("Current-source research"), and `docs/seo-skill-compatibility.md` (imported placeholder-first text superseded on conflict; imported files unchanged as fallback). A `[LOCAL DETAIL]` marker is a reporting device for a fact confirmed unobtainable now, never a way to finish | text; placeholder gate unchanged |
+| 15 | Activation and rollback could not handle a regenerated adapter: after `build_adapters.py`, the Codex byte copies no longer matched, `rollback.sh` refused to remove them, and `activate.sh` refused to replace them. | reproduced 2026-09-24 in this checkout | Both scripts recognise a pilot-generated copy by the generator banner on its first line; foreign files are still refused and left in place | `activate.sh`, `rollback.sh`; disposable-checkout test |
+| 16 | No reader-facing record of what was retrieved travelled with a delivery (open question 9, partly). | `deliver.py` copied four files | `deliver.py` writes `research-ledger.md` (source, retrieval time, currency statement, live re-check, claims supported from the Verification Log) into the run and the delivery | `deliver.write_ledger()` |
+
+### Tests added (all synthetic; `tests/fixtures/valid-run/research-pages/` and `tests/fixture_server.py`)
+
+`test_readiness.py`: 74 tests, all passing on 2026-09-24 (about 2.5 minutes; 67 before the
+independent review, 74 after its M2, M4, M9, M10, and O1 items were adopted). New: research stage
+completes and offline never does; missing, reused (nonce, run_id, before opening), stale,
+timestamp-only, edited-text, and excerpt-absent evidence; fetch-tool refusals (excerpt not on page,
+unavailable source, 404, marker absent, no legislation status, short excerpt, duplicate id, real run
+never rewrites a reserved host, init refuses to reopen); unavailable authority at the live check
+blocks delivery and copies nothing; changed law detected at the live check (`leg-changed` tree);
+wrong jurisdiction refused, federal accepted; enacted-not-effective, proposed, and future
+effective-date refused, and a row relying on such a record refused at the gate; legal rows need
+this-run evidence (recorder and gate, including the pre-draft record); unsupported client claims
+(no `evidence_ids`, wrong kind, first-party page changed); incorrect citation URL has no evidence;
+unreadable export and render-wrapper failure; delivery writes the research ledger; nonce rotation
+invalidates every record; marker-only drift at the live check; the `max_age_days` boundary (13 days
+23 hours passes, 14 days 1 hour is stale); a legal record needs the page's marker or a declared
+reason; an excerpt equal to the marker or a page without the cited section identifier is refused;
+neutral jurisdiction labels other than federal do not bypass the check; declared link destinations
+need direct records; the fixture flag must be a boolean. Baseline suites unchanged: hooks 8 and 6,
+candidate situational 38. The fixture's `accessed` values are stamped
+with the test day so fixture rows never predate the run's opening.
+
+### Fresh integration tests (2026-09-24; Git-ignored run directories)
+
+- Coordinator retrieval: `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/` — 13 live
+  retrievals (eight Wisconsin statutes with the "updated through 2025 Wis. Act 247 ... Published
+  9-4-26" marker, three Sterling first-party pages, two link destinations); INTAKE-COMPLETE;
+  RESEARCH-COMPLETE with every record live-verified; the Wisconsin pricing page's fee text did not
+  extract (script-rendered), so no pricing-page fact was approved. `coordinator-log.md` in the run.
+- Controlled refusal: `runs/refusal-test-wisconsin-2026-09-24/` — failed 2025 SB 161 recorded as
+  `proposed`, Fla. Stat. § 61.13 recorded with jurisdiction Florida, § 767.999 fetch refused (HTTP
+  404, nothing written); gate INCOMPLETE with `LEGISLATION_NOT_EFFECTIVE`,
+  `RESEARCH_JURISDICTION_MISMATCH`, `RESEARCH_MISSING` for S2-S4 and citations 2-4.
+- Codex headless (`codex exec`, codex-cli 0.155.0-alpha.16.3, from the repository root): (a)
+  `legal_reviewer` under `--sandbox read-only` asked to verify one § 767.001 claim live: the agent
+  reported the official URL inaccessible to its web fetch and the in-app browser denied by security
+  policy, returned `Unverifiable` with an empty excerpt, and filled nothing from memory (correct
+  refusal; live research BLOCKED on this host). (b) `editorial_reviewer` under `--sandbox
+  read-only` read `run.json`, `client-facts.md`, and `research/EV9.*`, confirmed the phone string
+  is present in the retrieved text, wrote nothing. (c) `content_writer` under `--sandbox
+  workspace-write` created exactly the one requested file listing the 13 records; `git status`
+  unchanged before and after; the research gate still RESEARCH-COMPLETE. Each spawn was preceded by
+  one `collab spawn failed: no thread with id` router error, as on 2026-09-23. Evidence:
+  `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/smoke-logs/codex-*`.
+- Claude `legal-reviewer` on the refusal run (live WebFetch from this session): R1 Confirmed with a
+  verbatim § 767.001(5) excerpt bound to EV1; R2 Correction-needed bound to EV2 (SB 161 failed
+  3/23/2026, companion AB 151 also failed, current § 767.41(4)(a)2. has no presumption); R3
+  Correction-needed bound to EV3 (2025 Florida Statutes, not Wisconsin); R4 Unverifiable with no
+  excerpt (HTTP 404 for both fetchers). The recorder accepted the record; the gate refused with
+  `LEGISLATION_NOT_EFFECTIVE`, `RESEARCH_JURISDICTION_MISMATCH`, `RESEARCH_MISSING`,
+  `REVIEW_VERDICT_BLOCKING`, `LEGAL_PREDRAFT_COVERAGE`, and `LEGAL_LOG_UNVERIFIED`. This is the
+  proof of correct refusal when verification fails, produced by the actual agent against real
+  authorities. One live re-check of EV1 timed out (transient); `fetch()` now retries a transport
+  failure once, never an HTTP status.
+- Claude `legal-reviewer` on the fresh Sterling run (pre-draft C1-C9, live WebFetch of all eight
+  record URLs plus five subsection windows and three 2025 Act pages): eight rows Confirmed with
+  narrowed wording, each bound to EV1-EV8 by a verbatim excerpt; planned claim C2 split, its
+  sex/race, order-of-importance, and written-reasons part Flagged because the § 767.41 section page
+  renders a window ending at sub. (4)(cm); five findings (L1 "not ranked" needs the § 767.41(5)(bm)
+  paramount-safety qualification; L2 EV2 does not contain sub. (5)-(6); L3 C3's "only" contradicted
+  at the temporary-order stage by § 767.225(1)(a); L4 C5 omits § 767.117(1)(c); L5 terminology note
+  on "marital property"). Verdict ready-with-revisions. The recorder accepted the record with every
+  row's excerpt found in the stored text; the gate reports coverage for all eight citations and no
+  unverified row. The agent also found two coordinator-side record defects, fixed the same day: the
+  coordinator's setup script had attached the first History line in the page window (a neighbouring
+  section's) as `amendments_note` for six records, and the section pages omit later subsections. All
+  eight records were re-fetched with the section's own History line (or none, stated), the misused
+  `effective_date` moved to `current_through_date`, and subsection records EV14 (§ 767.41(5)(am)) and
+  EV15 (§ 767.41(6)(a)) were retrieved at the agent's request. `research_fetch.py` now refuses an
+  amendments note that is not in the retrieved text; extraction by the section's own marker is
+  coordinator practice recorded in the coordinator skill.
+
+### Independent review of the research-first change (read-only `seo-reviewer`, 2026-09-24, round 1)
+
+One blocker, ten material items, eight optional items. Dispositions, each checked against the code:
+
+| Finding | Disposition |
+|---|---|
+| B1: the completion claim for "actual agents in Claude" was unsupported until a real `legal-reviewer` payload with `evidence_id`/`excerpt` passed the recorder | Cleared during the review: the refusal-run record and then the fresh-run pre-draft record (above) were both accepted by `record_review.py` and evaluated by the gate. |
+| M1: "fetched in this run" overstated; the layer proves nonce/run-id/time consistency plus excerpt presence, not authenticated provenance (the run directory is writable) | Accepted; reworded in the readiness notice, README, `workflow-rules.md`, `cw_research.py` docstring, the ledger header and footer, the record notice, the schema comment, and `AGENTS.md` ("checked mechanically for retrieval, consistency, and presence"); `research/` added to the writer's instruction-only list. |
+| M2: a legal record could carry no page-bound currency evidence | Accepted; a legal authority now needs `--currency-marker` present on the page or `--no-currency-marker "<reason>"` recorded and printed in the ledger; a hand-edited record without either is `RESEARCH_INVALID`. |
+| M3: `effective_date` conflated the compilation's current-through date with the provision's effective date, and the ledger printed it as "effective" | Accepted; `current_through_date` added and bound to the marker; `effective_date` is now the provision's own date only; the ledger prints them separately; schema, tests, and the integration run's records updated. |
+| M4: jurisdiction and status are declaration-consistency checks; `n/a` bypassed the jurisdiction rule; an excerpt could be page chrome | Accepted: neutral labels narrowed to `federal`/`united states`; a section identifier from the cited authority must appear in the retrieved text (fetch and gate); an excerpt equal to or inside the currency marker is refused; docs say "declared ... checked for consistency". Correctness stays the legal reviewer's judgment. |
+| M5: the Codex consequence was unstated | Accepted; README and this record now say the Codex path is not deliverable for any page with a legal claim until open question 12 is decided. |
+| M6: the Claude reviewer's WebFetch is a processed rendering, so the verbatim binding is to the coordinator's stored text | Accepted; stated in the Claude host note of the legal-reviewer adapter and in the README limitations; open question 13 records the residual. |
+| M7: stale statements (README "AGENTS.md unchanged"; usage string; compatibility status line; evidence paths) | Accepted and corrected; evidence paths verified to exist before commit. |
+| M8: "replace placeholder-first" resolved by precedence override rather than editing the five imported files | Reported as a user decision in the completion report (override-by-precedence with the imported files preserved, or attributable local adaptations to the five files with the backup as fallback). |
+| M9: link destinations recorded voluntarily, never required or redirect-checked | Accepted; `run.json` `link_destinations` requires a `link-destination` record per URL with zero redirects and a final URL equal to the cited URL; the fetch tool refuses a redirecting destination. |
+| M10: untested mechanisms (nonce rotation, marker-only drift, `max_age_days` boundary) | Accepted; three tests added plus tests for the M2, M4, and M9 rules and the fixture-boolean check. |
+| O1-O6, O8 | Adopted: fixture flag must be a boolean at intake; `text_extraction` enum checked; ledger rows deduplicated by evidence id and claim; `LEGAL_PREDRAFT_COVERAGE` matches on the same canonical URL set as the recorder (including the record's final URL); wording "before the day the run opened"; operator guidance for a transient `RESEARCH_UNAVAILABLE` (retry later, never `--offline`) in the README; reserved-host suffix match requires a dot boundary. |
+| O7: refuse a reviewer excerpt identical to the record's | Not adopted: the failed-bill page in the refusal run has almost no other quotable text, so the rule would force awkward quoting without closing the gap; kept as open question 13. |
+
+Reviewer disagreement preserved: whether override-by-precedence satisfies "replace" (M8) is the
+user's call; the WebFetch limitation (M6) is inferred from the tool contract, not observed inside the
+subagent. The reviewer's candidate lessons ("when a gate binds operator-declared metadata, check for
+neutral values that bypass the rule and whether the docs say declared rather than verified"; "re-check
+modification of key files at the end of a long read-only review") are recorded here as hypotheses for
+the `seo-reviewer` role, not promoted.
+
+### Disposable checkout (install and rollback)
+
+`git worktree add --detach` at HEAD plus the working changes, then `npm ci` for the candidate:
+activation created exactly the eight Git-ignored entries (five symlinks, three byte copies) and left
+`git status` clean; `build_adapters.py --check`, both hook suites, and the candidate suite passed
+there; the readiness suite ran 67 tests of which 35 passed and 32 failed closed at the render step
+because the Git-ignored LibreOffice and PyMuPDF installs are absent in a fresh checkout (the README
+activation steps now say so); a foreign `.codex/agents/legal_reviewer.toml` was refused by
+activation and left in place by rollback; full rollback removed all eight entries with a clean
+`git status`. The worktree was removed afterwards.
+
+### Fetch-tool limits found (fail closed, not bypassed)
+
+`research_fetch.py` uses this machine's Python TLS trust and does not extract PDFs: revisor.mn.gov
+fails the handshake under Homebrew Python 3.14 / OpenSSL 3.6.3 (system Python and curl succeed);
+legislature.mi.gov's certificate chain does not validate; ilga.gov returns 403 to automated
+clients; a PDF authority yields no text. Each is `RESEARCH_UNAVAILABLE`; the affected claims stay
+unverified. flsenate.gov, codes.ohio.gov, and docs.legis.wisconsin.gov fetched normally.
+
 ## Open questions (UNRESOLVED; not guidance)
 
 1. Resolved 2026-09-23: a source keeps one number and is cited again wherever it supports a
@@ -184,6 +324,17 @@ is recorded as a hypothesis for the `seo-reviewer` role, not promoted.
    (seo-reviewer M1: FL-M008 versus the live FL-M039 High-Conflict Custody page). Whether the
    intake or the editorial checkpoint should require that screen, and where the shared statutory
    explanation should live, is undecided; hypothesis from one run.
+11. `research_fetch.py` cannot record authorities behind TLS chains this Python install rejects,
+   sites that block automated clients, or PDF-only publications (2026-09-24). Whether to add a
+   pinned certificate bundle, a browser-based retrieval path, or PDF text extraction, and how each
+   would keep the fail-closed property, is undecided.
+12. Codex headless `legal_reviewer` cannot fetch the web under the read-only sandbox on this host
+   (2026-09-24). Whether the interactive Codex session, a network-enabled sandbox policy, or a
+   coordinator-side retrieval handoff should carry live research on Codex is undecided.
+13. Excerpt selection is a judgment: a reviewer may quote the coordinator's own excerpt without
+   reading further, and an excerpt taken from page chrome rather than statutory text would pass the
+   mechanical check. Whether to require the reviewer's excerpt to differ from the record's, or to
+   require two independent excerpts per authority, is undecided (2026-09-24).
 
 ## Refinements integrated from `SEO_Dept_Refined_Content_Skills_v1.patch` (2026-09-23)
 

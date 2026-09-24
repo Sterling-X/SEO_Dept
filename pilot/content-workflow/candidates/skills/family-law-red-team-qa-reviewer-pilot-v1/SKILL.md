@@ -26,6 +26,13 @@ When this skill runs inside `pilot/content-workflow` as the editorial reviewer:
   documented voice contradiction, a missing scenario connection the brief requires). Tag findings
   `client-fact`, `promise`, `brand`, `structure`, `brief`, or `citation`; close them only after
   re-reading the revised passage, with `corrected_text` for client-fact, promise, and citation.
+- **Client facts are current-source facts (2026-09-24).** A changeable firm statement (service, fee
+  model, office, credential, contact route, response time, statistic) is supported only when the
+  approved client facts carry it *and* a first-party page retrieved in this run supports it: the
+  `client-facts` source lists `evidence_ids`; read those `research/EV<n>.txt` files and fetch the page
+  yourself when the fact matters. Approved brand guidance governs voice and proves no fact; a fact
+  whose only support is the voice skill, a brief, a prior run, or memory is an unsupported
+  `client-fact` or `promise` finding. Name the `evidence_id` in the finding's evidence.
 - Add an eighth review question, **brief compliance**: node, jurisdiction, excluded intents, word
   target, and the counts and placements in `pilot/content-workflow/canonical/link-and-cta-limits.md`.
 - The record is bound to the draft hash you read; any edit invalidates it. On a recheck set

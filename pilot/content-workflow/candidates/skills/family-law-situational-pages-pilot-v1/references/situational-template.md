@@ -89,5 +89,5 @@ All four authority types retain the common dated destination evidence, right-ser
 - Proper Word headings and list numbering; no Unicode bullet characters.
 - Arial 12 pt body, H1 18 pt, H2 15 pt, H3 13 pt; US Letter; one-inch margins.
 - No em dashes, tag-on link language, or duplicate internal destination URLs.
-- No placeholder of any form at delivery. `[LOCAL DETAIL: ...]` is the only valid interim form and is reported, never delivered; bracketed non-numeric tokens, `{{...}}`, `<<...>>`, `TODO`, `TBD`, `FIXME`, `XXX`, `TK`, and `lorem ipsum` fail validation.
+- No placeholder of any form at delivery. Research comes first: a detail the writer lacks is retrieved during the run (`research_fetch.py`) and verified, not placeholdered. `[LOCAL DETAIL: ...]` is the only valid interim form, is permitted only for a fact the coordinator confirmed cannot be researched in this run, is reported in `changes.md`, and is never delivered; bracketed non-numeric tokens of any other form fail validation.
 - Claim coverage governs the source count: six is a guideline, more than six needs a recorded rationale, twelve is a sanity limit; every material legal claim still requires assignment-specific live primary-authority verification before drafting and again in review.

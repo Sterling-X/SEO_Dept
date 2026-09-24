@@ -15,6 +15,8 @@ editorial reviewer's skill in the pilot.
 | 6 | Client specificity reduced to arbitrary uniqueness (patch F10). | `references/editorial-rubric-pilot.md` (adapted from the comparison release): observable criteria, neutral accurate law acceptable, decision examples; the skill text points to it (integrated 2026-09-23). | new reference, `## Pilot workflow contract` |
 | 7 | Closure by suggestion or coordinator note (patch F02/C06). | Categories and `corrected_text`; protected client-fact and promise findings cannot be coordinator-accepted (integrated 2026-09-23). | `## Pilot workflow contract` |
 
+| 8 | Client specificity could be satisfied by the voice skill alone, so a changeable fact (fee model, office, credential) approved in brand guidance passed without a current first-party source. | Changeable firm statements need a first-party page retrieved in this run (`client-facts` `evidence_ids`); brand guidance governs voice, not facts (2026-09-24). | `## Pilot workflow contract` |
+
 Preserved unchanged: operating-reality assumptions, the eight review categories, severity
 scale, output format, the mandatory legal hand-off, universal guardrails.
 

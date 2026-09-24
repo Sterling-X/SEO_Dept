@@ -1,0 +1,208 @@
+{
+  "$comment": "Documentation-grade schema for <run>/research/EV<n>.json (content-workflow-research/v1). Written only by scripts/research_fetch.py after a successful live retrieval; validated by scripts/cw_research.py with a hand-written checker. A record proves that the page was fetched in this run and contained the excerpt and currency marker. It does not prove that the page supports any claim. 'Retrieved in this run' means the metadata is consistent with the run's nonce and opening time; the run directory is writable, so this is consistency evidence, not authenticated provenance.",
+  "type": "object",
+  "required": [
+    "schema",
+    "evidence_id",
+    "run_id",
+    "nonce",
+    "kind",
+    "url",
+    "http_status",
+    "retrieved_at",
+    "retrieval_method",
+    "content_sha256",
+    "text_path",
+    "text_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "content-workflow-research/v1"
+    },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^EV[0-9]{1,3}$"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "must equal run.json run_id"
+    },
+    "nonce": {
+      "type": "string",
+      "description": "must equal run.json research.nonce (issued by research_fetch.py --init); a different nonce is reused evidence"
+    },
+    "fixture": {
+      "type": "boolean"
+    },
+    "kind": {
+      "enum": [
+        "legal-authority",
+        "client-fact",
+        "link-destination",
+        "statistic",
+        "other"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "run.json source this record supports, when one exists"
+    },
+    "url": {
+      "type": "string",
+      "description": "the canonical URL as cited"
+    },
+    "fetched_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "fixture runs only: the local test-server URL the reserved fixture URL was mapped to"
+    },
+    "final_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "http_status": {
+      "const": 200
+    },
+    "redirects": {
+      "type": "integer"
+    },
+    "content_type": {
+      "type": "string"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "description": "ISO timestamp of the retrieval in this run; must be on or after research.opened_at and within research.max_age_days at check time"
+    },
+    "retrieval_method": {
+      "type": "string"
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "content_bytes": {
+      "type": "integer"
+    },
+    "text_extraction": {
+      "enum": [
+        "html",
+        "text"
+      ]
+    },
+    "text_path": {
+      "type": "string",
+      "description": "run-relative path of the extracted page text"
+    },
+    "text_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "excerpt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 40,
+      "description": "verbatim text (40+ characters) present in the extracted text at retrieval; required except for link-destination"
+    },
+    "authority": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "the citation as the page names it; required for legal-authority"
+    },
+    "jurisdiction": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "required for legal-authority; declared by the operator and checked for consistency with the run's jurisdiction (or 'federal'); correctness is the legal reviewer's judgment"
+    },
+    "currency": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "legal-authority only",
+      "properties": {
+        "legislation_status": {
+          "enum": [
+            "effective",
+            "enacted-not-effective",
+            "proposed",
+            "repealed",
+            "superseded",
+            "unknown"
+          ],
+          "description": "only 'effective' may support a claim of current law"
+        },
+        "effective_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO date the provision itself took effect, only when the page states one; null otherwise; must not be after the retrieval date"
+        },
+        "future_effective_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO date for enacted-not-effective law; must be in the future"
+        },
+        "marker": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "the page's own current-through / published / effective statement, verbatim (20+ characters); required for a legal authority unless marker_absent_reason is given; must be present at retrieval and at live re-check; the excerpt may not be the marker"
+        },
+        "amendments_note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "history line or recent acts noted on the page"
+        },
+        "current_through_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO date the compilation on the page is current through (bound to the marker); not the provision's own effective date"
+        },
+        "marker_absent_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "20+ characters; required when the page carries no current-through, published, or effective statement; printed in the ledger"
+        }
+      }
+    },
+    "supports_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "planned-claim or finding ids this retrieval was made for"
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notice": {
+      "type": "string"
+    }
+  }
+}

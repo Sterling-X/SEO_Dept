@@ -13,6 +13,8 @@ in the pilot.
 | 4 | No rendered-page inspection record existed (patch render gate). | `render_inspect.py` renders with the pinned renderer, hashes every page, and requires a per-page observation bound to the export hash; readiness refuses without it (integrated 2026-09-23). | `## Pilot workflow contract` |
 | 5 | Export could carry fields, revisions, or hidden text unnoticed (patch output reconciliation). | Readiness `export-clean` check rejects tracked changes, field codes, comments, hidden text, and embedded content (integrated 2026-09-23). | `scripts/cw_common.py` |
 
+| 6 | No mechanical check that any source was retrieved for the run; delivery carried no record of what was fetched or when. | `readiness_check.py --stage research` and delivery verify research records and re-fetch them live; `deliver.py` writes `research-ledger.md`; the QA pass confirms the ledger travels with the delivery (2026-09-24). | `## Pilot workflow contract` |
+
 Preserved unchanged: all checklists, error patterns, report format, verdict scale, Step 6
 legal hand-off, Rocket Clicks branding rules.
 

@@ -16,8 +16,9 @@
       "evidence": {
         "authority": "Exampleland Stat. § 12.350",
         "url": "https://legislature.exampleland.example/statutes/12.350",
-        "accessed": "2026-09-23",
-        "note": "FIXTURE: source note states a rebuttable presumption and written findings."
+        "accessed": "FIXTURE-DATE",
+        "note": "FIXTURE: source note states a rebuttable presumption and written findings.",
+        "evidence_id": "EV2"
       },
       "requested_correction": "State the presumption, the parent's ability to rebut it with evidence, and the written-findings requirement.",
       "resolution": {
@@ -35,31 +36,37 @@
       "location": "opening paragraph",
       "authority": "Exampleland Stat. § 12.345",
       "url": "https://legislature.exampleland.example/statutes/12.345",
-      "accessed": "2026-09-23",
+      "accessed": "FIXTURE-DATE",
       "result": "Confirmed",
-      "notes": "FIXTURE"
+      "notes": "FIXTURE (excerpt quoted from the fixture page retrieved in this run)",
+      "evidence_id": "EV1",
+      "excerpt": "remains a dissolution of marriage under this section and is governed by this chapter"
     },
     {
       "claim": "courts must always order equal parenting time",
       "location": "What is at stake",
       "authority": "Exampleland Stat. § 12.350",
       "url": "https://legislature.exampleland.example/statutes/12.350",
-      "accessed": "2026-09-23",
+      "accessed": "FIXTURE-DATE",
       "result": "Correction-needed",
-      "notes": "FIXTURE: absolute-language search performed; presumption is rebuttable."
+      "notes": "FIXTURE: absolute-language search performed; presumption is rebuttable. (excerpt quoted from the fixture page retrieved in this run)",
+      "evidence_id": "EV2",
+      "excerpt": "A parent may rebut the presumption with evidence, and the court must make written findings supporting any departure"
     },
     {
       "claim": "court may enter a case-management order",
       "location": "Building a structured response",
       "authority": "Exampleland Family Court Rule 7",
       "url": "https://courts.exampleland.example/rules/family/7",
-      "accessed": "2026-09-23",
+      "accessed": "FIXTURE-DATE",
       "result": "Confirmed",
-      "notes": "FIXTURE"
+      "notes": "FIXTURE (excerpt quoted from the fixture page retrieved in this run)",
+      "evidence_id": "EV3",
+      "excerpt": "the court may enter a case-management order that sets communication and disclosure requirements for the parties"
     }
   ],
   "checks_not_performed": [
-    "FIXTURE: no live fetch was performed"
+    "FIXTURE: pages fetched from the local fixture server, not from any real authority"
   ],
   "learning_contribution": {
     "result_and_evidence": "fixture",
