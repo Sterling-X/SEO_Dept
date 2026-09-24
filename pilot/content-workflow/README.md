@@ -217,7 +217,8 @@ below and in `docs/CHANGES-AND-OPEN-QUESTIONS.md`.
 | Research layer (`research_fetch.py`, `cw_research.py`) | 21 new unit tests plus live retrieval of 15 real pages | PASS | `tests/test_readiness.py` 76/76; `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/research-report.json` |
 | Readiness gate, recorder, delivery | 76 tests (55 prior, 21 new), fresh refusal run with the real legal reviewer | PASS | `docs/CHANGES-AND-OPEN-QUESTIONS.md`, "Full-system audit" |
 | Adapters and activation/rollback | `build_adapters.py --check`; disposable checkout install, foreign-file refusal, rollback | PASS | same record, "Disposable checkout" |
-| Claude agents (content-writer, legal-reviewer, editorial-reviewer) | live dispatch from this session on the fresh run | see the record | `runs/...-integration/coordinator-log.md` |
+| Claude agents (content-writer, legal-reviewer, editorial-reviewer) | full fresh run: research, pre-draft, draft, checkpoints, correction, finals, render, delivery | PASS (READY, live research re-verified at delivery) | `runs/...-integration/` records; `docs/CHANGES-AND-OPEN-QUESTIONS.md` "Fresh Claude end-to-end run" |
+| Correct refusal with real authorities | Claude `legal-reviewer` on a failed bill, an out-of-state statute, a nonexistent section | PASS (gate INCOMPLETE with the intended codes, current code) | `runs/refusal-test-wisconsin-2026-09-24/readiness-report.json` |
 | Codex agents headless | read-only editorial handoff, write-scoped writer handoff, legal live fetch | PASS, PASS, BLOCKED (live fetch denied under the read-only sandbox; correct `Unverifiable`) | `runs/...-integration/smoke-logs/codex-*` |
 | Codex interactive session | not exercised | BLOCKED | no interactive session available to this host session |
 | Rendering in a fresh checkout | readiness suite in the disposable checkout | 35/67 pass; 32 fail closed without the Git-ignored renderer installs | `docs/CHANGES-AND-OPEN-QUESTIONS.md` |

@@ -472,8 +472,9 @@ instructions ("leave a placeholder rather than guessing").
   tests added across the two independent review rounds answer its M2, M4, M9, M10, and O1 items. Fixtures use a local HTTP server and fictional statutes under
   `tests/fixtures/valid-run/research-pages/`; the URL rewrite is honoured only for `fixture: true`.
 - Baseline suites unchanged and passing: hook tests 8 and 6; candidate situational suite 38.
-- Fresh client run (Git-ignored `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/`): 13 live
-  retrievals; INTAKE-COMPLETE; RESEARCH-COMPLETE with every record live-verified. Controlled refusal
+- Fresh client run (Git-ignored `runs/sterling-fl-m008-wisconsin-2026-09-24-integration/`): 15 live
+  retrievals; every stage run with the actual Claude agents; READY at delivery with all 15 records
+  re-verified live and `research-ledger.md` delivered. Not published or handed off. Controlled refusal
   run: failed bill, out-of-state statute, and nonexistent section refused with the intended codes.
 - Disposable checkout (`git worktree` plus the working changes): activation created exactly eight
   Git-ignored entries; adapter check, hook tests, and candidate suite passed; the readiness suite

@@ -293,6 +293,30 @@ directory cited as evidence and cite the regenerated report; a report produced b
 overwritten by a later offline run, is evidence about a different code state") is verified by M-1 and
 M-2 in this task and is carried into the learning pass.
 
+### Fresh Claude end-to-end run to READY (2026-09-24)
+
+`runs/sterling-fl-m008-wisconsin-2026-09-24-integration/` (Git-ignored), every stage run with the
+actual Claude agents from this session and every legal row bound to research retrieved in the run:
+
+| Stage | Agent | Result |
+|---|---|---|
+| Research | coordinator, `research_fetch.py` | 15 records (8 statutes, 2 subsection windows, 3 firm pages, 2 link destinations); RESEARCH-COMPLETE, 15/15 live-verified |
+| Pre-draft | `legal-reviewer` | 9 Confirmed rows across 8 records, 1 Flagged; L1-L5; ready-with-revisions |
+| Draft | `content-writer` (second dispatch after a session interrupt) | 1,647 words; generator and both validators exit 0; five overreaches from the interrupted attempt narrowed |
+| Checkpoints | `legal-reviewer`, `editorial-reviewer` in parallel | legal 32/34 Confirmed, L1-L5 fixed-verified, L6-L11 new; editorial E1-E6 (E1 major: FL-M039 overlap); both ready-with-revisions |
+| Correction | `content-writer` | all ids applied; coordinator decisions: L11 remove the hourly-billing sentence (fee scope unverified), E3 keep client-facts unchanged (re-pinning would stale the pre-draft record); 1,563 words |
+| Finals | `legal-reviewer`, `editorial-reviewer` | legal ready, L1-L11 fixed-verified, 43 rows all Confirmed; editorial ready-with-revisions (E2 minor, E7 note, E8 minor open; E1/E4/E5 fixed-verified; E3/E6 withdrawn) |
+| Mechanical, render | `mechanical_qa.py`; coordinator viewed all six pages twice | pass; render r0 pass with minor R1, render r1 pass |
+| Delivery | `deliver.py` | READY; live re-verification of all 15 records; five files incl. `research-ledger.md` |
+
+Refusals exercised on real output in this run: the recorder refused the editorial final while open
+finding E2 still quoted a sentence no longer in the draft (the reviewer re-anchored it); the pre-draft
+reviewer declined to Confirm propositions whose operative subsection was outside the stored text
+(Flagged with a record request, cleared by EV14/EV15). The page is a test artifact: not published and
+not handed to the client; attorney review, a client decision on fee scope, and the FL-M039 ownership
+question would precede any hand-off. Open minors E2 (one 31-word sentence), E8, and note E7 remain
+visible in the records.
+
 ### Disposable checkout (install and rollback)
 
 `git worktree add --detach` at HEAD plus the working changes, then `npm ci` for the candidate:
